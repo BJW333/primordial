@@ -2,9 +2,9 @@ numpy
 pandas
 pyyaml
 pyarrow
-# data sources (install what you use)
+# data sources / scrapers
 yfinance
 requests
-alpaca-py
+lxml
 # dev
 pytest

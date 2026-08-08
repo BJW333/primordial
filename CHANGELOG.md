@@ -56,3 +56,19 @@ controls re-pass; new equity machinery control passes.
 Drop-in. Old ledgers, manifests, and survivor JSONs load unchanged. Run
 `scripts/seed_ledger_deepstate.py` once per equity ledger, and
 `scripts/control_deepstate.py` + `scripts/run_controls.py` after pulling.
+
+## v0.1.8 (2026-08-05)
+- Behavioural constant-signal guard (tautology entries floored past warmup).
+- Deterministic control seeding (hash() footgun removed).
+- Bootstrap absolute escape: median > max(1.0, bar) also passes.
+
+## v0.1.9 (2026-08-05..08)
+- Bootstrap block scaled to the genome's own event horizon
+  (clip(2 x max_hold, 48, n/6)); fixed-48 recorded alongside on every stress.
+- CLI: version, ledger, doctor. Version banner on every command.
+- validate_genome.py, make_genome.py, explore_xs.py / explore_vol.py,
+  build_foreign.py, list_survivors.py (SURVIVORS.md registry).
+- SEARCHER FIX (2026-08-08): scale-relative parsimony; coverage-aware
+  min-cells floor (15% of attemptable); random immigrants (15%/cycle);
+  search-control budget 10x24 -> 20x48 with CLI flags. Controls 3/3 green;
+  search control recovers the planted mechanism. Judge unmodified throughout.

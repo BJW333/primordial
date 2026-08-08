@@ -1,6 +1,6 @@
 [project]
 name = "primordial"
-version = "0.1.7"
+version = "0.1.9"
 description = "Prior-free strategy synthesizer with an honest judge"
 requires-python = ">=3.10"
 dependencies = ["numpy", "pandas", "pyyaml", "pyarrow"]

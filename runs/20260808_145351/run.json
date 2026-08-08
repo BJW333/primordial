@@ -1,0 +1,90 @@
+{
+ "manifest": "/var/folders/05/wj8rkd0540db75q_prtsmgzc0000gn/T/primordial_ctl_672gshu6/negative_control.yaml",
+ "fingerprint": "609b1989f34b7c68",
+ "seed": 42,
+ "n_evaluated": 160,
+ "effective_trials_alltime": 18,
+ "runtime_sec": 45.2,
+ "atom_merges": {
+  "stoch_d": "stoch_k_m",
+  "bb_z_m": "stoch_k_m",
+  "rvol_m": "rvol_f",
+  "rvol_s": "rvol_f",
+  "parkinson": "rvol_f",
+  "garman_klass": "rvol_f",
+  "atr_pct": "rvol_f",
+  "bb_width_pctile": "vol_pctile",
+  "turnover_ratio": "volz",
+  "match_m1_s20": "match_m0_s20",
+  "match_m3_s20": "match_m2_s20",
+  "rel_ret": "roc_m"
+ },
+ "report": [
+  {
+   "genome": "[1h long confirm] cross_above(roll_max(roll_sum(minv(dist_sma_f, zscore(match_m0_s20, n=187)), n=15), n=188), maxv(xs_rank_roc_m, add(macd_hist, ctx_breadth))) WHEN gt(ctx_vol, clip(gap_atr)) | stop 3.4A tgt 2.0R ts 0 trail_1r",
+   "genome_json": "{\"timeframe\": \"1h\", \"root_type\": \"bool\", \"entry_tree\": {\"op\": \"cross_above\", \"ch\": [{\"op\": \"roll_max\", \"ch\": [{\"op\": \"roll_sum\", \"ch\": [{\"op\": \"minv\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"dist_sma_f\"}, {\"op\": \"zscore\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"match_m0_s20\"}], \"n\": 187}]}], \"n\": 15}], \"n\": 188}, {\"op\": \"maxv\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"xs_rank_roc_m\"}, {\"op\": \"add\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"macd_hist\"}, {\"op\": \"term\", \"ch\": [], \"name\": \"ctx_breadth\"}]}]}]}, \"regime_tree\": {\"op\": \"gt\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"ctx_vol\"}, {\"op\": \"clip\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"gap_atr\"}]}]}, \"direction\": \"long\", \"entry_style\": \"confirm\", \"entry_param\": 1.0, \"stop_atr\": 3.43, \"target_r\": 2.0, \"time_stop\": 0, \"trail_mode\": \"trail_1r\", \"max_hold\": 48, \"anchor_ema\": 0}",
+   "timeframe": "1h",
+   "train_fit": -1.1545308996044115,
+   "holdout_median_sharpe": 0.0,
+   "holdout_trades": 0,
+   "holdout_psr": 0.0,
+   "luck_bar": 0.9269366014964775,
+   "survived": false
+  },
+  {
+   "genome": "[4h long confirm] cross_above(roll_max(roll_sum(minv(dist_sma_f, div(roc_s, bb_z_s)), n=15), n=188), maxv(xs_rank_roc_m, xs_rank_roc_m)) WHEN cross_above(close_loc, pctile_rank(ret_pctile, n=28)) | stop 2.8A tgt 0.0R ts 12 trail_1r",
+   "genome_json": "{\"timeframe\": \"4h\", \"root_type\": \"bool\", \"entry_tree\": {\"op\": \"cross_above\", \"ch\": [{\"op\": \"roll_max\", \"ch\": [{\"op\": \"roll_sum\", \"ch\": [{\"op\": \"minv\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"dist_sma_f\"}, {\"op\": \"div\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"roc_s\"}, {\"op\": \"term\", \"ch\": [], \"name\": \"bb_z_s\"}]}]}], \"n\": 15}], \"n\": 188}, {\"op\": \"maxv\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"xs_rank_roc_m\"}, {\"op\": \"term\", \"ch\": [], \"name\": \"xs_rank_roc_m\"}]}]}, \"regime_tree\": {\"op\": \"cross_above\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"close_loc\"}, {\"op\": \"pctile_rank\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"ret_pctile\"}], \"n\": 28}]}, \"direction\": \"long\", \"entry_style\": \"confirm\", \"entry_param\": 1.0, \"stop_atr\": 2.84, \"target_r\": 0.0, \"time_stop\": 12, \"trail_mode\": \"trail_1r\", \"max_hold\": 500, \"anchor_ema\": 0}",
+   "timeframe": "4h",
+   "train_fit": -1.4441383396590166,
+   "holdout_median_sharpe": 0.0,
+   "holdout_trades": 0,
+   "holdout_psr": 0.0,
+   "luck_bar": 0.9269366014964775,
+   "survived": false
+  },
+  {
+   "genome": "[1h long confirm] cross_above(roll_max(roll_sum(minv(dist_sma_f, roc_s), n=15), n=188), maxv(xs_rank_roc_m, div(macd_hist, vol_of_vol))) WHEN cross_above(close_loc, pctile_rank(ret_pctile, n=28)) | stop 2.8A tgt 0.0R ts 12 trail_1r",
+   "genome_json": "{\"timeframe\": \"1h\", \"root_type\": \"bool\", \"entry_tree\": {\"op\": \"cross_above\", \"ch\": [{\"op\": \"roll_max\", \"ch\": [{\"op\": \"roll_sum\", \"ch\": [{\"op\": \"minv\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"dist_sma_f\"}, {\"op\": \"term\", \"ch\": [], \"name\": \"roc_s\"}]}], \"n\": 15}], \"n\": 188}, {\"op\": \"maxv\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"xs_rank_roc_m\"}, {\"op\": \"div\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"macd_hist\"}, {\"op\": \"term\", \"ch\": [], \"name\": \"vol_of_vol\"}]}]}]}, \"regime_tree\": {\"op\": \"cross_above\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"close_loc\"}, {\"op\": \"pctile_rank\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"ret_pctile\"}], \"n\": 28}]}, \"direction\": \"long\", \"entry_style\": \"confirm\", \"entry_param\": 1.0, \"stop_atr\": 2.84, \"target_r\": 0.0, \"time_stop\": 12, \"trail_mode\": \"trail_1r\", \"max_hold\": 500, \"anchor_ema\": 0}",
+   "timeframe": "1h",
+   "train_fit": -1.5337982439347766,
+   "holdout_median_sharpe": 0.0,
+   "holdout_trades": 0,
+   "holdout_psr": 0.0,
+   "luck_bar": 0.9269366014964775,
+   "survived": false
+  },
+  {
+   "genome": "[1h long confirm] cross_above(roll_max(roll_sum(minv(dist_sma_f, div(roc_s, ctx_breadth)), n=15), n=188), maxv(xs_rank_roc_m, div(macd_hist, vol_of_vol))) WHEN cross_above(price_pctile, pctile_rank(ret_pctile, n=28)) | stop 2.8A tgt 0.0R ts 12 trail_1r",
+   "genome_json": "{\"timeframe\": \"1h\", \"root_type\": \"bool\", \"entry_tree\": {\"op\": \"cross_above\", \"ch\": [{\"op\": \"roll_max\", \"ch\": [{\"op\": \"roll_sum\", \"ch\": [{\"op\": \"minv\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"dist_sma_f\"}, {\"op\": \"div\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"roc_s\"}, {\"op\": \"term\", \"ch\": [], \"name\": \"ctx_breadth\"}]}]}], \"n\": 15}], \"n\": 188}, {\"op\": \"maxv\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"xs_rank_roc_m\"}, {\"op\": \"div\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"macd_hist\"}, {\"op\": \"term\", \"ch\": [], \"name\": \"vol_of_vol\"}]}]}]}, \"regime_tree\": {\"op\": \"cross_above\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"price_pctile\"}, {\"op\": \"pctile_rank\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"ret_pctile\"}], \"n\": 28}]}, \"direction\": \"long\", \"entry_style\": \"confirm\", \"entry_param\": 1.0, \"stop_atr\": 2.84, \"target_r\": 0.0, \"time_stop\": 12, \"trail_mode\": \"trail_1r\", \"max_hold\": 500, \"anchor_ema\": 0}",
+   "timeframe": "1h",
+   "train_fit": -1.6242623566440277,
+   "holdout_median_sharpe": 0.0,
+   "holdout_trades": 0,
+   "holdout_psr": 0.0,
+   "luck_bar": 0.9269366014964775,
+   "survived": false
+  },
+  {
+   "genome": "[1h long confirm] cross_above(roll_max(roll_sum(minv(dist_sma_f, div(roc_s, bb_z_s)), n=15), n=188), maxv(xs_rank_roc_m, efficiency_ratio)) WHEN cross_above(price_pctile, pctile_rank(ret_pctile, n=28)) | stop 1.3A tgt 2.0R ts 12 breakeven_1r anchor52",
+   "genome_json": "{\"timeframe\": \"1h\", \"root_type\": \"bool\", \"entry_tree\": {\"op\": \"cross_above\", \"ch\": [{\"op\": \"roll_max\", \"ch\": [{\"op\": \"roll_sum\", \"ch\": [{\"op\": \"minv\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"dist_sma_f\"}, {\"op\": \"div\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"roc_s\"}, {\"op\": \"term\", \"ch\": [], \"name\": \"bb_z_s\"}]}]}], \"n\": 15}], \"n\": 188}, {\"op\": \"maxv\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"xs_rank_roc_m\"}, {\"op\": \"term\", \"ch\": [], \"name\": \"efficiency_ratio\"}]}]}, \"regime_tree\": {\"op\": \"cross_above\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"price_pctile\"}, {\"op\": \"pctile_rank\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"ret_pctile\"}], \"n\": 28}]}, \"direction\": \"long\", \"entry_style\": \"confirm\", \"entry_param\": 1.0, \"stop_atr\": 1.28, \"target_r\": 2.0, \"time_stop\": 12, \"trail_mode\": \"breakeven_1r\", \"max_hold\": 500, \"anchor_ema\": 52}",
+   "timeframe": "1h",
+   "train_fit": -2.0997460988216643,
+   "holdout_median_sharpe": 0.0,
+   "holdout_trades": 0,
+   "holdout_psr": 0.0,
+   "luck_bar": 0.9269366014964775,
+   "survived": false
+  },
+  {
+   "genome": "[4h long confirm] lt(roll_mean(dist_sma_m, n=139), clip(vol_ratio)) WHEN gt(ctx_vol, clip(gap_atr)) | stop 3.4A tgt 2.0R ts 0 none",
+   "genome_json": "{\"timeframe\": \"4h\", \"root_type\": \"bool\", \"entry_tree\": {\"op\": \"lt\", \"ch\": [{\"op\": \"roll_mean\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"dist_sma_m\"}], \"n\": 139}, {\"op\": \"clip\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"vol_ratio\"}]}]}, \"regime_tree\": {\"op\": \"gt\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"ctx_vol\"}, {\"op\": \"clip\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"gap_atr\"}]}]}, \"direction\": \"long\", \"entry_style\": \"confirm\", \"entry_param\": 3, \"stop_atr\": 3.43, \"target_r\": 2.0, \"time_stop\": 0, \"trail_mode\": \"none\", \"max_hold\": 48, \"anchor_ema\": 0}",
+   "timeframe": "4h",
+   "train_fit": -2.208577545974035,
+   "holdout_median_sharpe": 0.0,
+   "holdout_trades": 0,
+   "holdout_psr": 0.0,
+   "luck_bar": 0.9269366014964775,
+   "survived": false
+  }
+ ]
+}
