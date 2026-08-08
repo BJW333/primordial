@@ -120,7 +120,7 @@ def search_control():
     _own_cache("search")
     print("\n=== SEARCH CONTROL (evolution should find the planted edge) ===")
     D._synthetic = _planted
-    survivors, _, _ = P.run(_manifest(True), generations=10, pop_size=24,
+    survivors, _, _ = P.run(_manifest(True), generations=GENS, pop_size=POP,
                             n_islands=2, verbose=True)
     if survivors:
         print(f"SEARCH CONTROL PASSED ({len(survivors)} survivors)")
@@ -130,7 +130,20 @@ def search_control():
               "thresholds.")
 
 
+GENS, POP = 20, 48   # search-control budget; CLI-overridable
+
 if __name__ == "__main__":
-    negative_control()
-    machinery_control()
-    search_control()
+    import argparse
+    _p = argparse.ArgumentParser()
+    _p.add_argument("--generations", type=int, default=20)
+    _p.add_argument("--pop", type=int, default=48)
+    _p.add_argument("--only", choices=["negative", "machinery", "search"],
+                    default=None)
+    _a = _p.parse_args()
+    GENS, POP = _a.generations, _a.pop
+    if _a.only in (None, "negative"):
+        negative_control()
+    if _a.only in (None, "machinery"):
+        machinery_control()
+    if _a.only in (None, "search"):
+        search_control()

@@ -118,3 +118,16 @@ which stays frozen until the forward verdict.
 - Time-conditioning: does the edge concentrate in high-VIX regimes? Sizing
   question, one trial on sp400.
 - Real foreign spread data before any non-US deployment.
+
+### §8 update (2026-08-08, later)
+
+Search-control failure root-caused and fixed: (1) parsimony penalty was
+absolute-scaled — negligible on planted controls, crushing on real data —
+now scale-relative; (2) coverage-aware cell floor (15% of attemptable cells);
+(3) random immigrants vs population collapse; (4) budget 10x24 -> 20x48.
+All tuned on the control (planted answer known), never on real data.
+Post-fix, on Blake's machine: negative 0 survivors, machinery PASSED,
+search control RECOVERED the planted mechanism (lt(1.24, volz), 3 nodes,
+stable 6 final gens, survived +21.35 vs bar +11.34). The judge was not
+modified. The "6 universes / 0 survivors" footnote weakens accordingly:
+future nulls from this searcher are meaningful statements about the ground.

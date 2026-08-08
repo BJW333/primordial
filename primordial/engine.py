@@ -122,6 +122,17 @@ def evolve(mtf_data: dict, train_syms, cost, terminals, allowed_timeframes,
             isl.pop = newpop
         if best is None or gen_best[0] > best[0]:
             best = gen_best
+        # RANDOM IMMIGRANTS: replace the worst 15% of each island with fresh
+        # random genomes every migration cycle. Three separate production runs
+        # stagnated for their final ~10 generations because the population
+        # collapsed into one lineage; ring migration alone just spreads that
+        # lineage. Elites at the front of pop are untouched. 2026-08-08.
+        if gen and gen % migrate_every == 0:
+            for isl in islands:
+                k_new = max(1, int(0.15 * len(isl.pop)))
+                for i in range(1, k_new + 1):   # back of pop = non-elite
+                    isl.pop[-i] = random_genome(
+                        isl.rng, isl.terminals, isl.tfs)
         if gen and gen % migrate_every == 0 and len(islands) > 1:
             for i, isl in enumerate(islands):        # ring migration
                 nxt = islands[(i + 1) % len(islands)]

@@ -138,10 +138,28 @@ def fitness(genome, data, syms, cost, bar_seconds, lam=0.5, gamma=0.05,
     except Exception:
         pass
     cells, pooled, turnover = fold_cells(genome, data, syms, cost, bar_seconds)
-    if len(cells) < min_cells:
-        return -9.99, {"n_cells": len(cells), "median_sharpe": 0.0}
+    # coverage-aware floor: a "winner" scored on 6 of 900 available cells is
+    # a fluke, not a strategy. Require 15% of attemptable (name x fold) cells,
+    # never less than the absolute floor. On the 12-name controls this equals
+    # the old behaviour (floor 6); on 300-name universes it demands breadth.
+    attempted = sum(min(3, max(1, len(data[s]) // 300)) for s in syms
+                    if s in data)
+    need = max(min_cells, int(0.15 * attempted))
+    if len(cells) < need:
+        return -9.99, {"n_cells": len(cells), "median_sharpe": 0.0,
+                       "need_cells": need}
     med, sd = float(np.median(cells)), float(np.std(cells))
-    fit = med - lam * sd - gamma * genome.complexity() - delta * turnover
+    # SCALE-RELATIVE parsimony. The old absolute per-node cost (gamma flat)
+    # was wrong in both regimes: on planted controls (SR 10-20) it was
+    # negligible so bloat won; on real data (SR ~0.5) 15 nodes cost more than
+    # the whole signal so evolution fled to vacuous one-liners. Charging a
+    # fraction of the fitness scale per node keeps the pressure identical in
+    # shape at any Sharpe magnitude. Tuned on the CONTROL (planted answer
+    # known), never on real data. 2026-08-08.
+    scale = max(abs(med), 0.25)
+    fit = (med - lam * sd
+           - gamma * scale * genome.complexity()
+           - delta * turnover)
     return fit, {"n_cells": len(cells), "median_sharpe": med, "std": sd,
                  "turnover": turnover, "n_trades": len(pooled)}
 
