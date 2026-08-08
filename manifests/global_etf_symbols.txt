@@ -1,0 +1,47 @@
+# World market exposure via liquid US-listed ETFs -- one line per fund.
+# Broad US
+SPY
+QQQ
+IWM
+DIA
+# Developed intl / broad world
+EFA
+VEU
+VT
+ACWI
+# Emerging broad
+EEM
+VWO
+# Country: Americas
+EWC
+EWZ
+EWW
+ILF
+# Country: Europe
+EWU
+EWG
+EWQ
+EWI
+EWP
+EWL
+EWD
+EWN
+EZU
+# Country: Asia-Pacific
+EWJ
+EWY
+INDA
+FXI
+MCHI
+EWT
+EWH
+EWS
+EWA
+EWM
+THD
+EIDO
+# Rates/commodities/vol context (tradable, adds regime breadth)
+TLT
+GLD
+SLV
+USO

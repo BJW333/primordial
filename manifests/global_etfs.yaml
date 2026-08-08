@@ -1,0 +1,27 @@
+# Top world markets as US-listed ETFs: broad US, developed, emerging, and
+# ~20 single-country funds (Europe, Korea, India, Japan, China, HK, Brazil...)
+# plus rates/gold/oil for regime breadth. ETFs > raw indexes here: real
+# volume data, shortable, tight spreads, one venue, one currency.
+#
+# 1) drop global_etf_symbols.txt and this file into manifests/
+# 2) python3.10 scripts/fetch_data.py manifests/global_etfs.yaml
+# 3) python3.10 -m primordial run --manifest manifests/global_etfs.yaml \
+#        --generations 20 --pop 40 --islands 3
+name: global_etfs_daily
+asset_class: equity            # ETFs: volume atoms valid, shortable
+source: yfinance
+symbols_file: global_etf_symbols.txt
+base_timeframe: 1d
+allowed_timeframes: [1d, 1w]
+start: "2008-01-01"            # covers GFC, 2020, 2022 regimes
+end: "2026-06-01"
+cost_tier: index_etf           # ~1bp/side -- these are the cheapest things alive
+holdout_name_frac: 0.4
+holdout_time_frac: 0.3
+embargo_bars: 20
+engines: [timing, cross_sectional]
+n_motifs: 6
+motif_scales: [20, 40]
+# reference streams for ctx_* atoms (never searched, never held out).
+# HYG=credit, UUP=dollar, VIXY=vol proxy -- deliberately NOT universe members
+context_symbols: [HYG, UUP, VIXY]

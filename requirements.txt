@@ -1,0 +1,10 @@
+numpy
+pandas
+pyyaml
+pyarrow
+# data sources (install what you use)
+yfinance
+requests
+alpaca-py
+# dev
+pytest
