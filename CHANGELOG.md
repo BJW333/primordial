@@ -72,3 +72,12 @@ Drop-in. Old ledgers, manifests, and survivor JSONs load unchanged. Run
   min-cells floor (15% of attemptable); random immigrants (15%/cycle);
   search-control budget 10x24 -> 20x48 with CLI flags. Controls 3/3 green;
   search control recovers the planted mechanism. Judge unmodified throughout.
+
+## Guards (2026-08-09)
+- make_genome validates BOTH atom names and operator names against the real
+  vocabularies (atoms.BLOCKS / tree.OPS). Root cause: `mult` is not an
+  operator (`mul` is); the parser accepted it, evaluation raised per-symbol,
+  the error was swallowed by the per-name try/except, and the run reported
+  ZERO TRADES -- a silent null that reads exactly like a real finding.
+- validate_genome defers the ledger charge until after the run; a genome that
+  fires zero trades observed nothing and no longer raises the bar.
