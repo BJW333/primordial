@@ -1,0 +1,23 @@
+# Leveraged/inverse ETFs -- the ground where "overbought" actually happens.
+# Built to test the TQQQ/UVXY claim on instruments like the ones it trades.
+# CAVEAT: these are all levered index funds; they are HIGHLY correlated in
+# pairs (TQQQ/SQQQ) and in blocks (all the 3x equity ones). Expect the
+# bootstrap to punish that, exactly as global_etfs_wide was punished.
+name: us_leveraged_etf
+asset_class: equity
+source: yfinance
+symbols: [TQQQ, SQQQ, SPXL, SPXS, SPXU, UPRO, SOXL, SOXS, TNA, TZA,
+          FAS, FAZ, UDOW, SDOW, LABU, LABD, NUGT, DUST, JNUG, JDST,
+          YINN, YANG, ERX, ERY, TMF, TMV, DRN, DRV, TECL, TECS,
+          CURE, GUSH, DRIP]
+base_timeframe: 1d
+allowed_timeframes: [1d]
+start: "2015-01-01"
+end: "2026-06-01"
+cost_tier: equity_liquid
+holdout_name_frac: 0.4
+holdout_time_frac: 0.3
+embargo_bars: 50
+engines: [timing]
+n_motifs: 6
+motif_scales: [20, 40]

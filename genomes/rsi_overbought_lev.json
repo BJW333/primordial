@@ -1,0 +1,1 @@
+{"timeframe": "1d", "root_type": "bool", "entry_tree": {"op": "gt", "ch": [{"op": "term", "ch": [], "name": "rsi_f"}, {"op": "const", "ch": [], "value": 0.79}]}, "regime_tree": null, "direction": "short", "entry_style": "market", "entry_param": 1, "stop_atr": 99.0, "target_r": 0.0, "time_stop": 0, "trail_mode": "none", "max_hold": 10, "anchor_ema": 0}
