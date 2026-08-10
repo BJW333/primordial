@@ -103,14 +103,23 @@ def _check_terminals(tree):
     and ema_spread_atr)."""
     import sys
     known = _known_atoms()
-    used = set()
+    used, ops = set(), set()
 
     def walk(nd):
+        ops.add(nd["op"])
         if nd["op"] == "term":
             used.add(nd["name"])
         for ch in nd.get("ch", []):
             walk(ch)
     walk(tree)
+    from primordial.tree import OPS          # the real operator table
+    bad_ops = sorted({o for o in ops if o not in OPS
+                      and o not in ("term", "const")})
+    if bad_ops:
+        print(f"ERROR: unknown operator(s): {', '.join(bad_ops)}",
+              file=sys.stderr)
+        print(f"  valid ops: {', '.join(sorted(OPS))}", file=sys.stderr)
+        sys.exit(2)
     unknown = sorted(u for u in used if u not in known)
     if unknown:
         print(f"ERROR: unknown atom(s): {', '.join(unknown)}", file=sys.stderr)

@@ -51,6 +51,17 @@ from primordial.genome import Genome, random_genome    # noqa: E402
 from primordial.judge import (fitness, fold_cells,        # noqa: E402
                               NameTimeSplit)
 from primordial.universe import Manifest               # noqa: E402
+import math, statistics                                  # noqa: E402
+
+
+def luck_bar(var_sr: float, n: int) -> float:
+    """Expected max Sharpe among n null trials -- the pipeline's own bar."""
+    if n < 2 or var_sr <= 0:
+        return 0.0
+    e = 0.5772156649
+    z = statistics.NormalDist()
+    return math.sqrt(var_sr) * ((1 - e) * z.inv_cdf(1 - 1.0 / n)
+                                + e * z.inv_cdf(1 - 1.0 / (n * math.e)))
 
 N_NULL = int(os.environ.get("N_NULL", "200"))
 TF = os.environ.get("TF", "5m")
@@ -144,19 +155,40 @@ def main() -> int:
         return 1
 
     null = np.array(null)
-    bar95 = float(np.percentile(null, 95))
+    # THE BAR. A raw 95th percentile of this null is far too lenient: the
+    # null is dominated by degenerate genomes (mean SR well below zero), so
+    # its upper tail sits near zero and almost anything clears it. The
+    # gauntlet does NOT do that -- it computes the EXPECTED MAXIMUM Sharpe
+    # over N trials (Bailey/Lopez de Prado), which is what you must beat when
+    # you are picking a winner out of many attempts. Same formula here, and
+    # the same MAD-robust, clipped var_sr the pipeline uses.
+    mad = float(np.median(np.abs(null - np.median(null))))
+    var_sr = float(np.clip((1.4826 * mad) ** 2, 0.25, 25.0))
+    n_trials = max(len(null) + len(rows), 2)
+    bar = luck_bar(var_sr, n_trials)
+    bar_floor = luck_bar(0.25, n_trials)      # most generous defensible bar
+    pct95 = float(np.percentile(null, 95))
     print(f"  null holdout med SR: mean {null.mean():+.3f} "
-          f"sd {null.std(ddof=1):.3f} | 95th pct = {bar95:+.3f} "
-          f"(n={len(null)})")
+          f"sd {null.std(ddof=1):.3f} (n={len(null)})")
+    print(f"  raw 95th pct = {pct95:+.3f}  <- TOO LENIENT, shown for contrast")
+    print(f"  luck bar (expected max over {n_trials} trials, var_sr "
+          f"{var_sr:.2f}) = {bar:+.3f}")
+    print(f"  luck bar at the var_sr FLOOR (0.25)          = {bar_floor:+.3f}")
 
     print("\n" + "=" * 62)
     for d, f, meta, med, nc in rows:
         pct = float((null < med).mean() * 100.0)
-        verdict = "BEATS NULL" if med > bar95 else "indistinguishable from null"
+        ok = med > bar_floor
+        verdict = "CLEARS BAR" if ok else "FAILS BAR"
         print(f"SMA {d:5s}: holdout med SR {med:+.3f} | {pct:.0f}th pct of null "
-              f"| {verdict}")
+              f"| vs floor bar {bar_floor:+.3f} -> {verdict}")
+        if f < 0 and med > 0:
+            print(f"          WARNING: train fit {f:+.3f} is NEGATIVE while "
+                  f"holdout is positive. A real edge shows up in TRAIN too; "
+                  f"this inversion is the signature of noise.")
     print("=" * 62)
-    print("A rule at the 50th percentile of random genomes is a random genome.")
+    print("Percentile-of-null is NOT the test. The bar is expected-max-Sharpe")
+    print("over the number of things you tried. Beating garbage is not edge.")
     return 0
 
 
