@@ -227,6 +227,16 @@ def describe(tree):
     return f"{op}({inner}{nn})"
 
 
+def terminal_names(tree) -> list:
+    """Every atom column this tree reads. Used by the fitness guard to
+    evaluate a signal only where its inputs are actually defined."""
+    out = []
+    for nd in _all_nodes(tree):
+        if nd["op"] == "term":
+            out.append(nd["name"])
+    return sorted(set(out))
+
+
 def has_terminal(tree) -> bool:
     """True if any leaf reads market data. A tree of constants is an
     always-true / always-false switch, not a strategy."""

@@ -127,10 +127,27 @@ def fitness(genome, data, syms, cost, bar_seconds, lam=0.5, gamma=0.05,
     # the signal itself on one real frame; zero variance = a switch in an
     # atom costume (third disguise of the always-fire species).
     try:
-        probe = genome.signal(data[syms[0]])
+        frame = data[syms[0]]
+        # probe the ENTRY TREE directly, not genome.signal(): the "confirm"
+        # style applies a rolling min AFTERWARDS, so a single NaN-induced 0
+        # propagates forward into bars where the atoms ARE defined and a
+        # tautology looks like it varies even under the finite mask below.
+        probe = _T.bool_signal(genome.entry_tree, frame)
         # skip atom warmup (max rolling n is 200): NaN->0 padding makes an
         # always-true tree look like it "varies" from 0 to 1 once
         tail = probe[250:]
+        # ...and look ONLY where every atom this tree reads is defined.
+        # Without this, lte(x, x) escapes: comparison against NaN is False,
+        # so one zero-range bar (high == low -> body_frac NaN) makes the
+        # tautology flip 1 -> 0. That is how lte(body_frac, body_frac)
+        # reached gen-3 best on the 5m ETF run instead of being floored.
+        names = [n for n in _T.terminal_names(genome.entry_tree)
+                 if n in frame.columns]
+        if names:
+            ok = np.ones(len(frame), dtype=bool)
+            for nm in names:
+                ok &= np.isfinite(frame[nm].to_numpy(dtype=float))
+            tail = tail[ok[250:]]
         tail = tail[np.isfinite(tail)]
         if len(tail) > 50 and tail.std() == 0:
             return -9.99, {"n_cells": 0, "median_sharpe": 0.0,
