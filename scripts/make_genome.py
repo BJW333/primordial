@@ -142,15 +142,8 @@ def _check_open_safe(tree):
     knowable at 09:30. Atoms built from today's close/high/low -- which is
     most of them, including plain gap_atr -- would be look-ahead."""
     import sys
-    from primordial.genome import OPEN_SAFE_TERMS
-    bad = set()
-
-    def walk(nd):
-        if nd["op"] == "term" and nd["name"] not in OPEN_SAFE_TERMS:
-            bad.add(nd["name"])
-        for ch in nd.get("ch", []):
-            walk(ch)
-    walk(tree)
+    from primordial.genome import OPEN_SAFE_TERMS, _open_safe_violations
+    bad = _open_safe_violations(tree)
     if bad:
         print("ERROR: --style session requires OPEN-KNOWABLE atoms only.",
               file=sys.stderr)

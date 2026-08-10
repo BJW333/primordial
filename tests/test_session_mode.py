@@ -78,3 +78,27 @@ def test_session_rejects_lookahead_atoms_at_engine_level():
     bad2 = G.Genome.from_json(bad.to_json())
     with pytest.raises(ValueError):
         G.run_backtest(bad2, df, cost, bar_seconds=86400)
+
+
+def test_open_safety_is_lag_aware():
+    """Yesterday's close IS knowable at 09:30; today's is not. Only an
+    explicit lag(n>=1) confers safety -- a rolling window does not, because
+    roll_mean(close, n=200) still contains today's bar."""
+    from primordial.genome import _open_safe_violations as V
+
+    def term(nm):
+        return {"op": "term", "ch": [], "name": nm}
+
+    def lag(ch, n):
+        return {"op": "lag", "ch": [ch], "n": n}
+
+    def roll(ch, n):
+        return {"op": "roll_mean", "ch": [ch], "n": n}
+
+    assert V(term("close")) == {"close"}                    # bare: unsafe
+    assert V(lag(term("close"), 1)) == set()                # lagged: safe
+    assert V(roll(lag(term("close"), 1), 200)) == set()     # sma of lagged
+    assert V(roll(term("close"), 200)) == {"close"}         # sma of today
+    assert V(lag(term("close"), 0)) == {"close"}            # lag 0 is today
+    assert V(term("gap_atr_open")) == set()                 # whitelisted
+    assert V(term("gap_atr")) == {"gap_atr"}                # ATR has today

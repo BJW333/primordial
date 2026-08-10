@@ -188,20 +188,41 @@ def _atr(df, n=14):
     return tr.rolling(n, min_periods=5).mean().to_numpy()
 
 
+def _open_safe_violations(tree):
+    """Return terminals NOT knowable at 09:30.
+
+    A term is open-safe if it is in OPEN_SAFE_TERMS, OR if it sits beneath a
+    lag(n>=1) -- yesterday's close IS known at today's open, so
+    lag(close, n=1) and roll_mean(lag(close, n=1), n=200) are legitimate
+    health filters. Bare close/high/low are not: they have not happened yet.
+    Only an explicit positive-n lag confers safety; rolling windows do NOT,
+    because roll_mean(close, n=200) still includes today's bar.
+    """
+    bad = set()
+
+    def walk(nd, lagged):
+        op = nd["op"]
+        if op == "term":
+            if not (lagged or nd["name"] in OPEN_SAFE_TERMS):
+                bad.add(nd["name"])
+            return
+        now = lagged
+        if op == "lag" and (nd.get("n") or 0) >= 1:
+            now = True
+        for ch in nd.get("ch", []):
+            walk(ch, now)
+
+    walk(tree, False)
+    return bad
+
+
 def _assert_open_safe(g: "Genome"):
     """session mode fills at TODAY's open; every terminal must be knowable
     at 09:30. Enforced HERE (not only in make_genome) so hand-edited JSON,
     future tooling, or any other path cannot smuggle look-ahead in."""
-    bad = set()
-
-    def walk(nd):
-        if nd["op"] == "term" and nd["name"] not in OPEN_SAFE_TERMS:
-            bad.add(nd["name"])
-        for ch in nd.get("ch", []):
-            walk(ch)
-    walk(g.entry_tree)
+    bad = _open_safe_violations(g.entry_tree)
     if g.regime_tree is not None:
-        walk(g.regime_tree)
+        bad = bad | _open_safe_violations(g.regime_tree)
     if bad:
         raise ValueError(
             f"entry_style='session' with non-open-safe atoms {sorted(bad)}; "
