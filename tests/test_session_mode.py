@@ -59,7 +59,7 @@ def test_session_no_free_profit_on_random_walk():
     ):
         res = G.run_backtest(_session_genome(tree), df, cost,
                              bar_seconds=86400)
-        r = np.array([t["ret"] for t in res.trades])
+        r = np.array([t[3] for t in res.trades])   # r-multiples
         assert len(r) > 20, "session mode should trade on this walk"
         # statistical bound: on a random walk the mean return must not be
         # significantly positive. Raw-mean thresholds trip on small-n noise

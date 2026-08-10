@@ -248,11 +248,13 @@ def run_backtest(g: Genome, df: pd.DataFrame, cost, risk_per_trade=0.01,
                 sgn = 1.0 if side == "long" else -1.0
                 ret = sgn * (ex - fill) / fill
                 equity *= (1.0 + ret)
-                denom = (atr[t - 1] / fill) if (np.isfinite(atr[t - 1])
-                                                and fill > 0) else np.nan
-                trades.append({"i": t, "bars": 1, "ret": ret,
-                               "r": (ret / denom) if denom and denom > 0
-                               else 0.0})
+                # SAME RECORD SHAPE as every other exit path:
+                # (entry_time, exit_time, side, r_multiple). The judge reads
+                # t[3]; a dict here raised KeyError 3 -- caught 2026-08-10.
+                risk = atr[t - 1] if np.isfinite(atr[t - 1]) else np.nan
+                r_mult = (sgn * (ex - fill) / risk) if (risk and risk > 0) \
+                    else 0.0
+                trades.append((idx[t], idx[t], side, float(r_mult)))
             eq[t] = equity
             continue
 
