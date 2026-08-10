@@ -1,0 +1,20 @@
+# Broad multi-asset ground with volatility/rate context -- built to test the
+# macro-rotation claim: does macro state predict when to hold risk assets?
+name: multi_asset_daily
+asset_class: equity
+source: yfinance
+symbols: [SPY, QQQ, IWM, MDY, EFA, EEM, EWJ, VGK, VNQ, XLE,
+          XLF, XLK, XLU, XLP, GLD, SLV, GDX, DBC, USO, PDBC,
+          BND, TLT, IEF, SHY, LQD, HYG, TIP, EMB, AGG, MUB]
+base_timeframe: 1d
+allowed_timeframes: [1d]
+start: "2010-01-01"
+end: "2026-06-01"
+cost_tier: index_etf
+holdout_name_frac: 0.4
+holdout_time_frac: 0.3
+embargo_bars: 50
+engines: [timing]
+n_motifs: 6
+motif_scales: [20, 40]
+context_symbols: [VIXY, TLT, SHY]
