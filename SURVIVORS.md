@@ -23,3 +23,7 @@ and a forward test. Rejections live in runs/*/report.html.
 | 20260808_145825 | planted_control | +12.08 | +1.19 | `[1h long market] lte(rvol_m, true_range_z) | stop 3.6A tgt 1.5R ` |
 | 20260808_145825 | planted_control | +12.23 | +1.19 | `[1h long market] lte(stoch_k_f, true_range_z) | stop 3.6A tgt 1.` |
 | 20260810_012510_idea | cross_asset_daily | +0.73 | +0.00 | `[1d long market] gt(div(close, lag(close, n=252)), 1) | stop 99.` |
+| 20260810_143437 | planted_control | +16.92 | +9.94 | `[1h long market] gte(volz, variance_ratio) | stop 3.7A tgt 1.5R ` |
+| 20260810_143437 | planted_control | +15.50 | +9.94 | `[1h long market] cross_below(volz, variance_ratio) | stop 3.6A t` |
+| 20260810_143437 | planted_control | +11.51 | +9.94 | `[1h long market] gte(volz, autocorr_1) | stop 3.6A tgt 1.5R ts 4` |
+| 20260810_143437 | planted_control | +11.91 | +9.94 | `[1h long confirm] gte(bb_z_s, volz) | stop 3.4A tgt 3.0R ts 0 no` |
