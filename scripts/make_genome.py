@@ -89,7 +89,7 @@ def _known_atoms():
         "open": px, "high": px * 1.01, "low": px * 0.99, "close": px,
         "volume": rng.integers(1e5, 1e6, n).astype(float),
     }, index=pd.date_range("2020-01-01", periods=n, freq="D"))
-    cols = A.compute_atoms(df, [], always_open=False)
+    cols = A.compute_atoms(df, list(A.BLOCKS.keys()), always_open=False)
     names = set(cols or [])
     names |= set(df.columns)
     names |= {"xs_rank_roc_m", "xs_rank_rvol_m"}
