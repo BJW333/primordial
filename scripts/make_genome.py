@@ -77,6 +77,50 @@ class Parser:
         return T.node(tok, ch, n=n) if n is not None else T.node(tok, ch)
 
 
+def _known_atoms():
+    """Real atom vocabulary, computed once on a small synthetic frame."""
+    import numpy as np
+    import pandas as pd
+    from primordial import atoms as A
+    n = 400
+    rng = np.random.default_rng(0)
+    px = 100 * np.exp(np.cumsum(rng.normal(0, 0.01, n)))
+    df = pd.DataFrame({
+        "open": px, "high": px * 1.01, "low": px * 0.99, "close": px,
+        "volume": rng.integers(1e5, 1e6, n).astype(float),
+    }, index=pd.date_range("2020-01-01", periods=n, freq="D"))
+    cols = A.compute_atoms(df, [], always_open=False)
+    names = set(cols or [])
+    names |= set(df.columns)
+    names |= {"xs_rank_roc_m", "xs_rank_rvol_m"}
+    return names
+
+
+def _check_terminals(tree):
+    """Fail loudly on atom names that do not exist -- a genome referencing an
+    unknown terminal silently produces ZERO trades and still burns a ledger
+    trial (2026-08-08: 'atr14' does not exist; the real atoms are atr_pct
+    and ema_spread_atr)."""
+    import sys
+    known = _known_atoms()
+    used = set()
+
+    def walk(nd):
+        if nd["op"] == "term":
+            used.add(nd["name"])
+        for ch in nd.get("ch", []):
+            walk(ch)
+    walk(tree)
+    unknown = sorted(u for u in used if u not in known)
+    if unknown:
+        print(f"ERROR: unknown atom(s): {', '.join(unknown)}", file=sys.stderr)
+        near = sorted(k for k in known
+                      if any(u[:3] in k for u in unknown))[:12]
+        if near:
+            print(f"  did you mean: {', '.join(near)}", file=sys.stderr)
+        sys.exit(2)
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("entry", help="entry expression, describe() notation")
@@ -95,6 +139,7 @@ def main():
                    help="exit at close crossing this EMA (0 = off)")
     a = p.parse_args()
     entry = Parser(tokenize(a.entry)).expr()
+    _check_terminals(entry)
     g = Genome(timeframe=a.tf, root_type="bool", entry_tree=entry,
                regime_tree=None, direction=a.dir, entry_style=a.style,
                entry_param=1, stop_atr=a.stop, target_r=a.target,

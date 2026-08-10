@@ -86,12 +86,21 @@ def main():
     P._prepare(mtf_hold, mf.adapter, [], split.hold_syms, motif_defs, bench)
 
     ledger = Ledger(P.LEDGER_PATH, mf.fingerprint())
-    ledger.log("idea_validate", n_candidates=1, holdout_peeks=1,
-               note=f"hand genome {g.describe()[:60]}")
+    # NOTE: charge deferred until after the run -- a genome that fires ZERO
+    # trades revealed nothing about the holdout and must not raise the bar
+    # for the next idea. (2026-08-08: an unknown atom name produced a
+    # never-firing genome that still cost a trial.)
     survivors, report = P._gauntlet([(5.0, g)], mtf_train, mtf_hold, split,
                                     mf, ledger, rng, verbose=True,
                                     motif_defs=motif_defs, bench_mtf=bench)
     r = report[0]
+    if int(r.get("holdout_trades") or 0) > 0:
+        ledger.log("idea_validate", n_candidates=1, holdout_peeks=1,
+                   note=f"hand genome {g.describe()[:60]}")
+    else:
+        print("\n  !! ZERO TRADES -- genome never fired on the holdout.")
+        print("     Nothing was learned; NO ledger trial charged.")
+        print("     Check atom names / thresholds, then re-run.")
     import statistics as _st
     import time as _time
     print("\n  --- gate detail ---")

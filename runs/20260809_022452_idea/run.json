@@ -1,0 +1,18 @@
+{
+ "manifest": "manifests/us_sp400.yaml",
+ "fingerprint": "7a669c2de3a51530",
+ "report": [
+  {
+   "genome": "[1d short market] and(gt(sub(close, roll_mean(close, n=195)), mult(2, atr14)), gt(sub(close, lag(close, n=5)), mult(1.75, atr14))) | stop 2.0A tgt 0.0R ts 0 none",
+   "genome_json": "{\"timeframe\": \"1d\", \"root_type\": \"bool\", \"entry_tree\": {\"op\": \"and\", \"ch\": [{\"op\": \"gt\", \"ch\": [{\"op\": \"sub\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"close\"}, {\"op\": \"roll_mean\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"close\"}], \"n\": 195}]}, {\"op\": \"mult\", \"ch\": [{\"op\": \"const\", \"ch\": [], \"value\": 2.0}, {\"op\": \"term\", \"ch\": [], \"name\": \"atr14\"}]}]}, {\"op\": \"gt\", \"ch\": [{\"op\": \"sub\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"close\"}, {\"op\": \"lag\", \"ch\": [{\"op\": \"term\", \"ch\": [], \"name\": \"close\"}], \"n\": 5}]}, {\"op\": \"mult\", \"ch\": [{\"op\": \"const\", \"ch\": [], \"value\": 1.75}, {\"op\": \"term\", \"ch\": [], \"name\": \"atr14\"}]}]}]}, \"regime_tree\": null, \"direction\": \"short\", \"entry_style\": \"market\", \"entry_param\": 1, \"stop_atr\": 2.0, \"target_r\": 0.0, \"time_stop\": 0, \"trail_mode\": \"none\", \"max_hold\": 5, \"anchor_ema\": 0}",
+   "timeframe": "1d",
+   "train_fit": 5.0,
+   "holdout_median_sharpe": 0.0,
+   "holdout_trades": 0,
+   "holdout_psr": 0.0,
+   "luck_bar": 0.8111001747221509,
+   "survived": false
+  }
+ ],
+ "effective_trials_alltime": 11
+}
