@@ -27,6 +27,8 @@ def main():
     p.add_argument("--horizons", default="5,10,20,40")
     p.add_argument("--window", type=int, default=252,
                    help="lookback for the ATR percentile")
+    p.add_argument("--below-trend", action="store_true",
+                   help="restrict to bars BELOW the 200-bar mean (distress)")
     p.add_argument("--trend-only", action="store_true",
                    help="restrict to bars above the 200-bar mean")
     a = p.parse_args()
@@ -48,7 +50,11 @@ def main():
     tr = (highs - lows) / closes
     atr = tr.rolling(14).mean()
     pct = atr.rolling(a.window).rank(pct=True)
-    gate = closes > closes.rolling(200).mean() if a.trend_only else None
+    gate = None
+    if a.trend_only:
+        gate = closes > closes.rolling(200).mean()
+    elif a.below_trend:
+        gate = closes < closes.rolling(200).mean()
 
     cost = mf.cost.adverse_frac() * 2 * 1e4
     print(f"  round-trip cost: {cost:.0f} bps | ATR percentile over "

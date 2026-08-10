@@ -145,6 +145,7 @@ def run_strategy(close, open_, score, vol, dates, picker, seed=None,
     """
     rng = np.random.default_rng(seed)
     rets, weights_prev, n_pos, turns = [], {}, [], []
+    swaps = []                       # names replaced per rebalance
 
     for i in range(len(dates) - 1):
         d0, d1 = pd.Timestamp(dates[i]), pd.Timestamp(dates[i + 1])
@@ -174,6 +175,7 @@ def run_strategy(close, open_, score, vol, dates, picker, seed=None,
         w = iv / iv.sum()
         wmap = dict(zip(picks, w))
 
+        swaps.append(len(set(picks) - set(weights_prev)))
         # turnover vs previous book -> cost
         names = set(wmap) | set(weights_prev)
         turn = sum(abs(wmap.get(t, 0.0) - weights_prev.get(t, 0.0))
@@ -194,7 +196,8 @@ def run_strategy(close, open_, score, vol, dates, picker, seed=None,
 
     return (np.array(rets, float),
             float(np.mean(n_pos)) if n_pos else 0.0,
-            float(np.mean(turns)) if turns else 0.0)
+            float(np.mean(turns)) if turns else 0.0,
+            swaps)
 
 
 # ATTRIBUTION SWITCHES.
@@ -222,10 +225,49 @@ def real_picker(s_row, elig, rng):
 
 
 def random_picker(s_row, elig, rng):
+    """Unmatched null: rebuilds the whole book every rebalance."""
     picks = list(rng.choice(elig, size=min(TOP_N, len(elig)), replace=False))
     if NULL_CASH and picks and all(float(s_row[t]) < 0 for t in picks):
         return []
     return picks
+
+
+class MatchedPicker:
+    """
+    TURNOVER-MATCHED null. Momentum is sticky, so the rule keeps most of its
+    book each period. A null that re-draws all TOP_N names every time trades
+    ~4x as much and eats ~4x the spread -- that is a cost handicap, not worse
+    stock picking. This one holds a book and replaces exactly as many names
+    as the rule replaced at the same rebalance, chosen at random. Selection
+    vs selection, with cost held equal.
+    """
+
+    def __init__(self, swaps):
+        self.swaps = list(swaps)
+        self.i = 0
+        self.book = []
+
+    def __call__(self, s_row, elig, rng):
+        elig = list(elig)
+        if not elig:
+            return []
+        keep = [t for t in self.book if t in elig]
+        if not self.book:
+            n = min(TOP_N, len(elig))
+            self.book = list(rng.choice(elig, size=n, replace=False))
+        else:
+            k = self.swaps[self.i] if self.i < len(self.swaps) else 0
+            k = min(k, len(keep))
+            if k > 0:
+                drop = set(rng.choice(keep, size=k, replace=False))
+                keep = [t for t in keep if t not in drop]
+            pool = [t for t in elig if t not in set(keep)]
+            need = min(TOP_N, len(elig)) - len(keep)
+            add = (list(rng.choice(pool, size=min(need, len(pool)),
+                                   replace=False)) if need > 0 else [])
+            self.book = keep + add
+        self.i += 1
+        return list(self.book)
 
 
 def stats(r, label, ppy=None):
@@ -264,8 +306,8 @@ def main() -> int:
     dates = rebalance_dates(close.index)
     print(f"  {len(dates)} {REBAL} rebalances\n")
 
-    r_real, npos, turn = run_strategy(close, open_, score, vol, dates,
-                                      real_picker)
+    r_real, npos, turn, swaps = run_strategy(close, open_, score, vol, dates,
+                                             real_picker)
     print("FULL PERIOD")
     sr_real = stats(r_real, "rotation (composite ROC)")
     # benchmark: whatever broad-equity proxy this universe actually has
@@ -277,8 +319,8 @@ def main() -> int:
         stats(b.pct_change().dropna().values, f"{bench} buy & hold")
     else:
         print("  (no broad-equity benchmark in this universe)")
-    eq_r, _, _ = run_strategy(close, open_, score, vol, dates,
-                              lambda s, e, g: list(e))
+    eq_r, _, _, _ = run_strategy(close, open_, score, vol, dates,
+                                 lambda s, e, g: list(e))
     stats(eq_r, "equal-weight all (no rank)")
     print(f"  avg positions {npos:.1f} | avg turnover/rebal {turn:.2f}")
     print(f"  cash rule would fire on {CASH_FIRES[0]} of {len(dates) - 1} "
@@ -294,18 +336,26 @@ def main() -> int:
     sr_ho = stats(r_real[cut:], "rotation HOLDOUT")
 
     # ---- the null: random top-5 from the same universe ----
-    print(f"\nNULL: {N_NULL} random top-{TOP_N} selections, same weighting, "
-          f"same costs")
-    null_sr, null_tr = [], []
+    print(f"\nNULL: {N_NULL} draws, TURNOVER-MATCHED (same names swapped "
+          f"per rebalance as the rule)")
+    null_sr, null_tr, unm_sr, null_turn = [], [], [], []
     for k in range(N_NULL):
-        rk, _, _ = run_strategy(close, open_, score, vol, dates,
-                                random_picker, seed=k)
+        # matched: replaces exactly as many names as the rule did
+        rk, _, tk, _ = run_strategy(close, open_, score, vol, dates,
+                                    MatchedPicker(swaps), seed=k)
+        null_turn.append(tk)
         if len(rk) >= 8 and rk.std(ddof=1) > 0:
             h, t = rk[cut:], rk[:cut]
             if h.std(ddof=1) > 0:
                 null_sr.append(h.mean() / h.std(ddof=1) * math.sqrt(PPY))
             if t.std(ddof=1) > 0:
                 null_tr.append(t.mean() / t.std(ddof=1) * math.sqrt(PPY))
+        # unmatched: the old, cost-handicapped null, kept for contrast
+        ru, _, _, _ = run_strategy(close, open_, score, vol, dates,
+                                   random_picker, seed=k)
+        if len(ru) > cut + 8 and ru[cut:].std(ddof=1) > 0:
+            unm_sr.append(ru[cut:].mean() / ru[cut:].std(ddof=1)
+                          * math.sqrt(PPY))
     null_sr = np.array([x for x in null_sr if np.isfinite(x)])
     null_tr = np.array([x for x in null_tr if np.isfinite(x)])
     if len(null_sr) < 30:
@@ -354,15 +404,23 @@ def main() -> int:
     # punishes you for measuring the null more carefully.
     n_trials = int(os.environ.get("TRIALS", "12"))
     bar = luck_bar(var_sr, n_trials)
-    print(f"  null holdout SR: mean {null_sr.mean():+.2f} "
+    print(f"  rule turnover/rebal {turn:.2f} | matched-null turnover "
+          f"{np.mean(null_turn):.2f}  <- these must be close, or the "
+          f"comparison is a cost handicap")
+    if unm_sr:
+        unm = np.array(unm_sr)
+        print(f"  UNMATCHED null (rebuilds book each time) holdout SR "
+              f"{unm.mean():+.2f} -- the difference between this and the "
+              f"matched null is pure trading cost, not selection")
+    print(f"  matched null holdout SR: mean {null_sr.mean():+.2f} "
           f"sd {null_sr.std(ddof=1):.2f} | 95th pct {np.percentile(null_sr, 95):+.2f}")
     print(f"  measured var_sr {var_sr:.4f} | luck bar over {n_trials} "
           f"attempted trials = {bar:+.2f}   (set TRIALS= to your real count)")
 
     # ---------------- ROBUSTNESS: is the edge in the RULE or the TICKERS? --
     def holdout_sr(allowed):
-        rk, _, _ = run_strategy(close, open_, score, vol, dates, real_picker,
-                                allowed=list(allowed))
+        rk, _, _, _ = run_strategy(close, open_, score, vol, dates,
+                                   real_picker, allowed=list(allowed))
         if len(rk) <= cut + 8:
             return None
         h = rk[cut:]

@@ -28,6 +28,11 @@ from . import tree as T
 TIMEFRAMES = ["5m", "15m", "30m", "1h", "4h", "1d", "1w"]
 TRAIL_MODES = ["none", "breakeven_1r", "trail_1r"]
 ENTRY_STYLES = ["market", "limit", "confirm"]
+# "session" is deliberately NOT in ENTRY_STYLES: evolution must never pick it,
+# because it is only sound when the entry tree uses open-knowable atoms.
+# Reachable solely via make_genome --style session, which enforces the
+# whitelist below. 2026-08-10.
+OPEN_SAFE_TERMS = {"gap_atr_open", "open"}
 
 
 @dataclasses.dataclass
@@ -183,8 +188,30 @@ def _atr(df, n=14):
     return tr.rolling(n, min_periods=5).mean().to_numpy()
 
 
+def _assert_open_safe(g: "Genome"):
+    """session mode fills at TODAY's open; every terminal must be knowable
+    at 09:30. Enforced HERE (not only in make_genome) so hand-edited JSON,
+    future tooling, or any other path cannot smuggle look-ahead in."""
+    bad = set()
+
+    def walk(nd):
+        if nd["op"] == "term" and nd["name"] not in OPEN_SAFE_TERMS:
+            bad.add(nd["name"])
+        for ch in nd.get("ch", []):
+            walk(ch)
+    walk(g.entry_tree)
+    if g.regime_tree is not None:
+        walk(g.regime_tree)
+    if bad:
+        raise ValueError(
+            f"entry_style='session' with non-open-safe atoms {sorted(bad)}; "
+            f"allowed: {sorted(OPEN_SAFE_TERMS)}")
+
+
 def run_backtest(g: Genome, df: pd.DataFrame, cost, risk_per_trade=0.01,
                  bar_seconds=3600.0) -> BTResult:
+    if g.entry_style == "session":
+        _assert_open_safe(g)
     sig = g.signal(df)
     atr = _atr(df)
     o = df["open"].to_numpy(); h = df["high"].to_numpy()
@@ -205,6 +232,30 @@ def run_backtest(g: Genome, df: pd.DataFrame, cost, risk_per_trade=0.01,
     warm = 20
 
     for t in range(warm, n):
+        # ------------- SAME-SESSION mode: enter at open[t], exit at close[t]
+        # Legal only because the signal is read at bar t from OPEN-SAFE atoms
+        # (OPEN_SAFE_TERMS): everything in the tree is knowable at 09:30.
+        # Both prices are real and separated in time, so this does NOT hand
+        # the strategy the bar's own range the way a same-bar limit+target
+        # would -- that remains forbidden.
+        if g.entry_style == "session":
+            if sig[t] != 0 and o[t] > 0 and np.isfinite(c[t]):
+                side = g.direction
+                fill = o[t] * (1 + adverse) if side == "long" \
+                    else o[t] * (1 - adverse)
+                ex = c[t] * (1 - adverse) if side == "long" \
+                    else c[t] * (1 + adverse)
+                sgn = 1.0 if side == "long" else -1.0
+                ret = sgn * (ex - fill) / fill
+                equity *= (1.0 + ret)
+                denom = (atr[t - 1] / fill) if (np.isfinite(atr[t - 1])
+                                                and fill > 0) else np.nan
+                trades.append({"i": t, "bars": 1, "ret": ret,
+                               "r": (ret / denom) if denom and denom > 0
+                               else 0.0})
+            eq[t] = equity
+            continue
+
         # ---------------- entry: decided at close[t-1], filled at bar t ----
         if pos is None:
             side = g.direction        # bool signal is 0/1; the DIRECTION gene

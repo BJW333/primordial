@@ -137,13 +137,38 @@ def _check_terminals(tree):
         sys.exit(2)
 
 
+def _check_open_safe(tree):
+    """entry_style=session fills at TODAY's open, so every terminal must be
+    knowable at 09:30. Atoms built from today's close/high/low -- which is
+    most of them, including plain gap_atr -- would be look-ahead."""
+    import sys
+    from primordial.genome import OPEN_SAFE_TERMS
+    bad = set()
+
+    def walk(nd):
+        if nd["op"] == "term" and nd["name"] not in OPEN_SAFE_TERMS:
+            bad.add(nd["name"])
+        for ch in nd.get("ch", []):
+            walk(ch)
+    walk(tree)
+    if bad:
+        print("ERROR: --style session requires OPEN-KNOWABLE atoms only.",
+              file=sys.stderr)
+        print(f"  offending: {', '.join(sorted(bad))}", file=sys.stderr)
+        print(f"  allowed:   {', '.join(sorted(OPEN_SAFE_TERMS))}",
+              file=sys.stderr)
+        print("  (plain gap_atr is NOT safe -- its ATR denominator contains "
+              "today's bar.)", file=sys.stderr)
+        sys.exit(2)
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("entry", help="entry expression, describe() notation")
     p.add_argument("--tf", default="1d")
     p.add_argument("--dir", default="long", choices=["long", "short"])
     p.add_argument("--style", default="market",
-                   choices=["market", "limit", "confirm"])
+                   choices=["market", "limit", "confirm", "session"])
     p.add_argument("--stop", type=float, default=3.0,
                    help="ATR units; 99 = effectively no stop")
     p.add_argument("--target", type=float, default=0.0, help="R multiple")
@@ -156,6 +181,8 @@ def main():
     a = p.parse_args()
     entry = Parser(tokenize(a.entry)).expr()
     _check_terminals(entry)
+    if a.style == "session":
+        _check_open_safe(entry)
     g = Genome(timeframe=a.tf, root_type="bool", entry_tree=entry,
                regime_tree=None, direction=a.dir, entry_style=a.style,
                entry_param=1, stop_atr=a.stop, target_r=a.target,

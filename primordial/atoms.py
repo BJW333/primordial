@@ -149,6 +149,13 @@ def _microstructure(df, out):
     tr = pd.concat([h - l, (h - pc).abs(), (l - pc).abs()], axis=1).max(axis=1)
     atr = tr.rolling(14, min_periods=5).mean()
     out["gap_atr"] = (o - pc) / atr.where(atr > 0)
+    # OPEN-SAFE variant: today's gap scaled by YESTERDAY's ATR. gap_atr above
+    # divides by atr[t], which contains today's high/low -- fine for a signal
+    # read at the close, LOOK-AHEAD for anything filled at today's open.
+    # gap_atr_open uses only o[t], c[t-1] and bars <= t-1, so it is knowable
+    # at 09:30. Required for entry_style="session".
+    _atr_prev = atr.shift(1)
+    out["gap_atr_open"] = (o - pc) / _atr_prev.where(_atr_prev > 0)
     out["true_range_z"] = _z(tr)
 
 
