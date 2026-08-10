@@ -120,7 +120,14 @@ def _check_terminals(tree):
               file=sys.stderr)
         print(f"  valid ops: {', '.join(sorted(OPS))}", file=sys.stderr)
         sys.exit(2)
-    unknown = sorted(u for u in used if u not in known)
+    # ctx_* (benchmark context), xs_* (cross-sectional) and match_m* (motifs)
+    # are generated at RUN time from the manifest (context_symbols, motif
+    # mining) and cannot exist on the synthetic probe frame. Accept them by
+    # prefix; everything else must be a real computed atom.
+    runtime_prefixes = ("ctx_", "xs_", "match_m")
+    unknown = sorted(u for u in used
+                     if u not in known
+                     and not u.startswith(runtime_prefixes))
     if unknown:
         print(f"ERROR: unknown atom(s): {', '.join(unknown)}", file=sys.stderr)
         near = sorted(k for k in known

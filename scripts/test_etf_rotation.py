@@ -1,0 +1,441 @@
+#!/usr/bin/env python3
+"""
+Test the EtfRotationAlgorithm end to end.
+
+    python3.10 scripts/test_etf_rotation.py
+    START=2015-01-01 N_NULL=1000 python3.10 scripts/test_etf_rotation.py
+
+WHY NOT test_genome.py: a Genome is per-symbol timing (enter/exit one name
+on its own bars). This strategy is portfolio-level cross-sectional ranking --
+"rank 15 ETFs, hold the top 5, weight by inverse vol." That cannot be
+expressed as a genome, so the rule is implemented directly and then put
+through the SAME statistical bar the gauntlet uses.
+
+THE CONTROL THAT MATTERS. Comparing this to SPY tells you almost nothing --
+a diversified basket with a cash switch will look different from SPY no
+matter what. The question is whether the MOMENTUM RANKING earns its keep. So
+the null is: same universe, same top-5 count, same inverse-vol weighting,
+same monthly rebalance, same costs -- but the 5 names picked AT RANDOM. If
+the real rule sits inside that distribution, the ranking is decoration and
+you are being paid for diversification and inverse-vol sizing, both of which
+are free.
+
+KNOWN BIAS THIS CANNOT FIX: the ticker list was chosen in 2026 knowing which
+ETFs survived and did well. FTLS launched Sept 2014, DBC in 2006 -- neither
+exists at a 2005 start. Names enter as their data begins, which is the
+honest handling, but no date choice repairs the fact that the universe
+itself was selected with hindsight. Read every number below with that
+discount applied.
+"""
+from __future__ import annotations
+
+import math
+import os
+import statistics
+import sys
+
+import numpy as np
+import pandas as pd
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# ---------------------------------------------------------------- universes
+# ORIGINAL: the algorithm's own list, assembled in 2026. FTLS (Sept 2014) and
+# DBC (2006) did not exist at the 2005 start.
+ORIGINAL = ["SPY", "IWM", "DVY", "EFA", "EEM", "VNQ", "QQQ", "LQD",
+            "GLD", "IEF", "TLT", "AGG", "FTLS", "SHY", "DBC"]
+
+# FAIR2005: every liquid US-listed ETF that already existed on 2005-01-01,
+# selected by ASSET-CLASS COVERAGE and inception date -- never by how it went
+# on to perform. Deliberately includes the duds (EWJ through a lost decade,
+# EWZ, the sector funds nobody remembers). This is the universe a person
+# could actually have written down in January 2005.
+FAIR2005 = [
+    # US broad / size
+    "SPY", "IVV", "DIA", "QQQ", "MDY", "IWM", "IJR",
+    # US style
+    "IWD", "IWF", "IWN", "IWO",
+    # sectors
+    "XLE", "XLF", "XLK", "XLV", "XLI", "XLP", "XLU", "XLB", "XLY",
+    "IYR", "SMH",
+    # international
+    "EFA", "EEM", "EWJ", "EWZ", "EWU", "EWG", "EZU", "IEV", "EPP", "ILF",
+    # bonds
+    "AGG", "LQD", "IEF", "TLT", "SHY", "TIP",
+    # commodity
+    "GLD",
+]
+
+# PREETF: the same ASSET CLASSES via mutual funds that existed long before
+# the ETFs did. This is the only genuinely independent data available -- a
+# different rate regime, a different inflation regime, and a tape the rule
+# was never built near. Total-return series, so dividends are in.
+PREETF = [
+    "VFINX",   # S&P 500                      1980
+    "NAESX",   # US small cap                 1980
+    "VEURX",   # Europe                       1990
+    "VPACX",   # Pacific                      1990
+    "VEIEX",   # emerging markets             1995
+    "VGSIX",   # REIT                         1996
+    "VUSTX",   # long treasury                1986
+    "VFITX",   # intermediate treasury        1991
+    "VFISX",   # short treasury               1991
+    "VWESX",   # long corporate               1980
+    "VWEHX",   # high yield                   1980
+    "OPGSX",   # gold & precious metals       1983
+]
+
+UNIVERSES = {"original": ORIGINAL, "fair2005": FAIR2005, "preetf": PREETF}
+TICKERS = UNIVERSES[os.environ.get("UNIVERSE", "original")]
+ROC_PERIODS = [5, 21, 63, 126, 252]
+VOL_PERIOD = 63
+TOP_N = 5
+
+START = os.environ.get("START", "2005-01-01")
+END = os.environ.get("END", "2026-06-01")
+N_NULL = int(os.environ.get("N_NULL", "500"))
+COST_BPS = float(os.environ.get("COST_BPS", "2.0"))     # round trip, index_etf
+HOLDOUT_FRAC = float(os.environ.get("HOLDOUT_FRAC", "0.3"))
+
+
+def luck_bar(var_sr: float, n: int) -> float:
+    """Expected max Sharpe among n null trials (Bailey/Lopez de Prado)."""
+    if n < 2 or var_sr <= 0:
+        return 0.0
+    e = 0.5772156649
+    z = statistics.NormalDist()
+    return math.sqrt(var_sr) * ((1 - e) * z.inv_cdf(1 - 1.0 / n)
+                                + e * z.inv_cdf(1 - 1.0 / (n * math.e)))
+
+
+def psr(returns: np.ndarray, benchmark: float = 0.0) -> float:
+    r = np.asarray(returns, float)
+    r = r[np.isfinite(r)]
+    T = len(r)
+    if T < 8 or r.std(ddof=1) == 0:
+        return float("nan")
+    sr = r.mean() / r.std(ddof=1)
+    m3 = float(((r - r.mean()) ** 3).mean() / r.std(ddof=0) ** 3)
+    m4 = float(((r - r.mean()) ** 4).mean() / r.std(ddof=0) ** 4)
+    den = 1.0 - m3 * sr + ((m4 - 1.0) / 4.0) * sr ** 2
+    if den <= 0:
+        return float("nan")
+    z = (sr - benchmark) * math.sqrt(T - 1) / math.sqrt(den)
+    return float(statistics.NormalDist().cdf(z))
+
+
+def load_prices() -> pd.DataFrame:
+    """Daily adjusted closes AND opens. Fills happen at the next open."""
+    try:
+        import yfinance as yf
+    except ImportError:
+        sys.exit("pip install yfinance  (Alpaca equity history starts ~2016; "
+                 "this test needs 2005)")
+    raw = yf.download(TICKERS, start=START, end=END, auto_adjust=True,
+                      progress=False, group_by="column")
+    close = raw["Close"].dropna(how="all")
+    open_ = raw["Open"].reindex(close.index)
+    keep = [t for t in TICKERS if t in close.columns]
+    return close[keep], open_[keep]
+
+
+def composite_score(close: pd.DataFrame) -> pd.DataFrame:
+    """Mean of ROC over the five lookbacks -- the algorithm's own score."""
+    parts = [close.pct_change(p) for p in ROC_PERIODS]
+    return sum(parts) / len(parts)
+
+
+def rebalance_dates(idx: pd.DatetimeIndex) -> list:
+    """First trading day of each month."""
+    s = pd.Series(idx, index=idx)
+    return list(s.groupby([idx.year, idx.month]).first().values)
+
+
+def run_strategy(close, open_, score, vol, dates, picker, seed=None,
+                 allowed=None):
+    """
+    picker(scores_row, eligible) -> list of tickers.
+    Returns (monthly_returns, avg_n_positions, turnover_per_rebal).
+    """
+    rng = np.random.default_rng(seed)
+    rets, weights_prev, n_pos, turns = [], {}, [], []
+
+    for i in range(len(dates) - 1):
+        d0, d1 = pd.Timestamp(dates[i]), pd.Timestamp(dates[i + 1])
+        # signal uses data through the PREVIOUS session; fill at d0's open
+        prior = close.index[close.index < d0]
+        if len(prior) < max(ROC_PERIODS) + 5:
+            continue
+        t_sig = prior[-1]
+        s_row = score.loc[t_sig]
+        v_row = vol.loc[t_sig]
+        pool = allowed if allowed is not None else close.columns
+        elig = [t for t in pool
+                if np.isfinite(s_row.get(t, np.nan))
+                and np.isfinite(v_row.get(t, np.nan))
+                and v_row.get(t, 0) > 0]
+        if len(elig) < TOP_N:
+            continue
+
+        picks = picker(s_row, elig, rng)
+        if not picks:                      # cash month
+            rets.append(0.0)
+            turns.append(sum(abs(w) for w in weights_prev.values()))
+            weights_prev, _ = {}, n_pos.append(0)
+            continue
+
+        iv = np.array([1.0 / float(v_row[t]) for t in picks])
+        w = iv / iv.sum()
+        wmap = dict(zip(picks, w))
+
+        # turnover vs previous book -> cost
+        names = set(wmap) | set(weights_prev)
+        turn = sum(abs(wmap.get(t, 0.0) - weights_prev.get(t, 0.0))
+                   for t in names)
+        # hold from d0 open to d1 open
+        try:
+            px0 = open_.loc[d0, picks].astype(float)
+            px1 = open_.loc[d1, picks].astype(float)
+        except KeyError:
+            continue
+        if not np.isfinite(px0).all() or not np.isfinite(px1).all():
+            continue
+        leg = float(((px1 / px0 - 1.0) * w).sum())
+        rets.append(leg - turn * COST_BPS / 1e4)
+        turns.append(turn)
+        n_pos.append(len(picks))
+        weights_prev = wmap
+
+    return (np.array(rets, float),
+            float(np.mean(n_pos)) if n_pos else 0.0,
+            float(np.mean(turns)) if turns else 0.0)
+
+
+# ATTRIBUTION SWITCHES.
+# The strategy has TWO mechanisms and they make different claims:
+#   RANKING   - relative momentum persists across assets
+#   CASH      - absolute momentum; get out when everything is falling
+# The original null had neither, which quietly credited the ranking with the
+# crash protection. CASH=off turns the rule's switch off; NULLCASH=on gives
+# the null the same switch. Run the four corners to separate them.
+RULE_CASH = os.environ.get("CASH", "on") == "on"
+NULL_CASH = os.environ.get("NULLCASH", "off") == "on"
+
+
+CASH_FIRES = [0]
+
+
+def real_picker(s_row, elig, rng):
+    ranked = sorted(elig, key=lambda t: float(s_row[t]), reverse=True)
+    top = ranked[:TOP_N]
+    if all(float(s_row[t]) < 0 for t in top):
+        CASH_FIRES[0] += 1                 # counted even when disabled
+        if RULE_CASH:
+            return []
+    return top
+
+
+def random_picker(s_row, elig, rng):
+    picks = list(rng.choice(elig, size=min(TOP_N, len(elig)), replace=False))
+    if NULL_CASH and picks and all(float(s_row[t]) < 0 for t in picks):
+        return []
+    return picks
+
+
+def stats(r, label, ppy=12):
+    if len(r) < 8:
+        return None
+    sr = r.mean() / r.std(ddof=1) * math.sqrt(ppy)
+    cagr = (np.prod(1 + r) ** (ppy / len(r)) - 1) * 100
+    dd = 1 - (np.cumprod(1 + r) / np.maximum.accumulate(np.cumprod(1 + r)))
+    print(f"  {label:26s} SR {sr:+.2f} | CAGR {cagr:+6.2f}% | "
+          f"maxDD {dd.max() * 100:5.1f}% | n={len(r)}mo")
+    return sr
+
+
+def main() -> int:
+    print(f"EtfRotationAlgorithm | universe={os.environ.get('UNIVERSE','original')} "
+          f"| rule cash {'ON' if RULE_CASH else 'OFF'} "
+          f"| null cash {'ON' if NULL_CASH else 'OFF'} "
+          f"| {START} -> {END} | top {TOP_N} of "
+          f"{len(TICKERS)} | {COST_BPS} bps round trip\n")
+    close, open_ = load_prices()
+    print(f"loaded {close.shape[1]} tickers, {len(close)} sessions")
+    first = {t: close[t].first_valid_index() for t in close.columns}
+    late = {t: str(v.date()) for t, v in first.items()
+            if v is not None and v > pd.Timestamp(START) + pd.Timedelta(days=40)}
+    if late:
+        print(f"  entering late (did not exist at start): {late}")
+
+    score = composite_score(close)
+    vol = close.pct_change().rolling(VOL_PERIOD).std()
+    dates = rebalance_dates(close.index)
+    print(f"  {len(dates)} monthly rebalances\n")
+
+    r_real, npos, turn = run_strategy(close, open_, score, vol, dates,
+                                      real_picker)
+    print("FULL PERIOD")
+    sr_real = stats(r_real, "rotation (composite ROC)")
+    # benchmark: whatever broad-equity proxy this universe actually has
+    bench = next((t for t in (os.environ.get("BENCH"), "SPY", "IVV", "VFINX")
+                  if t and t in close.columns), None)
+    if bench:
+        b = close[bench].reindex(
+            pd.DatetimeIndex([pd.Timestamp(d) for d in dates]))
+        stats(b.pct_change().dropna().values, f"{bench} buy & hold")
+    else:
+        print("  (no broad-equity benchmark in this universe)")
+    eq_r, _, _ = run_strategy(close, open_, score, vol, dates,
+                              lambda s, e, g: list(e))
+    stats(eq_r, "equal-weight all (no rank)")
+    print(f"  avg positions {npos:.1f} | avg turnover/rebal {turn:.2f}")
+    print(f"  cash rule would fire on {CASH_FIRES[0]} of {len(dates) - 1} "
+          f"rebalances"
+          + ("  <- DEAD SWITCH: short-duration bonds in the pool almost always"
+             " carry positive momentum, so the top 5 is never all-negative."
+             " The crash protection comes from ROTATING INTO BONDS, not from"
+             " going to cash." if CASH_FIRES[0] == 0 else ""))
+
+    # ---- holdout: last HOLDOUT_FRAC of time, never used for anything ----
+    cut = int(len(r_real) * (1 - HOLDOUT_FRAC))
+    print(f"\nSPLIT  (train {cut}mo / holdout {len(r_real) - cut}mo)")
+    sr_tr = stats(r_real[:cut], "rotation TRAIN")
+    sr_ho = stats(r_real[cut:], "rotation HOLDOUT")
+
+    # ---- the null: random top-5 from the same universe ----
+    print(f"\nNULL: {N_NULL} random top-{TOP_N} selections, same weighting, "
+          f"same costs")
+    null_sr, null_tr = [], []
+    for k in range(N_NULL):
+        rk, _, _ = run_strategy(close, open_, score, vol, dates,
+                                random_picker, seed=k)
+        if len(rk) >= 8 and rk.std(ddof=1) > 0:
+            h, t = rk[cut:], rk[:cut]
+            if h.std(ddof=1) > 0:
+                null_sr.append(h.mean() / h.std(ddof=1) * math.sqrt(12))
+            if t.std(ddof=1) > 0:
+                null_tr.append(t.mean() / t.std(ddof=1) * math.sqrt(12))
+    null_sr = np.array([x for x in null_sr if np.isfinite(x)])
+    null_tr = np.array([x for x in null_tr if np.isfinite(x)])
+    if len(null_sr) < 30:
+        print("  null too small")
+        return 1
+
+    # ---- THE REGIME TEST -------------------------------------------------
+    # Both universes showed train SR well BELOW holdout SR. Overfitting runs
+    # the other way, so the suspicion is regime: the holdout window is
+    # roughly 2020+, which is exactly the tape momentum-with-a-cash-switch is
+    # built for. Score the rule against a null computed on the SAME window it
+    # is being judged in. If the rule sits at the null median in TRAIN but
+    # high in HOLDOUT, the effect is one regime, not an edge.
+    if len(null_tr) >= 30 and sr_tr is not None:
+        pct_tr = float((null_tr < sr_tr).mean() * 100)
+        z_tr = ((sr_tr - null_tr.mean()) / null_tr.std(ddof=1)
+                if null_tr.std(ddof=1) > 0 else float("nan"))
+        pct_h = float((null_sr < sr_ho).mean() * 100)
+        z_h = ((sr_ho - null_sr.mean()) / null_sr.std(ddof=1)
+               if null_sr.std(ddof=1) > 0 else float("nan"))
+        print(f"\nREGIME TEST (rule vs its own null, window by window)")
+        print(f"  TRAIN   rule {sr_tr:+.2f} | null mean {null_tr.mean():+.2f} "
+              f"sd {null_tr.std(ddof=1):.2f} | {pct_tr:5.1f}th pct | "
+              f"{z_tr:+.2f} sd")
+        print(f"  HOLDOUT rule {sr_ho:+.2f} | null mean {null_sr.mean():+.2f} "
+              f"sd {null_sr.std(ddof=1):.2f} | {pct_h:5.1f}th pct | "
+              f"{z_h:+.2f} sd")
+        if pct_tr < 60 and pct_h > 85:
+            print("  VERDICT: at the null median in train, high in holdout ->")
+            print("  the effect lives in ONE REGIME. This is a bet that the")
+            print("  next years resemble the last ones, not a persistent edge.")
+        elif pct_tr > 75 and pct_h > 75:
+            print("  VERDICT: above its null in BOTH windows -> weak but")
+            print("  persistent. Worth pursuing.")
+        else:
+            print("  VERDICT: mixed. Neither window is decisive on its own.")
+    mad = float(np.median(np.abs(null_sr - np.median(null_sr))))
+    # var_sr is the SPREAD OF THE NULL, measured. Do NOT clip it up to the
+    # pipeline's 0.25 floor -- that floor is calibrated for per-name-fold
+    # TRADE Sharpes, which are far noisier than a portfolio's monthly-return
+    # Sharpe. Clipping a null with sd 0.20 up to sd 0.50 invents a bar 2.5x
+    # too strict.
+    var_sr = float(np.clip((1.4826 * mad) ** 2, 1e-6, 25.0))
+    # N is HOW MANY THINGS YOU TRIED, not how big the null sample is. The
+    # null size is a precision parameter; using it as the trial count
+    # punishes you for measuring the null more carefully.
+    n_trials = int(os.environ.get("TRIALS", "12"))
+    bar = luck_bar(var_sr, n_trials)
+    print(f"  null holdout SR: mean {null_sr.mean():+.2f} "
+          f"sd {null_sr.std(ddof=1):.2f} | 95th pct {np.percentile(null_sr, 95):+.2f}")
+    print(f"  measured var_sr {var_sr:.4f} | luck bar over {n_trials} "
+          f"attempted trials = {bar:+.2f}   (set TRIALS= to your real count)")
+
+    # ---------------- ROBUSTNESS: is the edge in the RULE or the TICKERS? --
+    def holdout_sr(allowed):
+        rk, _, _ = run_strategy(close, open_, score, vol, dates, real_picker,
+                                allowed=list(allowed))
+        if len(rk) <= cut + 8:
+            return None
+        h = rk[cut:]
+        if h.std(ddof=1) == 0:
+            return None
+        return float(h.mean() / h.std(ddof=1) * math.sqrt(12))
+
+    cols = list(close.columns)
+    print(f"\nLEAVE-ONE-OUT (drop each ticker, rerun the real rule)")
+    loo = {}
+    for t in cols:
+        v = holdout_sr([c for c in cols if c != t])
+        if v is not None:
+            loo[t] = v
+    if loo:
+        ser = pd.Series(loo).sort_values()
+        for t, v in list(ser.items())[:3]:
+            print(f"  worst without: drop {t:5s} -> holdout SR {v:+.2f} "
+                  f"({v - sr_ho:+.2f} vs full)")
+        print(f"  best  without: drop {ser.index[-1]:5s} -> "
+              f"{ser.iloc[-1]:+.2f} ({ser.iloc[-1] - sr_ho:+.2f})")
+        print(f"  range across drops: {ser.min():+.2f} .. {ser.max():+.2f}")
+        if ser.min() < bar:
+            print(f"  !! dropping ONE ticker takes it below the bar -- the "
+                  f"result leans on {ser.index[0]}")
+
+    k = max(5, int(len(cols) * 0.7))
+    n_sub = int(os.environ.get("N_SUB", "200"))
+    print(f"\nSUBSAMPLE ({n_sub} random {k}-of-{len(cols)} universes, real rule)")
+    rng2 = np.random.default_rng(99)
+    subs = []
+    for _ in range(n_sub):
+        v = holdout_sr(rng2.choice(cols, size=k, replace=False))
+        if v is not None:
+            subs.append(v)
+    if len(subs) >= 20:
+        subs = np.array(subs)
+        frac = float((subs > bar).mean() * 100)
+        print(f"  holdout SR: mean {subs.mean():+.2f} sd {subs.std(ddof=1):.2f} "
+              f"| 10th pct {np.percentile(subs, 10):+.2f} "
+              f"| {frac:.0f}% clear the bar")
+        print("  a rule that only works on the full hindsight list will show a")
+        print("  wide spread here and a low percentage clearing.")
+
+    print("\n" + "=" * 66)
+    pct = float((null_sr < sr_ho).mean() * 100)
+    beat = int((null_sr < sr_ho).sum())
+    print(f"rotation HOLDOUT SR {sr_ho:+.2f} | beat {beat}/{len(null_sr)} "
+          f"random picks ({pct:.0f}th pct) | bar {bar:+.2f} -> "
+          f"{'CLEARS' if sr_ho > bar else 'FAILS'}")
+    z_null = ((sr_ho - null_sr.mean()) / null_sr.std(ddof=1)
+              if null_sr.std(ddof=1) > 0 else float("nan"))
+    print(f"  {z_null:+.2f} sd above the random-pick mean "
+          f"(random picking already earns {null_sr.mean():+.2f} here -- that "
+          f"part is diversification, not skill)")
+    print(f"PSR(holdout, vs 0) = {psr(r_real[cut:]):.3f}")
+    if sr_tr is not None and sr_ho is not None and sr_tr > 0 > sr_ho:
+        print("WARNING: positive train, negative holdout -- overfit signature.")
+    print("=" * 66)
+    print("If the rotation sits inside the random-pick distribution, the")
+    print("momentum ranking is decoration: you are paid for diversification")
+    print("and inverse-vol sizing, which cost nothing to obtain.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
