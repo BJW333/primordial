@@ -35,6 +35,10 @@ def main():
     p.add_argument("--dir", default=os.path.expanduser("~/.primordial_intraday"))
     p.add_argument("--cost-bps", type=float, default=10.0)
     p.add_argument("--train-frac", type=float, default=0.70)
+    p.add_argument("--holdout-cell", action="store_true",
+                   help="THE one look: score the pre-registered cell "
+                        "(gap<=-2 ATR, 0m entry, 120m exit) on the held-out "
+                        "date tail, once. No grid is shown in this mode.")
     a = p.parse_args()
 
     files = sorted(glob.glob(os.path.join(a.dir, "*_1m.parquet")))
@@ -75,6 +79,50 @@ def main():
     dates = np.sort(all_["date"].unique())
     cut = dates[int(len(dates) * a.train_frac)]
     tr_ = all_[all_["date"] < cut]
+
+    if a.holdout_cell:
+        # ================= THE ONE LOOK (pre-registered) =================
+        # Cell fixed BEFORE this look, from the 2026-08-10 train grid:
+        #   gap <= -2 ATR | enter 09:30 auction (0m) | exit 120m | cost as
+        #   passed via --cost-bps (registered at 25).
+        # Scored ONLY on dates >= cut, which the train grid never printed.
+        # PASS (registered): net mean > 0 at 25bps AND t >= 2.0. Else DEAD.
+        # Re-running teaches nothing; examining any OTHER cell down here is
+        # a new, unregistered trial. Known caveats carried into this look:
+        #   - auction fills on 2-9 ATR gap-downs trade far wider than
+        #     25bps; a marginal pass is a cost-model artifact until proven
+        #     otherwise;
+        #   - 2026 SIP data is missing for most names (subscription), so
+        #     the tail ends earlier than the calendar suggests;
+        #   - the daily-bar gap family is already 0-for-2 vs real bars.
+        ho = all_[(all_["date"] >= cut) & (all_["gap"] <= -2.0)
+                  & (all_["entry"] == 0) & (all_["exit"] == 120)]
+        net = ho["ret"].dropna() - a.cost_bps / 1e4
+        n = len(net)
+        print(f"  ===== HOLDOUT, one look: gap<=-2 ATR, 0m -> 120m =====")
+        print(f"  dates {cut} .. {max(dates)} | "
+              f"{ho['date'].nunique():,} sessions | {n:,} trades | "
+              f"cost {a.cost_bps:.0f} bps")
+        if n < 30:
+            print("  fewer than 30 trades -- unscorable. Record and stop.")
+            return
+        t = net.mean() / (net.std(ddof=1) / n ** 0.5)
+        print(f"  net {net.mean()*100:+.3f}%/trade | t = {t:+.2f} | "
+              f"win {(net > 0).mean()*100:.0f}% | "
+              f"(train reference was +0.191%)")
+        yr = ho.assign(net=net).dropna(subset=["net"])
+        yr["y"] = [d.year for d in yr["date"]]
+        for y, g in yr.groupby("y"):
+            print(f"    {y}: {g['net'].mean()*100:+.3f}% on {len(g):,} "
+                  f"trades")
+        verdict = net.mean() > 0 and t >= 2.0
+        print("  VERDICT vs registered thresholds: "
+              + ("PASS -- next step is a REAL cost model (spread at the "
+                 "auction), not size" if verdict else
+                 "DEAD -- record it and close the gap family."))
+        return
+        # =================================================================
+
     print(f"[open_gap] {all_['sym'].nunique()} names | {len(dates):,} "
           f"sessions | TRAIN to {cut} ({tr_['date'].nunique():,} sessions)")
     print(f"  cost assumption: {a.cost_bps:.0f} bps round trip\n")
