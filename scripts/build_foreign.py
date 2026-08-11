@@ -31,6 +31,17 @@ SPECS = {
     "dax_mid": dict(
         url="https://en.wikipedia.org/wiki/MDAX",
         cols=("Symbol", "Ticker"), suffix=".DE"),
+    # Japan: Nikkei tickers are 4-digit codes; Yahoo wants <code>.T
+    "nikkei": dict(
+        url="https://en.wikipedia.org/wiki/Nikkei_225",
+        cols=("Code", "Ticker", "Symbol"), suffix=".T"),
+    "jpx400": dict(
+        url="https://en.wikipedia.org/wiki/JPX-Nikkei_Index_400",
+        cols=("Code", "Ticker", "Symbol"), suffix=".T"),
+    # Korea: 6-digit codes, Yahoo wants <code>.KS
+    "kospi": dict(
+        url="https://en.wikipedia.org/wiki/KOSPI",
+        cols=("Symbol", "Code", "Ticker"), suffix=".KS"),
 }
 
 
