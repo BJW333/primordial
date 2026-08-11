@@ -63,3 +63,11 @@ switching countries.
 Signed: ____________  date: __________
 (edit the thresholds if you disagree with them -- then sign. Unsigned,
 this file is a proposal, not a registration.)
+
+## RESULT (2026-08-11) -- CLOSED AT GATE A
+
+Run 20260811_004913_idea, base genome sha b62a9753323f1e5e, us_sp600,
+five splits: SR median +0.41, range [+0.40, +0.46], beat bar on 0/5
+(bar +0.76). Stop-at-first-fail: the distress idea is DEAD. Gates B and
+C never ran and must not run. Any future revival of this idea family
+starts a NEW prereg and inherits this ledger debt.

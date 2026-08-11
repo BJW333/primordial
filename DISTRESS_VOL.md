@@ -96,15 +96,50 @@ structural tension here, and no threshold change should be used to resolve it.
 5. **+0.33 to +0.76 is thin.** Deep-state validated at +0.65 to +0.77 with
    bootstrap clearing both calibrations everywhere it passed.
 
-## 5. Status
+## 5. Status — CLOSED (superseded by section 6)
 
-**A real, replicated, thin market phenomenon — not yet a deployable edge.**
-Four independent markets passed every gate; the effect's sign is positive on
-all ten grounds tested. What it lacks versus deep-state: consistent bootstrap
-survival, a point-in-time survivorship check, and any forward evidence.
+**Dead. Zero honest passes on ten grounds; Gate A failed 0/5.** The verdict
+originally written here ("a real, replicated, thin market phenomenon") did
+not survive the ledger audit or the pre-registered re-test below.
 
-**Next, in order:** (a) point-in-time re-test on delisted-inclusive data,
-(b) if that holds, a LEAN implementation and a pre-registered paper forward
-test with its own bands, (c) trading the passing markets together — four
-thin uncorrelated streams beat one, and that is the honest way to raise
-realized Sharpe here, not a fifth filter.
+## 6. Correction and Gate A result (2026-08-11)
+
+Sections 1-4 stand as the record of what was run. Their conclusions do not.
+
+**"Four clean passes" -> zero.** All four ran at a 0.00 luck bar: their
+fingerprints carried one trial each, and the bar formula returns 0 for
+n < 2. The bar gate was ABSENT, not cleared. Charging any ground the
+family's actual debt (5 variants, 14 peeks, via seed_ledger_distress.py)
+puts the minimum bar at +0.89 — above the best foreign SR (+0.76, Japan).
+The geography pattern ("works abroad, fails at home") was a map of
+unseeded ledgers. The US grounds were the only ones with a real bar AND
+the only direction survivorship bias permits trusting; both said no.
+Every section-1 number was also a single draw of the pre-v0.1.10
+fetch-order-unstable splitter (+0.92 vs +0.31 on one identical run pair).
+
+**Gate A (pre-registered, DISTRESS_PREREG.md), run 20260811_004913:**
+base genome, us_sp600, five deterministic hash-keyed splits:
+
+    SR +0.40 +0.41 +0.46 +0.42 +0.40  | median +0.41
+    range 0.06 wide | bar +0.76 | beat bar on 0/5
+
+Per the prereg's stop-at-first-fail rule: the idea is DEAD. No Gate B,
+no third country, no point-in-time spend, no LEAN port, no multi-market
+sizing.
+
+**What was actually learned (and is worth keeping):**
+- The sign is stable: +0.40 to +0.46 on every split, every ground ever
+  tested positive. There is a real tendency here — it is just far below
+  what 14 trials of selection dredge up by luck, before survivorship,
+  which for this below-trend rule shape is maximal and un-nulled.
+- The v0.1.10 splitter's 0.06-wide range against the old +0.92/+0.31
+  spread confirms the split fix: that spread was fetch noise, not market
+  structure.
+- Long-hold liquidity provision remains proven only in the form that
+  passed everything: deep-state (above-trend). The below-trend mirror
+  does not clear an honest bar. That asymmetry IS the mechanism map
+  entry: the premium is for absorbing sags in healthy names, not chaos
+  in broken ones — at least not at a size this framework can certify.
+
+The PASSES JAPAN / PASSES KOREA / 6-passes commit messages in this
+file's history are superseded by this section.
