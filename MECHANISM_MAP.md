@@ -229,15 +229,49 @@ structural tension here, and no threshold change should be used to resolve it.
 5. **+0.33 to +0.76 is thin.** Deep-state validated at +0.65 to +0.77 with
    bootstrap clearing both calibrations everywhere it passed.
 
-## 5. Status
+## 5. Status — CLOSED (superseded; see DISTRESS_VOL.md section 6)
 
-**A real, replicated, thin market phenomenon — not yet a deployable edge.**
-Four independent markets passed every gate; the effect's sign is positive on
-all ten grounds tested. What it lacks versus deep-state: consistent bootstrap
-survival, a point-in-time survivorship check, and any forward evidence.
+**Dead. Zero honest passes on ten grounds; pre-registered Gate A failed
+0/5** (base genome, us_sp600, five hash-keyed splits: SR median +0.41,
+range [+0.40, +0.46], bar +0.76 -- run 20260811_004913). The four foreign
+"passes" above ran at 0.00 luck bars (fingerprints carrying one trial;
+bar formula returns 0 for n < 2); charging the family's real debt (5
+variants, 14 peeks) puts the minimum bar at +0.89, above the best foreign
+SR (+0.76). The SURVIVORS.md rows for uk/de/jp/kr at bar +0.00 are
+superseded by this closure. Full correction and what-was-learned:
+DISTRESS_VOL.md section 6. Keepable finding: same entry family and exit,
+ABOVE the 200-day (deep-state) clears every gate; BELOW it prints a
+stable +0.4 that clears nothing honest anywhere -- the premium is for
+absorbing sags in healthy names, not chaos in broken ones.
 
-**Next, in order:** (a) point-in-time re-test on delisted-inclusive data,
-(b) if that holds, a LEAN implementation and a pre-registered paper forward
-test with its own bands, (c) trading the passing markets together — four
-thin uncorrelated streams beat one, and that is the honest way to raise
-realized Sharpe here, not a fifth filter.
+# Addenda — closures recorded 2026-08-11
+
+## Open-gap intraday family: CLOSED 0-for-3
+
+Registered one-look holdout (explore_open_gap.py --holdout-cell, cell
+fixed pre-look: gap <= -2 ATR, 09:30 auction entry, 120m exit, 25 bps,
+pass = net > 0 AND t >= 2): net -0.442%/trade, t = -0.70, win 48% over
+95 trades / 82 sessions (2022-12-30 .. 2025-12-30). Train reference was
++0.191%. By year: 2023 +0.91%, 2024 +0.50%, 2025 **-2.60%** -- the edge
+did not fade, it inverted; buying the auction on 2-9 ATR gap-downs is
+being the counterparty to real news, and 2025 collected. Daily-bar gap
+variants previously 0-for-2 vs bars ~+0.9. Family closed.
+
+## Rotation, sp500 PIT check: INCONCLUSIVE, leaning credible
+
+Registered two-run comparison (test_weekly_rotation.py sp500pit mode,
+TRIALS=14): survivor mode holdout +1.15 SR, +2.50 sd above matched null
+(99.6th pct) but at the null MEDIAN in train (68.8th) -- one-regime
+smell. PIT mode (863 names, membership-gated rule AND null, departed
+names 5.4% of position-slots): holdout +0.67 SR, +1.48 sd (97th pct),
+and above its null in BOTH windows (94.8th train / 97.2th holdout) --
+the script's own verdict flipped to "weak but persistent." Neither
+registered trigger fired (BIAS-DRIVEN needed PIT < +1.0; SHAPE ROBUST
+needed PIT >= +2.0). Read: the edge attenuated but did not collapse when
+dead names were restored, and part of survivor-mode's regime-dependence
+was the NULL being survivorship-inflated (random picks from
+guaranteed-survivors earn +0.99 in train; restore the dead and random
+earns +0.26 while the ranking still finds the live names). The sp400
++2.72 sd claim stays provisionally credible; final verdict deferred to
+point-in-time sp400 data (Norgate/Sharadar), scheduled for the
+deep-state Gate C moment. Nothing trades before that check.
