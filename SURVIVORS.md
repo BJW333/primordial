@@ -30,3 +30,4 @@ and a forward test. Rejections live in runs/*/report.html.
 | 20260810_191959_idea | uk_ftse250 | +0.33 | +0.00 | `[1d long market] and(gt(pctile_rank(atr_pct, n=252), 0.9), lt(cl` |
 | 20260810_201540_idea | de_dax_mid | +0.43 | +0.00 | `[1d long market] and(gt(pctile_rank(atr_pct, n=252), 0.9), lt(cl` |
 | 20260810_203046_idea | jp_nikkei | +0.76 | +0.00 | `[1d long market] and(gt(pctile_rank(atr_pct, n=252), 0.9), lt(cl` |
+| 20260810_203502_idea | kr_kospi | +0.38 | +0.00 | `[1d long market] and(gt(pctile_rank(atr_pct, n=252), 0.9), lt(cl` |
