@@ -5,6 +5,7 @@ Everything that decides whether a candidate is believed lives here, in one
 module, so it is hard to bypass and easy to audit.
 """
 from __future__ import annotations
+import hashlib
 import json
 import math
 import os
@@ -58,13 +59,29 @@ class NameTimeSplit:
     the outer boundary (edgesearch applied embargo intra-fold only)."""
 
     def __init__(self, syms, name_frac, time_frac, embargo_bars, rng):
-        syms = list(syms)
-        rng.shuffle(syms)
+        # Deterministic name assignment: order by a KEYED HASH of the symbol,
+        # never by fetch order. Two properties this buys:
+        #   (a) same seed + same symbol set -> identical split, always;
+        #   (b) a symbol that fails to fetch no longer reshuffles everyone
+        #       else's train/holdout side -- only the k boundary can move.
+        # Root cause (2026-08-10): yfinance returned different symbol sets
+        # across two byte-identical runs; list-order rng.shuffle turned that
+        # into two different holdouts and SR +0.92 vs +0.31 on the SAME
+        # genome. hashlib, not builtin hash() -- that footgun is on record.
+        salt = f"{rng.random():.17f}"
+        syms = sorted(set(syms),
+                      key=lambda s: hashlib.sha1(
+                          f"{salt}|{s}".encode()).hexdigest())
         k = max(2, int(len(syms) * name_frac))
         self.hold_syms = syms[:k]
         self.train_syms = syms[k:]
         self.time_frac = time_frac
         self.embargo = embargo_bars
+
+    def membership(self):
+        """Audit record for run artifacts: who was held out, who trained."""
+        return {"hold_syms": sorted(self.hold_syms),
+                "train_syms": sorted(self.train_syms)}
 
     def train(self, data):
         out = {}

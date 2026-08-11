@@ -204,6 +204,28 @@ def test_split_outer_embargo():
     assert gap >= pd.Timedelta(hours=50)   # embargo enforced at the boundary
 
 
+def test_split_deterministic_and_drop_stable():
+    syms = [f"S{i}" for i in range(40)]
+    # (a) fetch ORDER must not matter: shuffled input, same seed -> same split
+    a = NameTimeSplit(list(syms), 0.3, 0.3, 10, random.Random(7))
+    shuffled = list(syms); random.Random(99).shuffle(shuffled)
+    b = NameTimeSplit(shuffled, 0.3, 0.3, 10, random.Random(7))
+    assert set(a.hold_syms) == set(b.hold_syms)
+    # (b) one symbol failing to fetch must not reshuffle everyone else:
+    # every survivor keeps its side except at most the k-boundary name
+    dropped = [s for s in syms if s != "S17"]
+    c = NameTimeSplit(dropped, 0.3, 0.3, 10, random.Random(7))
+    moved = (set(a.hold_syms) ^ set(c.hold_syms)) - {"S17"}
+    assert len(moved) <= 1                 # boundary shift only
+    # (c) different seed -> genuinely different split
+    d = NameTimeSplit(list(syms), 0.3, 0.3, 10, random.Random(8))
+    assert set(a.hold_syms) != set(d.hold_syms)
+    # (d) membership() is the audit record
+    m = a.membership()
+    assert m["hold_syms"] == sorted(a.hold_syms)
+    assert not (set(m["hold_syms"]) & set(m["train_syms"]))
+
+
 def test_pbo_sane():
     rng = np.random.default_rng(0)
     noise = rng.standard_normal((12, 16))

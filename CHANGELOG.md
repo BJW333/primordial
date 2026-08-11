@@ -73,6 +73,22 @@ Drop-in. Old ledgers, manifests, and survivor JSONs load unchanged. Run
   search-control budget 10x24 -> 20x48 with CLI flags. Controls 3/3 green;
   search control recovers the planted mechanism. Judge unmodified throughout.
 
+## v0.1.10 (2026-08-10) -- SPLIT FIX
+- NameTimeSplit assigns names by KEYED HASH of the symbol, not by shuffling
+  fetch order. Root cause: yfinance returned different symbol sets across
+  two byte-identical runs; list-order shuffle turned that into two different
+  holdouts and SR +0.92 vs +0.31 on the SAME genome (sp600 distress-deep,
+  runs 20260810_194415 / 200849). Same seed + same symbols is now always the
+  same split, and a dropped symbol can move at most the k-boundary name.
+- split.membership() recorded in run.json (evolve + idea runs), alongside
+  symbols_missing (manifest names that failed to fetch). Silent fetch drops
+  are now visible in the artifact, not inferred from trade counts later.
+- validate_genome.py --splits N: same genome across N holdout splits;
+  median SR + range is the result; ledger charged one peek per split that
+  fired. Mixed survive/fail across splits is called out as NOT a pass.
+- NOTE: numbers produced before this fix are single draws of an unstable
+  split. All 2026-08-10 distress-idea runs predate it.
+
 ## Guards (2026-08-09)
 - make_genome validates BOTH atom names and operator names against the real
   vocabularies (atoms.BLOCKS / tree.OPS). Root cause: `mult` is not an

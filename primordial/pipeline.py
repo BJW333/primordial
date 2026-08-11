@@ -126,6 +126,11 @@ def run(manifest_path: str, generations=12, pop_size=30, n_islands=3,
         "effective_trials_alltime": ledger.effective_trials(),
         "runtime_sec": round(time.time() - t0, 1),
         "atom_merges": merges, "report": report,
+        # audit: exactly which names landed where, and which never arrived --
+        # a silent fetch drop must be visible in the artifact, not inferred
+        # from a trade-count discrepancy two runs later.
+        "split": split.membership(),
+        "symbols_missing": sorted(set(mf.symbols) - set(base.keys())),
     }
     with open(os.path.join(run_dir, "run.json"), "w") as f:
         json.dump(art, f, indent=1)
