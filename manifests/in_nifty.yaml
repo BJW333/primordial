@@ -1,0 +1,26 @@
+# S&P 600 small caps, daily bars.
+# 1) python3.10 scripts/build_universe.py sp600     (writes in_nifty_symbols.txt)
+# 2) python3.10 scripts/fetch_data.py manifests/us_sp600.yaml
+# 3) python3.10 -m primordial run --manifest manifests/us_sp600.yaml \
+#        --generations 20 --pop 40 --islands 3
+#
+# SURVIVORSHIP: this is TODAY's membership -- dead/demoted names are missing,
+# which flatters small-cap backtests. Fine for structure discovery; any
+# survivor must pass a point-in-time universe before capital. Costs use the
+# smallcap tier (wide spreads) on purpose.
+name: in_nifty_daily
+asset_class: equity
+source: yfinance                  # or omnifeed
+symbols_file: in_nifty_symbols.txt
+base_timeframe: 1d
+allowed_timeframes: [1d, 1w]
+start: "2010-01-01"
+end: "2026-06-01"
+cost_tier: equity_midcap
+holdout_name_frac: 0.4
+holdout_time_frac: 0.3
+embargo_bars: 20
+engines: [timing, cross_sectional]
+n_motifs: 6
+motif_scales: [20, 40]
+context_symbols: [SPY, TLT, IWM]   # market/rates/smallcap-beta reference streams
