@@ -1,0 +1,29 @@
+# CROSS-SECTIONAL ONLY -- MR/momentum batch #2 on the sp400_mr fingerprint
+# (batch #1: 0 survivors of 6, bar +1.20, 71 effective trials; evolution
+# abandoned per-name signals for ctx_SPY/ctx_IWM market timing).
+#
+# Two constraints, both defining the hypothesis BEFORE the run:
+#   context_symbols: []       -- no SPY/IWM/TLT atoms exist, so the search
+#                                cannot flee to index timing again. It must
+#                                use stock-level and rank structure.
+#   engines: [cross_sectional] -- the actual MR/momentum question: rank names
+#                                against each other, buy losers or winners.
+#
+# Ledger: this is a SECOND search on this ground. The bar will be higher than
+# +1.20 and that is correct -- it is the price of the second look.
+name: us_sp400_mr
+asset_class: equity
+source: yfinance
+symbols_file: sp400_symbols.txt
+base_timeframe: 1d
+allowed_timeframes: [1d]
+start: "2010-01-01"
+end: "2026-06-01"
+cost_tier: equity_midcap
+holdout_name_frac: 0.4
+holdout_time_frac: 0.3
+embargo_bars: 40
+engines: [cross_sectional]
+n_motifs: 6
+motif_scales: [20, 40]
+context_symbols: []

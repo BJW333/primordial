@@ -27,3 +27,22 @@ after seeing results. Zero survivors is the expected outcome and is a
 complete result.
 
 Signed: __________
+
+## Batch #2 (2026-08-11) — cross-sectional only
+
+Batch #1 result: 0 survivors of 6 candidates, holdout +0.33 best vs bar
++1.20, 71 effective trials. Train fitness never exceeded +0.06 across 20
+generations; finalists were market-context conditions (ctx_SPY_trend,
+ctx_IWM_roc, ctx_breadth), i.e. the search abandoned per-name reversion
+and reached for index timing.
+
+Batch #2 registered BEFORE running: manifests/us_sp400_mr_xs.yaml —
+context_symbols emptied (no index-timing escape hatch) and
+engines=[cross_sectional] only (rank-relative MR/momentum, the actual
+claim). Same names, costs, split, embargo. Same pass rules; bar will be
+higher than +1.20 because this is the second search on this fingerprint.
+
+REGISTERED STOP: if batch #2 returns 0 survivors, the daily-MR/momentum
+seam on midcap US equities is CLOSED. No batch #3, no threshold edits, no
+"one more universe." Next effort goes to forced-flow hypotheses
+(reconstitution, month-end) which are gated on point-in-time data.
