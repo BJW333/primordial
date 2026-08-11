@@ -27,3 +27,4 @@ and a forward test. Rejections live in runs/*/report.html.
 | 20260810_143437 | planted_control | +15.50 | +9.94 | `[1h long market] cross_below(volz, variance_ratio) | stop 3.6A t` |
 | 20260810_143437 | planted_control | +11.51 | +9.94 | `[1h long market] gte(volz, autocorr_1) | stop 3.6A tgt 1.5R ts 4` |
 | 20260810_143437 | planted_control | +11.91 | +9.94 | `[1h long confirm] gte(bb_z_s, volz) | stop 3.4A tgt 3.0R ts 0 no` |
+| 20260810_191959_idea | uk_ftse250 | +0.33 | +0.00 | `[1d long market] and(gt(pctile_rank(atr_pct, n=252), 0.9), lt(cl` |
