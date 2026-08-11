@@ -31,6 +31,31 @@ back on.
 COSTS DOMINATE. 52 rebalances a year at small-cap spreads is 7-15%/yr of drag
 before you are right about anything. Always run REBAL=monthly on the same
 signal to see how much of a result is just paying the spread less often.
+
+SP500 PIT MODE (registered 2026-08-11, commit before running; two runs, one
+look each):
+
+    UNIV=sp500pit MEMBERSHIP=today REBAL=monthly python3.10 scripts/test_weekly_rotation.py
+    UNIV=sp500pit MEMBERSHIP=pit   REBAL=monthly python3.10 scripts/test_weekly_rotation.py
+
+Purpose: does the SHAPE (composite-ROC top-N inverse-vol monthly rotation)
+survive restoring dead names, on the one universe with a free point-in-time
+record? Ground caveat: sp500, not sp400 -- decisive only in the kill
+direction for the sp400 claim; a pass leaves Norgate as the final word.
+
+REGISTERED READING (holdout z vs matched null, the same number the sp400
+verdict used):
+  UNINFORMATIVE  departed names fill < 5% of the PIT run's position-slots
+                 -> the test has no teeth here; only Norgate can answer.
+  BIAS-DRIVEN    survivor run >= +2.0 sd AND PIT run < +1.0 sd
+                 -> survivorship is load-bearing for this shape; the sp400
+                 +2.72 sd is presumed inflated until re-run on Norgate.
+  SHAPE ROBUST   PIT run >= +2.0 sd AND regime verdict is not the
+                 one-regime warning -> the sp400 result stays provisionally
+                 credible; Norgate remains required before any capital.
+  else           INCONCLUSIVE -> Norgate decides, on the rotation's merits.
+These two runs are looks #13-14 on the rotation family (TRIALS env already
+defaults to 12; use TRIALS=14 for the bar line).
 """
 from __future__ import annotations
 
@@ -48,7 +73,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 UNIV = os.environ.get("UNIV", "sp400")
 REBAL = os.environ.get("REBAL", "weekly")
 
-_FILES = {"sp400": ("sp400_symbols.txt", "equity_midcap"),
+_FILES = {"sp500pit": (None, "equity_liquid"),   # PIT membership CSV
+          "sp400": ("sp400_symbols.txt", "equity_midcap"),
           "sp500": ("sp500_symbols.txt", "equity_liquid"),
           "sp600": ("sp600_symbols.txt", "equity_smallcap"),
           "sp600top150": ("sp600_symbols_top150.txt", "equity_smallcap")}
@@ -56,8 +82,33 @@ _TIER_BPS = {"equity_liquid": 4.0, "equity_midcap": 14.0,
              "equity_smallcap": 36.0}
 
 
+def _pit_csv():
+    return os.path.join(os.path.dirname(os.path.dirname(
+        os.path.abspath(__file__))), "manifests", "sp500_pit_membership.csv")
+
+
+def _load_membership():
+    """fja05680/sp500 point-in-time record -> (member_on(ts,sym), current)."""
+    import csv as _csv
+    from bisect import bisect_right
+    rows = [r for r in _csv.reader(open(_pit_csv()))][1:]
+    ds = [r[0] for r in rows]
+    sets_ = [frozenset(t.strip().replace(".", "-") for t in r[1].split(","))
+             for r in rows]
+
+    def member(ts, sym, _ds=ds, _s=sets_):
+        i = bisect_right(_ds, str(pd.Timestamp(ts).date())) - 1
+        return i >= 0 and sym in _s[i]
+    return member, sorted(sets_[-1])
+
+
 def _load_symbols(name):
     fn, tier = _FILES[name]
+    if name == "sp500pit":
+        import csv as _csv
+        rows = [r for r in _csv.reader(open(_pit_csv()))][1:]
+        return sorted({t.strip().replace(".", "-")
+                       for r in rows for t in r[1].split(",")}), tier
     p = os.path.join(os.path.dirname(os.path.dirname(
         os.path.abspath(__file__))), "manifests", fn)
     syms = [ln.strip() for ln in open(p)
@@ -66,6 +117,19 @@ def _load_symbols(name):
 
 
 TICKERS, COST_TIER = _load_symbols(UNIV)
+# sp500pit only -- MEMBERSHIP=pit gates entries by membership on signal date
+# (departed names included); MEMBERSHIP=today restricts to the final snapshot
+# with no gating (the survivor-biased reference, reproduced on purpose).
+MEMBERSHIP = os.environ.get("MEMBERSHIP", "pit")
+_MEMBER, _DEPARTED = None, None
+if UNIV == "sp500pit":
+    _member_fn, _current = _load_membership()
+    if MEMBERSHIP == "today":
+        TICKERS = [t for t in TICKERS if t in set(_current)]
+        _DEPARTED = set()
+    else:
+        _MEMBER = _member_fn
+        _DEPARTED = set(TICKERS) - set(_current)
 ROC_PERIODS = [5, 21, 63, 126, 252]
 VOL_PERIOD = 63
 TOP_N = int(os.environ.get("TOP_N", "20"))
@@ -156,7 +220,8 @@ def run_strategy(close, open_, score, vol, dates, picker, seed=None,
         t_sig = prior[-1]
         s_row = score.loc[t_sig]
         v_row = vol.loc[t_sig]
-        pool = allowed if allowed is not None else close.columns
+        pool = ((allowed(t_sig) if callable(allowed) else allowed)
+                if allowed is not None else close.columns)
         elig = [t for t in pool
                 if np.isfinite(s_row.get(t, np.nan))
                 and np.isfinite(v_row.get(t, np.nan))
@@ -214,9 +279,13 @@ NULL_CASH = os.environ.get("NULLCASH", "off") == "on"
 CASH_FIRES = [0]
 
 
+PICK_LOG = []                       # real rule's picks (teeth stat for PIT)
+
+
 def real_picker(s_row, elig, rng):
     ranked = sorted(elig, key=lambda t: float(s_row[t]), reverse=True)
     top = ranked[:TOP_N]
+    PICK_LOG.append(list(top))
     if all(float(s_row[t]) < 0 for t in top):
         CASH_FIRES[0] += 1                 # counted even when disabled
         if RULE_CASH:
@@ -294,6 +363,24 @@ def main() -> int:
     print(f"     a NEGATIVE result is real evidence.\n")
     close, open_ = load_prices()
     print(f"loaded {close.shape[1]} tickers, {len(close)} sessions")
+
+    def GATE(lst=None):
+        """PIT: wrap an eligibility list so membership is checked on the
+        signal date. Non-PIT: passthrough (returns lst unchanged)."""
+        if _MEMBER is None:
+            return lst
+        base_ = list(close.columns) if lst is None else list(lst)
+
+        def _fn(ts, _b=base_):
+            return [t for t in _b if _MEMBER(ts, t)]
+        return _fn
+    if _DEPARTED:
+        have = [t for t in close.columns if t in _DEPARTED]
+        print(f"  PIT: {len(_DEPARTED)} departed names in universe | "
+              f"{len(have)} with price data "
+              f"({len(have) / max(1, len(_DEPARTED)):.0%} coverage; missing "
+              f"ones skew bankruptcy-profile -- momentum picks those "
+              f"rarely, so the hole bites less here than in distress)")
     first = {t: close[t].first_valid_index() for t in close.columns}
     late = {t: str(v.date()) for t, v in first.items()
             if v is not None and v > pd.Timestamp(START) + pd.Timedelta(days=40)}
@@ -307,7 +394,12 @@ def main() -> int:
     print(f"  {len(dates)} {REBAL} rebalances\n")
 
     r_real, npos, turn, swaps = run_strategy(close, open_, score, vol, dates,
-                                             real_picker)
+                                             real_picker, allowed=GATE())
+    if _DEPARTED:
+        slots = [t for pk in PICK_LOG for t in pk]
+        dep = sum(1 for t in slots if t in _DEPARTED) / max(1, len(slots))
+        print(f"  PIT teeth: departed names fill {dep:.1%} of position-"
+              f"slots (registered: < 5% -> UNINFORMATIVE, buy the data)")
     print("FULL PERIOD")
     sr_real = stats(r_real, "rotation (composite ROC)")
     # benchmark: whatever broad-equity proxy this universe actually has
@@ -320,7 +412,7 @@ def main() -> int:
     else:
         print("  (no broad-equity benchmark in this universe)")
     eq_r, _, _, _ = run_strategy(close, open_, score, vol, dates,
-                                 lambda s, e, g: list(e))
+                                 lambda s, e, g: list(e), allowed=GATE())
     stats(eq_r, "equal-weight all (no rank)")
     print(f"  avg positions {npos:.1f} | avg turnover/rebal {turn:.2f}")
     print(f"  cash rule would fire on {CASH_FIRES[0]} of {len(dates) - 1} "
@@ -342,7 +434,8 @@ def main() -> int:
     for k in range(N_NULL):
         # matched: replaces exactly as many names as the rule did
         rk, _, tk, _ = run_strategy(close, open_, score, vol, dates,
-                                    MatchedPicker(swaps), seed=k)
+                                    MatchedPicker(swaps), seed=k,
+                                    allowed=GATE())
         null_turn.append(tk)
         if len(rk) >= 8 and rk.std(ddof=1) > 0:
             h, t = rk[cut:], rk[:cut]
@@ -352,7 +445,8 @@ def main() -> int:
                 null_tr.append(t.mean() / t.std(ddof=1) * math.sqrt(PPY))
         # unmatched: the old, cost-handicapped null, kept for contrast
         ru, _, _, _ = run_strategy(close, open_, score, vol, dates,
-                                   random_picker, seed=k)
+                                   random_picker, seed=k,
+                                   allowed=GATE())
         if len(ru) > cut + 8 and ru[cut:].std(ddof=1) > 0:
             unm_sr.append(ru[cut:].mean() / ru[cut:].std(ddof=1)
                           * math.sqrt(PPY))
@@ -420,7 +514,7 @@ def main() -> int:
     # ---------------- ROBUSTNESS: is the edge in the RULE or the TICKERS? --
     def holdout_sr(allowed):
         rk, _, _, _ = run_strategy(close, open_, score, vol, dates,
-                                   real_picker, allowed=list(allowed))
+                                   real_picker, allowed=GATE(list(allowed)))
         if len(rk) <= cut + 8:
             return None
         h = rk[cut:]
