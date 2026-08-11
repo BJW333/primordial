@@ -8,3 +8,7 @@ registry (SURVIVORS.md) says what happened; these say exactly what was asked.
 
 deepstate_frozen.json is the deployed spec (deep_state.py sha 709f4e8b25b2a1e5),
 regenerated via make_genome from the frozen parameters. Do not edit it.
+
+distress_base.json is THE distress rule (frozen; sha256 b62a9753323f1e5e). The
+sp400/sp600-suffixed distress_* files are the 2026-08-10 mined variants,
+kept as record and CLOSED as candidates. See DISTRESS_PREREG.md.
