@@ -25,6 +25,13 @@ and each one guesses the sign a different way:
   dvol - dollar-volume z-score; UNSIGNED, pure attention
   roc  - no volume at all, the control
 
+DIRECTION=worst flips the sort: hold the BOTTOM-ranked industries and ride
+the recovery instead of the rise. Everything else is held fixed, so best vs
+worst is a clean read on which way industry-level flow actually pays. Note
+the null is direction-agnostic (random industries), so it prices selection,
+not direction -- if worst beats the null and best does not, that is a real
+asymmetry and not an artifact of an easier benchmark.
+
 RIDE-UNTIL-IT-FADES is implemented as a hysteresis band, which is what
 "rotate when buying volume decreases" means mechanically: enter the top
 TOP_N, but keep holding until the name falls out of the top BUFFER*TOP_N.
@@ -82,6 +89,14 @@ INDUSTRIES = {
 
 MODE = os.environ.get("MODE", "single")     # single | cluster
 SIGNAL = os.environ.get("SIGNAL", "obv")
+# DIRECTION=best  -> hold the TOP-ranked industries (momentum: ride the rise)
+# DIRECTION=worst -> hold the BOTTOM-ranked industries (reversion: buy the
+#   beaten-down sector and ride the recovery). Same machinery, same costs,
+#   same turnover-matched null -- only the sort flips, so the two are
+#   directly comparable and neither gets a hidden advantage.
+DIRECTION = os.environ.get("DIRECTION", "best")
+if DIRECTION not in ("best", "worst"):
+    raise SystemExit("DIRECTION must be best or worst")
 BUFFER = float(os.environ.get("BUFFER", "2.0"))
 REBAL = os.environ.get("REBAL", "monthly")
 TOP_N = int(os.environ.get("TOP_N", "5"))
@@ -300,7 +315,8 @@ class BandPicker:
         sc = _industry_scores(s_row, elig)
         if not sc:
             return []
-        ranked = sorted(sc, key=lambda k: sc[k], reverse=True)
+        ranked = sorted(sc, key=lambda k: sc[k],
+                        reverse=(DIRECTION == "best"))
         pos = {k: i for i, k in enumerate(ranked)}
         exit_rank = int(round(BUFFER * TOP_N))
         keep = [k for k in self.book
@@ -310,7 +326,11 @@ class BandPicker:
                 break
             if k not in keep:
                 keep.append(k)
-        if all(sc[k] < 0 for k in keep):
+        # The cash switch is a MOMENTUM idea: sit out when the whole top
+        # slice is falling. For DIRECTION=worst that condition is the
+        # entry premise, not an abort -- firing it there would delete the
+        # trade being tested. So it only applies to best.
+        if DIRECTION == "best" and all(sc[k] < 0 for k in keep):
             CASH_FIRES[0] += 1
             if RULE_CASH:
                 self.book = []
