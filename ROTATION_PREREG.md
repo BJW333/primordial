@@ -45,7 +45,11 @@ that discrepancy is a records question and is tracked separately.
 Venue: QuantConnect paper, dedicated node, started 2026-08-13.
 Deploy note: initial book adopted intraday ~14:14 ET via
 on_warmup_finished (one-time deviation from at-open fills; all
-scheduled rebalances fill at the open). Engine v18000, pinned.
+scheduled rebalances fill at the open). Engine v18000 at deploy, DELIBERATELY UNPINNED (Always-use-Master
+checked, auto-restart on) -- accepted risk: any restart rebuilds on
+that day's master; a breaking engine change stops the deployment and
+opens a gap in the paper record. SMS stop-alert is the tripwire.
+Known prior: same config killed deep-state's first shadow Aug 8-11.
 First rebalance on the clock: 2026-09-01. Two independent witnesses are NOT
 available for this one — it is QC-only — so a fill-quality caveat
 applies that deep-state does not have.
