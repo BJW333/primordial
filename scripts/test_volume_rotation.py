@@ -615,10 +615,6 @@ def main() -> int:
     return 0
 
 
-if __name__ == "__main__":
-    sys.exit(main())
-
-
 def _export_series(r, dates, tag):
     """Write the rule's own return series so two rotations can be compared
     directly. Rebalance i is the return REALIZED over the period ENDING at
@@ -641,3 +637,7 @@ def _export_series(r, dates, tag):
         print(f"  series -> {p} ({len(r)} periods)")
     except Exception as e:
         print(f"  (series export failed: {e})")
+
+
+if __name__ == "__main__":
+    sys.exit(main())
