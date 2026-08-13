@@ -42,8 +42,11 @@ contradicts an earlier "+2.72 sd" figure that has not been reproduced;
 that discrepancy is a records question and is tracked separately.
 
 ## The paper test
-Venue: QuantConnect paper (deep-state's shadow node), started
-_____________ (fill in deploy date). Two independent witnesses are NOT
+Venue: QuantConnect paper, dedicated node, started 2026-08-13.
+Deploy note: initial book adopted intraday ~14:14 ET via
+on_warmup_finished (one-time deviation from at-open fills; all
+scheduled rebalances fill at the open). Engine v18000, pinned.
+First rebalance on the clock: 2026-09-01. Two independent witnesses are NOT
 available for this one — it is QC-only — so a fill-quality caveat
 applies that deep-state does not have.
 
