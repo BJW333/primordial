@@ -97,3 +97,14 @@ Drop-in. Old ledgers, manifests, and survivor JSONs load unchanged. Run
   ZERO TRADES -- a silent null that reads exactly like a real finding.
 - validate_genome defers the ledger charge until after the run; a genome that
   fires zero trades observed nothing and no longer raises the bar.
+
+## crypto intraday ground (apply_crypto_intraday.py)
+- Manifest.max_hold_hours: wall-clock hold cap enforced in the gene pool
+  (random + mutation + tf-shift re-clamp). Default 0 = byte-identical legacy
+  sampling; all prior seeded runs reproduce.
+- Manifest.exclude_atoms: named-terminal removal post-dedupe, validated
+  against the pre-dedupe list; unknown names raise (anti mult/mul).
+- coinbase_liquid_v2 preset (MATIC->POL, RNDR->RENDER, SAND/MANA out) as a
+  NEW key; live presets are never edited in place (fingerprint re-keying).
+- manifests/crypto_intraday_15m.yaml + CRYPTO_INTRADAY_PREREG.md skeleton.
+- tests/test_crypto_intraday.py: 8 tests incl. planted time-exit control.

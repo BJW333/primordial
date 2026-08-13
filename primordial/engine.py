@@ -26,12 +26,14 @@ from .data import BAR_SECONDS
 
 class Island:
     def __init__(self, terminals, allowed_timeframes, rng, pop_size,
-                 root_type="bool", allow_short=True):
+                 root_type="bool", allow_short=True, max_hold_hours=0.0):
         self.terminals = terminals
         self.tfs = allowed_timeframes
         self.rng = rng
+        self.max_hold_hours = max_hold_hours
         self.pop = [random_genome(rng, terminals, allowed_timeframes,
-                                  root_type=root_type, allow_short=allow_short)
+                                  root_type=root_type, allow_short=allow_short,
+                                  max_hold_hours=max_hold_hours)
                     for _ in range(pop_size)]
 
 
@@ -44,7 +46,7 @@ def evolve(mtf_data: dict, train_syms, cost, terminals, allowed_timeframes,
            generations=12, pop_size=30, n_islands=3, elite=3, seed=42,
            migrate_every=4, hof_size=6, hof_max_corr=0.7,
            root_type="bool", allow_short=True, novelty_corr=0.95,
-           verbose=True, on_generation=None):
+           verbose=True, on_generation=None, max_hold_hours=0.0):
     """mtf_data: {timeframe: {sym: df-with-atoms}}. Returns (best, hall,
     n_evaluated). Every genome evaluation is counted and must be logged to
     the ledger by the caller (pipeline does)."""
@@ -59,7 +61,7 @@ def evolve(mtf_data: dict, train_syms, cost, terminals, allowed_timeframes,
             irng.shuffle(terms)
             terms = terms[: max(12, int(len(terms) * 0.66))]
         islands.append(Island(terms, allowed_timeframes, irng, pop_size,
-                              root_type, allow_short))
+                              root_type, allow_short, max_hold_hours))
 
     hall = HallOfFame(max_size=hof_size, max_corr=hof_max_corr)
     behavior_archive = []          # concatenated signals of past elites
@@ -116,9 +118,11 @@ def evolve(mtf_data: dict, train_syms, cost, terminals, allowed_timeframes,
                 p1 = _tournament(scored, isl.rng)
                 p2 = _tournament(scored, isl.rng)
                 c1, c2 = crossover_genomes(p1, p2, isl.rng)
-                newpop.append(mutate_genome(c1, isl.rng, isl.terminals, isl.tfs))
+                newpop.append(mutate_genome(c1, isl.rng, isl.terminals,
+                                            isl.tfs, isl.max_hold_hours))
                 if len(newpop) < len(isl.pop):
-                    newpop.append(mutate_genome(c2, isl.rng, isl.terminals, isl.tfs))
+                    newpop.append(mutate_genome(c2, isl.rng, isl.terminals,
+                                                isl.tfs, isl.max_hold_hours))
             isl.pop = newpop
         if best is None or gen_best[0] > best[0]:
             best = gen_best
@@ -132,7 +136,8 @@ def evolve(mtf_data: dict, train_syms, cost, terminals, allowed_timeframes,
                 k_new = max(1, int(0.15 * len(isl.pop)))
                 for i in range(1, k_new + 1):   # back of pop = non-elite
                     isl.pop[-i] = random_genome(
-                        isl.rng, isl.terminals, isl.tfs)
+                        isl.rng, isl.terminals, isl.tfs,
+                        max_hold_hours=isl.max_hold_hours)
         if gen and gen % migrate_every == 0 and len(islands) > 1:
             for i, isl in enumerate(islands):        # ring migration
                 nxt = islands[(i + 1) % len(islands)]

@@ -33,6 +33,21 @@ BREADTH_MIN_NAMES = 10     # breadth gate engages only with real cross-section
 BREADTH_MAX_P = 0.05       # per-name binomial: edge must exist across names
 
 
+def apply_exclusions(kept: list, all_terminals: list, exclude: list) -> list:
+    """Filter kept terminals by name. Validates against the PRE-dedupe list
+    so an atom that was merged away doesn't read as a typo; a name that never
+    existed raises (silent no-op exclusions are how the mult/mul class of bug
+    ships). Returns a new list."""
+    if not exclude:
+        return kept
+    unknown = [a for a in exclude if a not in all_terminals]
+    if unknown:
+        raise ValueError(f"exclude_atoms not in terminal set: {unknown} -- "
+                         f"check spelling against atoms.py")
+    ex = set(exclude)
+    return [k for k in kept if k not in ex]
+
+
 def _prepare(mtf, adapter, train_syms, hold_syms, motif_defs,
              benchmarks=None):
     """Compute atoms + motif matches + context per timeframe. Cross-sectional
@@ -97,6 +112,7 @@ def run(manifest_path: str, generations=12, pop_size=30, n_islands=3,
     _ = _prepare(mtf_hold, adapter, [], split.hold_syms, motif_defs,
                  bench_mtf)
     kept, merges = A.dedupe(mtf_train[tfs[0]], terminals)
+    kept = apply_exclusions(kept, terminals, mf.exclude_atoms)
     if verbose:
         print(f"[{mf.name}] {len(base)} syms | tfs {tfs} | atoms "
               f"{len(terminals)} -> {len(kept)} after |rho|>0.95 dedupe "
@@ -109,7 +125,8 @@ def run(manifest_path: str, generations=12, pop_size=30, n_islands=3,
     best, hall, n_eval = evolve(
         mtf_train, split.train_syms, mf.cost, kept, tfs,
         generations=generations, pop_size=pop_size, n_islands=n_islands,
-        seed=seed, allow_short=allow_short, verbose=verbose)
+        seed=seed, allow_short=allow_short, verbose=verbose,
+        max_hold_hours=mf.max_hold_hours)
 
     # 6. gauntlet the HOF on the holdout -- each peek is a logged trial
     candidates = hall.payloads() or ([( best[0], best[1] )] if best else [])

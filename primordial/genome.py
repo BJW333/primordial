@@ -34,6 +34,33 @@ ENTRY_STYLES = ["market", "limit", "confirm"]
 # whitelist below. 2026-08-10.
 OPEN_SAFE_TERMS = {"gap_atr_open", "open"}
 
+# legacy gene-choice ladders -- referenced verbatim when no hold cap is set,
+# so pre-cap seeded runs reproduce bit-for-bit
+HOLD_CHOICES = [48, 96, 192, 500]
+TS_CHOICES = [0, 12, 24, 48, 96]
+
+
+def hold_cap_bars(timeframe: str, max_hold_hours: float) -> int:
+    """Wall-clock hold cap -> bar count at this timeframe. 0 = uncapped.
+    Wall-clock (not bars) because genomes mutate across timeframes: '1 day'
+    must mean 96 bars at 15m and 24 bars at 1h, not one frozen number."""
+    if not max_hold_hours:
+        return 0
+    from .data import BAR_SECONDS
+    return max(1, int(max_hold_hours * 3600.0 / BAR_SECONDS[timeframe]))
+
+
+def _hold_choices(cap: int) -> list:
+    if not cap:
+        return HOLD_CHOICES
+    return sorted({max(1, cap // 8), max(1, cap // 4), max(1, cap // 2), cap})
+
+
+def _ts_choices(cap: int) -> list:
+    if not cap:
+        return TS_CHOICES
+    return sorted({0, max(1, cap // 4), max(1, cap // 2), cap})
+
 
 @dataclasses.dataclass
 class Genome:
@@ -100,10 +127,13 @@ class Genome:
 
 # ---- random construction / variation -------------------------------------
 def random_genome(rng: random.Random, terminals, allowed_timeframes,
-                  root_type="bool", allow_short=True) -> Genome:
+                  root_type="bool", allow_short=True,
+                  max_hold_hours=0.0) -> Genome:
     direction = rng.choice(["long"] + (["short"] if allow_short else []))
+    tf = rng.choice(allowed_timeframes)      # same rng call order as before
+    cap = hold_cap_bars(tf, max_hold_hours)
     return Genome(
-        timeframe=rng.choice(allowed_timeframes),
+        timeframe=tf,
         root_type=root_type,
         entry_tree=T.random_tree(rng, terminals,
                                  want=T.B if root_type == "bool" else T.S),
@@ -115,15 +145,15 @@ def random_genome(rng: random.Random, terminals, allowed_timeframes,
                     else rng.choice([1, 2, 3]),
         stop_atr=round(rng.uniform(0.5, 4.0), 2),
         target_r=round(rng.choice([0.0, 1.0, 1.5, 2.0, 3.0]), 2),
-        time_stop=rng.choice([0, 12, 24, 48, 96]),
+        time_stop=rng.choice(_ts_choices(cap)),
         trail_mode=rng.choice(TRAIL_MODES),
-        max_hold=rng.choice([48, 96, 192, 500]),
+        max_hold=rng.choice(_hold_choices(cap)),
         anchor_ema=rng.choice([0, 0, 0, 0, 13, 26, 52]),
     )
 
 
 def mutate_genome(g: Genome, rng: random.Random, terminals,
-                  allowed_timeframes) -> Genome:
+                  allowed_timeframes, max_hold_hours=0.0) -> Genome:
     g = copy.deepcopy(g)
     r = rng.random()
     if r < 0.45:
@@ -142,14 +172,20 @@ def mutate_genome(g: Genome, rng: random.Random, terminals,
         tfs = [t for t in TIMEFRAMES if t in allowed_timeframes]
         i = tfs.index(g.timeframe)
         g.timeframe = tfs[max(0, min(len(tfs) - 1, i + rng.choice([-1, 1])))]
+        cap = hold_cap_bars(g.timeframe, max_hold_hours)
+        if cap:                       # coarser tf can push bar-holds past the
+            g.max_hold = min(g.max_hold, cap)       # wall-clock cap: re-clamp
+            g.time_stop = min(g.time_stop, cap)
     elif r < 0.90:
         which = rng.choice(["stop", "target", "ts", "trail", "hold", "style",
                             "anchor"])
         if which == "stop":   g.stop_atr = float(np.clip(g.stop_atr + rng.uniform(-0.5, 0.5), 0.3, 6.0))
         elif which == "target": g.target_r = rng.choice([0.0, 1.0, 1.5, 2.0, 3.0])
-        elif which == "ts":   g.time_stop = rng.choice([0, 12, 24, 48, 96])
+        elif which == "ts":   g.time_stop = rng.choice(
+            _ts_choices(hold_cap_bars(g.timeframe, max_hold_hours)))
         elif which == "trail": g.trail_mode = rng.choice(TRAIL_MODES)
-        elif which == "hold": g.max_hold = rng.choice([48, 96, 192, 500])
+        elif which == "hold": g.max_hold = rng.choice(
+            _hold_choices(hold_cap_bars(g.timeframe, max_hold_hours)))
         elif which == "anchor": g.anchor_ema = rng.choice([0, 13, 26, 39, 52])
         else:
             g.entry_style = rng.choice(ENTRY_STYLES)

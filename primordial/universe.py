@@ -151,6 +151,19 @@ PRESETS = {
         "ARB-USD", "OP-USD", "NEAR-USD", "INJ-USD", "AAVE-USD", "MKR-USD",
         "ALGO-USD", "SAND-USD", "MANA-USD", "GRT-USD", "IMX-USD", "RNDR-USD",
     ],
+    # v2 2026-08: MATIC-USD -> POL-USD (Coinbase migrated Oct 2024),
+    # RNDR-USD -> RENDER-USD; SAND/MANA dropped (illiquid). A NEW key on
+    # purpose -- editing coinbase_liquid in place would silently change the
+    # fingerprint of every manifest referencing it and orphan their ledger
+    # history. NEVER mutate a live preset; version it. Ticker drift is
+    # self-auditing: anything wrong here lands in run.json symbols_missing.
+    "coinbase_liquid_v2": [
+        "BTC-USD", "ETH-USD", "SOL-USD", "XRP-USD", "DOGE-USD", "ADA-USD",
+        "AVAX-USD", "LINK-USD", "DOT-USD", "POL-USD", "LTC-USD", "BCH-USD",
+        "UNI-USD", "ATOM-USD", "XLM-USD", "ETC-USD", "FIL-USD", "APT-USD",
+        "ARB-USD", "OP-USD", "NEAR-USD", "INJ-USD", "AAVE-USD", "MKR-USD",
+        "ALGO-USD", "GRT-USD", "IMX-USD", "RENDER-USD",
+    ],
 }
 
 
@@ -172,6 +185,13 @@ class Manifest:
     n_motifs: int = 6
     motif_scales: list = dataclasses.field(default_factory=lambda: [20, 40])
     context_symbols: list = dataclasses.field(default_factory=list)
+    # wall-clock cap on holding time, enforced in the gene pool (0 = off).
+    # NOT part of fingerprint(): like `engines`, it constrains the search,
+    # not which holdout is being burned -- capped and uncapped searches on
+    # the same ground share one ledger, which is the conservative accounting.
+    max_hold_hours: float = 0.0
+    # terminal names removed from the evolved set. Unknown names raise.
+    exclude_atoms: list = dataclasses.field(default_factory=list)
     seed: int = 42
 
     @property
