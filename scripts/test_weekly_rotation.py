@@ -395,6 +395,8 @@ def main() -> int:
 
     r_real, npos, turn, swaps = run_strategy(close, open_, score, vol, dates,
                                              real_picker, allowed=GATE())
+    _export_series(r_real, dates, f"names_{UNIV}_{REBAL}_{MEMBERSHIP}"
+                   if UNIV == "sp500pit" else f"names_{UNIV}_{REBAL}")
     if _DEPARTED:
         slots = [t for pk in PICK_LOG for t in pk]
         dep = sum(1 for t in slots if t in _DEPARTED) / max(1, len(slots))
@@ -582,3 +584,27 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+
+
+def _export_series(r, dates, tag):
+    """Write the rule's own return series so two rotations can be compared
+    directly. Rebalance i is the return REALIZED over the period ENDING at
+    dates[i+1], so the series is labelled with dates[1:len(r)+1] -- getting
+    this off by one would manufacture or destroy correlation.
+    Writes to out/series/<tag>.csv (date,ret). Never affects the run."""
+    try:
+        import os as _os
+        d = _os.path.join("out", "series")
+        _os.makedirs(d, exist_ok=True)
+        idx = [str(x) for x in dates[1:len(r) + 1]]
+        if len(idx) != len(r):
+            print(f"  (series export skipped: {len(idx)} dates vs {len(r)} rets)")
+            return
+        p = _os.path.join(d, f"{tag}.csv")
+        with open(p, "w") as f:
+            f.write("date,ret\n")
+            for dt, v in zip(idx, r):
+                f.write(f"{dt},{float(v):.10f}\n")
+        print(f"  series -> {p} ({len(r)} periods)")
+    except Exception as e:
+        print(f"  (series export failed: {e})")
