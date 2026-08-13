@@ -271,7 +271,15 @@ needed PIT >= +2.0). Read: the edge attenuated but did not collapse when
 dead names were restored, and part of survivor-mode's regime-dependence
 was the NULL being survivorship-inflated (random picks from
 guaranteed-survivors earn +0.99 in train; restore the dead and random
-earns +0.26 while the ranking still finds the live names). The sp400
-+2.72 sd claim stays provisionally credible; final verdict deferred to
-point-in-time sp400 data (Norgate/Sharadar), scheduled for the
-deep-state Gate C moment. Nothing trades before that check.
+earns +0.26 while the ranking still finds the live names). CORRECTION
+2026-08-13: the "+2.72 sd" sp400 figure has NO primary source -- it
+appears nowhere in the repo except this addendum's own assertion; it
+entered the record via conversation, uncommitted. The only reproduced
+sp400 monthly result (2026-08-11 run) is holdout SR +0.66, 29.4th pct,
+-0.51 sd vs its turnover-matched null: NOT a pass. Separately, the
+name rotation correlates +0.869 with the industry-ETF rotation (same
+edge twice) and is RETIRED as a duplicate -- the ETF leg (+1.92 sd
+holdout, honest 30-trial bar +0.36, cleared) is the one under paper
+test per ROTATION_PREREG.md. The sp400 PIT verdict is therefore MOOT
+for trading; the Norgate/Sharadar purchase case now rests on
+deep-state Gate C and the distress PIT completion only.
