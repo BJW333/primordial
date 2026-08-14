@@ -297,3 +297,15 @@ planted answers (null->DEAD, 2x-vol->ALIVE). scripts/kill_test_options_
 expression.py, out/options_killtest.json. Corollary: analyst-headline
 options ideas closed a fortiori (published family + weaker signal + event-
 inflated IV cannot clear a toll deep-state cannot).
+
+
+## Crypto intraday 15m (coinbase_liquid_v2) -- CLOSED CONDITIONALLY 2026-08-14
+Registered evolutionary search: 28 USD pairs 2021-06 -> 2026-08, 15m base
+(1h/4h allowed), long/flat, 24h wall-clock hold cap, taker/taker modeled at
+25 bps commission (70 bps round trip all-in). 0 survivors of 6 candidates
+vs bar +1.70; this holdout now carries 54 effective trials. Evolution
+abandoned 15m by gen 1 and camped on 4h -- same flight-to-coarse as
+us_liquid_5m: at these tolls sub-hour holds are unmineable. All finalists
+momentum-shaped; train stagnated at +0.136 for 17 generations; best
+holdout -1.08. Prereg was signed post-run (process violation, noted in the
+prereg itself). Account taker tier UNVERIFIED at close-out: if >= 25 bps the verdict stands conservatively, if < 25 it is not conclusive and the seam reopens. Tier lookup owed before any future crypto ground or redeploy. runs/20260814_124328.

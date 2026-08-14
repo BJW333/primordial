@@ -27,7 +27,7 @@ pre-committed as: drop BTC-USD/ETH-USD from members, engines
 [cross_sectional] only. Registered NOW so it is a contingency, not mining.
 
 FEE TIER: crypto_spot_taker assumes 25 bps taker commission. Actual
-30-day-volume tier confirmed as: __________ (fill BEFORE the run; if it
+30-day-volume tier confirmed as: UNVERIFIED at close-out. Model assumed 25 bps. If actual >= 25 the zero-survivor verdict stands conservatively; if < 25 it is NOT conclusive. Lookup owed before any future crypto ground. (fill BEFORE the run; if it
 differs, edit COST_TIERS first and note it here).
 
 PASS = whatever the gauntlet says. No threshold edits, no variant mining
@@ -39,4 +39,4 @@ are the whole campaign on this fingerprint. 0 survivors from both closes
 intraday crypto spot; next crypto effort would be a different ground
 (perps with funding as carry), separately registered.
 
-Signed: __________
+Signed: Blake Weiss 2026-08-14 -- POST-RUN: run 20260814_124328 executed before this prereg was signed or the tier confirmed (process violation, recorded). Tier unverified at signing; verdict conditional as noted above.
