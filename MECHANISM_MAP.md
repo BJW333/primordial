@@ -283,3 +283,17 @@ holdout, honest 30-trial bar +0.36, cleared) is the one under paper
 test per ROTATION_PREREG.md. The sp400 PIT verdict is therefore MOOT
 for trading; the Norgate/Sharadar purchase case now rests on
 deep-state Gate C and the distress PIT completion only.
+
+## Options expression layer (deep-state) -- CLOSED 2026-08-13
+Screen: replay frozen genome sp400+sp600 (32,453 trades), reprice each as
+60d BS call, IV = 21d trailing RV x VRP, delta-equivalent sized vs delta-1
+stock null. Grid: {atm,itm} x VRP{1.00,1.15,1.30} x spread{3,6,10}%/side.
+Rule (pre-stated): ALIVE iff >=3/4 honest cells (VRP>=1.15, sp>=6%) incl.
+(1.15,6%) anchor beat stock. Result: 0/18 cells beat stock anywhere.
+|z|=0.930 vs 0.80 walk baseline -- drift edge, not vol edge; realized moves
+do not exceed implied by enough to pay spread+VRP toll. Options expression
+closed for deep-state; no chain data purchase. Selftest recovered both
+planted answers (null->DEAD, 2x-vol->ALIVE). scripts/kill_test_options_
+expression.py, out/options_killtest.json. Corollary: analyst-headline
+options ideas closed a fortiori (published family + weaker signal + event-
+inflated IV cannot clear a toll deep-state cannot).
