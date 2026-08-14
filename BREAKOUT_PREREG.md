@@ -37,4 +37,4 @@ genome per ground: 1 candidate + up to 5 holdout peeks. Planned total:
 ## Order
 1. Sign below. 2. git commit. 3. Run the 8 commands. 4. Log + commit.
 
-Signed: __________
+Signed: Blake Weiss 2026-08-14 -- NOTE: signed after the sp400 batch started but before any result was read; commit 1464d2f said "signed" prematurely (process violation, recorded)
