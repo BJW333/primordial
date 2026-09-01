@@ -82,6 +82,11 @@ class Genome:
     # the search decides whether they help (on mean reversion they should not:
     # adding a stop back onto the anchor exit cost Sharpe 1.27 -> 0.92).
     anchor_ema: int = 0
+    # fixed-fraction take-profit (monthlow family, 2026-09-01): 0 = off;
+    # else exit at the level entry*(1 +/- pct). HAND-ONLY gene -- not in
+    # mutate/crossover, so evolution cannot reach it and old seeds
+    # reproduce. Checked after the stop, never on the entry bar.
+    target_pct: float = 0.0
 
     # ---- serialization (runtime.py depends on this being complete) -------
     def to_json(self) -> str:
@@ -105,6 +110,8 @@ class Genome:
               f"ts {self.time_stop} {self.trail_mode}")
         if self.anchor_ema:
             d += f" anchor{self.anchor_ema}"
+        if getattr(self, "target_pct", 0.0) > 0:
+            d += f" tgt{self.target_pct:.1%}"
         return d
 
     # ---- signals ---------------------------------------------------------
@@ -395,6 +402,16 @@ def run_backtest(g: Genome, df: pd.DataFrame, cost, risk_per_trade=0.01,
                     (side == "long" and h[t] >= pos["target"]) or
                     (side == "short" and l[t] <= pos["target"])):
                 exit_px = pos["target"]
+            # fixed-fraction target: same discipline as target_r (stop
+            # first, level fill, never the entry bar); pos["entry"] is
+            # the adverse-adjusted fill, so pct is measured from what was
+            # actually paid.
+            elif g.target_pct > 0 and (
+                    (side == "long" and
+                     h[t] >= pos["entry"] * (1 + g.target_pct)) or
+                    (side == "short" and
+                     l[t] <= pos["entry"] * (1 - g.target_pct))):
+                exit_px = pos["entry"] * (1 + sgn * g.target_pct)
             # time stop / max hold
             elif (g.time_stop and t - pos["i"] >= g.time_stop) or \
                  (t - pos["i"] >= g.max_hold):

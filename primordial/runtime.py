@@ -65,4 +65,6 @@ class Strategy:
                 # the profit direction -- it is the PRIMARY exit for
                 # deep-state-family survivors; omitting it changes the
                 # strategy being traded.
-                "anchor_ema": getattr(g, "anchor_ema", 0)}
+                "anchor_ema": getattr(g, "anchor_ema", 0),
+                # 0 = off; else exit at entry*(1 +/- pct), level fill.
+                "target_pct": getattr(g, "target_pct", 0.0)}

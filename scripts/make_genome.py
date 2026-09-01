@@ -165,6 +165,8 @@ def main():
     p.add_argument("--stop", type=float, default=3.0,
                    help="ATR units; 99 = effectively no stop")
     p.add_argument("--target", type=float, default=0.0, help="R multiple")
+    p.add_argument("--target-pct", type=float, default=0.0,
+                   help="fixed-fraction take-profit, e.g. 0.05 (0 = off)")
     p.add_argument("--time-stop", type=int, default=0)
     p.add_argument("--trail", default="none",
                    choices=["none", "breakeven", "atr"])
@@ -180,7 +182,8 @@ def main():
                regime_tree=None, direction=a.dir, entry_style=a.style,
                entry_param=1, stop_atr=a.stop, target_r=a.target,
                time_stop=a.time_stop, trail_mode=a.trail,
-               max_hold=a.max_hold, anchor_ema=a.anchor)
+               max_hold=a.max_hold, anchor_ema=a.anchor,
+               target_pct=a.target_pct)
     print(g.to_json(), end="")
     print(f"\n# {g.describe()}", file=sys.stderr)
 
