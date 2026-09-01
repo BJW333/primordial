@@ -347,3 +347,13 @@ recovery after) in both distress and non-distress blocks, but unscorable
 at this coverage. Ground closed. Pre-committed next: sp600 deletion study
 on Norgate PIT with delisted histories -- its own frozen study, not a
 retry of this one.
+
+## Crypto funding-extreme absorption -- screen DEAD 2026-09-01 (0 trials)
+explore_crypto_funding.py, Coinbase INTX funding 2023-05->2026, BTC+ETH,
+maker 46bps. Primary (fund3<=p10 AND ret3<0, +5d): -0.12% [t -0.2] n=84
+on train -- FAILS, no tail look. Funding deciles show zero forward-return
+gradient at daily hold; the liquidation-aftermath story does not survive
+its own free proxy. Mirror (short) -2.07% [t -3.5]: short-side asymmetry
+confirmed again. Funding archive (out/funding_*.csv) retained + growing.
+Kraken venue's +1.40 [t +1.2] on 1y was noise, superseded. Seam closed at
+daily granularity; anything faster is the archived-data class (Kalshi).
