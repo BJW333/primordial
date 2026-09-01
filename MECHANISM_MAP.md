@@ -324,3 +324,15 @@ again moves SR in the right direction; capped upside + 20-bar hold prints a
 stable +0.2 vs deep-state's +0.59 on the same ground. Confirms "the premium
 requires long holds" (DISTRESS_VOL sec 3). sp600 holdout now 24 trials.
 Prereg signed late (split 1 started), recorded in the prereg. Family closed.
+
+## Monthlow dip family, sp500 ground (Amendment 1) -- CLOSED 2026-09-01
+| genome | median SR | range | bar | splits | trades/split | run |
+|---|---|---|---|---|---|---|
+| monthlow_dip | +0.34 | [+0.28, +0.36] | +1.19 | 0/5 | ~3,500 | 20260901_145616 |
+| monthlow_dip_healthy | +0.30 | [+0.24, +0.40] | +1.20 | 0/5 | ~930 | 20260901_170907 |
+Note vs pre-run prediction (base <= +0.15): base printed HIGHER on sp500
+than sp600 (+0.34 vs +0.19), and the SMA200 gate added nothing here (it
+added +0.09 on sp600). Read: the gate only pays where below-trend junk
+exists to exclude; on large caps it is near-redundant. Raw dip premium
+~+0.3 exists on both grounds but clears no honest bar anywhere. sp500
+holdout now 75 trials. Family closed on all grounds; no further looks.
