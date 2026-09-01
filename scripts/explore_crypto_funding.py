@@ -39,6 +39,8 @@ from primordial.data import fetch  # noqa: E402
 
 TRAIN_FRAC = 0.70
 PAIRS = {"BTCUSDT": "BTC-USD", "ETHUSDT": "ETH-USD"}
+KRAKEN_PAIRS = {"PF_XBTUSD": "BTC-USD", "PF_ETHUSD": "ETH-USD"}
+CB_PAIRS = {"BTC-PERP": "BTC-USD", "ETH-PERP": "ETH-USD"}
 
 
 def _get(url):
@@ -63,6 +65,25 @@ def fetch_funding(perp, venue):
             start = rows[-1]["time"] + 1
             if len(batch) < 1000:
                 break
+        elif venue == "coinbase":               # INTX public, ~2023->
+            url = ("https://api.international.coinbase.com/api/v1/"
+                   f"instruments/{perp}/funding?result_limit=100"
+                   f"&result_offset={len(rows)}")
+            r = _get(url)
+            batch = r.get("results", r if isinstance(r, list) else [])
+            if not batch:
+                break
+            rows += [{"time": b["event_time"],
+                      "rate": float(b["funding_rate"])} for b in batch]
+            if len(batch) < 100:
+                break
+        elif venue == "kraken":                 # one call, full history
+            url = ("https://futures.kraken.com/derivatives/api/v4/"
+                   f"historicalfundingrates?symbol={perp}")
+            rates = _get(url)["rates"]
+            rows = [{"time": r["timestamp"],
+                     "rate": float(r["relativeFundingRate"])} for r in rates]
+            break
         else:                                   # bybit v5
             url = ("https://api.bybit.com/v5/market/funding/history?"
                    f"category=linear&symbol={perp}&startTime={start}&limit=200")
@@ -77,7 +98,7 @@ def fetch_funding(perp, venue):
                 break
         time.sleep(0.3)
     df = pd.DataFrame(rows)
-    df["time"] = pd.to_datetime(df["time"], unit="ms")
+    df["time"] = pd.to_datetime(df["time"], unit="ms") if df["time"].dtype.kind in "iu" else pd.to_datetime(df["time"], utc=True).dt.tz_localize(None)
     os.makedirs("out", exist_ok=True)
     df.to_csv(path, index=False)
     print(f"  {perp}: {len(df)} funding prints -> {path}")
@@ -93,14 +114,17 @@ def tstat(x):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--venue", choices=["binance", "bybit"], default="binance")
+    p.add_argument("--venue", choices=["binance", "bybit", "kraken", "coinbase"],
+                   default="coinbase")
     p.add_argument("--cost-bps", type=float, default=46.0)
     p.add_argument("--tail-look", action="store_true")
     a = p.parse_args()
     cost = a.cost_bps / 1e4
 
+    pairs = {"kraken": KRAKEN_PAIRS, "coinbase": CB_PAIRS}.get(
+        a.venue, PAIRS)
     frames = []
-    for perp, spot_sym in PAIRS.items():
+    for perp, spot_sym in pairs.items():
         try:
             f = fetch_funding(perp, a.venue)
         except Exception as e:
