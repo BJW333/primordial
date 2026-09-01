@@ -98,7 +98,7 @@ def fetch_funding(perp, venue):
                 break
         time.sleep(0.3)
     df = pd.DataFrame(rows)
-    df["time"] = pd.to_datetime(df["time"], unit="ms") if df["time"].dtype.kind in "iu" else pd.to_datetime(df["time"], utc=True).dt.tz_localize(None)
+    df["time"] = pd.to_datetime(df["time"], unit="ms") if df["time"].dtype.kind in "iu" else pd.to_datetime(df["time"].astype(str), utc=True, errors="coerce").dt.tz_localize(None)
     os.makedirs("out", exist_ok=True)
     df.to_csv(path, index=False)
     print(f"  {perp}: {len(df)} funding prints -> {path}")
