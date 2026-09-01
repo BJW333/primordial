@@ -52,4 +52,4 @@ if something passes, never before.
 ## Order
 1. Sign below. 2. git commit. 3. Run the 2 commands. 4. Log + commit.
 
-Signed: __________
+Signed: Blake Weiss 2026-09-01 -- NOTE: signed after split 1 of monthlow_dip started but before any result was read; commit 9134a6d said "signed" prematurely (process violation, recorded)
