@@ -336,3 +336,14 @@ added +0.09 on sp600). Read: the gate only pays where below-trend junk
 exists to exclude; on large caps it is near-redundant. Raw dip premium
 ~+0.3 exists on both grounds but clears no honest bar anywhere. sp500
 holdout now 75 trials. Family closed on all grounds; no further looks.
+
+## sp500 deletion flow -- frozen cell FAILED 2026-09-01 (0 trials)
+explore_index_deletion.py. 385 deletions 2009-2026, 119 scorable (yfinance
+cannot fetch delisted paths -- 266 events missing, all numbers biased UP;
+distress cell is where the bias binds hardest). Train: distress (n=26)
+T->+60 SPY-adj +9.3% [t +0.9] -- FAILS frozen t>=2. No tail look taken.
+Shape matches mechanism (sag into T, T-1 +2.6% = forced sell front-run,
+recovery after) in both distress and non-distress blocks, but unscorable
+at this coverage. Ground closed. Pre-committed next: sp600 deletion study
+on Norgate PIT with delisted histories -- its own frozen study, not a
+retry of this one.
