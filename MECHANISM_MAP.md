@@ -309,3 +309,18 @@ us_liquid_5m: at these tolls sub-hour holds are unmineable. All finalists
 momentum-shaped; train stagnated at +0.136 for 17 generations; best
 holdout -1.08. Prereg was signed post-run (process violation, noted in the
 prereg itself). Account taker tier UNVERIFIED at close-out: if >= 25 bps the verdict stands conservatively, if < 25 it is not conclusive and the seam reopens. Tier lookup owed before any future crypto ground or redeploy. runs/20260814_124328.
+
+## Monthlow dip family -- CLOSED 2026-09-01
+MONTHLOW_PREREG.md. Fresh 21d closing low AND >= 10% below 21d high, buy
+next open, +5% take-profit (target_pct gene, added 2026-09-01), 20-bar cap,
+no stop. us_sp600, 5 hash-keyed splits each.
+| genome | median SR | range | bar | splits | trades/split | run |
+|---|---|---|---|---|---|---|
+| monthlow_dip | +0.19 | [+0.13, +0.26] | +0.87 | 0/5 | ~5,100 | 20260901_130125 |
+| monthlow_dip_healthy (+SMA200) | +0.28 | [+0.21, +0.45] | +0.94 | 0/5 | ~1,300 | 20260901_142317 |
+Neither pass. Healthy variant beat base (+0.09) but not the bar, so NOT
+INTERESTING per rule. Read: fourth dip shape dead on sp600; health gate
+again moves SR in the right direction; capped upside + 20-bar hold prints a
+stable +0.2 vs deep-state's +0.59 on the same ground. Confirms "the premium
+requires long holds" (DISTRESS_VOL sec 3). sp600 holdout now 24 trials.
+Prereg signed late (split 1 started), recorded in the prereg. Family closed.
