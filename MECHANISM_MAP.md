@@ -357,3 +357,9 @@ its own free proxy. Mirror (short) -2.07% [t -3.5]: short-side asymmetry
 confirmed again. Funding archive (out/funding_*.csv) retained + growing.
 Kraken venue's +1.40 [t +1.2] on 1y was noise, superseded. Seam closed at
 daily granularity; anything faster is the archived-data class (Kalshi).
+
+## EDGAR secondaries CORRECTION 2026-09-01: date-parse bug
+All prior EDGAR numbers (primary +0.00, run-up +1.07 [t +8.3], distress
++5.08 [t +1.8]) were computed on MONTH-precision dates (form.idx offset
+bug, assistant error) -- invalid in both directions, prior entry void.
+Refetched day-precision, frozen study re-run as its FIRST valid look.

@@ -80,15 +80,16 @@ def cmd_fetch(a):
             print(f"  {y} Q{q}: skip ({str(e)[:50]})")
             continue
         n0 = len(rows)
+        import re
+        pat = re.compile(r"(\d{4,10})\s+(\d{4}-\d{2}-\d{2})\s+edgar/")
         for line in raw.splitlines():
-            form = line[:12].strip()
+            form = line.split()[0] if line.split() else ""
             if form not in FORMS:
                 continue
-            try:
-                cik = int(line[74:86].strip())
-                date = line[86:98].strip()
-            except ValueError:
+            m = pat.search(line)
+            if not m:
                 continue
+            cik, date = int(m.group(1)), m.group(2)
             if cik in cik2sym:
                 rows.append({"sym": cik2sym[cik], "date": date, "form": form})
         print(f"  {y} Q{q}: +{len(rows) - n0}")
