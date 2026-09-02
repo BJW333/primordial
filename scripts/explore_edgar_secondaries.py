@@ -161,6 +161,17 @@ def cmd_study(a):
         print(f"  context distress-only +{HOLD}d net: {m*100:+.2f}% "
               f"[t {t:+.1f}] n={n:,}")
 
+    if a.distress_tail:
+        seg = d[(d["date"] >= cut) & (d["trail"] <= -0.30)]
+        n, m, t = tstat(seg[f"f{HOLD}"] - cost)
+        print(f"===== DISTRESS-ISSUER TAIL LOOK (the study's ONLY look) "
+              f"| >= {cut.date()} =====")
+        print(f"  trail<=-30%, buy T+1 close, +{HOLD}d SPY-adj net: "
+              f"{m*100:+.2f}% [t {t:+.1f}] n={n}")
+        print("  VERDICT vs frozen rule (mean>0 AND t>=2): "
+              + ("PASS -- next: cohort/cluster check, then prereg."
+                 if n >= 30 and m > 0 and t >= 2 else "DEAD. Seam closed."))
+        return
     if a.tail_look:
         print(f"===== TAIL LOOK (one look, frozen cell) | >= {cut.date()} "
               f"=====")
@@ -184,6 +195,8 @@ def main():
     s.add_argument("--source", default="yfinance")
     s.add_argument("--cost-bps", type=float, default=25.0)
     s.add_argument("--tail-look", action="store_true")
+    s.add_argument("--distress-tail", action="store_true",
+                   help="ONE look: distress-issuer cell, tail only")
     a = p.parse_args()
     (cmd_fetch if a.cmd == "fetch" else cmd_study)(a)
 
