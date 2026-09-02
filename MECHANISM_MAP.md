@@ -363,3 +363,12 @@ All prior EDGAR numbers (primary +0.00, run-up +1.07 [t +8.3], distress
 +5.08 [t +1.8]) were computed on MONTH-precision dates (form.idx offset
 bug, assistant error) -- invalid in both directions, prior entry void.
 Refetched day-precision, frozen study re-run as its FIRST valid look.
+
+## EDGAR distress-issuer raise -- DEAD 2026-09-01 (0 trials)
+Corrected-date study. Primary (all secondaries) legitimately dead: +0.19
+[t +1.1] n=3,232 train, no tail look. Distress-issuer cell (train +3.12
+[t +2.0] n=132, seen twice incl. bug era, so tail-ONLY design): tail
++0.09 [t +0.1] n=47. DEAD. Post-2021 distress raises are not absorbed
+profitably. EDGAR event pipeline (5,110 day-precision 424B events,
+self-updating via refetch) retained as infrastructure for the analyst
+leg. Seam closed.
