@@ -86,7 +86,7 @@ ADAPTERS = {
     "crypto": AssetClassAdapter(
         "crypto", always_open=True,
         atom_blocks=("trend", "oscillators", "vol_structure", "distribution",
-                     "persistence", "microstructure", "volume"),
+                     "persistence", "microstructure", "volume", "multi_horizon"),
         engines=("timing", "cross_sectional"),
         needs_adjustment=False, shortable=False),
     "crypto_perp": AssetClassAdapter(

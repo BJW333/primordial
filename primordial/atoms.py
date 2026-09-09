@@ -185,6 +185,27 @@ def _session(df, out, always_open: bool):
         out["intraday_ret"] = df["close"] / df["open"].where(df["open"] > 0) - 1
 
 
+def _multi_horizon(df, out):
+    """Disjoint-segment sign vote (mh_vote family, 2026-09). Four
+    NON-OVERLAPPING lookback segments in bars: [0,7) [7,14) [14,30) [30,60).
+    Each segment votes on its close-to-close return: +1 up, -1 down, 0 if
+    |ret| is inside a vol-scaled dead zone (0.5 * sigma_bar * sqrt(seglen),
+    sigma_bar = 90-bar rolling std of bar returns). Sum in [-4, +4]; dead
+    zone makes odd scores reachable. Windows are BARS: on crypto 1d these
+    are calendar weeks/months because the tape never closes; on equities
+    the same numbers run ~40% longer in wall-clock. Nothing is fitted."""
+    c = df["close"]
+    r = c.pct_change()
+    sig = r.rolling(90, min_periods=30).std()
+    vote = None
+    for a, b in ((0, 7), (7, 14), (14, 30), (30, 60)):
+        seg = c.shift(a) / c.shift(b).where(c.shift(b) > 0) - 1
+        dz = 0.5 * sig * float(np.sqrt(b - a))
+        v = pd.Series(np.sign(seg), index=c.index).where(seg.abs() >= dz, 0.0)
+        vote = v if vote is None else vote + v
+    out["mh_vote"] = vote
+
+
 BLOCKS = {
     "trend": _trend,
     "oscillators": _oscillators,
@@ -193,6 +214,7 @@ BLOCKS = {
     "persistence": _persistence,
     "microstructure": _microstructure,
     "volume": _volume,
+    "multi_horizon": _multi_horizon,
     # "session" handled specially (needs adapter flag)
 }
 
