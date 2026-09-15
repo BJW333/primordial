@@ -49,9 +49,16 @@ EXAMPLE = {
 
 
 def _gate_detail(r):
-    print(f"  holdout SR {r.get('holdout_median_sharpe',0):+.2f} vs bar "
-          f"{r.get('luck_bar',0):+.2f} | PSR {r.get('holdout_psr',0):.3f} | "
-          f"trades {r.get('holdout_trades')}")
+    if r.get("holdout_cells") == 0:
+        print(f"  holdout SR: NO ELIGIBLE CELLS -- every name x fold cell "
+              f"had < 4 trades (old runs printed +0.00 here) | pooled PSR "
+              f"{r.get('holdout_psr',0):.3f} | trades "
+              f"{r.get('holdout_trades')}")
+    else:
+        print(f"  holdout SR {r.get('holdout_median_sharpe',0):+.2f} vs bar "
+              f"{r.get('luck_bar',0):+.2f} | PSR {r.get('holdout_psr',0):.3f}"
+              f" | trades {r.get('holdout_trades')} | cells "
+              f"{r.get('holdout_cells', '?')}")
     if r.get("breadth") is not None:
         b = r["breadth"]
         print(f"  breadth: {b['frac']:.2f} on {b['names']} names, p={b['p']}")

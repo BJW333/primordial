@@ -19,10 +19,19 @@ from .genome import run_backtest
 
 # ---------------- metrics on a trade list ----------------------------------
 def trade_sharpe(r_mults, trades_per_year):
+    """Annualized per-trade Sharpe, CLIPPED to [-50, +50]. The clip exists
+    because a cell of near-identical stop-outs (gap-through fills differ by
+    ~1e-3 R) has std ~ 0.003, and mean/std then prints -923 -- a degeneracy
+    artifact, not a measurement (mhv_gate2, 2026-09-09). |SR| 50 at these
+    trade frequencies is already beyond any real edge, and the cheat
+    detector's leaked strategy still trips its >5 assert at the cap. Sign
+    and ordering preserved. std == 0 exactly keeps the legacy 0.0 (no
+    dispersion, no evidence)."""
     r = np.asarray(r_mults, float)
     if len(r) < 2 or r.std(ddof=1) == 0:
         return 0.0
-    return float(r.mean() / r.std(ddof=1) * math.sqrt(trades_per_year))
+    sr = float(r.mean() / r.std(ddof=1) * math.sqrt(trades_per_year))
+    return float(np.clip(sr, -50.0, 50.0))
 
 
 def psr(r_mults, benchmark=0.0):

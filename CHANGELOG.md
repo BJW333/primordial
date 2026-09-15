@@ -1,3 +1,25 @@
+# v0.1.8 — judge reporting fixes (Sep 2026)
+
+Two display/measurement artifacts surfaced by the mh_vote family runs
+(2026-09-09). No strategy logic changed; past verdicts stand (pooled PSR,
+which drove them, is untouched).
+
+## judge.py
+- `trade_sharpe` clipped to [-50, +50]. A cell of near-identical stop-outs
+  (std ~ 0.003 from gap-through fill variation) printed -923.53; the guard
+  covered only std == 0 exactly. Sign and ordering preserved.
+
+## pipeline.py / scripts/validate_genome.py
+- Report rows carry `holdout_cells` (count of name x fold cells with >= 4
+  trades). Zero eligible cells now prints `n/a (0 cells)` / `NO ELIGIBLE
+  CELLS` instead of a `+0.00` indistinguishable from measured breakeven.
+  Old runs' `+0.00` lines meant this.
+
+## tests/test_judge_reporting.py
+- 5 guards: stop-out degeneracy clips at -50, exact-zero std keeps legacy
+  0.0, positive degeneracy clips at +50, normal values bit-identical,
+  ordering preserved below the cap.
+
 # v0.1.7 — deep-state integration (Aug 2026)
 
 The deep-state campaign's validated primitives, folded in as VOCABULARY and

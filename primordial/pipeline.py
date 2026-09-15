@@ -185,7 +185,7 @@ def _gauntlet(candidates, mtf_train, mtf_hold, split, mf, ledger, rng,
         cells, pooled, _ = fold_cells(g, data_h, hs, mf.cost, BAR_SECONDS[tf],
                                       k=2)
         med = float(np.median(cells)) if cells else 0.0
-        evals.append((fit_train, g, tf, hs, data_h, med, pooled))
+        evals.append((fit_train, g, tf, hs, data_h, med, pooled, len(cells)))
     # null spread estimated ROBUSTLY from the candidates' own holdout Sharpes:
     # MAD ignores the outliers that real edges are, so junk sets the scale.
     # (First cut used variance of train FITNESS -- one degenerate overfit
@@ -197,11 +197,12 @@ def _gauntlet(candidates, mtf_train, mtf_hold, split, mf, ledger, rng,
     else:
         var_sr = 0.25
     bar = ledger.luck_bar(var_sr)
-    for fit_train, g, tf, hs, data_h, med, pooled in evals:
+    for fit_train, g, tf, hs, data_h, med, pooled, n_cells in evals:
         row = {"genome": g.describe(), "genome_json": g.to_json(),
                "timeframe": tf, "train_fit": fit_train}
         row.update(holdout_median_sharpe=med, holdout_trades=len(pooled),
-                   holdout_psr=psr(pooled), luck_bar=bar)
+                   holdout_psr=psr(pooled), luck_bar=bar,
+                   holdout_cells=n_cells)
         # pooled holdout equity curve (downsampled) for the report
         try:
             eqs = []
@@ -307,7 +308,8 @@ def _gauntlet(candidates, mtf_train, mtf_hold, split, mf, ledger, rng,
                                               if k != "genome"}})
         if verbose:
             tag = "SURVIVED" if ok else "rejected"
-            print(f"  [{tag}] {tf} holdout SR {med:+.2f} vs bar {bar:+.2f} | "
+            sr_txt = f"{med:+.2f}" if n_cells else "n/a (0 cells)"
+            print(f"  [{tag}] {tf} holdout SR {sr_txt} vs bar {bar:+.2f} | "
                   f"PSR {row['holdout_psr']:.2f} | {g.describe()[:60]}")
     return survivors, report
 
