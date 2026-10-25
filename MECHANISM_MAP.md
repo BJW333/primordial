@@ -556,3 +556,18 @@ looks like the published long-run spinoff premium, not a dip rebound.
 Caveats: ~50% price coverage (acquired + bankrupt spinoffs missing), and
 the >= 140-bar requirement drops fast deaths. NEXT: Norgate delisted
 prices for the missing ~190 spinoffs, rerun unchanged.
+
+## Spinoff rerun with Alpaca fallback -- PASS as frozen, weak on clean data 2026-10-25
+
+coverage_probe.py: Alpaca returns full 2016+ history for 13/13 known
+deaths/buyouts (SIVB, FRC, SBNY, BBBY, ATVI, TWTR, CELG, XLNX, PXD, HES,
+WBA, JNPR, X) -> free survivorship repair for 2016+. Caveat: recycled
+symbols (BBBY runs to 2026 = a different company); scripts must cut at
+long gaps before relying on Alpaca for dead names.
+spinoff_test.py --fallback alpaca (commit 2c3bd69, spec unchanged): +50
+spinoffs recovered, n 181. ALL +8.4% t +2.69 -> PASS by the frozen rule.
+BUT 2016+ (coverage ~95%) fell from +12.2% t +2.88 to +3.3% t +0.94 once
+dead spinoffs returned; the pass rests on 2006-15 (coverage ~35%).
+Forced-selling window -0.4% (no dip). Read: survivorship inflated it; on
+clean data the spinoff premium is small/insignificant. Not for capital;
+forward paper optional.
