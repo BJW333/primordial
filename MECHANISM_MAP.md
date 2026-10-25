@@ -571,3 +571,18 @@ dead spinoffs returned; the pass rests on 2006-15 (coverage ~35%).
 Forced-selling window -0.4% (no dip). Read: survivorship inflated it; on
 clean data the spinoff premium is small/insignificant. Not for capital;
 forward paper optional.
+
+## Factor portfolio (S&P 500 top-20 monthly, survivorship-free) -- FAIL 2026-10-25
+
+scripts/factor_portfolio.py, commit 2d2d826. S&P 500 PIT membership +
+Alpaca prices incl. delisted (730 of 863 names), 2017-02 -> 2026-05,
+112 rebalances, 10 bps/side, recycled-ticker gap guard.
+PRIMARY MOM+LOWVOL: +7.5%/yr, Sharpe 0.61, -4.4%/yr vs equal-weight
+(t -1.07), halves -3.8% / -5.0% -> FAIL. Context: MOM alone +18.2%/yr,
+Sharpe 0.82, +7.2%/yr vs EW t +1.31 (not promoted -- context row);
+LOWVOL -3.6%/yr vs EW; market switch worse. EW +11.6%, SPY +15.5%
+(Sharpe 1.00). Read: low-vol fought growth leadership; SPY beat EW by
+~3%/yr this decade, a headwind for any pick-from-the-list strategy.
+Monthly returns saved (data/factor_portfolio_returns.csv) for an
+industry_rotation dup check. Next candidate: quality from SEC financial
+statement data sets.
