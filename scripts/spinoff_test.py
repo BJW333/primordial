@@ -52,6 +52,8 @@ START, END = "2006-01-01", "2026-06-01"
 WINDOW, HOLD, COST, FELL = 20, 120, 0.0040, -0.05
 SPLIT = pd.Timestamp("2016-01-01")
 MIN_EVENTS = 150
+A_START = "2016-01-01"                    # Alpaca history start
+ALPACA_SYMS = set()                       # filled by --fallback alpaca
 
 
 def measure(sp, data, bench):
@@ -68,6 +70,9 @@ def measure(sp, data, bench):
             continue                      # not a fresh listing
         if d0 <= pd.Timestamp(START) + pd.Timedelta(days=10):
             continue                      # history predates our window
+        if r["ticker"] in ALPACA_SYMS and d0 <= pd.Timestamp(A_START) + \
+                pd.Timedelta(days=10):
+            continue                      # Alpaca history starts 2016
         c = df["close"].values
         bi = b.reindex(df.index, method="ffill").values
         if not np.isfinite(bi[[0, WINDOW]]).all():
@@ -141,6 +146,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--source", default="yfinance")
     ap.add_argument("--smoke", action="store_true")
+    ap.add_argument("--fallback", choices=["alpaca"],
+                    help="fill symbols Yahoo dropped from Alpaca (2016+); "
+                         "same frozen spec -- a data repair, not a new look")
     a = ap.parse_args()
     if a.smoke:
         sp, data, bench = smoke()
@@ -154,7 +162,27 @@ def main():
                      END, min_bars=WINDOW + HOLD + 2)
         bench = fetch(a.source, ["IWM"], "1d", START, END)["IWM"]["close"]
         print(f"  price data for {len(data)} of {sp['ticker'].nunique()} "
-              f"symbols")
+              f"symbols (yahoo)")
+        if a.fallback:
+            miss = sorted(set(sp.loc[sp["first_10_12b"] >= pd.Timestamp(
+                "2015-06-01"), "ticker"]) - set(data))
+            for t in miss:
+                try:
+                    got = fetch("alpaca", [t], "1d", A_START, END,
+                                min_bars=WINDOW + HOLD + 2)
+                except Exception:  # noqa: BLE001
+                    got = {}
+                if t in got:
+                    data[t] = got[t]
+                    ALPACA_SYMS.add(t)
+            print(f"  + {len(ALPACA_SYMS)} recovered from Alpaca "
+                  f"(of {len(miss)} missing since mid-2015)")
+        cov = sp.assign(year=sp["first_10_12b"].dt.year,
+                        priced=sp["ticker"].isin(data))
+        tab = cov.groupby("year")["priced"].agg(["sum", "count"])
+        print("  price coverage by filing year: " + "  ".join(
+            f"{y}:{int(r['sum'])}/{int(r['count'])}"
+            for y, r in tab.iterrows()))
     ev = measure(sp, data, bench)
     print(f"  usable spinoffs (fresh listings, >= {WINDOW + HOLD} bars): "
           f"{len(ev)}")
