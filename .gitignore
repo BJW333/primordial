@@ -12,3 +12,4 @@ runs/*/*
 *_candles.csv
 *_trades.csv
 data/sec_form345/
+data/edgar_form_idx/
