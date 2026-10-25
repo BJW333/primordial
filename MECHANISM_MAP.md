@@ -531,3 +531,28 @@ All failed. Recurring killers: survivorship in current-membership lists
 and multiple-testing luck. Remaining levers, if ever reopened: 8-K Item
 2.02 earnings dates (no-news residual dip, innocent-bystander dip),
 Norgate PIT sp400/sp600. deep_state forward paper continues.
+
+## Tax-loss C2 placebo + cost gates -- FAIL 2026-10-25
+
+scripts/validate_taxloss.py, prereg/TAXLOSS_PREREG.md (commit fb1200a or
+earlier). Cell unchanged from check_c2_cohorts.py (sp600 current list).
+GATE 1 placebo FAILS as frozen: December ranks #2 of 12 by cohort mean
+(+7.47%, t +3.43, 14/16) behind July (+13.98%, t +1.21, one outlier year).
+December is #1 by t, but re-ranking by t after the look is not allowed.
+GATE 2 cost passes (+6.75% at 3x). Context: sp500 membership-gated Dec
++1.35% t +0.34, rank #6/12; sp400 Dec rank #2. Every sp600 month averages
++2.5% = survivor lift. Read: survivorship + concentration; C2 CLOSED.
+Only a Norgate PIT sp600 run could reopen it, as a new look.
+
+## Spinoff day-20 entry -- VOID (n) 2026-10-25, strongest signal of the day
+
+scripts/fetch_spinoffs.py + scripts/spinoff_test.py (EDGAR 10-12B 2006+,
+CIK->ticker via Form 4 data). 521 registrants, 395 with symbols, Yahoo
+prices for 195, 142 usable (< 150 pre-stated minimum) -> VOID.
+Buy close day 20, hold 120d vs IWM, 40 bps: +14.3% t +4.15; pre-2016
++17.2% t +2.97 (n 51); 2016+ +12.2% t +2.88 (n 91). Forced-selling window
+days 0-20: -0.0% vs IWM -- the hypothesised dip did NOT appear; signal
+looks like the published long-run spinoff premium, not a dip rebound.
+Caveats: ~50% price coverage (acquired + bankrupt spinoffs missing), and
+the >= 140-bar requirement drops fast deaths. NEXT: Norgate delisted
+prices for the missing ~190 spinoffs, rerun unchanged.
