@@ -11,3 +11,4 @@ runs/*/*
 *_1s.csv
 *_candles.csv
 *_trades.csv
+data/sec_form345/
