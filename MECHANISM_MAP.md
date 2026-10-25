@@ -498,3 +498,36 @@ Durable lessons:
 - Price/volume/classic-TA separators exhausted. Remaining levers: event
   data (earnings dates, news, downgrades), Norgate PIT sp400/sp600,
   deep_state forward paper (the multi-day dip edge already in the book).
+
+## Insider-buys-the-dip (SEC Form 4) -- FAIL 2026-10-25 (off-ledger screen)
+
+scripts/fetch_insider_buys.py + scripts/insider_dip_test.py, commit 647e052
+(spec committed before the run). 191,955 open-market purchases (code P,
+>= $25k, officers/directors), 11,888 tickers, 2006-2026; median filing lag
+2 days. Dip = -10% over 10 trading days; INSIDER = purchase filed in the
+prior 5 days; CONTROL = same dip, no insider filing in 20 days; 60-day hold,
+outcome vs equal-weight index average.
+
+| ground | MAIN spread 60d (all) | 2010-17 | 2018-26 |
+|---|---|---|---|
+| sp500 PIT (decides) | +74 bps t +0.71 | +253 t +1.42 | -74 t -0.59 |
+| sp400 | (contaminated, see note) | | |
+| sp600 | -152 t -1.20 | -385 t -2.30 | +41 t +0.22 |
+
+LEVEL (insider dips vs index, sp500): +57 bps t +0.61. Clusters (2+
+insiders) negative on sp500/sp400. Insider-dip vs insider-no-dip: no
+difference -> the dip adds nothing. FAIL by the pre-stated rule.
+Note: sp400 row (-1271 bps) is a bad Yahoo price; this script lacked the
+|fwd| > 200% glitch filter the dip scripts use. Verdict unaffected.
+Read: the insider-purchase effect likely lives below S&P size; at S&P
+names a post-drop insider buy is largely priced in.
+
+### Day summary 2026-10-25
+Twelve tests of "buy the dip, ride the rebound" on S&P 400/500/600 plus 14
+non-US markets: fixed %, volatility-scaled, gap vs intraday, drop bands,
+bands vs index, 17-feature model, 39k and 130k indicator-combo searches,
+market-regime (passed 8 markets, failed 6 fresh ones), insider buying.
+All failed. Recurring killers: survivorship in current-membership lists
+and multiple-testing luck. Remaining levers, if ever reopened: 8-K Item
+2.02 earnings dates (no-news residual dip, innocent-bystander dip),
+Norgate PIT sp400/sp600. deep_state forward paper continues.
