@@ -646,3 +646,14 @@ VOLSTOP (3x own monthly vol) +21.0%, TS35 +18.0%, TS20 +16.2%, BUFFER
 per month). Read: these names rebound after dips; selling locks in losses.
 The problem is the picks (momentum = levered beta), not the exits.
 Next: earnings surprise (10-Q), alone and with momentum.
+
+## Earnings surprise (SUE) at 10-Q filing date -- FAIL 2026-10-25
+
+scripts/fetch_earnings.py + earnings_test.py, commit d4c1841. SEC
+companyfacts, first-filed quarterly net income (no restatements), seasonal
+surprise / 8q std. 108,964 surprises matched to prices (4,194 stocks).
+Event = 10-Q/10-K FILING date (2-4 weeks after the press release).
+Drift (top-minus-bottom decile, 3m after filing): 2017-21 +0.05% t +0.04;
+last 5y +1.71% t +1.30 -> no drift left at filing date.
+Last 5y: SUE_MOM (primary) +12.3%/yr Sharpe 0.60 vs same-risk SPY +18.3%
+-> FAIL; SUE +2.2%. Next: re-time to 8-K item 2.02 (announcement) date.
