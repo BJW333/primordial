@@ -1,0 +1,27 @@
+
+  BESTIDEA: 84512 best new ideas on liquid stocks, 8272 managers
+  raw drift after the 13F became public (minus SPY):
+    2017-2021     3 months: -0.0% vs SPY (median -1.0%), t -0.41, 36839 clusters
+    2017-2021     6 months: -0.2% vs SPY (median -2.4%), t -0.05, 36839 clusters
+    last 5 years  3 months: -0.0% vs SPY (median -1.6%), t -1.40, 44543 clusters
+    last 5 years  6 months: +0.4% vs SPY (median -2.1%), t -0.13, 41781 clusters
+  avg stocks held 20.0 of 20; avg stocks picked by 2+ managers 426.2
+
+  BESTIDEA portfolio
+  period        months  annual    vol sharpe   worst same-risk SPY SPY sharpe
+  2017-2021         51  +17.6%  19.4%   0.94  -23.0%        +18.9%       1.04  miss
+  last 5 years      61  +17.2%  21.2%   0.86  -34.6%        +16.8%       0.91  miss
+  by year: 2017: +17% vs SPY +15% | 2018: -7% vs SPY -5% | 2019: +36% vs SPY +31% | 2020: +25% vs SPY +18% | 2021: +14% vs SPY +29% | 2022: -28% vs SPY -18% | 2023: +32% vs SPY +26% | 2024: +32% vs SPY +25% | 2025: +46% vs SPY +18% | 2026: +16% vs SPY +12%
+
+  BUYBACK: 70427 share counts on liquid stocks
+  avg stocks held 20.0 of 20; median 1-year share change among shrinkers -3.0%
+
+  BUYBACK portfolio
+  period        months  annual    vol sharpe   worst same-risk SPY SPY sharpe
+  2017-2021         51   +8.1%  27.1%   0.43  -45.1%        +24.0%       1.04  miss
+  last 5 years      61  +11.4%  23.6%   0.57  -33.5%        +18.0%       0.91  miss
+  by year: 2017: +10% vs SPY +15% | 2018: -16% vs SPY -5% | 2019: +17% vs SPY +31% | 2020: -3% vs SPY +18% | 2021: +35% vs SPY +29% | 2022: -19% vs SPY -18% | 2023: +30% vs SPY +26% | 2024: +10% vs SPY +25% | 2025: +23% vs SPY +18% | 2026: +18% vs SPY +12%
+
+  ===== VERDICT (pre-stated: both periods must beat same-risk SPY and SPY's Sharpe) =====
+  BESTIDEA: FAIL
+  BUYBACK:  FAIL
