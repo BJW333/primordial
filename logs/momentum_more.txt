@@ -1,0 +1,30 @@
+  108964 earnings records matched to price histories
+
+  ===== STEP 1 -- SELECT ON 2017-2021: 51 months, 2017-03-31 -> 2021-05-28 =====
+  variant      annual    vol sharpe   worst same-risk SPY  beta
+  BASE         +30.4%  32.2%   0.98  -24.2%        +27.1%  1.14
+  PROFIT       +18.5%  27.2%   0.76  -33.5%        +24.1%  1.08
+  NOBADNEWS    +24.1%  30.0%   0.87  -36.0%        +25.8%  1.12
+  LOWBETA      +12.0%  25.3%   0.57  -28.6%        +22.9%  0.56
+  LEADER_DIP   +24.6%  32.6%   0.84  -29.8%        +27.3%  1.12
+  CONSIST      +23.1%  27.4%   0.89  -37.9%        +24.2%  0.99
+  NEARHIGH     +13.3%  22.8%   0.66  -27.1%        +21.2%  0.98
+  SPY          +16.5%  16.0%   1.04  -19.6%
+
+  add-ons that beat BASE's Sharpe in 2017-2021: none
+  CANDIDATE (fixed before looking at the last 5 years): BASE
+
+  ===== STEP 2 -- JUDGE ON LAST FIVE YEARS: 61 months, 2021-06-30 -> 2026-06-01 =====
+  variant      annual    vol sharpe   worst same-risk SPY  beta
+  BASE         +23.0%  33.6%   0.79  -28.1%        +22.3%  1.32
+  PROFIT       +22.3%  30.0%   0.82  -26.8%        +20.9%  1.20
+  NOBADNEWS    +21.8%  31.5%   0.78  -29.5%        +21.5%  1.24
+  LOWBETA       +2.0%  17.7%   0.20  -31.2%        +14.9%  0.58
+  LEADER_DIP    +7.9%  26.8%   0.41  -26.3%        +19.5%  1.20
+  CONSIST       +0.9%  26.2%   0.16  -38.6%        +19.2%  1.06
+  NEARHIGH      +6.0%  22.1%   0.37  -29.3%        +17.2%  1.00
+  SPY          +13.8%  15.7%   0.91  -23.9%
+  by year: 2021: BASE +1% SPY +14% | 2022: BASE -6% SPY -18% | 2023: BASE +23% SPY +26% | 2024: BASE +30% SPY +25% | 2025: BASE -1% SPY +18% | 2026: BASE +91% SPY +12%
+
+  ===== VERDICT (pre-stated: chosen on 2017-2021, judged on last 5 years) =====
+  BASE: return +23.0% vs same-risk SPY +22.3% | Sharpe 0.79 vs SPY 0.91 -> FAIL
