@@ -53,6 +53,42 @@ def load():
     return px, vol, spy, feed
 
 
+def diagnose(px, res):
+    """Worst/best single picks and impossible daily moves (data check)."""
+    log = pd.DataFrame(B.PICKLOG, columns=["month", "signal", "sym", "ret"])
+    if not len(log):
+        return
+    if os.path.isdir(os.path.join(ROOT, "data")):
+        log.to_csv(os.path.join(ROOT, "data", "blowup_us_picks.csv"),
+                   index=False)
+    r = px.pct_change(fill_method=None)
+    big = (r.abs() > 0.75)
+    n_big = int(big.sum().sum())
+    print(f"\n  DATA CHECK: {n_big} stock-days with a >75% one-day move "
+          f"in {int(big.any().sum())} stocks")
+    for sig in B.SIGS + ["MOM"]:
+        g = log[log.signal == sig]
+        if not len(g):
+            continue
+        rec = g[g.month >= B.RECENT]
+        print(f"\n  {sig}: {len(rec)} picks last 5y | median pick month "
+              f"{rec.ret.median()*100:+.1f}% | picks losing >50% in a month:"
+              f" {(rec.ret < -0.5).sum()} | gaining >100%: "
+              f"{(rec.ret > 1).sum()}")
+        w = rec.nsmallest(6, "ret")
+        print("    worst: " + ", ".join(f"{s} {m:%Y-%m} {x*100:+.0f}%"
+                                         for s, m, x in zip(w.sym, w.month,
+                                                            w.ret)))
+        b = rec.nlargest(6, "ret")
+        print("    best:  " + ", ".join(f"{s} {m:%Y-%m} {x*100:+.0f}%"
+                                         for s, m, x in zip(b.sym, b.month,
+                                                            b.ret)))
+        yr = res.loc[res.index >= B.RECENT, sig]
+        print("    by year: " + "  ".join(
+            f"{y}:{((1 + v).prod() - 1)*100:+.0f}%"
+            for y, v in yr.groupby(yr.index.year)))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--smoke", action="store_true")
@@ -86,6 +122,7 @@ def main():
     res, hit = B.run(px, vol, spy, members)
     if not a.smoke:
         res.to_csv(OUT)
+    diagnose(px, res)
     old = res.index < B.RECENT
     if old.sum() > 6:
         B.report(res[old], hit[hit.index < B.RECENT], "CONTEXT 2018-2021")

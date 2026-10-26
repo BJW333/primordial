@@ -50,6 +50,7 @@ OUT = os.path.join(ROOT, "data", "blowup_scan_returns.csv")
 RECENT = pd.Timestamp("2021-06-01")
 SIGS = ["ACCUM", "SQUEEZE", "LAGGARD"]
 FWD, JUMP, LEV_COST = 126, 0.50, 0.04
+PICKLOG = []          # (month, signal, symbol, month return) for diagnostics
 
 
 def signals(px, vol, r, sd20, t_i, elig):
@@ -149,6 +150,7 @@ def run(px, vol, spy, members):
                 (FP.TOP - n) / FP.TOP * spy_m
             row[name] = gross - turn * FP.COST
             row[name + "_n"] = n
+            PICKLOG.extend((t2, name, s, mret[s]) for s in pick)
             if fwd is not None and n:
                 h[name] = (fwd[pick].dropna() >= JUMP).mean()
         rows.append(row)

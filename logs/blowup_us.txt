@@ -1,5 +1,27 @@
   4519 stock histories ever liquid; liquid names at year-end: 2016:1710  2017:1849  2018:1951  2019:1946  2020:2175  2021:2381  2022:2078  2023:2115  2024:2350  2025:2607
 
+  DATA CHECK: 2441 stock-days with a >75% one-day move in 1061 stocks
+
+  ACCUM: 1220 picks last 5y | median pick month -0.5% | picks losing >50% in a month: 5 | gaining >100%: 4
+    worst: ASBP 2025-11 -72%, MLGO 2023-12 -70%, MSAI 2025-12 -55%, PALI 2023-04 -55%, BENF 2024-08 -52%, PRAX 2025-02 -50%
+    best:  MLGO 2025-03 +482%, IMTE 2022-03 +455%, CHGA 2025-02 +120%, ALP 2025-03 +105%, AFRM 2023-11 +95%, RRD 2021-11 +65%
+    by year: 2021:-14%  2022:-27%  2023:+10%  2024:-10%  2025:-2%  2026:-4%
+
+  SQUEEZE: 764 picks last 5y | median pick month +0.9% | picks losing >50% in a month: 2 | gaining >100%: 2
+    worst: BHVN 2022-10 -89%, SLMT 2025-10 -61%, WIMI 2025-01 -49%, UP 2025-09 -37%, SVV 2025-10 -30%, ORGO 2025-03 -30%
+    best:  KULR 2024-12 +206%, LMND 2024-11 +118%, ROOT 2024-03 +90%, WVE 2024-10 +67%, FCEL 2026-05 +67%, GRPN 2025-05 +60%
+    by year: 2021:+6%  2022:-9%  2023:+18%  2024:+51%  2025:+19%  2026:+18%
+
+  LAGGARD: 1219 picks last 5y | median pick month -5.7% | picks losing >50% in a month: 59 | gaining >100%: 10
+    worst: AEMD 2025-10 -93%, OCG 2026-01 -92%, SMX 2024-10 -87%, CYN 2025-02 -83%, ONCO 2026-05 -83%, MTVA 2022-11 -81%
+    best:  OLMA 2025-11 +216%, VERU 2022-04 +143%, HOLO 2024-12 +138%, AXG 2024-04 +133%, SWIN 2024-04 +133%, GRRR 2025-02 +123%
+    by year: 2021:-20%  2022:-47%  2023:-9%  2024:-57%  2025:-84%  2026:-48%
+
+  MOM: 1220 picks last 5y | median pick month -1.7% | picks losing >50% in a month: 15 | gaining >100%: 8
+    worst: SDEV 2026-02 -85%, BIOA 2024-12 -69%, CRBP 2024-09 -66%, CATX 2024-11 -63%, INDO 2022-06 -61%, QURE 2025-11 -59%
+    best:  DAVE 2024-11 +156%, QBTS 2025-05 +136%, SMCI 2023-05 +113%, BE 2026-04 +109%, CLSK 2024-02 +108%, AXTI 2026-02 +104%
+    by year: 2021:-20%  2022:-11%  2023:+19%  2024:-21%  2025:-21%  2026:+31%
+
   ===== CONTEXT 2018-2021: 40 months, 2018-02-28 -> 2021-05-28 =====
   blow-up base rate (any eligible stock up >= 50% in 6 months): 8.5%  (40 months with 6m data)
 

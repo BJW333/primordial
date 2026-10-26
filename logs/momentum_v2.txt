@@ -1,0 +1,25 @@
+
+  ===== CONTEXT 2017-2021: 51 months, 2017-03-31 -> 2021-05-28 | ~1172 stocks eligible/month =====
+  blow-up base rate (up >= 50% in 6 months): 6.5%
+
+  variant     annual    vol sharpe   worst same-risk SPY blow-up lift stops/mo
+  RAW         +30.7%  43.0%   0.82  -29.8%        +32.5%        2.58x 
+  STEADY      +30.4%  32.2%   0.98  -24.2%        +27.1%        1.94x 
+  STEADY_TS   +23.6%  32.8%   0.81  -31.9%        +27.4%        1.94x      5.4
+  HIGH52      +12.1%  14.4%   0.87  -20.2%        +14.9%        1.00x 
+  SPY         +16.5%  16.0%   1.04  -19.6%
+  by year: 2017: STEADY +21% SPY +15% | 2018: STEADY -14% SPY -5% | 2019: STEADY +27% SPY +31% | 2020: STEADY +80% SPY +18% | 2021: STEADY +5% SPY +13%
+
+  ===== DECIDING: LAST FIVE YEARS: 61 months, 2021-06-30 -> 2026-06-01 | ~1464 stocks eligible/month =====
+  blow-up base rate (up >= 50% in 6 months): 4.6%
+
+  variant     annual    vol sharpe   worst same-risk SPY blow-up lift stops/mo
+  RAW          -4.2%  39.6%   0.09  -62.9%        +24.4%        3.20x 
+  STEADY      +23.0%  33.6%   0.79  -28.1%        +22.3%        3.10x 
+  STEADY_TS   +16.2%  31.9%   0.63  -27.0%        +21.7%        3.10x      5.3
+  HIGH52       -1.0%  16.3%   0.02  -33.0%        +14.2%        1.44x 
+  SPY         +13.8%  15.7%   0.91  -23.9%
+  by year: 2021: STEADY -2% SPY +14% | 2022: STEADY -5% SPY -18% | 2023: STEADY +18% SPY +26% | 2024: STEADY +26% SPY +25% | 2025: STEADY -11% SPY +18% | 2026: STEADY +74% SPY +12%
+
+  ===== VERDICT (pre-stated, STEADY_TS, last 5 years) =====
+  return +16.2% vs same-risk SPY +21.7% | Sharpe 0.63 vs SPY 0.91 -> FAIL
