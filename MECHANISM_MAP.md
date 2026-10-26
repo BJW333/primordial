@@ -691,3 +691,15 @@ lag. Portfolio last 5y +17.2%/yr Sharpe 0.86 vs same-risk SPY +16.8%,
 SPY 0.91; 2017-21 +17.6% vs +18.9% -> FAIL (crowded large caps).
 BUYBACK (1-25% 1y share shrink, cover-page counts at filing date):
 2017-21 +8.1%/yr DD -45%; last 5y +11.4% vs same-risk SPY +18.0% -> FAIL.
+
+## Crypto pump study v1 -- FADE signal real (untradeable as tested), RIDE invalid (look-ahead) 2026-10-26
+
+scripts/pump_study.py, commit 73423ff. Binance archive, 686 USDT pairs incl.
+delisted; pump = hour $vol >= 10x 7d median AND close >= +10%; 1/coin/72h.
+Last 5y: 7,499 pumps, 545 coins. Coin minus BTC after detection: 1h -1.7%,
+24h -4.3% (median -8.0%, 77% down), 7d -6.1% (median -11.4%). FADE 24h net
+0.3%: mean +4.0% median +7.7% t +16.5 (tiny coins +5.6%); 2018-21 mean
++0.3% median +4.1%. Verdict PASS but unrealistic: assumes every tiny coin
+shortable, 0.3% cost, BTC hedge, no stop.
+RIDE 'PASS' (+3.8%, t +21.7) is INVALID: early 5m signal searched only
+inside hours known to close +10% (look-ahead). Redo in pump_study2.py.
