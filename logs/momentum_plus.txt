@@ -1,0 +1,32 @@
+
+  ===== STEP 1 -- SELECT ON 2017-2021: 51 months, 2017-03-31 -> 2021-05-28 =====
+  variant   annual    vol sharpe   worst same-risk SPY
+  BASE      +30.4%  32.2%   0.98  -24.2%        +27.1%
+  REGIME    +28.8%  29.6%   1.00  -19.1%        +25.6%
+  FIP       +20.0%  23.1%   0.91  -26.0%        +21.4%
+  CLUSTER   +26.5%  32.3%   0.88  -24.6%        +27.1%
+  VOLUME    +21.1%  38.6%   0.68  -44.7%        +30.5%
+  INVVOL    +23.6%  28.9%   0.87  -28.1%        +25.2%
+  FIP_VOL   +13.1%  26.9%   0.59  -31.3%        +23.9%
+  HEDGED    +11.4%  26.9%   0.53  -28.1%        +23.9%
+  SPY       +16.5%  16.0%   1.04  -19.6%
+
+  add-ons that beat BASE's Sharpe in 2017-2021: REGIME
+  CANDIDATE (fixed before looking at the last 5 years): REGIME
+
+  ===== STEP 2 -- JUDGE ON LAST FIVE YEARS: 61 months, 2021-06-30 -> 2026-06-01 =====
+  variant   annual    vol sharpe   worst same-risk SPY
+  BASE      +23.0%  33.6%   0.79  -28.1%        +22.3%
+  REGIME    +17.6%  29.1%   0.70  -27.2%        +20.5%
+  FIP       +24.4%  25.0%   1.00  -19.0%        +18.6%
+  CLUSTER   +15.8%  29.4%   0.64  -27.2%        +20.6%
+  VOLUME     +9.5%  31.2%   0.45  -36.0%        +21.3%
+  INVVOL    +29.1%  29.2%   1.02  -22.6%        +20.5%
+  FIP_VOL   +16.7%  27.9%   0.69  -31.1%        +20.0%
+  HEDGED     +1.5%  24.5%   0.18  -37.4%        +18.4%
+  SPY       +13.8%  15.7%   0.91  -23.9%
+  by year: 2021: REGIME +11% BASE +1% SPY +14% | 2022: REGIME -18% BASE -6% SPY -18% | 2023: REGIME +18% BASE +23% SPY +26% | 2024: REGIME +30% BASE +30% SPY +25% | 2025: REGIME -1% BASE -1% SPY +18% | 2026: REGIME +65% BASE +91% SPY +12%
+  skill check: HEDGED (market removed) +4.4%/yr t +0.41, avg beta of picks 1.32
+
+  ===== VERDICT (pre-stated: chosen on 2017-2021, judged on last 5 years) =====
+  REGIME: return +17.6% vs same-risk SPY +20.5% | Sharpe 0.70 vs SPY 0.91 -> FAIL
