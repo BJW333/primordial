@@ -586,3 +586,17 @@ LOWVOL -3.6%/yr vs EW; market switch worse. EW +11.6%, SPY +15.5%
 Monthly returns saved (data/factor_portfolio_returns.csv) for an
 industry_rotation dup check. Next candidate: quality from SEC financial
 statement data sets.
+
+## Turbo momentum (big-cap + vol-managed) -- primary FAIL; MOM_BIG strongest of the day 2026-10-25
+
+scripts/turbo_portfolio.py, commit 8b99af4. Same survivorship-free S&P
+500 machine; BIG = top 100 by 63d dollar volume; VM = scale to 15% target
+vol (cap 1.5x, 4%/yr leverage cost). PRIMARY MOM_BIG_VM: +13.7%/yr,
+Sharpe 0.95, max DD -13.7%, -1.8%/yr vs SPY t -0.54 -> FAIL. VM averaged
+0.69x exposure (15% target << momentum's ~24% natural vol): cut drawdown,
+gave up return -- target mis-set, not a dead lever.
+Context: MOM_BIG +24.3%/yr, Sharpe 1.00 (= SPY), max DD -21.0% (SPY
+-22.9%), +9.0%/yr vs SPY t +1.71 -- best risk/return of the day, not
+significant, context row on twice-used data. Only clean test left is
+forward: Alpaca paper bot for MOM_BIG (+ optional pre-registered VM with
+24% target) proposed.
