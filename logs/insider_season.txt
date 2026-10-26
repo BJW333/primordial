@@ -1,0 +1,27 @@
+  191955 insider purchases, 2006-01-03 -> 2026-09-30
+
+  INSIDER: 4749 clusters (3+ insiders in 30 days) since 2015, 2203 matched to a liquid-ever stock
+  raw drift after the cluster became public (minus SPY):
+    2017-2021     3 months: +3.1% vs SPY (median +0.2%), t +0.48, 1087 clusters
+    2017-2021     6 months: +3.5% vs SPY (median -2.2%), t +0.68, 1087 clusters
+    last 5 years  3 months: +0.2% vs SPY (median -2.8%), t +0.32, 1017 clusters
+    last 5 years  6 months: -1.5% vs SPY (median -7.8%), t -1.39, 969 clusters
+  avg stocks held: 19.4 of 20 (rest in SPY)
+
+  INSIDER portfolio
+  period        months  annual    vol sharpe   worst same-risk SPY SPY sharpe
+  2017-2021         51   +6.1%  30.5%   0.37  -49.3%        +26.1%       1.04  miss
+  last 5 years      61   -5.4%  24.6%  -0.11  -34.1%        +18.5%       0.91  miss
+  by year: 2017: +9% vs SPY +15% | 2018: -3% vs SPY -5% | 2019: +30% vs SPY +31% | 2020: -10% vs SPY +18% | 2021: -6% vs SPY +29% | 2022: -19% vs SPY -18% | 2023: +6% vs SPY +26% | 2024: +4% vs SPY +25% | 2025: -2% vs SPY +18% | 2026: -6% vs SPY +12%
+
+  SEASON: 89 months scored, first 2019-02-28; avg turnover 89% of the book per month
+
+  SEASON portfolio
+  period        months  annual    vol sharpe   worst same-risk SPY SPY sharpe
+  2017-2021         28  +34.6%  44.1%   0.88  -34.3%        +46.3%       1.22  miss
+  last 5 years      61  -20.0%  32.7%  -0.51  -76.9%        +21.9%       0.91  miss
+  by year: 2019: +10% vs SPY +22% | 2020: +67% vs SPY +18% | 2021: -17% vs SPY +29% | 2022: -33% vs SPY -18% | 2023: +4% vs SPY +26% | 2024: -13% vs SPY +25% | 2025: -37% vs SPY +18% | 2026: +10% vs SPY +12%
+
+  ===== VERDICT (pre-stated: both periods must beat same-risk SPY and SPY's Sharpe) =====
+  INSIDER: FAIL
+  SEASON:  FAIL
