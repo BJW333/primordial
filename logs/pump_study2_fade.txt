@@ -1,0 +1,35 @@
+
+  FADE: 9111 pump events; 900 USDT perp markets ever listed
+  0 coins already done, 559 to go
+    50/559 coins (3 min)
+    100/559 coins (5 min)
+    150/559 coins (8 min)
+    200/559 coins (11 min)
+    250/559 coins (13 min)
+    300/559 coins (16 min)
+    350/559 coins (18 min)
+    400/559 coins (20 min)
+    450/559 coins (23 min)
+    500/559 coins (25 min)
+    550/559 coins (28 min)
+    559/559 coins (29 min)
+
+  ===== FADE v2 (realistic), last 5 years: 7499 pumps, 47% on coins with a perp market =====
+  short 24h, actual P&L (mean / median):
+                                  all coins          perp-only
+  stop at +30%  cost 0.3%     +2.9% /  +7.2%     +1.4% /  +5.5%
+  stop at +30%  cost 1.0%     +2.2% /  +6.5%     +0.7% /  +4.8%
+  stop at +30%  cost 2.0%     +1.2% /  +5.5%     -0.3% /  +3.8%
+  stop at +50%  cost 0.3%     +3.4% /  +7.4%     +2.0% /  +5.9%
+  stop at +50%  cost 1.0%     +2.7% /  +6.7%     +1.3% /  +5.2%
+  stop at +50%  cost 2.0%     +1.7% /  +5.7%     +0.3% /  +4.2%
+  no stop       cost 0.3%     +3.9% /  +7.5%     +2.5% /  +6.0%
+  no stop       cost 1.0%     +3.2% /  +6.8%     +1.8% /  +5.3%
+  no stop       cost 2.0%     +2.2% /  +5.8%     +0.8% /  +4.3%
+  PRIMARY (perp-only, +30% stop, 1% cost) by year: 2022:+1.0% (n 355)  2023:-1.1% (n 477)  2024:-0.4% (n 663)  2025:+1.2% (n 1077)
+  worst runaways against a short (max rise within 24h): ALPACAUSDT 2025-04-29 +626%, BAKEUSDT 2025-09-09 +433%, HYPERUSDT 2025-07-10 +355%, PEOPLEUSDT 2024-01-03 +346%, UNFIUSDT 2024-10-23 +324%
+  stop hit in 15% of perp-coin pumps
+  context 2018-2021 (perp-only, primary): mean -2.4% median +0.7% n 392
+
+  ===== VERDICT (pre-stated before this run) =====
+  FADE v2 (perp-only, +30% stop, 1% cost): mean +0.7% median +4.8% t +2.07, every year 2022-25 > 0: False -> FAIL

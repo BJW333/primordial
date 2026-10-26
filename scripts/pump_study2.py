@@ -49,12 +49,30 @@ sys.path.insert(0, HERE)
 import pump_study as P  # noqa: E402
 
 DIR = P.DIR
+FADE_DIR = os.path.join(DIR, "fade_v2")
 RIDE_DIR = os.path.join(DIR, "ride_v2")
 FADE_OUT = os.path.join(DIR, "fade_v2.csv")
 RECENT, END = P.RECENT, P.END
 N_COINS, SEED = 150, 7
 RIDE_X, RIDE_RET, RIDE_GAP_BARS, BASE_BARS = 10.0, 0.05, 72, 288
 RIDE_COST, FADE_COST, STOP = 0.005, 0.010, 0.30
+
+
+_s3_list_raw = P.s3_list
+
+
+def s3_list_retry(prefix, tries=6):
+    """The S3 listing sometimes drops the connection -- retry with backoff."""
+    for i in range(tries):
+        try:
+            return _s3_list_raw(prefix)
+        except Exception:  # noqa: BLE001
+            if i == tries - 1:
+                raise
+            time.sleep(3 * (i + 1))
+
+
+P.s3_list = s3_list_retry
 
 
 def read_ohlc(content):
@@ -212,6 +230,10 @@ def run_fade(workers):
     print(f"\n  FADE: {len(ev)} pump events; {len(perps)} USDT perp markets "
           f"ever listed")
     coins = sorted(ev["sym"].unique())
+    os.makedirs(FADE_DIR, exist_ok=True)
+    todo = [s for s in coins if not os.path.exists(
+        os.path.join(FADE_DIR, s + ".csv"))]
+    print(f"  {len(coins) - len(todo)} coins already done, {len(todo)} to go")
 
     def one(s):
         try:
@@ -231,17 +253,36 @@ def run_fade(workers):
                     rec[f"s{int(stp*100)}_c{int(cst*1000)}"] = pnl
                 rec["worst_24h"] = worst
             rows.append(rec)
+        pd.DataFrame(rows).to_csv(os.path.join(FADE_DIR, s + ".csv"),
+                                  index=False)
         return rows
 
-    out = []
+    def safe(s):
+        try:
+            return one(s)
+        except Exception as e:  # noqa: BLE001
+            print(f"    {s}: skipped this run ({type(e).__name__}); re-run "
+                  "to retry", flush=True)
+            return []
+
     t0 = time.time()
     with ThreadPoolExecutor(workers) as ex:
-        for i, rows in enumerate(ex.map(one, coins), 1):
-            out += rows
-            if i % 50 == 0 or i == len(coins):
-                print(f"    {i}/{len(coins)} coins ({(time.time()-t0)/60:.0f}"
+        for i, _ in enumerate(ex.map(safe, todo), 1):
+            if i % 50 == 0 or i == len(todo):
+                print(f"    {i}/{len(todo)} coins ({(time.time()-t0)/60:.0f}"
                       f" min)", flush=True)
-    f = pd.DataFrame(out)
+    parts = []
+    for s in coins:
+        fp = os.path.join(FADE_DIR, s + ".csv")
+        if os.path.exists(fp):
+            try:
+                parts.append(pd.read_csv(fp, parse_dates=["t"]))
+            except pd.errors.EmptyDataError:
+                pass
+    missing = len(coins) - len(parts)
+    if missing:
+        print(f"  NOTE: {missing} coins still missing -- re-run to fill in")
+    f = pd.concat(parts, ignore_index=True)
     f.to_csv(FADE_OUT, index=False)
     return f
 
@@ -330,8 +371,7 @@ def main():
     if a.only != "fade":
         res["ride"] = report_ride(run_ride(a.workers))
     if a.only != "ride":
-        f = pd.read_csv(FADE_OUT, parse_dates=["t"]) if os.path.exists(
-            FADE_OUT) else run_fade(a.workers)
+        f = run_fade(a.workers)              # resumes per coin
         res["fade"] = report_fade(f)
     print("\n  ===== VERDICT (pre-stated before this run) =====")
     if "ride" in res:
