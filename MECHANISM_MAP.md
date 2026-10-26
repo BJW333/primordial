@@ -703,3 +703,17 @@ Last 5y: 7,499 pumps, 545 coins. Coin minus BTC after detection: 1h -1.7%,
 shortable, 0.3% cost, BTC hedge, no stop.
 RIDE 'PASS' (+3.8%, t +21.7) is INVALID: early 5m signal searched only
 inside hours known to close +10% (look-ahead). Redo in pump_study2.py.
+
+## Crypto pump study v2 -- RIDE FAIL, realistic FADE FAIL 2026-10-26
+
+scripts/pump_study2.py, commit b08029a.
+RIDE v2 (no look-ahead; 150 random coins, every 5m bar with >= 10x 24h
+median volume and >= +5%, 1/coin/6h): 5,101 triggers last 5y. Buy at the
+trigger close: +15m -0.06% (median -1.4%), +30m -0.39% (median -2.1%,
+65% down), +60m -1.05% -> FAIL; v1 ride pass was look-ahead.
+FADE v2 (coins with a Binance USD-M perp that month, short pump-hour close,
+24h, +30% stop at stop/open, 1% cost, raw P&L): mean +0.7% median +4.8%
+t +2.07; years 2022 +1.0%, 2023 -1.1%, 2024 -0.4%, 2025 +1.2%; 2018-21
+-2.4% -> FAIL. Profit lives in non-shortable tiny coins (all-coins +2.2%
+at same settings). Stop hit 15%; runaways to +626% in 24h (ALPACA).
+Use: pump detector as an entry filter only.
