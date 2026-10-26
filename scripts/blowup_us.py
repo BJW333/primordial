@@ -80,6 +80,9 @@ def main():
           "year-end: " + "  ".join(
               f"{d.year}:{n}" for d, n in sizes[sizes.index.month == 12]
               .items()))
+    if sizes.max() < 150:
+        sys.exit("  universe too small (<150 liquid names) -- did the full "
+                 "build_us_universe.py run finish?")
     res, hit = B.run(px, vol, spy, members)
     if not a.smoke:
         res.to_csv(OUT)

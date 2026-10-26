@@ -40,7 +40,7 @@ TRADE = "https://paper-api.alpaca.markets/v2/assets"
 DATA = "https://data.alpaca.markets/v2/stocks/bars"
 EXCH = {"NYSE", "NASDAQ", "AMEX"}
 SYM_OK = re.compile(r"^[A-Z]{1,5}(\.[AB])?$")
-FUNDY = re.compile(r"\b(ETF|ETN|FUND|ISHARES|SPDR|PROSHARES|DIREXION|"
+FUNDY = re.compile(r"\b(?:ETF|ETN|FUND|ISHARES|SPDR|PROSHARES|DIREXION|"
                    r"VANGUARD|WISDOMTREE|VANECK|INDEX|LEVERAGED|ULTRA|"
                    r"WARRANT|UNITS?|RIGHTS?|PREFERRED|NOTES?|DEPOSITARY "
                    r"SHARES REPRESENTING|ACQUISITION CORP)\b")
@@ -69,7 +69,7 @@ def get(url, params, h, tries=6):
 def assets(h):
     p = os.path.join(DIR, "assets.csv")
     if os.path.exists(p):
-        return pd.read_csv(p)
+        return pd.read_csv(p, dtype=str, keep_default_na=False)
     rows = []
     for status in ("active", "inactive"):
         js = get(TRADE, {"status": status, "asset_class": "us_equity"}, h)
@@ -158,7 +158,7 @@ def main():
     h = hdr()
     os.makedirs(CHUNKS, exist_ok=True)
     df = assets(h)
-    syms = list(df["symbol"])
+    syms = [s for s in df["symbol"] if isinstance(s, str) and s]
     if a.limit:
         syms = syms[:a.limit]
     syms = ["SPY"] + [s for s in syms if s != "SPY"]

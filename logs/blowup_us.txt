@@ -1,1 +1,27 @@
-  213 stock histories ever liquid; liquid names at year-end: 2016:85  2017:91  2018:91  2019:89  2020:101  2021:110  2022:99  2023:98  2024:108  2025:122
+  4519 stock histories ever liquid; liquid names at year-end: 2016:1710  2017:1849  2018:1951  2019:1946  2020:2175  2021:2381  2022:2078  2023:2115  2024:2350  2025:2607
+
+  ===== CONTEXT 2018-2021: 40 months, 2018-02-28 -> 2021-05-28 =====
+  blow-up base rate (any eligible stock up >= 50% in 6 months): 8.5%  (40 months with 6m data)
+
+  signal    picks/mo  hit rate   lift      t |  annual    vol sharpe   worst same-risk SPY
+  ACCUM         20.0      4.9%  0.57x  -2.54 |   +5.6%  19.2%   0.38  -29.2%        +15.3%
+  SQUEEZE        7.8      7.9%  1.00x  -0.02 |  +21.7%  20.9%   1.05  -17.8%        +16.1%
+  LAGGARD       19.5     13.0%  1.53x  +3.56 |  +14.9%  41.3%   0.52  -23.5%        +23.7%
+  MOM           20.0     19.5%  2.30x  +5.88 |  +52.0%  46.9%   1.11  -28.1%        +24.8%
+  SPY                                        |  +14.6%  17.9%   0.85  -19.6%
+
+  ===== DECIDING: LAST FIVE YEARS (all liquid US stocks): 61 months, 2021-06-30 -> 2026-06-01 =====
+  blow-up base rate (any eligible stock up >= 50% in 6 months): 5.5%  (54 months with 6m data)
+
+  signal    picks/mo  hit rate   lift      t |  annual    vol sharpe   worst same-risk SPY
+  ACCUM         20.0      3.4%  0.63x  -3.05 |  -10.1%  23.1%  -0.35  -47.6%        +17.7%
+  SQUEEZE       12.5      8.0%  1.45x  +1.99 |  +19.0%  17.7%   1.08  -19.4%        +14.9%
+  LAGGARD       20.0      8.1%  1.48x  +2.29 |  -56.8%  32.9%  -2.29  -98.7%        +22.1%
+  MOM           20.0     16.3%  2.98x  +4.13 |   -6.8%  37.1%   0.00  -55.3%        +23.6%
+  SPY                                        |  +13.8%  15.7%   0.91  -23.9%
+
+  ===== VERDICT (pre-stated: lift >= 1.5x, t > 2.4, beats same-risk SPY) =====
+  ACCUM    lift 0.63x  t -3.05  return -10.1% vs same-risk SPY +17.7% -> fail
+  SQUEEZE  lift 1.45x  t +1.99  return +19.0% vs same-risk SPY +14.9% -> fail
+  LAGGARD  lift 1.48x  t +2.29  return -56.8% vs same-risk SPY +22.1% -> fail
+  MOM      lift 2.98x  t +4.13  return -6.8% vs same-risk SPY +23.6% -> fail (context)
