@@ -1,0 +1,74 @@
+  686 USDT spot pairs in the Binance archive (incl. delisted)
+  20 already scanned, 666 to go
+    scanned 25/666 (1 min) last: AMPUSDT 49 pumps
+    scanned 50/666 (2 min) last: ATOMUSDT 6 pumps
+    scanned 75/666 (4 min) last: BATUSDT 11 pumps
+    scanned 100/666 (5 min) last: BNTUSDT 11 pumps
+    scanned 125/666 (5 min) last: CGPTUSDT 0 pumps
+    scanned 150/666 (6 min) last: CTSIUSDT 40 pumps
+    scanned 175/666 (8 min) last: DOLOUSDT 4 pumps
+    scanned 200/666 (9 min) last: ETCUSDT 7 pumps
+    scanned 225/666 (10 min) last: FTTUSDT 40 pumps
+    scanned 250/666 (11 min) last: GSBUSDT 0 pumps
+    scanned 275/666 (12 min) last: HUMAUSDT 1 pumps
+    scanned 300/666 (13 min) last: JUVUSDT 47 pumps
+    scanned 325/666 (14 min) last: LINEAUSDT 2 pumps
+    scanned 350/666 (16 min) last: MBOXUSDT 33 pumps
+    scanned 375/666 (16 min) last: MRVLBUSDT 1 pumps
+    scanned 400/666 (17 min) last: NOKBUSDT 0 pumps
+    scanned 425/666 (18 min) last: ORCAUSDT 13 pumps
+    scanned 450/666 (19 min) last: POLSUSDT 27 pumps
+    scanned 475/666 (21 min) last: RADUSDT 46 pumps
+    scanned 500/666 (22 min) last: RSRUSDT 11 pumps
+    scanned 525/666 (23 min) last: SNDKBUSDT 1 pumps
+    scanned 550/666 (24 min) last: STRAXUSDT 49 pumps
+    scanned 575/666 (25 min) last: TOWNSUSDT 7 pumps
+    scanned 600/666 (26 min) last: USDSOLDUSDT 0 pumps
+    scanned 625/666 (27 min) last: WDCBUSDT 0 pumps
+    scanned 650/666 (28 min) last: YBUSDT 3 pumps
+    scanned 666/666 (29 min) last: 牛来USDT 0 pumps
+  stage 2: 5-minute zoom-in on 9111 pumps
+
+  ===== CONTEXT 2018 -> 2021-05: 1612 pumps, 212 coins =====
+  typical pump hour: +14% close, +18% at the peak, 26x normal volume
+  peak comes 50 min into the hour (median); early 5m signal fires at 25 min (67% of pumps)
+
+  after detection (coin minus BTC):     mean  median  % down      t      n
+    +15 min                         -0.6%   -1.3%     64%  -4.77   1607
+    +30 min                         -1.0%   -2.0%     68%  -6.44   1607
+    +1h                             -1.6%   -2.5%     70%  -8.92   1612
+    +4h                             -2.3%   -3.6%     71% -11.31   1612
+    +24h                            -0.6%   -4.4%     65%  -3.55   1611
+    +72h                            -1.1%   -6.4%     69%  -3.66   1606
+    +7d                             +1.6%   -7.7%     65%  -1.87   1602
+    ride from EARLY 5m signal +30m   +3.2%   +1.8% (net of 0.2%), t +8.54, n 1079
+    fade 24h (short, net 0.3%)     +0.3%   +4.1%  t +2.95
+  by coin size (fade 24h net, mean / median / n):
+    tiny <$1M/day   +2.2% / +5.4% / 688
+    small $1-10M    -1.1% / +2.7% / 607
+    large >$10M     -1.3% / +2.8% / 305
+  pumps per year: 2018:22  2019:127  2020:566  2021:897
+
+  ===== DECIDING: LAST FIVE YEARS 2021-06 -> 2026-05: 7499 pumps, 545 coins =====
+  typical pump hour: +14% close, +20% at the peak, 53x normal volume
+  peak comes 50 min into the hour (median); early 5m signal fires at 30 min (73% of pumps)
+
+  after detection (coin minus BTC):     mean  median  % down      t      n
+    +15 min                         -0.6%   -1.3%     62%  -8.36   7497
+    +30 min                         -1.1%   -1.9%     65% -11.76   7497
+    +1h                             -1.7%   -2.7%     69% -16.19   7499
+    +4h                             -2.7%   -4.3%     72% -20.54   7497
+    +24h                            -4.3%   -8.0%     77% -17.74   7490
+    +72h                            -5.8%  -10.1%     78% -15.87   7464
+    +7d                             -6.1%  -11.4%     77% -13.38   7386
+    ride from EARLY 5m signal +30m   +3.8%   +1.8% (net of 0.2%), t +21.74, n 5444
+    fade 24h (short, net 0.3%)     +4.0%   +7.7%  t +16.54
+  by coin size (fade 24h net, mean / median / n):
+    tiny <$1M/day   +5.6% / +9.5% / 3041
+    small $1-10M    +3.3% / +6.8% / 3776
+    large >$10M     +1.1% / +3.9% / 659
+  pumps per year: 2021:1072  2022:1856  2023:1256  2024:1285  2025:1314  2026:716
+
+  ===== VERDICT (pre-stated) =====
+  FADE 24h: mean +4.0% median +7.7% t +16.54 (context mean +0.3%) -> PASS
+  RIDE early +30m: mean +3.8% median +1.8% t +21.74 -> PASS
