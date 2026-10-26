@@ -680,3 +680,14 @@ last 5y 3m +0.2% t +0.32, 6m -1.5% (median -7.8%) t -1.39. Portfolio
 SEASON (Heston-Sadka same-calendar-month, min 3 yrs, from 2019; >= $10,
 >= $20M/day; 20 bps; ~89% monthly turnover): 2019-21 +34.6%/yr Sharpe
 0.88 (SPY 1.22); last 5y -20.0%/yr, DD -76.9% -> FAIL.
+
+## 13F best new ideas + buybacks -- both FAIL 2026-10-25
+
+scripts/fetch_13f.py, fetch_shares.py, funds_buybacks.py, commit f76c55c.
+BESTIDEA (each 20-500-position manager's largest new position, at 13F
+filing date; 179,506 ideas, 9,777 managers; ranked by # managers): drift
+vs SPY 3m -0.0% (both periods), 6m ~0 -> nothing left after the 45-day
+lag. Portfolio last 5y +17.2%/yr Sharpe 0.86 vs same-risk SPY +16.8%,
+SPY 0.91; 2017-21 +17.6% vs +18.9% -> FAIL (crowded large caps).
+BUYBACK (1-25% 1y share shrink, cover-page counts at filing date):
+2017-21 +8.1%/yr DD -45%; last 5y +11.4% vs same-risk SPY +18.0% -> FAIL.
