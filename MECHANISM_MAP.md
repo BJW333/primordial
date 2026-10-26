@@ -635,3 +635,14 @@ ACCUM 0.59x -1.61 (+3.9%/yr), SQUEEZE 1.08x +0.14 (~2 picks/mo),
 LAGGARD 1.21x +0.57 (-5.2%/yr) -> all FAIL. Context: MOM 3.61x t +3.17,
 +26.6%/yr vs same-risk SPY +19.7% -- momentum is the best blow-up finder.
 Limit: large caps rarely blow up; next = broad US universe incl. delisted.
+
+## Exit rules for all-US steady momentum -- FAIL, no stop helps 2026-10-25
+
+scripts/exit_rules.py. Rule picked on 2017-21 by Sharpe: NONE (hold the
+month). Last 5y: NONE +23.0%/yr Sharpe 0.79 vs same-risk SPY +22.3%, SPY
+Sharpe 0.91 -> FAIL (Sharpe). Every stop lowered return in both periods:
+VOLSTOP (3x own monthly vol) +21.0%, TS35 +18.0%, TS20 +16.2%, BUFFER
+(keep while top 60) +21.8% with ~half the trades, MA50 +3.3% (31 trades
+per month). Read: these names rebound after dips; selling locks in losses.
+The problem is the picks (momentum = levered beta), not the exits.
+Next: earnings surprise (10-Q), alone and with momentum.

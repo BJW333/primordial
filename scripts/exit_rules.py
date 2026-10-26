@@ -194,7 +194,7 @@ def main():
     best = max(RULES, key=lambda k: sel[k][1])
     print(f"\n  selected on 2017-2021 (best Sharpe): {best}")
     rec, spy_s = table(res[~old], "STEP 2 -- CONFIRM ON LAST FIVE YEARS")
-    yr = res.loc[~old, [best, "NONE", "SPY"]]
+    yr = res.loc[~old, list(dict.fromkeys([best, "NONE", "SPY"]))]
     print("  by year: " + " | ".join(
         f"{y}: {best} {((1 + g[best]).prod() - 1)*100:+.0f}% NONE "
         f"{((1 + g['NONE']).prod() - 1)*100:+.0f}% SPY "

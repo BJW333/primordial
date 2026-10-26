@@ -20,3 +20,7 @@
   MA50       +3.3%  21.5%   0.26  -41.5%        +16.9%    14.2      31.4
   BUFFER    +21.8%  34.4%   0.75  -29.9%        +22.6%     0.0       9.8
   SPY       +13.8%  15.7%   0.91  -23.9%
+  by year: 2021: NONE +1% NONE +1% SPY +14% | 2022: NONE -6% NONE -6% SPY -18% | 2023: NONE +23% NONE +23% SPY +26% | 2024: NONE +30% NONE +30% SPY +25% | 2025: NONE -1% NONE -1% SPY +18% | 2026: NONE +91% NONE +91% SPY +12%
+
+  ===== VERDICT (pre-stated: rule chosen on 2017-2021, judged on last 5 years) =====
+  NONE: return +23.0% vs same-risk SPY +22.3% | Sharpe 0.79 vs SPY 0.91 -> FAIL
