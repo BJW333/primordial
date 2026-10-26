@@ -615,3 +615,14 @@ replicates. Read: giant-stock momentum's extra return is extra risk
 (higher-beta market), not an edge; 2017-2026 was the mega-cap decade.
 Implication: leverage the best-Sharpe asset (SPY) directly, with a trend
 switch -- testable on 1993+ SPY history.
+
+## Residual momentum FAIL + last-5-years rescore 2026-10-25
+
+scripts/residual_momentum.py: RESMOM_BIG last 5y (2021-06 -> 2026-05)
++5.2%/yr Sharpe 0.38 vs SPY +14.0%/0.93 -> FAIL (pre-stated).
+scripts/last5.py rescored all saved portfolios on the last 5y vs SPY
+leveraged to equal vol (4%/yr borrow): MOM +28.8%/yr Sharpe 1.08 beats
+same-risk SPY +20.0% (t vs SPY +1.88); MOM_VM +15.4% Sharpe 1.07 DD -12%
+beats +13.2%; MOM_BIG +27.7% beats +21.5%. Quality, lowvol, combos, resmom
+all lose. Caveat: t < 2, AI mega-cap era; 2010-16 OOS lost on Sharpe.
+Next: forward Alpaca paper bot, MOM + MOM_VM.

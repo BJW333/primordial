@@ -1,0 +1,141 @@
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+  vol = win.pct_change().iloc[-126:].std()
+    prices 0/863
+    prices 100/863
+    prices 200/863
+    prices 300/863
+    prices 400/863
+    prices 500/863
+    prices 600/863
+    prices 700/863
+    prices 800/863
+
+  == CONTEXT 2017-2021: 52 months, 2017-02-27 -> 2021-05-28 ==
+  portfolio      annual     vol  sharpe   max DD  vs SPY/yr      t  turnover
+  RESMOM_BIG     +15.7%   17.8%    0.91   -19.8%      -1.0%  -0.29     19.2x
+  RESMOM         +15.3%   19.4%    0.84   -23.7%      -1.0%  -0.30     22.5x
+  MOM_BIG        +20.5%   16.9%    1.19   -16.9%      +2.9%  +0.65      6.7x
+  SPY            +17.2%   16.0%    1.08   -19.7%                   
+  EW             +15.4%   19.1%    0.85   -26.4%      -1.0%  -0.37 
+
+  == DECIDING: LAST FIVE YEARS: 60 months, 2021-06-29 -> 2026-05-29 ==
+  portfolio      annual     vol  sharpe   max DD  vs SPY/yr      t  turnover
+  RESMOM_BIG      +5.2%   17.5%    0.38   -27.3%      -7.8%  -2.63     19.3x
+  RESMOM          +9.9%   16.6%    0.65   -20.0%      -3.6%  -0.79     22.7x
+  MOM_BIG        +27.7%   29.9%    0.96   -21.0%     +14.3%  +1.58      6.6x
+  SPY            +14.0%   15.5%    0.93   -22.9%                   
+  EW              +8.4%   15.0%    0.62   -19.5%      -5.1%  -1.61 
+
+  ===== VERDICT (pre-stated, RESMOM_BIG vs SPY, last 5 years) =====
+  return +5.2% vs SPY +14.0% | Sharpe 0.38 vs SPY 0.93
+  FAIL -- residual momentum does not beat SPY on both return and Sharpe over the last five years.
