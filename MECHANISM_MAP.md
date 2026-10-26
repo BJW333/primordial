@@ -668,3 +668,15 @@ SPY +20.5%); FIP +24.4% Sharpe 1.00 DD -19.0% (vs +18.6%) -- both beat
 SPY but both lost to BASE in 2017-21 -> forward-paper candidates only.
 VOLUME worst (+9.5%), drags FIP_VOL to +16.7%. HEDGED skill check +4.4%/yr
 t +0.41, pick beta 1.32 -> return is mostly levered market exposure.
+
+## Insider clusters + same-month seasonality -- both FAIL 2026-10-25
+
+scripts/insider_season.py, commit d782555. Both periods required.
+INSIDER (3+ officers/directors buying >= $25k within 30 days, signal =
+3rd filing date; >= $5, >= $5M/day; 30 bps): 4,749 clusters since 2015,
+2,203 matched. Drift vs SPY: 2017-21 3m +3.1% (median +0.2%) t +0.48;
+last 5y 3m +0.2% t +0.32, 6m -1.5% (median -7.8%) t -1.39. Portfolio
++6.1%/yr (2017-21), -5.4%/yr (last 5y) -> FAIL. Effect traded away.
+SEASON (Heston-Sadka same-calendar-month, min 3 yrs, from 2019; >= $10,
+>= $20M/day; 20 bps; ~89% monthly turnover): 2019-21 +34.6%/yr Sharpe
+0.88 (SPY 1.22); last 5y -20.0%/yr, DD -76.9% -> FAIL.
