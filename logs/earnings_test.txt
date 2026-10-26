@@ -1,0 +1,25 @@
+  295145 company-quarters with a ticker
+  108964 surprises matched to a price history (4194 stocks)
+
+  THE DRIFT ITSELF (3-month return after filing, top 10% surprise minus bottom 10%):
+    2017-2021     +0.05% per 3 months  t +0.04  (26288 filings)
+    last 5 years  +1.71% per 3 months  t +1.30  (34645 filings)
+
+  ===== CONTEXT 2017-2021: 51 months, 2017-03-31 -> 2021-05-28 | ~792 stocks with a fresh surprise/month =====
+  portfolio  annual    vol sharpe   worst same-risk SPY vs SPY/yr      t
+  SUE        +12.1%  21.5%   0.64  -31.3%        +20.4%     -2.8%  -0.47
+  SUE_MOM    +20.5%  23.1%   0.93  -27.0%        +21.4%     +4.8%  +0.65
+  MOM        +30.4%  32.2%   0.98  -24.2%        +27.1%    +15.0%  +1.19
+  SPY        +16.5%  16.0%   1.04  -19.6%
+  by year: 2017: SUE_MOM +15% SPY +15% | 2018: SUE_MOM -5% SPY -5% | 2019: SUE_MOM +31% SPY +31% | 2020: SUE_MOM +40% SPY +18% | 2021: SUE_MOM +10% SPY +13%
+
+  ===== DECIDING: LAST FIVE YEARS: 61 months, 2021-06-30 -> 2026-06-01 | ~1046 stocks with a fresh surprise/month =====
+  portfolio  annual    vol sharpe   worst same-risk SPY vs SPY/yr      t
+  SUE         +2.2%  21.0%   0.21  -27.3%        +16.7%     -9.9%  -1.98
+  SUE_MOM    +12.3%  24.3%   0.60  -27.5%        +18.3%     +0.2%  +0.03
+  MOM        +23.0%  33.6%   0.79  -28.1%        +22.3%    +12.1%  +1.04
+  SPY        +13.8%  15.7%   0.91  -23.9%
+  by year: 2021: SUE_MOM +10% SPY +14% | 2022: SUE_MOM -21% SPY -18% | 2023: SUE_MOM +8% SPY +26% | 2024: SUE_MOM +27% SPY +25% | 2025: SUE_MOM +7% SPY +18% | 2026: SUE_MOM +42% SPY +12%
+
+  ===== VERDICT (pre-stated, SUE_MOM, last 5 years) =====
+  return +12.3% vs same-risk SPY +18.3% | Sharpe 0.60 vs SPY 0.91 -> FAIL
