@@ -600,3 +600,18 @@ Context: MOM_BIG +24.3%/yr, Sharpe 1.00 (= SPY), max DD -21.0% (SPY
 significant, context row on twice-used data. Only clean test left is
 forward: Alpaca paper bot for MOM_BIG (+ optional pre-registered VM with
 24% target) proposed.
+
+## Turbo momentum out-of-sample 2010-2016 -- does NOT replicate 2026-10-25
+
+scripts/turbo_oos.py, commit 7fe239d. Frozen MOM_BIG and MOM_BIG_VM24
+(24% target set before the run) on 2010-01 -> 2016-12 (no prior portfolio
+test touched these years). S&P 500 PIT membership + Yahoo prices (member
+coverage 338/497 in 2010 rising to 408/506 in 2016; buys only the 100
+largest, where missing names matter least).
+MOM_BIG +15.6%/yr Sharpe 0.94 (+2.3%/yr vs SPY t +0.77); MOM_BIG_VM24
++16.7%/yr Sharpe 0.92 (+3.7%/yr t +0.93); SPY +13.6%/yr Sharpe 1.08.
+Both beat SPY on return, both fail the Sharpe >= SPY rule -> neither
+replicates. Read: giant-stock momentum's extra return is extra risk
+(higher-beta market), not an edge; 2017-2026 was the mega-cap decade.
+Implication: leverage the best-Sharpe asset (SPY) directly, with a trend
+switch -- testable on 1993+ SPY history.
