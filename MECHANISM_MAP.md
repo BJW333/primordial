@@ -657,3 +657,14 @@ Drift (top-minus-bottom decile, 3m after filing): 2017-21 +0.05% t +0.04;
 last 5y +1.71% t +1.30 -> no drift left at filing date.
 Last 5y: SUE_MOM (primary) +12.3%/yr Sharpe 0.60 vs same-risk SPY +18.3%
 -> FAIL; SUE +2.2%. Next: re-time to 8-K item 2.02 (announcement) date.
+
+## Momentum add-ons (regime/FIP/cluster/volume/invvol) -- FAIL 2026-10-25
+
+scripts/momentum_plus.py, commit 93d643c. Steady momentum all-US base.
+Selected on 2017-21 by Sharpe: REGIME (only add-on > BASE 0.98, at 1.00).
+Last 5y: REGIME +17.6%/yr Sharpe 0.70 vs same-risk SPY +20.5% -> FAIL.
+Non-selected, last 5y: INVVOL +29.1% Sharpe 1.02 DD -22.6% (vs same-risk
+SPY +20.5%); FIP +24.4% Sharpe 1.00 DD -19.0% (vs +18.6%) -- both beat
+SPY but both lost to BASE in 2017-21 -> forward-paper candidates only.
+VOLUME worst (+9.5%), drags FIP_VOL to +16.7%. HEDGED skill check +4.4%/yr
+t +0.41, pick beta 1.32 -> return is mostly levered market exposure.
