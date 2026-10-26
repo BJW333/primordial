@@ -1,0 +1,34 @@
+    prices 0/863
+    prices 100/863
+    prices 200/863
+    prices 300/863
+    prices 400/863
+    prices 500/863
+    prices 600/863
+    prices 700/863
+    prices 800/863
+
+  ===== CONTEXT 2017-2021: 40 months, 2018-02-27 -> 2021-05-28 =====
+  blow-up base rate (any eligible stock up >= 50% in 6 months): 4.4%  (40 months with 6m data)
+
+  signal    picks/mo  hit rate   lift      t |  annual    vol sharpe   worst same-risk SPY
+  ACCUM         20.0      3.0%  0.68x  -1.44 |   +9.8%  13.5%   0.76  -14.4%        +11.1%
+  SQUEEZE        1.9      0.0%  0.00x  -1.83 |  +13.7%  17.7%   0.81  -18.6%        +14.4%
+  LAGGARD       18.6      6.3%  1.44x  +1.74 |  +14.7%  26.0%   0.65  -29.9%        +18.4%
+  MOM           20.0      5.0%  1.13x  +0.38 |   +5.4%  21.9%   0.35  -27.4%        +16.6%
+  SPY                                        |  +14.6%  18.0%   0.85  -19.7%
+
+  ===== DECIDING: LAST FIVE YEARS: 60 months, 2021-06-29 -> 2026-05-29 =====
+  blow-up base rate (any eligible stock up >= 50% in 6 months): 2.4%  (54 months with 6m data)
+
+  signal    picks/mo  hit rate   lift      t |  annual    vol sharpe   worst same-risk SPY
+  ACCUM         20.0      1.4%  0.59x  -1.61 |   +3.9%  13.9%   0.34  -22.7%        +12.7%
+  SQUEEZE        2.5      2.5%  1.08x  +0.14 |  +13.9%  15.2%   0.93  -22.2%        +13.8%
+  LAGGARD       19.4      2.8%  1.21x  +0.57 |   -5.2%  18.4%  -0.20  -40.9%        +15.7%
+  MOM           20.0      8.5%  3.61x  +3.17 |  +26.6%  26.1%   1.04  -16.1%        +19.7%
+  SPY                                        |  +14.0%  15.5%   0.93  -22.9%
+
+  ===== VERDICT (pre-stated: lift >= 1.5x, t > 2.4, beats same-risk SPY) =====
+  ACCUM    lift 0.59x  t -1.61  return +3.9% vs same-risk SPY +12.7% -> fail
+  SQUEEZE  lift 1.08x  t +0.14  return +13.9% vs same-risk SPY +13.8% -> fail
+  LAGGARD  lift 1.21x  t +0.57  return -5.2% vs same-risk SPY +15.7% -> fail
