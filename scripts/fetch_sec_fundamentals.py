@@ -124,7 +124,12 @@ def parse(path):
     return pd.DataFrame(out)
 
 
+CIK_CACHE = os.path.join(ROOT, "data", "cik_tickers.csv.gz")
+
+
 def cik_tickers():
+    if os.path.exists(CIK_CACHE):
+        return pd.read_csv(CIK_CACHE, dtype={"cik": str, "ticker": str})
     frames = []
     for zp in sorted(glob.glob(os.path.join(F345, "*_form345.zip"))):
         zf = zipfile.ZipFile(zp)
@@ -142,9 +147,11 @@ def cik_tickers():
                                errors="coerce").dt.year
     s["ticker"] = s["ISSUERTRADINGSYMBOL"].str.upper().str.strip()
     s = s[s["ticker"].str.fullmatch(r"[A-Z0-9.\-]{1,7}", na=False)]
-    return (s.groupby(["cik", "year", "ticker"]).size().reset_index(name="n")
+    out = (s.groupby(["cik", "year", "ticker"]).size().reset_index(name="n")
             .sort_values("n").groupby(["cik", "year"]).tail(1)
             [["cik", "year", "ticker"]])
+    out.to_csv(CIK_CACHE, index=False)
+    return out
 
 
 def main():
