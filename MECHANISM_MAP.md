@@ -626,3 +626,12 @@ same-risk SPY +20.0% (t vs SPY +1.88); MOM_VM +15.4% Sharpe 1.07 DD -12%
 beats +13.2%; MOM_BIG +27.7% beats +21.5%. Quality, lowvol, combos, resmom
 all lose. Caveat: t < 2, AI mega-cap era; 2010-16 OOS lost on Sharpe.
 Next: forward Alpaca paper bot, MOM + MOM_VM.
+
+## Blow-up scan (accumulation / squeeze / laggard) -- all FAIL 2026-10-25
+
+scripts/blowup_scan.py, commit 5fd7d8d. S&P 500 PIT, last 5y deciding.
+Target: up >= 50% in 6 months (base rate 2.4% last 5y). Lift / t (NW):
+ACCUM 0.59x -1.61 (+3.9%/yr), SQUEEZE 1.08x +0.14 (~2 picks/mo),
+LAGGARD 1.21x +0.57 (-5.2%/yr) -> all FAIL. Context: MOM 3.61x t +3.17,
++26.6%/yr vs same-risk SPY +19.7% -- momentum is the best blow-up finder.
+Limit: large caps rarely blow up; next = broad US universe incl. delisted.
