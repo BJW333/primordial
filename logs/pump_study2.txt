@@ -1,0 +1,30 @@
+  RIDE: 150 random coins (of 686), 150 to download
+    10/150 coins (1 min) last: ALPINEUSDT 83 triggers
+    20/150 coins (1 min) last: BARDUSDT 13 triggers
+    30/150 coins (1 min) last: CHESSUSDT 107 triggers
+    40/150 coins (1 min) last: DRAMBUSDT 0 triggers
+    50/150 coins (2 min) last: GLMRUSDT 57 triggers
+    60/150 coins (2 min) last: HOMEUSDT 6 triggers
+    70/150 coins (2 min) last: KITEUSDT 5 triggers
+    80/150 coins (3 min) last: MDXUSDT 70 triggers
+    90/150 coins (3 min) last: NANOUSDT 6 triggers
+    100/150 coins (3 min) last: OPNUSDT 0 triggers
+    110/150 coins (3 min) last: PROSUSDT 76 triggers
+    120/150 coins (4 min) last: SHIBUSDT 21 triggers
+    130/150 coins (4 min) last: TFUELUSDT 76 triggers
+    140/150 coins (4 min) last: WAXPUSDT 41 triggers
+    150/150 coins (5 min) last: ZRXUSDT 39 triggers
+
+  ===== RIDE v2 (no look-ahead): 5101 triggers in 126 coins, last 5 years =====
+  hold     gross mean  median  % down  net @0.5%  net @1.0%
+  15m          -0.06%  -1.39%     61%    -0.56%    -1.06%
+  30m          -0.39%  -2.10%     65%    -0.89%    -1.39%
+  60m          -1.05%  -2.69%     68%    -1.55%    -2.05%
+  30-min gross by year: 2021:-0.95%  2022:-1.23%  2023:-0.90%  2024:-0.18%  2025:+1.94%  2026:-1.39%
+
+  FADE: 9111 pump events; 900 USDT perp markets ever listed
+    50/559 coins (1 min)
+    100/559 coins (3 min)
+    150/559 coins (4 min)
+    200/559 coins (5 min)
+    250/559 coins (6 min)
