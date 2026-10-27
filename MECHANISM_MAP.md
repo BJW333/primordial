@@ -741,3 +741,14 @@ roll-cleaned 0.22 / 0.51 -> FAIL (bar 0.3 / 0.5). ETF-only long/short
 strong contract-month gaps. Read: SEASON pass was mostly Yahoo continuous-
 futures roll jumps. Lesson: any calendar/seasonal futures test needs
 roll-adjusted (back-adjusted) data.
+
+## Commodity ETFs: ADX trend strength + volume -- all FAIL 2026-10-26
+
+scripts/commodity_adx.py, commit f3fa2eb. 14 commodity ETFs (real prices
+and volumes, no roll artifacts), daily, equal risk, 5 bps. Long/short
+judged: ADX_TREND (ADX>25, DI direction) 2008-21 Sharpe 0.17 / last 5y
+-0.01; ADX_VOL (+ volume surge >= 1.2) 0.23 / 0.44; ADX_RISING 0.17 /
+-0.16; VOL_BREAKOUT (50d high/low on 2x volume, hold 20d) 0.46 / 0.23 ->
+all FAIL. Context: TREND12 0.40 / 0.41; HOLD -0.11 / 0.91 -- long-only
+'wins' last 5y are the commodity bull (inflation 2021-22, gold 2024-26),
+not the signals. ADX adds nothing over plain trend.
