@@ -1,0 +1,26 @@
+  ETFs: EFA, EEM, TLT, IEF, TIP, GLD, SLV, DBC, USO, DBA, UUP, FXY, FXE, SPY, BIL | 2016-01-04 -> 2026-05-29
+  SMALL: ~815 stocks per month
+  MID: ~816 stocks per month
+
+  111 months 2017-03 -> 2026-05 | B avg exposure 0.75x, D avg 0.71x
+
+  book                               |  all ann   vol    sh  worst |  2017-21    sh |  last 5y    sh  worst
+  CURRENT: MOM20 + T50 + F50         |   +37.2%   36%  1.06   -30% |   +39.4%  1.13 |   +35.4%  1.00   -25%
+  MOM top 20 alone                   |   +26.6%   33%  0.88   -31% |   +30.4%  0.98 |   +23.5%  0.79   -28%
+  A  MOM top 40 alone                |   +18.9%   28%  0.75   -27% |   +21.2%  0.77 |   +17.0%  0.72   -22%
+  A  MOM top 60 alone                |   +19.5%   26%  0.82   -29% |   +22.5%  0.87 |   +17.0%  0.76   -22%
+  A  stack with MOM top 40           |   +28.9%   32%  0.96   -31% |   +29.6%  0.93 |   +28.4%  0.98   -24%
+  A  stack with MOM top 60           |   +29.6%   29%  1.03   -30% |   +30.9%  1.03 |   +28.5%  1.02   -22%
+  B  vol-targeted MOM alone          |   +18.3%   24%  0.83   -27% |   +18.9%  0.82 |   +17.7%  0.85   -22%
+  B  stack with vol-targeted MOM     |   +28.5%   26%  1.09   -27% |   +27.4%  1.03 |   +29.4%  1.13   -24%
+  C  risk-balanced (M0.44/T0.81/F0.96) |   +31.1%   24%  1.26   -23% |   +29.1%  1.22 |   +32.8%  1.28   -23%
+  D  vol-targeted whole stack        |   +26.2%   24%  1.10   -21% |   +26.9%  1.10 |   +25.5%  1.09   -21%
+
+  ===== VERDICT (pre-stated: vol cut >= 25% AND Sharpe >= current in both periods) =====
+  CURRENT: MOM20 + T50 + F50         vol  36% vs 36% -> no
+  A  stack with MOM top 40           vol  32% vs 36% -> no
+  A  stack with MOM top 60           vol  29% vs 36% -> no
+  B  stack with vol-targeted MOM     vol  26% vs 36% -> no
+  C  risk-balanced (M0.44/T0.81/F0.96) vol  24% vs 36% -> WORKS
+  D  vol-targeted whole stack        vol  24% vs 36% -> no
+  (backtest; FADE modeled as shorting; ETF stand-ins for futures)

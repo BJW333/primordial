@@ -975,3 +975,14 @@ dd -17%/-18% -> PASS (beats no-stop both periods). 6% borrow: +7.0% /
 t 2.66; 3% borrow +8.3% / +13.5% t 2.25. Stop is a real fix; delay
 harmless. Caveat: WEAK_TREND selected on pooled small+mid. Next: puts
 version on QuantConnect.
+
+## Volatility reduction: risk-balanced stack WORKS (MOM 0.44 / TREND 0.81 / FADE 0.96) 2026-10-27
+
+scripts/vol_reduce.py. Current stack MOM100/T50/F50: 37.2% vol 36% sh 1.06
+dd -30% (2017-21 sh 1.13, last5y sh 1.00). C risk-balanced (weights =
+inverse vol from first 24 months, scaled to 20% target): 31.1% vol 24%
+sh 1.26 dd -23%; 2017-21 29.1% sh 1.22; last5y 32.8% sh 1.28 dd -23% ->
+WORKS (vol -33%, Sharpe higher both periods). A top40/60: lower return,
+no Sharpe gain. B vol-target MOM: stack sh 1.03/1.13 (fails 2017-21).
+D vol-target stack: 26.2% sh 1.10 dd -21% (fails 2017-21 narrowly).
+Fade now largest weight -> puts test (QC) and borrow cost are critical.
