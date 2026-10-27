@@ -799,3 +799,18 @@ t -6.09. SMALL 7d spikes 63d -2.98% / -6.11% t -3.95. Attention growth
 spreads negative: S&P -4.4/-3.6 %/yr (t -1.78), SMALL -6.1/-0.4. 63d
 horizon is post-hoc -> fresh test on MID caps (non-S&P, above-median
 liquidity, untouched) with a pre-stated 63d rule next.
+
+## Attention FADE confirmed on MID caps (first PASS); rebound/bottom signals all FAIL 2026-10-27
+
+scripts/attention_rebound.py, commit e37baae. Good-news attention spikes
+(daily views >= 3x 90d median AND stock +2% that day), non-S&P liquid
+stocks, vs equal-weight same-size benchmark, next-close entry.
+MID (untouched universe, pre-stated 63d rule): 2017-21 -3.19% t -2.82
+n 1067; last 5y -3.07% t -3.05 n 1314 -> FADE CONFIRMED (PASS).
+Path: MID 126d -8.8%/-4.4%, 252d -22.8%/-11.7%; SMALL 126d -8.3%/-9.2%,
+252d -16.7%/-17.3% -- decline persists a full year, no bottom.
+REBOUND: 31 combos of A attn-normal, B round-trip, C vol-quiet, D price-
+turn, E insider-buy + F time (median low day SMALL 81, MID 72). Selected
+on 2017-21: SMALL A+C+D -> last 5y -0.36% t +0.26 FAIL; MID A+B+E ->
+-4.21% t -1.90 FAIL. Use: avoid-filter / hedged short book (next: cost +
+borrow-aware portfolio test).
