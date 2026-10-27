@@ -775,3 +775,15 @@ Avg qualifiers/month: ADX+OBV 97, ADX+CMF 86, all three 80 (of 503).
 TOP20_EW 3.59x (beats BASE_EW both periods, ~SPY 3.69x). Filters lag
 2019/2021, win 2020/2024 -> momentum fingerprint; smaller DD 2017-21.
 CMF ~ OBV. No filter beats its control in both periods on return.
+
+## Attention spikes (Wikipedia) + short volume (FINRA Reg SHO) -- both FAIL 2026-10-27
+
+scripts/fetch_attention_short.py + attention_short_test.py, commit 40e20e0.
+S&P 500 PIT. ATTENTION: 744 companies' daily page views 2015+; spike = 7d
+avg >= 3x prior 90d median, used next day. 1,183 spikes / 442 stocks.
+21d vs SPY: 2017-21 +0.13% t +0.79; last 5y -0.16% t +0.41 -> FAIL (no
+effect in large caps). SHORT: FINRA consolidated short interest returned
+HTTP 204 for 2016-01 (treated as failure -> bug) -> fallback daily short-
+sale volume ratio (20d), 2018-09+: Q1 +1.24%/mo ... Q5 +0.92%; spread
++1.5%/yr t +0.65, halves -0.4% / +3.4% -> FAIL. True short interest
+untested (204 = empty window, fix pending).
