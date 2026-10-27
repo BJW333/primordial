@@ -787,3 +787,15 @@ HTTP 204 for 2016-01 (treated as failure -> bug) -> fallback daily short-
 sale volume ratio (20d), 2018-09+: Q1 +1.24%/mo ... Q5 +0.92%; spread
 +1.5%/yr t +0.65, halves -0.4% / +3.4% -> FAIL. True short interest
 untested (204 = empty window, fix pending).
+
+## Attention follow-ups (same-day/direction, small caps, slow growth) -- all FAIL, consistent NEGATIVE drift 2026-10-27
+
+scripts/attention2_test.py, commit e6786d8. 2,206 companies' page views.
+Same day: spike-day |move| S&P 2.78% vs 1.40% (2.0x), SMALL 5.43% vs 1.98%
+(2.7x); direction 51% up. Pre-stated 21d rule -> all FAIL. Consistent
+sign: attention -> later underperformance. SMALL good-news spikes (next
+close) 21d -2.56% t -1.60 / -1.24% t -2.37; 63d -3.44% t -1.75 / -6.24%
+t -6.09. SMALL 7d spikes 63d -2.98% / -6.11% t -3.95. Attention growth
+spreads negative: S&P -4.4/-3.6 %/yr (t -1.78), SMALL -6.1/-0.4. 63d
+horizon is post-hoc -> fresh test on MID caps (non-S&P, above-median
+liquidity, untouched) with a pre-stated 63d rule next.
