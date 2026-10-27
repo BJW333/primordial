@@ -814,3 +814,14 @@ turn, E insider-buy + F time (median low day SMALL 81, MID 72). Selected
 on 2017-21: SMALL A+C+D -> last 5y -0.36% t +0.26 FAIL; MID A+B+E ->
 -4.21% t -1.90 FAIL. Use: avoid-filter / hedged short book (next: cost +
 borrow-aware portfolio test).
+
+## Momentum HYPE-only vs QUIET (post-hoc diagnostic) -- regime-flipping, no edge; attention line closed 2026-10-27
+
+scripts/momentum_hype.py. Top-20 steady momentum among: all / hyped (good-
+news spike in 2y) / quiet (Wikipedia page, no spike).
+2017-21: STEADY 30.4% sh 0.98 | HYPE 19.1% 0.61 | QUIET 34.3% 1.27.
+Last 5y: STEADY 23.0% 0.79 | HYPE 27.1% 0.96 | QUIET 15.4% 0.79.
+Ranking flips between periods -> regime, not edge. Attention summary: fade
+real (20-30% underperf over 2y, small/mid); short book fails net of 3-6%
+borrow; no bottom; avoid filter hurts momentum. Line closed to avoid
+forking paths. Open: forward paper short book on easy-to-borrow names.
