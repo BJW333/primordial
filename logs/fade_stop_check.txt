@@ -1,0 +1,20 @@
+  SMALL: ~815 stocks per month
+  MID: ~816 stocks per month
+
+  ===== SMALL: 421 trades (liquid half, WEAK_TREND) =====
+  -- borrow 3%/yr --
+  no stop (control)                    stopped   0% | 2017-21   +4.7% sh +0.43 dd  -17% | last5y  +14.5% sh +1.15 dd  -15% t +2.36
+  50% stop, same close                 stopped  31% | 2017-21   +9.7% sh +0.85 dd  -17% | last5y  +16.8% sh +1.35 dd  -19% t +2.30
+  50% stop, DELAYED 1 day              stopped  31% | 2017-21  +10.2% sh +0.88 dd  -17% | last5y  +16.8% sh +1.35 dd  -18% t +2.33
+  -- borrow 6%/yr --
+  no stop (control)                    stopped   0% | 2017-21   +1.6% sh +0.19 dd  -19% | last5y  +11.1% sh +0.91 dd  -16% t +1.87
+  50% stop, same close                 stopped  31% | 2017-21   +6.6% sh +0.60 dd  -19% | last5y  +13.3% sh +1.10 dd  -21% t +1.88
+  50% stop, DELAYED 1 day              stopped  31% | 2017-21   +7.0% sh +0.63 dd  -19% | last5y  +13.4% sh +1.10 dd  -19% t +1.91
+
+  ===== MID: 581 trades (liquid half, WEAK_TREND) =====
+  no stop (control), 0.5% borrow       stopped   0% | 2017-21   +0.4% sh +0.10 dd  -19% | last5y   +9.9% sh +0.72 dd  -23% t +1.96
+  50% stop, DELAYED, 0.5% borrow       stopped  33% | 2017-21  +11.0% sh +0.89 dd  -13% | last5y  +16.4% sh +1.37 dd  -13% t +2.66
+  50% stop, DELAYED, 3% borrow         stopped  33% | 2017-21   +8.3% sh +0.70 dd  -14% | last5y  +13.5% sh +1.15 dd  -15% t +2.25
+
+  ===== VERDICT (pre-stated: SMALL, 50% stop, delayed, 3% borrow) =====
+  fade stop-loss holds on new stocks  PASS

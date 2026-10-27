@@ -964,3 +964,14 @@ dd -25%) | +T100+F50 39.6% 1.08 -34% | +T100+F100 47.5% 1.16 -35%.
 Best balance T50+F50. FADE stop post-hoc, modeled as shorting; ETF stand-ins
 for futures; big fade years 2020/21/26. Next: QC micro-futures trend
 backtest; small-cap check of fade stop; QC puts version of fade.
+
+## Fade 50% stop-loss validated on SMALL caps (unseen by stop rule) -- PASS 2026-10-27
+
+scripts/fade_stop_check.py. Frozen rules (liquid half, WEAK_TREND, short
+day 22, EW same-size hedge). SMALL 421 trades, 3% borrow: no stop +4.7% /
++14.5%; 50% stop delayed 1 day +10.2% sh 0.88 / +16.8% sh 1.35 t 2.33,
+dd -17%/-18% -> PASS (beats no-stop both periods). 6% borrow: +7.0% /
++13.4% t 1.91. MID re-check, delayed stop: 0.5% borrow +11.0% / +16.4%
+t 2.66; 3% borrow +8.3% / +13.5% t 2.25. Stop is a real fix; delay
+harmless. Caveat: WEAK_TREND selected on pooled small+mid. Next: puts
+version on QuantConnect.
