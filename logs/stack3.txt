@@ -1,0 +1,29 @@
+  ETFs: EFA, EEM, TLT, IEF, TIP, GLD, SLV, DBC, USO, DBA, UUP, FXY, FXE, SPY, BIL | 2016-01-04 -> 2026-05-29
+  SMALL: ~815 stocks per month
+  MID: ~816 stocks per month
+
+  111 months 2017-03 -> 2026-05
+  correlations: MOM/TREND -0.02  MOM/FADE +0.30  TREND/FADE +0.03
+
+  stack                          |  all ann    sh  worst |  2017-21 |  last 5y  worst | needs               
+  MOM alone                      |   +26.6%  0.88   -31% |   +30.4% |   +23.5%   -28% | normal account      
+  MOM + TREND 100%               |   +31.7%  0.96   -34% |   +35.2% |   +28.9%   -27% | futures             
+  MOM + FADE 50%                 |   +34.3%  1.01   -26% |   +36.6% |   +32.3%   -26% | shorting/puts       
+  MOM + FADE 100%                |   +41.9%  1.10   -26% |   +42.6% |   +41.2%   -26% | shorting/puts       
+  MOM + TREND 50% + FADE 50%     |   +37.2%  1.06   -30% |   +39.4% |   +35.4%   -25% | futures + shorting/puts
+  MOM + TREND 100% + FADE 50%    |   +39.6%  1.08   -34% |   +41.6% |   +38.0%   -27% | futures + shorting/puts
+  MOM + TREND 100% + FADE 100%   |   +47.5%  1.16   -35% |   +47.8% |   +47.3%   -28% | futures + shorting/puts
+
+  by year:                    MOM alone           MOM + TREND 100% MOM + TREND 100% + FADE 50 MOM + TREND 100% + FADE 10
+  2017                          +22.0%                     +28.5%                     +27.9%                     +26.9%
+  2018                           -4.1%                     -13.8%                     -12.7%                     -11.7%
+  2019                          +25.4%                     +32.0%                     +29.7%                     +27.2%
+  2020                          +88.7%                    +117.9%                    +154.9%                    +196.2%
+  2021                          +12.4%                     +15.1%                     +31.2%                     +49.1%
+  2022                           -6.3%                     +14.4%                     +20.5%                     +26.7%
+  2023                          +23.3%                      +8.4%                      +4.2%                      -0.3%
+  2024                          +29.7%                     +33.4%                     +44.0%                     +55.3%
+  2025                           -0.7%                      +4.2%                      +8.8%                     +13.4%
+  2026                          +91.6%                    +102.8%                    +130.3%                    +160.2%
+
+  SIZING STUDY -- FADE stop is post-hoc; ETF stand-ins for futures; expect live results well below these.

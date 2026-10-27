@@ -954,3 +954,13 @@ S&P). Spike = views >= 3x 90d median AND +10% over ~30d: only 6 events in
 After: USO +20%, UNG +99% at 90d -> news-driven continuation, not fade.
 Sell-the-hype in trend sleeve: 28.9% -> 28.8%, no effect. Fade is a
 small-cap / hard-to-short phenomenon; doesn't transfer to futures.
+
+## Three-engine stack (momentum + two-way trend + fade) sizing study 2026-10-27
+
+scripts/stack3.py. Corr MOM/TREND -0.02, TREND/FADE +0.03, MOM/FADE +0.30.
+MOM 26.6% sh 0.88 dd -31% | +TREND100 31.7% 0.96 -34% | +FADE50 34.3% 1.01
+-26% | +FADE100 41.9% 1.10 -26% | +T50+F50 37.2% 1.06 -30% (last5y 35.4%,
+dd -25%) | +T100+F50 39.6% 1.08 -34% | +T100+F100 47.5% 1.16 -35%.
+Best balance T50+F50. FADE stop post-hoc, modeled as shorting; ETF stand-ins
+for futures; big fade years 2020/21/26. Next: QC micro-futures trend
+backtest; small-cap check of fade stop; QC puts version of fade.
