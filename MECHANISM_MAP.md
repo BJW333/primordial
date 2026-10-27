@@ -859,3 +859,14 @@ BUYBACK -4.4/-5.7. Selected SQUEEZE_FUEL+REIGNITE (+5.75% t 0.76) ->
 -16.54% t -2.83 -> FAIL. Two rounds, ~30 rules, 9 mechanisms: no rebound
 signal. Fade is one-way; comebacks unpredictable -> stop-loss, not a
 rebound model. Rebound line closed.
+
+## Sector tailwind rebound -- FAIL; hint only in commodity industries (post-hoc, tiny n) 2026-10-27
+
+scripts/sector_tailwind.py. Industry = ETF with highest return corr over
+252d pre-spike (>=0.40; 26 ETFs; 731 of 3,553 unmatched). TAILWIND = ETF
+beat SPY >=5% over 63d and > 200d MA, while faded. Baseline -8.6%/-5.7%;
+TAILWIND -7.7% / -3.3%; +FOLLOWING -8.5% / -1.7% t +0.21 -> FAIL.
+Softens the fade, no rebound. By ETF (diagnostic, both periods): OIH +5.2%
+(med +10%, win 55%, n 29), XME +8.6% (n 49), LIT +8.6% (n 20), SLX +1.0%;
+XBI -16.7%, XLI -22.4%, IYT -14.1%. Commodity-linked hint only, post-hoc.
+Rebound line closed (3 rounds, 11 mechanisms).

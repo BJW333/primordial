@@ -1,0 +1,44 @@
+  SMALL: ~815 stocks per month
+  MID: ~816 stocks per month
+  ETFs loaded: 26 industries + SPY, 2016-01-04 -> 2026-06-01
+
+  3553 spikes; 1771 in 2017-21, 1782 2021-06+
+  industry matches: none 731, XBI 298, KRE 290, XRT 261, XLI 223, XLY 218, SMH 180, XLK 174, SLX 112, JETS 97, XOP 93, XLF 92, KIE 88, TAN 80, ITB 70, XLB 69, XME 68, IYT 68, GDX 66, XLRE 52, OIH 46, XLV 40, XLP 34, LIT 33, XLE 31, XLU 26, URA 13
+
+  rule                         | 2017-21 n    mean     med  win      t | 2021+ n    mean     med  win      t
+  BASELINE: fade detected      |         1520  -8.64% -13.00%  35%  -2.63 |    1468  -5.70% -10.78%  36%  -4.28
+  TAILWIND                     |          962  -7.67% -10.34%  37%  -3.14 |     860  -3.33% -11.47%  36%  -0.33
+  TAILWIND+FOLLOWING           |          836  -8.50%  -9.05%  36%  -2.63 |     691  -1.72% -10.63%  38%  +0.21
+
+  by matched industry (TAILWIND trades, both periods, diagnostic):
+    XBI   n  223 mean -16.65% median -25.63% win 31%
+    KRE   n  201 mean  -6.10% median  -6.80% win 36%
+    XRT   n  193 mean  -2.30% median -16.19% win 35%
+    XLI   n   95 mean -22.44% median -26.41% win 20%
+    XLY   n  141 mean  +8.06% median  -8.21% win 44%
+    SMH   n  120 mean  +2.68% median  -1.73% win 48%
+    XLK   n  133 mean  -3.89% median  -4.45% win 43%
+    SLX   n   77 mean  +1.00% median  -0.67% win 49%
+    JETS  n   62 mean  -1.86% median  -7.27% win 37%
+    XOP   n   46 mean  -3.42% median -14.74% win 24%
+    XLF   n   54 mean -10.14% median -10.87% win 26%
+    KIE   n   45 mean -10.57% median -14.38% win 31%
+    TAN   n   59 mean  -6.28% median -22.13% win 32%
+    ITB   n   51 mean  -2.50% median  -0.58% win 49%
+    XLB   n   32 mean -15.01% median -20.57% win 25%
+    XME   n   49 mean  +8.56% median  -3.76% win 47%
+    IYT   n   46 mean -14.14% median -12.22% win 22%
+    GDX   n   40 mean -11.32% median -18.47% win 25%
+    XLRE  n   32 mean  -4.62% median  -2.84% win 41%
+    OIH   n   29 mean  +5.23% median +10.17% win 55%
+    XLV   n   14 mean -16.20% median -13.93% win 43%
+    XLP   n   16 mean -12.26% median -11.75% win 44%
+    LIT   n   20 mean  +8.59% median  -1.59% win 45%
+    XLE   n   21 mean  -6.42% median  -7.61% win 33%
+    XLU   n   14 mean -13.29% median -16.59% win 14%
+
+  SELECTED on 2017-21: TAILWIND+FOLLOWING (n 836, -8.50%, t -2.63)
+  2021-06+: n 691, -1.72% vs benchmark, t +0.21 (bar t > 3.0) -> FAIL
+
+  ===== VERDICT (pre-stated) =====
+  sector tailwind rebound (TAILWIND+FOLLOWING)  FAIL
