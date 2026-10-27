@@ -762,3 +762,16 @@ for inventories); CFTC used from Friday release, EIA from release day.
 0.04/0.38 (2022 +6%). Candidate (best 2008-21) ADX_ROOM -> last 5y 0.34 <
 0.5 -> FAIL. Non-price data helps ADX slightly but nothing near an edge;
 time in market 10-23%. ADX closed.
+
+## ADX + OBV + CMF weighting diagnostic (S&P 500 PIT) -- no consistent edge 2026-10-26
+
+scripts/adx_obv_variants.py, commit 4f61e5a. Diagnostic, no pass/fail.
+Live-price fix: adline_obv.py picked delisted 'zombie' names (stale ADX on
+NaN prices) -> its yearly S_ADX_OBV table is superseded by TOP20_EW here.
+Avg qualifiers/month: ADX+OBV 97, ADX+CMF 86, all three 80 (of 503).
+10y growth vs controls: BASE_SIZE 4.69x; ALL_SIZE 4.62x; ADX_CMF_SIZE
+4.66x; TRIPLE_SIZE 5.04x (2017-21 13.2%/0.85 vs ctrl 17.7%/1.01; last 5y
+24.4%/1.25 vs 18.6%/0.95). BASE_EW 2.69x; ALL_EW 2.71x; TRIPLE_EW 2.77x;
+TOP20_EW 3.59x (beats BASE_EW both periods, ~SPY 3.69x). Filters lag
+2019/2021, win 2020/2024 -> momentum fingerprint; smaller DD 2017-21.
+CMF ~ OBV. No filter beats its control in both periods on return.
