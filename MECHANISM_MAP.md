@@ -839,3 +839,12 @@ scripts/fade_stop.py (stop idea post-hoc): cover at close >= +50% over
 entry -> +11.8% sh 0.95 dd -13% / +16.7% sh 1.39 t 2.73 -> PASS. Robust:
 25% stop 15.2%/20.9%; 100% stop 10.0%/15.3%; 3% borrow still positive.
 Next: verify worst trades aren't data errors; frozen-rule Alpaca paper bot.
+
+## Rebound signals after fade (earnings beat / market washout / trend back / capitulation) -- FAIL 2026-10-27
+
+scripts/rebound_signals.py. 3,672 good-news spikes (small+mid). After fade
+detected (>=10% behind bench), 15 combos, buy next close, hold 126d.
+Selected MKT_WASHOUT (2017-21 +3.22% t +1.04, mostly Mar-2020 V) ->
+2021-06+ -8.73% t -2.39 -> FAIL. EARN_BEAT keeps fading (-14.7% / -3.3%);
+TREND_BACK fake (win 24-28%); CAPITULATE not a bottom. Fade is one-way;
+squeezes unpredictable -> stop-loss is the right tool, not a rebound signal.
