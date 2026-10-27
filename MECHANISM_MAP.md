@@ -934,3 +934,14 @@ REBOUND (>=40% below spike close + views normal, hold 180d): 2017-21 n 12
 +117.6% (one DOGE +1336%; ex-it ~+7%), 2021-06+ n 18 +6.8% (median ~+5%,
 win 10/18, range -82%..+153%, 3 buys on 2025-04 bottom) -> PASS by rule
 but noise. Crypto attention line closed.
+
+## Two-way multi-asset trend (managed-futures style) stacked on momentum -- PASS 2026-10-27
+
+scripts/trend_ls.py. 14 ETF stand-ins for futures (SPY EFA EEM / TLT IEF
+TIP / GLD SLV DBC USO DBA / UUP FXY FXE); sign = 12m return vs cash,
+equal-risk sizing 0.30/vol/14, excess-of-cash returns, monthly. Avg 7.4
+long / 6.6 short, gross 3.1x; corr vs MOM -0.02. Trend alone +5.0% excess,
+sh 0.44, worst -26%. MOM + TREND 100%: 31.7%/yr sh 0.96 (2017-21 35.2% sh
+1.09; last 5y 28.9% sh 0.86, worst -27%) vs MOM 26.6% sh 0.88 -> PASS.
+2022: MOM -6.3%, TREND +20.8%, combo +14.4%. Beats MOM x1.15 (29.4%,
+sh 0.87). Next: real futures version (micro contracts) on QuantConnect.
