@@ -1,0 +1,27 @@
+
+  junk-rally rate: 126 months; warnings on 38% of momentum months
+  momentum in WARNING months: +3.20%/mo (n 42, worst -18.4%) | normal months: +1.91%/mo (n 70)
+
+  book        | 2017-21 ann    sh  worst | last5y ann    sh  worst |  all ann  worst
+  MOMENTUM    |      +30.4%  0.98   -24% |     +23.0%  0.79   -28% |   +26.3%   -31%
+  DIAL_CASH   |      +20.6%  0.93   -21% |     +19.4%  0.78   -29% |   +20.0%   -29%
+  DIAL_SPY    |      +26.7%  1.03   -24% |     +20.7%  0.79   -31% |   +23.4%   -31%
+  DIAL_ZERO   |       +9.8%  0.58   -17% |     +14.6%  0.66   -30% |   +12.4%   -30%
+  SPY         |      +16.5%  1.04   -20% |     +13.8%  0.91   -24% |   +15.0%   -24%
+
+  momentum's 10 worst months (warning on?):
+    2020-03   -18.4%   warning YES   junk rate prior month 2.40%
+    2025-11   -17.5%   warning YES   junk rate prior month 2.26%
+    2024-12   -16.6%   warning no   junk rate prior month 1.30%
+    2022-06   -16.5%   warning no   junk rate prior month 1.37%
+    2022-01   -14.4%   warning no   junk rate prior month 0.83%
+    2018-10   -12.8%   warning no   junk rate prior month 0.49%
+    2021-04   -11.2%   warning YES   junk rate prior month 1.73%
+    2022-09   -11.1%   warning YES   junk rate prior month 1.93%
+    2019-09   -10.7%   warning YES   junk rate prior month 2.06%
+    2021-07   -10.5%   warning no   junk rate prior month 0.94%
+
+  warning months (date: momentum that month):  2018-04 -1%, 2018-08 +12%, 2018-12 -9%, 2019-01 +10%, 2019-02 +7%, 2019-09 -11%, 2019-10 +2%, 2019-11 -1%, 2019-12 +7%, 2020-01 +2%, 2020-02 -1%, 2020-03 -18%, 2020-04 +24%, 2020-05 +8%, 2020-06 +11%, 2020-07 +17%, 2020-08 -0%, 2020-09 +3%, 2020-10 -1%, 2020-11 +32%, 2020-12 -2%, 2021-02 +3%, 2021-03 +3%, 2021-04 -11%, 2022-03 +7%, 2022-04 -4%, 2022-09 -11%, 2023-03 -1%, 2023-04 +0%, 2023-06 +3%, 2024-02 +11%, 2024-04 -4%, 2024-08 +5%, 2025-02 -8%, 2025-06 +12%, 2025-08 -2%, 2025-09 +16%, 2025-11 -18%, 2026-02 +22%, 2026-03 -8%, 2026-04 +28%, 2026-06 -0%
+
+  ===== VERDICT (pre-stated) =====
+  DIAL_CASH beats momentum on Sharpe AND worst drop, both periods  FAIL

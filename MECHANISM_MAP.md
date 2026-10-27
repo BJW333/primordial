@@ -891,3 +891,15 @@ scripts/momentum_avoid.py. Drop stocks with a good-news spike in prior 504d
 (dropped 4.9 / 8.3 of top-20 picks per month). STEADY 30.4%/23.0% -> AVOID
 21.0%/11.1%; STEADY_TS 23.6%/16.2% -> 13.6%/3.3% -> FAIL. Fade = hype
 WITHOUT trend; hyped stocks still in the momentum top 20 are winners.
+
+## Momentum crash warning (hype among losers) -- FAIL, signal is backwards 2026-10-27
+
+scripts/crash_warning.py. JUNK rate = good-news spikes among bottom-half
+12m-return liquid stocks / liquid stocks with pages; warning = above 80th
+pct of expanding history -> next month momentum (STEADY) cut to 50%.
+Warnings 38% of months. Momentum in warning months +3.20%/mo vs normal
++1.91% (opposite of hypothesis). DIAL_CASH 20.6%/19.4% vs MOM 30.4%/23.0%,
+worst -29% vs -31% -> FAIL. Signal marks high-excitement / high-vol
+regimes (caught Mar-2020 -18%, Nov-2025 -18% but also Nov-2020 +32%,
+Apr-2026 +28%), not crashes. Portfolio_combo corrected to STEADY: MOM
+26.6%/yr, worst -31%; MOM + FADE 50% 33.6%, worst -27%, sh 1.00.
