@@ -1,0 +1,16 @@
+  14 ETFs: USO 2006, BNO 2010, UNG 2007, UGA 2008, GLD 2004, SLV 2006, CPER 2011, PPLT 2010, CORN 2010, WEAT 2011, SOYB 2011, CANE 2011, DBA 2007, DBB 2007
+  CFTC: 20 markets, 2006 -> 2026-10-20
+  EIA crude: 2299 weeks, 1982 -> 2026-10-21
+  EIA gasoline: 1920 weeks, 1990 -> 2026-10-21
+  EIA natgas: 877 weeks, 2010 -> 2026-10-22
+
+  combo      ETFs | 2008-21 ann    sh | last5y ann    sh  worst  2022 |   mom blend | time in market
+  ADX_TREND    12 |       +0.1%  0.06 |      +0.2%  0.08    -7%   +2% |  0.79  0.62 |           33%
+  ADX_FLOW     12 |       +0.1%  0.05 |      -0.5% -0.26    -6%   -0% |  0.79  0.40 |           23%
+  ADX_ROOM     12 |       +0.2%  0.13 |      +0.6%  0.34    -4%   +2% |  0.79  0.80 |           18%
+  ADX_OI       12 |       +0.1%  0.06 |      +0.2%  0.19    -3%   +2% |  0.79  0.66 |           10%
+  ADX_INV       4 |       +0.1%  0.04 |      +1.3%  0.38    -9%   +6% |  0.79  0.83 |           17%
+
+  CANDIDATE (best 2008-2021 Sharpe, chosen before looking at the last 5 years): ADX_ROOM (0.13)
+  ===== VERDICT (pre-stated) =====
+  ADX_ROOM: last-5y Sharpe 0.34 (need >= 0.5), improves the momentum blend: True -> FAIL
