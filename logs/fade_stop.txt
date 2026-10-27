@@ -1,0 +1,15 @@
+  SMALL: ~815 stocks per month
+  MID: ~816 stocks per month
+
+  581 trades (liquid MID, WEAK_TREND)
+  stop + 25% borrow 0.5% | stopped  55% of trades, worst trade -76% | 2017-21 +15.2% sh +1.19 dd -13% t +2.47 | last 5y +20.9% sh +1.71 dd -8% t +2.80
+  stop + 25% borrow 3.0% | stopped  55% of trades, worst trade -76% | 2017-21 +12.5% sh +0.99 dd -13% t +2.07 | last 5y +17.9% sh +1.49 dd -10% t +2.44
+  stop + 50% borrow 0.5% | stopped  33% of trades, worst trade -167% | 2017-21 +11.8% sh +0.95 dd -13% t +2.00 | last 5y +16.7% sh +1.39 dd -13% t +2.73 <- PRIMARY
+  stop + 50% borrow 3.0% | stopped  33% of trades, worst trade -167% | 2017-21  +9.1% sh +0.76 dd -13% t +1.60 | last 5y +13.8% sh +1.17 dd -15% t +2.31
+  stop +100% borrow 0.5% | stopped  15% of trades, worst trade -167% | 2017-21 +10.0% sh +0.82 dd -15% t +1.96 | last 5y +15.3% sh +1.25 dd -17% t +2.38
+  stop +100% borrow 3.0% | stopped  15% of trades, worst trade -167% | 2017-21  +7.4% sh +0.63 dd -15% t +1.50 | last 5y +12.4% sh +1.04 dd -19% t +1.99
+
+  primary by year: 2017 +0% | 2018 +5% | 2019 -2% | 2020 +41% | 2021 +34% | 2022 +13% | 2023 -9% | 2024 +18% | 2025 +10% | 2026 +38%
+
+  ===== VERDICT (bar set before running; idea is post-hoc) =====
+  50% stop short book  PASS -> paper-trade forward

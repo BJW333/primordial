@@ -825,3 +825,17 @@ Ranking flips between periods -> regime, not edge. Attention summary: fade
 real (20-30% underperf over 2y, small/mid); short book fails net of 3-6%
 borrow; no bottom; avoid filter hurts momentum. Line closed to avoid
 forking paths. Open: forward paper short book on easy-to-borrow names.
+
+## FADE TRADE FOUND: liquid-MID weak-trend short + 50% stop -- PASS (stop post-hoc) 2026-10-27
+
+scripts/fade_predict.py: day-21 flags on good-news spikes. Selected on
+2017-21 (15 rules): WEAK_TREND (12m ret < same-size avg) -16.0% t -4.32;
+last 5y -15.3% t -8.26, vs unflagged -8.4% t -2.40 -> PASS. DILUTION
+-23% recent but ~0 2017-21 -> FAIL. Insider sell ~ base rate.
+scripts/fade_book2.py: real book, no trades dropped, liquid MID +
+WEAK_TREND, 581 trades, short wins 65%, median -18%/-23%, but squeezes
+(+1198%, +639%) -> +0.4% / +9.9% t 1.96 -> FAIL.
+scripts/fade_stop.py (stop idea post-hoc): cover at close >= +50% over
+entry -> +11.8% sh 0.95 dd -13% / +16.7% sh 1.39 t 2.73 -> PASS. Robust:
+25% stop 15.2%/20.9%; 100% stop 10.0%/15.3%; 3% borrow still positive.
+Next: verify worst trades aren't data errors; frozen-rule Alpaca paper bot.

@@ -1,0 +1,43 @@
+  SMALL: ~815 stocks per month
+  MID: ~816 stocks per month
+  insider-sale histories 6764 tickers, share-count histories 12351 tickers
+
+  spikes with a full year after: 2017-21 1821, 2021-06+ 1638 | share-count coverage 65%
+  flag rates: INSIDER_SELL 32%  DILUTION 15%  WEAK_TREND 53%  GIVEBACK 32%  RUNUP 10%
+  ALL spikes, day 22 -> 252 vs benchmark: 2017-21 -15.64% t -4.01 | 2021-06+ -11.98% t -9.36
+
+  rule                       | 2017-21 n    mean      t  -20% | 2021+ n    mean      t  -20%  -40%
+  INSIDER_SELL               |       593 -13.63%  -2.84   22% |     503 -11.58%  -3.64   36%   21%
+  DILUTION                   |       285  -2.12%  +0.99   28% |     219 -23.15%  -7.39   51%   36%
+  WEAK_TREND                 |       947 -16.02%  -4.32   20% |     870 -15.30%  -8.26   36%   21%
+  GIVEBACK                   |       523 -15.84%  -3.57   27% |     594 -14.22%  -5.29   38%   25%
+  RUNUP                      |       203  -9.49%  -0.98   35% |     135  -9.52%  -0.63   43%   32%
+  INSIDER_SELL+DILUTION      |       123  +1.47%  +1.80   30% |      92 -24.56%  -5.34   53%   37%
+  INSIDER_SELL+WEAK_TREND    |       216 -16.77%  -2.03   20% |     232 -11.63%  -1.69   38%   21%
+  INSIDER_SELL+GIVEBACK      |       157  -7.07%  -0.01   26% |     149  -9.67%  -1.82   40%   27%
+  INSIDER_SELL+RUNUP         |        83 -18.89%  -2.64   39% |      59 -13.18%  -2.73   42%   25%
+  DILUTION+WEAK_TREND        |       117  -4.98%  -0.37   27% |      98 -25.09%  -7.10   51%   39%
+  DILUTION+GIVEBACK          |        77  -1.79%  +1.28   27% |      82 -31.62%  -4.91   61%   44%
+  DILUTION+RUNUP             |        65  +4.02%  +1.49   31% |      30 -22.81%  -2.37   47%   37%
+  WEAK_TREND+GIVEBACK        |       315 -17.24%  -4.08   24% |     379 -15.87%  -6.04   38%   26%
+  WEAK_TREND+RUNUP           |        48  +0.06%  +1.26   27% |      34  +5.45%  +0.97   35%   26%
+  GIVEBACK+RUNUP             |        77  -9.55%  -0.50   47% |      60 -16.78%  -2.15   53%   45%
+
+  SELECTED on 2017-21 (most negative t): WEAK_TREND (n 947, -16.02%, t -4.32)
+  2021-06+: flagged n 870, -15.30% t -8.26; flagged minus unflagged -8.39%/trade t -2.40
+    SMALL flagged n  344: fade -21.21% -> est. short after borrow+trading +15.31% per trade (11 months); down >=20% abs 37%, >=40% 22%
+    MID   flagged n  526: fade -11.44% -> est. short after borrow+trading +8.29% per trade (11 months); down >=20% abs 35%, >=40% 20%
+
+  ===== PART 2: liquid MID caps only, borrow 0.5%/yr + 0.4% trading, short 11 months =====
+  liquid MID spikes: 1297 (all of them shown first)
+  ALL (no flag)          2017-21 n  650 fade -17.93% t -3.39 net short +17.07% (-20% abs  25%) | 2021-06+ n  647 fade -10.45% t -4.14 net short  +9.59% (-20% abs  33%)
+  WEAK_TREND             2017-21 n  258 fade -15.58% t -2.69 net short +14.72% (-20% abs  21%) | 2021-06+ n  318 fade -11.34% t -2.68 net short +10.48% (-20% abs  35%)
+  DILUTION               2017-21 n  115 fade  -0.03% t +1.32 net short  -0.82% (-20% abs  25%) | 2021-06+ n   90 fade -19.69% t -4.69 net short +18.83% (-20% abs  49%)
+  WEAK_TREND+DILUTION    2017-21 n   41 fade  +9.83% t +0.35 net short -10.69% (-20% abs  12%) | 2021-06+ n   32 fade -20.38% t -1.88 net short +19.52% (-20% abs  50%)
+  INSIDER_SELL           2017-21 n  275 fade -13.56% t -1.82 net short +12.70% (-20% abs  23%) | 2021-06+ n  244 fade -13.61% t -1.59 net short +12.75% (-20% abs  36%)
+
+  ===== VERDICT (pre-stated) =====
+  fade predictor (WEAK_TREND)                PASS
+  liquid short WEAK_TREND                    PASS
+  liquid short DILUTION                      FAIL
+  liquid short WEAK_TREND+DILUTION           FAIL

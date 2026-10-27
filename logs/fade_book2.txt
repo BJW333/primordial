@@ -1,0 +1,19 @@
+  SMALL: ~815 stocks per month
+  MID: ~816 stocks per month
+
+  581 trades (liquid MID, WEAK_TREND), NO trades dropped
+    2017-21   per-trade fade -5.05% (median -18.46%), short wins 65%, worst 3 trades (stock vs peers): +1198%, +639%, +453%
+    2021-06+  per-trade fade -10.17% (median -23.09%), short wins 66%, worst 3 trades (stock vs peers): +363%, +282%, +207%
+
+  BOOK, borrow 0.5%/yr: avg 57 shorts open
+    2017-21  ann   +0.4%  vol   15%  sharpe +0.10  worst  -19%  t +0.27
+    last 5y  ann   +9.9%  vol   15%  sharpe +0.72  worst  -23%  t +1.96
+    by year: 2017 +0% | 2018 +6% | 2019 -3% | 2020 +7% | 2021 +12% | 2022 +16% | 2023 -15% | 2024 +25% | 2025 +6% | 2026 +3%
+
+  BOOK, borrow 3.0%/yr: avg 57 shorts open
+    2017-21  ann   -2.1%  vol   15%  sharpe -0.06  worst  -20%  t -0.32
+    last 5y  ann   +7.2%  vol   15%  sharpe +0.55  worst  -24%  t +1.49
+    by year: 2017 -2% | 2018 +3% | 2019 -5% | 2020 +4% | 2021 +10% | 2022 +13% | 2023 -17% | 2024 +22% | 2025 +4% | 2026 +2%
+
+  ===== VERDICT (pre-stated) =====
+  liquid MID WEAK_TREND short book, real-world  FAIL
