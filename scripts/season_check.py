@@ -99,8 +99,9 @@ def main(F=None, E=None):
     print(f"  roll-cleaned Sharpe: last 5y {s1c:.2f} (need >= 0.5), 2007-21 "
           f"{s0c:.2f} (need >= 0.3); biggest single market "
           f"{sh.index[0]} {top*100:.0f}% of P&L (need <= 50%)")
-    print(f"  SEASON {'SURVIVES -- forward paper trading next' if ok else
-                    'DOES NOT SURVIVE -- roll artifact or concentration'}")
+    msg = ("SURVIVES -- forward paper trading next" if ok else
+           "DOES NOT SURVIVE -- roll artifact or concentration")
+    print(f"  SEASON {msg}")
 
 
 if __name__ == "__main__":
