@@ -1,0 +1,9 @@
+  14 ETFs: USO 2006, BNO 2010, UNG 2007, UGA 2008, GLD 2004, SLV 2006, CPER 2011, PPLT 2010, CORN 2010, WEAT 2011, SOYB 2011, CANE 2011, DBA 2007, DBB 2007
+
+  variant    | 2008-21 ann    sh | last5y ann    sh  worst  2022 |   mom blend | in market trades/yr
+  ADX_PSAR   |       +0.4%  0.22 |      +0.4%  0.27    -2%   +0% |  0.79  0.81 |       13%       4.1
+  PSAR       |       +1.2%  0.28 |      -2.5% -0.60   -13%   -4% |  0.79  0.04 |      100%      18.1
+  ADX_TREND  |       +0.5%  0.17 |      -0.1% -0.01    -7%   +2% |  0.79  0.55 |       33%       8.5
+
+  ===== VERDICT (pre-stated, ADX_PSAR) =====
+  2008-21 Sharpe 0.22 (need >= 0.3), last 5y 0.27 (need >= 0.5), improves momentum blend: True -> FAIL
