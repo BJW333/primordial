@@ -1,0 +1,42 @@
+    prices 0/863
+    prices 100/863
+    prices 200/863
+    prices 300/863
+    prices 400/863
+    prices 500/863
+    prices 600/863
+    prices 700/863
+    prices 800/863
+
+  ===== ATTENTION (Wikipedia page-view spikes) =====
+  1183 spikes in 442 stocks
+    2017-2021     + 5d: -0.00% vs SPY (median +0.01%), t +0.70, 610 spikes
+    2017-2021     +21d: +0.13% vs SPY (median -0.67%), t +0.79, 610 spikes
+    2017-2021     +63d: +0.15% vs SPY (median -0.49%), t +0.05, 610 spikes
+    last 5 years  + 5d: -0.29% vs SPY (median -0.29%), t -0.75, 569 spikes
+    last 5 years  +21d: -0.16% vs SPY (median -0.37%), t +0.41, 561 spikes
+    last 5 years  +63d: -0.38% vs SPY (median -1.49%), t -0.39, 532 spikes
+
+  portfolios (avg 10 spike stocks per month)
+  portfolio      | 2017-21 ann    sh | last5y ann    sh  worst
+  ATTN_LONG      |      +13.4%  0.84 |     +10.8%  0.74   -22%
+  ATTN_AVOID     |      +14.7%  0.82 |      +8.4%  0.58   -20%
+  BASE_EW        |      +14.7%  0.82 |      +8.5%  0.59   -20%
+  SPY            |      +16.5%  1.04 |     +14.0%  0.91   -24%
+
+  ===== SHORT INTEREST: shorted share of volume, 20d (FINRA daily) =====
+  93 months, 2018-09 -> 2026-05, ~502 stocks per month
+  avg monthly return by fifth (Q1 least shorted ... Q5 most): Q1 +1.24%  Q2 +1.10%  Q3 +0.96%  Q4 +0.85%  Q5 +0.92%  | SPY +1.28%
+  monthly turnover of the two legs: 95% of positions
+  SPREAD (least minus most shorted): +1.5%/yr t +0.65 | first half -0.4%/yr, second half +3.4%/yr
+
+  portfolios
+  portfolio      | 2017-21 ann    sh | last5y ann    sh  worst
+  SPREAD         |       -3.2% -0.53 |      +3.9%  0.61    -5%
+  AVOID_SHORTED  |      +15.2%  0.73 |      +9.1%  0.64   -19%
+  BASE_EW        |      +15.5%  0.74 |      +8.5%  0.59   -20%
+  SPY            |      +16.5%  0.89 |     +14.0%  0.91   -24%
+
+  ===== VERDICT (pre-stated) =====
+  ATTENTION  FAIL
+  SHORT      FAIL
