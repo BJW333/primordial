@@ -730,3 +730,14 @@ stock momentum +0.01; blend Sharpe 0.79 -> 1.71; ETF long-only 0.81 -> PASS.
 TREND last 5y 0.62 but 2007-21 0.16 -> FAIL. CARRY -0.37, COT 0.07,
 REPORTS -0.33 -> FAIL. Caveat: continuous-futures roll jumps are
 calendar-seasonal -> season_check.py before trusting.
+
+## Commodity SEASON roll check -- DOES NOT SURVIVE (roll artifact) 2026-10-26
+
+scripts/season_check.py, commit 939f566. Roll days detected as futures-vs-
+ETF return divergence (>4x typical and >1.5%), ETF return substituted.
+Same 11 ETF markets: raw futures 2007-21 Sharpe 0.53 / last 5y 1.14 ->
+roll-cleaned 0.22 / 0.51 -> FAIL (bar 0.3 / 0.5). ETF-only long/short
+-0.17 / -0.33. Top P&L markets hogs 28%, cattle 13% -- no ETF, uncleanable,
+strong contract-month gaps. Read: SEASON pass was mostly Yahoo continuous-
+futures roll jumps. Lesson: any calendar/seasonal futures test needs
+roll-adjusted (back-adjusted) data.
