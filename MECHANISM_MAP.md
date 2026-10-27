@@ -903,3 +903,13 @@ worst -29% vs -31% -> FAIL. Signal marks high-excitement / high-vol
 regimes (caught Mar-2020 -18%, Nov-2025 -18% but also Nov-2020 +32%,
 Apr-2026 +28%), not crashes. Portfolio_combo corrected to STEADY: MOM
 26.6%/yr, worst -31%; MOM + FADE 50% 33.6%, worst -27%, sh 1.00.
+
+## Long-only multi-asset trend sleeve on top of momentum -- FAIL (too weak long-only) 2026-10-27
+
+scripts/trend_sleeve.py. NONEQ 11 ETFs (bonds/gold/commodities/FX), held
+if 12m return > BIL, inverse-vol slots, rest cash. NONEQ alone +3.6%/yr,
+vol 3%, ~1.5%/yr over cash; corr vs MOM +0.21. MOM + NONEQ 100%: 26.7%,
+sh 0.87, worst -27% vs MOM 26.6%, 0.88, -31% -> FAIL (Sharpe not higher).
+2022 only +2.7%: long-only can't short bonds, which is where real managed
+futures earned. MOM x1.15 lev: 29.4%, worst -36%. Lesson: diversifiers
+for momentum need a short side (fade, trend futures) or puts.
