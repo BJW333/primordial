@@ -1,0 +1,33 @@
+  page views for 2206 companies
+    prices 0/863
+    prices 100/863
+    prices 200/863
+    prices 300/863
+    prices 400/863
+    prices 500/863
+    prices 600/863
+    prices 700/863
+    prices 800/863
+
+  ----- PART 1 (SP): same day + news direction -----
+    same day: average move on spike days 2.78% vs 1.40% on normal days (2.0x); average signed move +0.07%; 51% up
+    GOOD (up >2% on spike day): 661 spikes
+      enter next close, 2017-21 +5d -0.42% (t -0.65)  +21d -1.17% (t -1.12)  +63d -2.48% (t -2.31)  n 334
+      enter next close, last 5y +5d -0.17% (t -0.42)  +21d -0.31% (t -0.60)  +63d -0.25% (t -0.82)  n 309
+      enter same close*, 2017-21 +5d -0.49% (t -1.77)  +21d -1.17% (t -1.27)  +63d -2.96% (t -2.49)  n 335
+      enter same close*, last 5y +5d -0.16% (t +0.18)  +21d -0.27% (t +0.11)  +63d -0.34% (t -0.55)  n 311
+    BAD (down >2% on spike day): 691 spikes
+      enter next close, 2017-21 +5d +0.15% (t -0.02)  +21d +0.72% (t +0.74)  +63d +1.57% (t +0.70)  n 334
+      enter next close, last 5y +5d -0.35% (t -1.67)  +21d -0.40% (t -0.74)  +63d -2.74% (t -2.33)  n 348
+      enter same close*, 2017-21 +5d +0.24% (t -1.38)  +21d +0.60% (t -0.19)  +63d +1.90% (t -0.05)  n 334
+      enter same close*, last 5y +5d -0.69% (t -1.65)  +21d -0.56% (t -0.79)  +63d -2.78% (t -2.20)  n 349
+      * optimistic: Wikipedia's day ends 4h after the US close
+
+  ----- PART 3 (SP): slow steady attention growth -----
+    111 months, ~410 stocks/month with a year of view history
+    avg monthly: growing fifth +1.02%, shrinking fifth +1.27%, all +1.02%
+    SPREAD -4.0%/yr t -1.78 | 2017-21 -4.4%/yr, last 5y -3.6%/yr
+  SMALL universe: 3567 stocks ever, ~815 per month
+  SMALL stocks with page views: 1284
+
+  ----- PART 1 (SMALL): same day + news direction -----
