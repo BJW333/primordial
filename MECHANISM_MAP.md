@@ -752,3 +752,13 @@ judged: ADX_TREND (ADX>25, DI direction) 2008-21 Sharpe 0.17 / last 5y
 all FAIL. Context: TREND12 0.40 / 0.41; HOLD -0.11 / 0.91 -- long-only
 'wins' last 5y are the commodity bull (inflation 2021-22, gold 2024-26),
 not the signals. ADX adds nothing over plain trend.
+
+## ADX + non-price data (CFTC flow/room/OI, EIA inventories) -- FAIL, ADX closed 2026-10-26
+
+scripts/adx_fundamentals.py, commit 87fe71c. 12 commodity ETFs (energy 4
+for inventories); CFTC used from Friday release, EIA from release day.
+2008-21 / last-5y Sharpe: ADX alone 0.06/0.08; +FLOW 0.05/-0.26; +ROOM
+0.13/0.34; +OI 0.06/0.19; +INV (crude/gasoline/natgas vs 5y same-week avg)
+0.04/0.38 (2022 +6%). Candidate (best 2008-21) ADX_ROOM -> last 5y 0.34 <
+0.5 -> FAIL. Non-price data helps ADX slightly but nothing near an edge;
+time in market 10-23%. ADX closed.
