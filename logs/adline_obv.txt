@@ -1,0 +1,29 @@
+    prices 0/863
+    prices 100/863
+    prices 200/863
+    prices 300/863
+    prices 400/863
+    prices 500/863
+    prices 600/863
+    prices 700/863
+    prices 800/863
+
+  STOCKS (S&P 500 PIT): avg qualifying ADX+OBV picks 0.0/20
+  variant    | 2017-21 ann    sh | last5y ann  vol    sh  worst | same-risk SPY SPY sh
+  S_BREADTH  |      +15.4%  1.21 |      +2.9%  14%  0.27   -35% |        +12.9%   0.93
+  S_ADX_OBV  |      +16.4%  1.03 |     +14.0%  15%  0.93   -23% |        +14.0%   0.93
+  S_COMBO    |      +11.3%  0.80 |      +5.7%  14%  0.47   -34% |        +12.6%   0.93
+  SPY        |      +16.4%  1.03 |     +14.0%  15%  0.93   -23% |        +14.0%   0.93
+  CANDIDATE (best 2017-21 Sharpe): S_BREADTH -> last 5y +2.9% vs same-risk SPY +12.9%, Sharpe 0.27 vs SPY 0.93 -> FAIL
+  14 ETFs: USO 2006, BNO 2010, UNG 2007, UGA 2008, GLD 2004, SLV 2006, CPER 2011, PPLT 2010, CORN 2010, WEAT 2011, SOYB 2011, CANE 2011, DBA 2007, DBB 2007
+
+  COMMODITIES (14 ETFs)
+  variant    | 2008-21 ann    sh | last5y ann    sh  worst  2022 |   mom blend
+  C_BREADTH  |       +1.1%  0.27 |      +0.5%  0.12   -14%   +3% |  0.79  0.59
+  C_ADX_OBV  |       +0.5%  0.17 |      -0.0%  0.01    -7%   +2% |  0.79  0.57
+  C_COMBO    |       +1.0%  0.35 |      +0.0%  0.01    -8%   +2% |  0.79  0.56
+  CANDIDATE (best 2008-21 Sharpe): C_COMBO -> last 5y Sharpe 0.01 (need >= 0.5), improves blend False -> FAIL
+
+  ===== VERDICT (pre-stated: chosen on the early period, judged once on the last five years) =====
+  stocks       S_BREADTH  FAIL
+  commodities  C_COMBO    FAIL
