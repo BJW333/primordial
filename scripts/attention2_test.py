@@ -138,7 +138,9 @@ def small_universe(sp_members):
             continue
         med = dv.loc[d, live].median()
         small[d] = {s for s in live if dv.at[d, s] < med}
-    members = lambda t: small[max(d for d in days if d <= t)]  # noqa
+    def members(t):
+        past = [d for d in days if d <= t]
+        return small[past[-1]] if past else set()
     keep = sorted(set().union(*small.values()))
     px = px[keep]
     r = px.pct_change(fill_method=None).clip(-0.5, 1.0)

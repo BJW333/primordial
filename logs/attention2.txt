@@ -31,3 +31,32 @@
   SMALL stocks with page views: 1284
 
   ----- PART 1 (SMALL): same day + news direction -----
+    same day: average move on spike days 5.43% vs 1.98% on normal days (2.7x); average signed move +1.52%; 51% up
+    GOOD (up >2% on spike day): 1134 spikes
+      enter next close, 2017-21 +5d -0.31% (t +0.42)  +21d -2.56% (t -1.60)  +63d -3.44% (t -1.75)  n 598
+      enter next close, last 5y +5d +0.32% (t +0.29)  +21d -1.24% (t -2.37)  +63d -6.24% (t -6.09)  n 517
+      enter same close*, 2017-21 +5d -0.25% (t -0.12)  +21d -2.30% (t -2.08)  +63d -3.47% (t -1.51)  n 597
+      enter same close*, last 5y +5d -0.13% (t -0.57)  +21d -1.70% (t -3.09)  +63d -5.99% (t -5.74)  n 518
+    BAD (down >2% on spike day): 883 spikes
+      enter next close, 2017-21 +5d -0.02% (t +0.87)  +21d -0.80% (t +0.15)  +63d -3.47% (t -1.32)  n 432
+      enter next close, last 5y +5d +0.88% (t +0.52)  +21d -0.55% (t -0.13)  +63d -1.97% (t -0.88)  n 440
+      enter same close*, 2017-21 +5d +0.26% (t +0.83)  +21d -0.42% (t +0.49)  +63d -3.05% (t -1.44)  n 433
+      enter same close*, last 5y +5d +1.14% (t +0.72)  +21d -0.67% (t -0.13)  +63d -1.88% (t -0.62)  n 439
+      * optimistic: Wikipedia's day ends 4h after the US close
+
+  ----- PART 2 (SMALL): 7-day spikes, as in the S&P test -----
+    1083 spikes in 517 stocks
+      vs small-cap avg, 2017-21 +5d -0.15% (t -1.22)  +21d -0.68% (t -1.92)  +63d -2.98% (t -1.04)  n 562
+      vs small-cap avg, last 5y +5d -0.54% (t -1.06)  +21d -2.14% (t -1.93)  +63d -6.11% (t -3.95)  n 511
+
+  ----- PART 3 (SMALL): slow steady attention growth -----
+    112 months, ~357 stocks/month with a year of view history
+    avg monthly: growing fifth +0.89%, shrinking fifth +1.03%, all +0.53%
+    SPREAD -3.0%/yr t -0.96 | 2017-21 -6.1%/yr, last 5y -0.4%/yr
+
+  ===== VERDICT (pre-stated) =====
+  1 same-day/direction (SP)        FAIL
+  3 attention growth (SP)          FAIL
+  1 same-day/direction (SMALL)     FAIL
+  2 small-cap spikes               FAIL
+  3 attention growth (SMALL)       FAIL
