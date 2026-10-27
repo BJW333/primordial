@@ -1,0 +1,56 @@
+  BTC-USD: 5 hype spikes 2017-03-03, 2017-05-13, 2017-11-27, 2020-12-17, 2024-11-11
+  ETH-USD: 6 hype spikes 2017-12-12, 2020-01-15, 2021-01-03, 2021-05-13, 2024-03-10, 2024-06-15
+  DOGE-USD: 13 hype spikes 2017-12-09, 2018-07-18, 2019-04-02, 2020-04-29, 2020-07-08, 2020-11-24, 2021-01-27, 2021-04-14, 2021-10-28, 2022-10-29, 2023-04-03, 2024-03-04, 2024-11-06
+  LTC-USD: 8 hype spikes 2017-05-03, 2017-11-27, 2020-11-19, 2021-02-13, 2021-05-10, 2021-10-24, 2024-12-02, 2025-07-20
+  ADA-USD: 2 hype spikes 2021-08-20, 2024-11-10
+  SOL-USD: 6 hype spikes 2021-11-09, 2023-11-01, 2024-03-16, 2024-07-30, 2024-11-11, 2025-01-18
+  XRP-USD: 10 hype spikes 2017-12-12, 2018-09-20, 2020-11-21, 2021-01-31, 2021-04-11, 2023-07-13, 2024-08-08, 2024-11-16, 2025-01-16, 2025-07-17
+  SHIB-USD: 3 hype spikes 2021-10-04, 2024-03-02, 2024-10-21
+
+  ===== TEST 1: FADE after hype (vs the coin's normal drift) =====
+    2017-21   n  26  +30d +49.4% (med +18.6%, 38% neg)  +90d +107.6% (med +25.6%, 38% neg)  +180d +352.3% (med +20.4%, 35% neg)
+    2021-06+  n  27  +30d +12.4% (med -10.5%, 59% neg)  +90d -7.3% (med -23.0%, 74% neg)  +180d -8.9% (med -40.2%, 81% neg)
+
+  ===== TEST 2: SELL THE HYPE (BTC/ETH trend sleeve overlay) =====
+    sleeve (plain)         all  +61.1% sh 1.01 worst -59% | 2017-21 +137.0% sh 1.40 | last5y  +16.0% sh 0.55 worst -30%
+    sleeve SELL-THE-HYPE   all  +42.3% sh 0.92 worst -39% | 2017-21  +75.8% sh 1.19 | last5y  +18.9% sh 0.63 worst -30%
+    MOM 80 + plain 20      all  +36.6% sh 1.12 worst -28% | 2017-21  +53.6% sh 1.41 | last5y  +23.7% sh 0.85 worst -28%
+    MOM 80 + SELL 20       all  +32.0% sh 1.06 worst -28% | 2017-21  +41.8% sh 1.27 | last5y  +24.2% sh 0.87 worst -28%
+
+  ===== TEST 3: REBOUND -- buy after the hype crash, hold 180d =====
+    BTC-USD   spike 2017-11-27 -> bought 2018-11-15: +11% vs normal 180d
+    ETH-USD   spike 2017-12-12 -> bought 2018-03-30: -49% vs normal 180d
+    ETH-USD   spike 2021-05-13 -> bought 2021-06-20: +60% vs normal 180d
+    ETH-USD   spike 2024-03-10 -> bought 2024-09-07: -11% vs normal 180d
+    ETH-USD   spike 2024-06-15 -> bought 2025-03-08: +80% vs normal 180d
+    DOGE-USD  spike 2018-07-18 -> bought 2018-11-25: +11% vs normal 180d
+    DOGE-USD  spike 2019-04-02 -> bought 2020-03-13: +32% vs normal 180d
+    DOGE-USD  spike 2020-07-08 -> bought 2020-09-04: +1336% vs normal 180d
+    DOGE-USD  spike 2021-04-14 -> bought 2022-06-12: +24% vs normal 180d
+    DOGE-USD  spike 2021-10-28 -> bought 2021-12-05: -61% vs normal 180d
+    DOGE-USD  spike 2022-10-29 -> bought 2022-12-20: -32% vs normal 180d
+    DOGE-USD  spike 2024-03-04 -> bought 2024-07-05: +153% vs normal 180d
+    LTC-USD   spike 2017-11-27 -> bought 2018-08-15: -31% vs normal 180d
+    LTC-USD   spike 2021-02-13 -> bought 2021-06-22: +12% vs normal 180d
+    LTC-USD   spike 2021-05-10 -> bought 2021-05-22: +5% vs normal 180d
+    LTC-USD   spike 2021-10-24 -> bought 2022-01-22: -53% vs normal 180d
+    LTC-USD   spike 2024-12-02 -> bought 2025-04-07: +48% vs normal 180d
+    ADA-USD   spike 2021-08-20 -> bought 2021-12-05: -60% vs normal 180d
+    SOL-USD   spike 2021-11-09 -> bought 2022-01-08: -82% vs normal 180d
+    SOL-USD   spike 2024-03-16 -> bought 2025-04-07: +45% vs normal 180d
+    SOL-USD   spike 2024-07-30 -> bought 2025-04-07: +45% vs normal 180d
+    SOL-USD   spike 2024-11-11 -> bought 2025-04-01: +13% vs normal 180d
+    SOL-USD   spike 2025-01-18 -> bought 2025-02-25: -3% vs normal 180d
+    XRP-USD   spike 2018-09-20 -> bought 2019-08-15: +1% vs normal 180d
+    XRP-USD   spike 2021-04-11 -> bought 2021-06-19: +1% vs normal 180d
+    XRP-USD   spike 2023-07-13 -> bought 2023-09-12: +21% vs normal 180d
+    XRP-USD   spike 2025-01-16 -> bought 2025-04-07: +49% vs normal 180d
+    XRP-USD   spike 2025-07-17 -> bought 2025-11-21: -33% vs normal 180d
+    SHIB-USD  spike 2024-03-02 -> bought 2024-08-05: +39% vs normal 180d
+    SHIB-USD  spike 2024-10-21 -> bought 2025-10-11: -40% vs normal 180d
+    2017-21 n 12 mean +117.6% | 2021-06+ n 18 mean +6.8%
+
+  ===== VERDICT (pre-stated; small samples) =====
+  FADE after crypto hype (90d < 0 both periods)      FAIL
+  SELL THE HYPE beats plain sleeve (Sharpe, both)    FAIL
+  REBOUND after hype crash (>0 both, >=5 each)       PASS

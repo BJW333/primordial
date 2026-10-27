@@ -923,3 +923,14 @@ BUT last 5y only 23.7% vs 23.5% (sh 0.85 vs 0.79); 2017 (+1100% BTC)
 drives the early gap. Filter: 2018 -59% (BTC -74%) weak; 2022 -7% (BTC
 -64%) strong. MOM 100% + CRYPTO 20% last 5y 26.6% ~ MOM x1.15 25.5%.
 Verdict: modest diversifier, not a reliable return adder ex-2017.
+
+## Crypto Wikipedia hype: fade / sell-the-hype / rebound -- regime-flipping, rebound PASS is noise 2026-10-27
+
+scripts/crypto_attention.py (log-return 'normal' after inf bug fix). 53
+hype spikes, 8 coins. FADE 90d median vs normal: 2017-21 +25.6% (hype =
+continuation), 2021-06+ -23.0% (74% neg) -> regime flip, FAIL. SELL THE
+HYPE overlay: 2017-21 sh 1.19 vs 1.40, last 5y 0.63 vs 0.55 -> FAIL.
+REBOUND (>=40% below spike close + views normal, hold 180d): 2017-21 n 12
++117.6% (one DOGE +1336%; ex-it ~+7%), 2021-06+ n 18 +6.8% (median ~+5%,
+win 10/18, range -82%..+153%, 3 buys on 2025-04 bottom) -> PASS by rule
+but noise. Crypto attention line closed.
