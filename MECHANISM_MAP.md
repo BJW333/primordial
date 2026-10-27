@@ -717,3 +717,16 @@ t +2.07; years 2022 +1.0%, 2023 -1.1%, 2024 -0.4%, 2025 +1.2%; 2018-21
 -2.4% -> FAIL. Profit lives in non-shortable tiny coins (all-coins +2.2%
 at same settings). Stop hit 15%; runaways to +626% in 24h (ALPACA).
 Use: pump detector as an entry filter only.
+
+## Commodities: 5 strategies x 20 futures -- SEASON PASS (pending roll check), rest FAIL 2026-10-26
+
+scripts/commodities_test.py, commit 3e39538. Yahoo continuous front futures
+(20 mkts, 2000+), CFTC disaggregated COT 2006+, ETF carry estimate. Equal
+risk per market, 2 bps. Bar (tightened after noise check, pre-run):
+last-5y Sharpe >= 0.5, 2007-21 >= 0.3, improves 50/50 blend with STEADY.
+SEASON (sign of same-calendar-month mean, prior yrs >= 5): 2007-21 +2.2%/yr
+Sharpe 0.67; last 5y +4.2%/yr Sharpe 1.36, DD -4%, 2022 +6%; corr with
+stock momentum +0.01; blend Sharpe 0.79 -> 1.71; ETF long-only 0.81 -> PASS.
+TREND last 5y 0.62 but 2007-21 0.16 -> FAIL. CARRY -0.37, COT 0.07,
+REPORTS -0.33 -> FAIL. Caveat: continuous-futures roll jumps are
+calendar-seasonal -> season_check.py before trusting.
