@@ -1,0 +1,32 @@
+  good-news spikes found (all sizes, 2015-10+): 8227 in 1821 stocks
+
+  ===== 2017-2021: 51 months | momentum top-20 picks dropped as hyped: 4.9/month =====
+  variant           annual    vol sharpe   worst
+  STEADY            +30.4%  32.2%   0.98  -24.2%
+  STEADY_AVOID      +21.0%  28.2%   0.82  -28.3%
+  STEADY_TS         +23.6%  32.8%   0.81  -31.9%
+  STEADY_TS_AVOID   +13.6%  31.3%   0.56  -35.9%
+  SPY               +16.5%  16.0%   1.04  -19.6%
+
+  ===== LAST FIVE YEARS: 61 months | momentum top-20 picks dropped as hyped: 8.3/month =====
+  variant           annual    vol sharpe   worst
+  STEADY            +23.0%  33.6%   0.79  -28.1%
+  STEADY_AVOID      +11.1%  27.3%   0.52  -33.5%
+  STEADY_TS         +16.2%  31.9%   0.63  -27.0%
+  STEADY_TS_AVOID    +3.3%  26.0%   0.25  -39.5%
+  SPY               +13.8%  15.7%   0.91  -23.9%
+
+  by year:              STEADY     STEADY_AVOID        STEADY_TS  STEADY_TS_AVOID              SPY
+  2017                 +22.0%           +24.9%           +20.6%           +23.2%           +15.1%
+  2018                  -4.1%           -15.8%           -14.3%           -23.0%            -5.0%
+  2019                 +25.4%           +24.1%           +26.8%           +24.2%           +31.1%
+  2020                 +88.7%           +54.3%           +79.5%           +40.3%           +18.5%
+  2021                 +12.4%            -0.1%            +3.1%            -5.6%           +28.6%
+  2022                  -6.3%            -9.2%            -5.1%           -17.1%           -18.2%
+  2023                 +23.3%           +11.7%           +18.1%            +7.9%           +26.2%
+  2024                 +29.7%           +10.4%           +25.8%            +7.5%           +24.9%
+  2025                  -0.7%           +12.4%           -11.2%            +1.4%           +17.7%
+  2026                 +91.1%           +51.8%           +74.1%           +33.3%           +11.5%
+
+  ===== VERDICT (pre-stated) =====
+  STEADY_TS_AVOID beats STEADY_TS (return + Sharpe, both periods)  FAIL

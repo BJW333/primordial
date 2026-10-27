@@ -1,0 +1,21 @@
+    prices 0/863
+    prices 100/863
+    prices 200/863
+    prices 300/863
+    prices 400/863
+    prices 500/863
+    prices 600/863
+    prices 700/863
+    prices 800/863
+  high/low/volume matched to 100% of price days
+
+  STOCKS (S&P 500 PIT): avg qualifying ADX+OBV picks 19.3/20
+  variant    | 2017-21 ann    sh | last5y ann  vol    sh  worst | same-risk SPY SPY sh
+  S_BREADTH  |      +15.4%  1.21 |      +2.9%  14%  0.27   -35% |        +12.6%   0.91
+  S_ADX_OBV  |      +12.2%  0.86 |     +14.3%  16%  0.92   -17% |        +14.1%   0.91
+  S_COMBO    |       +6.6%  0.55 |      +6.3%  15%  0.48   -28% |        +13.2%   0.91
+  SPY        |      +16.5%  1.04 |     +14.0%  16%  0.91   -24% |        +14.0%   0.91
+  CANDIDATE (best 2017-21 Sharpe): S_BREADTH -> last 5y +2.9% vs same-risk SPY +12.6%, Sharpe 0.27 vs SPY 0.91 -> FAIL
+
+  ===== VERDICT (pre-stated: chosen on the early period, judged once on the last five years) =====
+  stocks       S_BREADTH  FAIL

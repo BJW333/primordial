@@ -870,3 +870,24 @@ Softens the fade, no rebound. By ETF (diagnostic, both periods): OIH +5.2%
 (med +10%, win 55%, n 29), XME +8.6% (n 49), LIT +8.6% (n 20), SLX +1.0%;
 XBI -16.7%, XLI -22.4%, IYT -14.1%. Commodity-linked hint only, post-hoc.
 Rebound line closed (3 rounds, 11 mechanisms).
+
+## Attention bottom via MA reclaim + OBV + ADX -- FAIL 2026-10-27
+
+scripts/attention_bottom.py. After a >=10% dip from the spike close: M20/M50
+reclaim, OBV turn, ADX uptrend, ADX downtrend-exhaust (close-only ADX), 31
+combos. Selected M20 both universes -> last 5y SMALL -0.14% t +0.49, MID
+-3.72% t -2.57 (27% win) -> FAIL. MID signals fire into dead-cat bounces.
+
+## Attention fade short book (FAIL after costs) + year-two rebound (none: decline continues) 2026-10-27
+
+scripts/attention_fade_book.py. Hedged short, 0.2%/side, borrow MID 3% SMALL
+6%. MID 252d gross +10.2%/+4.6%; net +6.6%/+1.1% t 0.47 -> FAIL. YEAR TWO
+(day 252->504): MID -10.4% t -3.74 / -9.5% t -4.99; SMALL -7.9% / -13.4%
+-> no rebound; ~20-30% underperformance over 2 years.
+
+## Momentum + avoid-hyped filter -- FAIL (hyped picks were the winners) 2026-10-27
+
+scripts/momentum_avoid.py. Drop stocks with a good-news spike in prior 504d
+(dropped 4.9 / 8.3 of top-20 picks per month). STEADY 30.4%/23.0% -> AVOID
+21.0%/11.1%; STEADY_TS 23.6%/16.2% -> 13.6%/3.3% -> FAIL. Fade = hype
+WITHOUT trend; hyped stocks still in the momentum top 20 are winners.

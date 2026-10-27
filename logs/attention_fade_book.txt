@@ -1,0 +1,41 @@
+  SMALL: ~815 stocks per month
+  MID: ~816 stocks per month
+
+  ===== PART A SMALL: hedged short book (borrow 6%/yr, trading 0.2%/side) =====
+  hold 63d: avg 39 shorts held, 100% of days invested
+    2017-21  gross ann   +7.1%  vol    9%  sharpe +0.79  worst  -10%  t +1.56
+    2017-21  net   ann   -0.7%  vol    9%  sharpe -0.04  worst  -19%  t -0.07
+    last 5y  gross ann  +14.3%  vol   12%  sharpe +1.18  worst  -12%  t +2.83
+    last 5y  net   ann   +5.9%  vol   12%  sharpe +0.54  worst  -17%  t +1.29
+  hold 252d: avg 121 shorts held, 100% of days invested
+    2017-21  gross ann   +5.2%  vol    6%  sharpe +0.93  worst   -7%  t +2.14
+    2017-21  net   ann   -1.3%  vol    6%  sharpe -0.20  worst  -12%  t -0.47
+    last 5y  gross ann   +9.0%  vol    7%  sharpe +1.29  worst   -6%  t +2.86
+    last 5y  net   ann   +2.2%  vol    7%  sharpe +0.36  worst  -11%  t +0.80
+  by year (net): 2017 +5%/-7% | 2018 -13%/-4% | 2019 -0%/+4% | 2020 +10%/+3% | 2021 -9%/-6% | 2022 +11%/+4% | 2023 +20%/+12% | 2024 +14%/+1% | 2025 +10%/+4% | 2026 -14%/-3%   (63d net/252d net)
+
+  ===== PART B SMALL: year-two rebound (day 252 -> 504) =====
+    2017-21    n   768  mean  -7.86%  median  -9.33%  win  42%  t -2.71
+    2021-06..  n   449  mean -13.42%  median -18.37%  win  33%  t -4.35
+
+  ===== PART A MID: hedged short book (borrow 3%/yr, trading 0.2%/side) =====
+  hold 63d: avg 59 shorts held, 100% of days invested
+    2017-21  gross ann   +7.4%  vol   10%  sharpe +0.79  worst  -12%  t +1.90
+    2017-21  net   ann   +2.6%  vol   10%  sharpe +0.31  worst  -15%  t +0.75
+    last 5y  gross ann   +8.1%  vol   10%  sharpe +0.84  worst  -11%  t +2.14
+    last 5y  net   ann   +3.3%  vol   10%  sharpe +0.37  worst  -15%  t +0.95
+  hold 252d: avg 168 shorts held, 100% of days invested
+    2017-21  gross ann  +10.2%  vol    7%  sharpe +1.50  worst   -5%  t +3.57
+    2017-21  net   ann   +6.6%  vol    7%  sharpe +0.99  worst   -6%  t +2.34
+    last 5y  gross ann   +4.6%  vol    6%  sharpe +0.75  worst  -10%  t +1.70
+    last 5y  net   ann   +1.1%  vol    6%  sharpe +0.20  worst  -12%  t +0.47
+  by year (net): 2017 -2%/+7% | 2018 +12%/+9% | 2019 -2%/-1% | 2020 -2%/+9% | 2021 +17%/+11% | 2022 +16%/+13% | 2023 -1%/-6% | 2024 -4%/+2% | 2025 -1%/-6% | 2026 -3%/-3%   (63d net/252d net)
+
+  ===== PART B MID: year-two rebound (day 252 -> 504) =====
+    2017-21    n  1065  mean -10.40%  median -11.78%  win  36%  t -3.74
+    2021-06..  n   765  mean  -9.54%  median -17.43%  win  34%  t -4.99
+
+  ===== VERDICT (pre-stated) =====
+  B  year-two rebound SMALL                FAIL
+  A  MID 252d short book, net of costs     FAIL
+  B  year-two rebound MID                  FAIL

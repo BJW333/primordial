@@ -76,18 +76,35 @@ def obv_up(Cl, V):
 def load_stocks():
     members, union = FP.membership()
     px, spy = FP.load_prices(union, members)
+    pix = pd.to_datetime(px.index)
+    if pix.tz is not None:
+        pix = pix.tz_convert(None)
+    px.index = pix.normalize()
+    six = pd.to_datetime(spy.index)
+    if six.tz is not None:
+        six = six.tz_convert(None)
+    spy.index = six.normalize()
     H, L, V = {}, {}, {}
     for s in px.columns:
         p = FP.D._cache_path("alpaca", s, "1d", FP.A_START, FP.END)
         if not os.path.exists(p):
             continue
         d = pd.read_parquet(p)
-        d = d[~d.index.duplicated()]
-        d.index = pd.to_datetime(d.index).normalize()
+        d.columns = [c.lower() for c in d.columns]
+        ix = pd.to_datetime(d.index)
+        if ix.tz is not None:                 # cache may be UTC-stamped
+            ix = ix.tz_convert(None)
+        d.index = ix.normalize()
+        d = d[~d.index.duplicated(keep="last")]
         ok = px[s].notna()
         for tgt, col in ((H, "high"), (L, "low"), (V, "volume")):
             tgt[s] = d[col].reindex(px.index).where(ok)
     H, L, V = (pd.DataFrame(x).reindex(columns=px.columns) for x in (H, L, V))
+    cov = H.notna().sum().sum() / max(px.notna().sum().sum(), 1)
+    print(f"  high/low/volume matched to {cov:.0%} of price days")
+    if cov < 0.8:
+        sys.exit("  high/low data does not line up with prices -- paste "
+                 "this output so the date alignment can be fixed")
     return px, H, L, V, spy, members
 
 
@@ -235,6 +252,8 @@ def main():
                 sys.exit("export ALPACA_API_KEY and ALPACA_SECRET_KEY first "
                          "(prices are cached; keys are only checked)")
             res = stock_books(*load_stocks())
+        if res["n_picks"].mean() < 3:
+            print("  WARNING: almost no stocks qualified -- result invalid")
         verdicts["stocks"] = stock_report(res)
     if a.only != "stocks":
         if a.smoke:
