@@ -15,6 +15,11 @@ BASE_SIZE control checks it tracks SPY).
   ALL_EW      every qualifier, equal weight    -> compare with BASE_EW
   TOP50_SIZE  50 highest-ADX qualifiers, size-weighted
   TOP20_EW    the original (adline_obv.py S_ADX_OBV, no SPY fill)
+  CHAIKIN MONEY FLOW (20d): sum of volume x close-location-in-day's-range
+  [((C-L)-(H-C))/(H-L)] / sum of volume. > 0 = buyers in control.
+  ADX_CMF_SIZE  ADX > 25, +DI > -DI, CMF > 0 (CMF instead of OBV), size-wt
+  TRIPLE_SIZE   ADX + OBV + CMF all required, size-weighted
+  TRIPLE_EW     ADX + OBV + CMF all required, equal weight
 
 Run (repo root; prices cached; keys only checked):
     python3.10 scripts/adx_obv_variants.py | tee logs/adx_obv_variants.txt
@@ -35,14 +40,22 @@ import blowup_scan as B       # noqa: E402
 import commodity_adx as A     # noqa: E402
 
 VARS = ["BASE_SIZE", "BASE_EW", "ALL_SIZE", "ALL_EW", "TOP50_SIZE",
-        "TOP20_EW"]
+        "TOP20_EW", "ADX_CMF_SIZE", "TRIPLE_SIZE", "TRIPLE_EW"]
 COST = 0.0010
+
+
+def cmf(H, L, Cl, V, n=20):
+    rng = (H - L).replace(0, np.nan)
+    mfv = (((Cl - L) - (H - Cl)) / rng).fillna(0) * V.fillna(0)
+    return mfv.rolling(n, min_periods=15).sum() / \
+        V.fillna(0).rolling(n, min_periods=15).sum().replace(0, np.nan)
 
 
 def run(px, H, L, V, spy, members):
     idx = px.index
     a, pdi, ndi = A.adx(H, L, px)
     obv = X.obv_up(px, V)
+    cm = cmf(H, L, px, V)
     size = (px * V).rolling(63, min_periods=40).mean()
     spy = spy.reindex(idx).ffill()
     me = [d for d in px.resample("ME").last().index if d >= X.S_FIRST]
@@ -54,8 +67,12 @@ def run(px, H, L, V, spy, members):
         mem = [s for s in px.columns if s in m and np.isfinite(px.at[t, s])
                and np.isfinite(size.at[t, s])]
         at, pt, nt, ot = a.loc[t], pdi.loc[t], ndi.loc[t], obv.loc[t]
-        q = [s for s in mem if np.isfinite(at[s]) and at[s] > 25
-             and pt[s] > nt[s] and bool(ot[s])]
+        ct = cm.loc[t]
+        trend = [s for s in mem if np.isfinite(at[s]) and at[s] > 25
+                 and pt[s] > nt[s]]
+        q = [s for s in trend if bool(ot[s])]
+        qc = [s for s in trend if np.isfinite(ct[s]) and ct[s] > 0]
+        q3 = [s for s in q if np.isfinite(ct[s]) and ct[s] > 0]
         top50 = list(at[q].sort_values(ascending=False).index[:50])
         top20 = list(at[q].sort_values(ascending=False).index[:20])
         seg = px.loc[t:t2, mem]
@@ -71,9 +88,12 @@ def run(px, H, L, V, spy, members):
                 pd.Series(dtype=float)
         books = {"BASE_SIZE": sw(mem), "BASE_EW": ew(mem),
                  "ALL_SIZE": sw(q), "ALL_EW": ew(q),
-                 "TOP50_SIZE": sw(top50), "TOP20_EW": ew(top20)}
+                 "TOP50_SIZE": sw(top50), "TOP20_EW": ew(top20),
+                 "ADX_CMF_SIZE": sw(qc), "TRIPLE_SIZE": sw(q3),
+                 "TRIPLE_EW": ew(q3)}
         row = {"month": t2, "SPY": spy.asof(t2) / spy.asof(t) - 1,
-               "n_qual": len(q), "n_mem": len(mem)}
+               "n_qual": len(q), "n_mem": len(mem), "n_cmf": len(qc),
+               "n_triple": len(q3)}
         for name, w in books.items():
             old = prev[name]
             turn = w.subtract(old, fill_value=0).abs().sum()
@@ -87,8 +107,9 @@ def run(px, H, L, V, spy, members):
 def report(res):
     print(f"\n  qualifiers per month: avg {res['n_qual'].mean():.0f} of "
           f"{res['n_mem'].mean():.0f} members (min {res['n_qual'].min()}, "
-          f"max {res['n_qual'].max()})")
-    print(f"\n  {'portfolio':<11} | {'2017-21 ann':>11} {'sh':>5} {'worst':>6}"
+          f"max {res['n_qual'].max()}); with CMF instead of OBV "
+          f"{res['n_cmf'].mean():.0f}; all three {res['n_triple'].mean():.0f}")
+    print(f"\n  {'portfolio':<12} | {'2017-21 ann':>11} {'sh':>5} {'worst':>6}"
           f" | {'last5y ann':>10} {'sh':>5} {'worst':>6} | {'10y growth':>10}")
     for k in ["SPY"] + VARS:
         o = res.loc[res.index < X.S_RECENT, k]
@@ -96,15 +117,20 @@ def report(res):
         a0, _, s0, d0 = B.stats(o)
         a1, _, s1, d1 = B.stats(n)
         g = (1 + res[k]).prod()
-        print(f"  {k:<11} | {a0*100:>+10.1f}% {s0:>5.2f} {d0*100:>5.0f}% | "
+        print(f"  {k:<12} | {a0*100:>+10.1f}% {s0:>5.2f} {d0*100:>5.0f}% | "
               f"{a1*100:>+9.1f}% {s1:>5.2f} {d1*100:>5.0f}% | {g:>9.2f}x")
-    print(f"\n  by year:  {'year':<5} " + " ".join(f"{k:>10}" for k in
-                                                   ["SPY"] + VARS))
+    short = {"BASE_SIZE": "BASE_SZ", "BASE_EW": "BASE_EW", "ALL_SIZE":
+             "ALL_SZ", "ALL_EW": "ALL_EW", "TOP50_SIZE": "TOP50", "TOP20_EW":
+             "TOP20", "ADX_CMF_SIZE": "CMF_SZ", "TRIPLE_SIZE": "TRI_SZ",
+             "TRIPLE_EW": "TRI_EW"}
+    cols = ["SPY"] + VARS
+    print(f"\n  by year: {'year':<5} " + " ".join(
+        f"{short.get(k, k):>8}" for k in cols))
     for y, g in res.groupby(res.index.year):
-        print(f"            {y:<5} " + " ".join(
-            f"{((1 + g[k]).prod() - 1)*100:>+9.1f}%" for k in ["SPY"] + VARS))
-    print("\n  READ: ALL_SIZE vs BASE_SIZE and ALL_EW vs BASE_EW isolate the "
-          "filter itself;")
+        print(f"           {y:<5} " + " ".join(
+            f"{((1 + g[k]).prod() - 1)*100:>+7.1f}%" for k in cols))
+    print("\n  READ: ALL_SIZE / ADX_CMF_SIZE / TRIPLE_SIZE vs BASE_SIZE, and "
+          "ALL_EW / TRIPLE_EW vs BASE_EW, isolate the filters themselves;")
     print("        BASE_SIZE vs SPY checks the size stand-in; BASE_EW vs "
           "BASE_SIZE = the equal-weight effect.")
 
