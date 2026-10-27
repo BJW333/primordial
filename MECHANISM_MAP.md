@@ -848,3 +848,14 @@ Selected MKT_WASHOUT (2017-21 +3.22% t +1.04, mostly Mar-2020 V) ->
 2021-06+ -8.73% t -2.39 -> FAIL. EARN_BEAT keeps fading (-14.7% / -3.3%);
 TREND_BACK fake (win 24-28%); CAPITULATE not a bottom. Fade is one-way;
 squeezes unpredictable -> stop-loss is the right tool, not a rebound signal.
+
+## Rebound round 2 (squeeze fuel / reignite / activist 13D / buyback) -- FAIL; rebound question closed 2026-10-27
+
+scripts/fetch_rebound_data.py (FINRA Reg SHO all stocks 2018-08+, 6,187
+stocks; 11,521 new 13Ds matched) + scripts/rebound2.py (bar t > 3).
+Baseline faded -8.6% / -6.0%. SQUEEZE_FUEL -3.9% / -15.9% t -3.52 (bull
+trap recently, nothing earlier); REIGNITE -8.1/-6.1; ACTIVIST -9.2/-4.7;
+BUYBACK -4.4/-5.7. Selected SQUEEZE_FUEL+REIGNITE (+5.75% t 0.76) ->
+-16.54% t -2.83 -> FAIL. Two rounds, ~30 rules, 9 mechanisms: no rebound
+signal. Fade is one-way; comebacks unpredictable -> stop-loss, not a
+rebound model. Rebound line closed.

@@ -1,0 +1,30 @@
+  SMALL: ~815 stocks per month
+  MID: ~816 stocks per month
+  short-volume ranks: 6187 stocks, 2018-08-01 -> 2026-10-26
+  activist-13D histories 6127 tickers, share counts 12351 tickers
+
+  3672 spikes; 1842 in 2017-21, 1830 2021-06+
+
+  rule                                     | 2017-21 n    mean     med  win      t | 2021+ n    mean     med  win      t
+  BASELINE: fade detected                  |         1581  -8.60% -13.05%  34%  -2.57 |    1505  -5.95% -11.14%  36%  -4.06
+  SQUEEZE_FUEL                             |          187  -3.91% -15.05%  37%  +0.15 |     173 -15.91% -22.61%  28%  -3.52
+  REIGNITE                                 |          739  -8.14%  -9.95%  36%  -3.13 |     609  -6.13% -14.32%  33%  -2.82
+  ACTIVIST                                 |          164  -9.16% -16.77%  38%  -0.71 |     104  -4.69% -12.65%  37%  -0.46
+  BUYBACK                                  |          284  -4.39%  -5.65%  39%  -3.39 |     272  -5.73%  -7.61%  36%  -1.83
+  SQUEEZE_FUEL+REIGNITE                    |           91  +5.75%  -7.40%  43%  +0.76 |      73 -16.54% -25.67%  26%  -2.83
+  SQUEEZE_FUEL+ACTIVIST                    |           17  +8.06%  -4.63%  47%  +1.13 |      12 -23.86% -31.46%  25%  -2.04
+  SQUEEZE_FUEL+BUYBACK                     |           21 +11.11%  +0.03%  52%  +3.30 |      20 -19.05% -20.61%  20%  -3.86
+  REIGNITE+ACTIVIST                        |           88 -12.31% -15.04%  40%  -2.65 |      45  -8.40% -22.94%  38%  -1.06
+  REIGNITE+BUYBACK                         |          113  -2.56%  -2.47%  42%  -1.11 |      94  -7.58% -12.15%  32%  -1.39
+  ACTIVIST+BUYBACK                         |           23  -2.68%  +1.56%  52%  -0.68 |      17 -14.77% -14.94%  24%  -3.57
+  SQUEEZE_FUEL+REIGNITE+ACTIVIST           |           10 +23.80%  +6.35%  60%   +nan |       1   +nan%   +nan% nan%   +nan
+  SQUEEZE_FUEL+REIGNITE+BUYBACK            |           12 +18.73% +26.19%  58%  +2.19 |       6  -1.44%  -3.20%  50%   +nan
+  SQUEEZE_FUEL+ACTIVIST+BUYBACK            |            1   +nan%   +nan% nan%   +nan |       0   +nan%   +nan% nan%   +nan
+  REIGNITE+ACTIVIST+BUYBACK                |           12  +3.24%  +8.95%  67%  +1.00 |       7  -9.36% -14.94%  43%   +nan
+  SQUEEZE_FUEL+REIGNITE+ACTIVIST+BUYBACK   |            1   +nan%   +nan% nan%   +nan |       0   +nan%   +nan% nan%   +nan
+
+  SELECTED on 2017-21 (highest t): SQUEEZE_FUEL + REIGNITE (n 91, +5.75%, t +0.76)
+  2021-06+: n 73, -16.54% vs benchmark, t -2.83 (bar t > 3.0) -> FAIL
+
+  ===== VERDICT (pre-stated) =====
+  rebound signal round 2 (SQUEEZE_FUEL + REIGNITE)  FAIL
