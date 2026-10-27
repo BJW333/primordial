@@ -1,0 +1,28 @@
+  ETFs: GLD, SLV, PPLT, PALL, CPER, USO, UNG, URA, WEAT, CORN, UUP, FXY, FXE, SPY, EFA, EEM, TLT, IEF, TIP, DBC, DBA, BIL | 2016-01-04 -> 2026-05-29
+  GLD   0 hype spikes 
+  SLV   0 hype spikes 
+  PPLT  0 hype spikes 
+  PALL  1 hype spikes 2022-03-04
+  CPER  0 hype spikes 
+  USO   2 hype spikes 2022-03-08, 2026-03-09
+  UNG   1 hype spikes 2022-02-24
+  URA   2 hype spikes 2017-02-17, 2025-06-23
+  WEAT  0 hype spikes 
+  CORN  0 hype spikes 
+  UUP   0 hype spikes 
+  FXY   0 hype spikes 
+  FXE   0 hype spikes 
+  SPY   0 hype spikes 
+
+  ===== TEST 1: FADE after hype (vs the market's normal drift) =====
+    2017-21   n   1  +30d -15.3% (med -15.3%, 100% neg)  +90d -26.5% (med -26.5%, 100% neg)  +180d -30.1% (med -30.1%, 100% neg)
+    2021-06+  n   5  +30d +4.0% (med +7.5%, 40% neg)  +90d +27.2% (med +22.6%, 20% neg)  +180d +22.2% (med -0.3%, 40% neg)
+    by market (90d, both periods):  PALL -35% (n 1)  UNG +99% (n 1)  URA -1% (n 2)  USO +20% (n 2)
+
+  ===== TEST 2: SELL THE HYPE inside the two-way trend sleeve =====
+    MOM + TREND              all  +31.7% sh 0.96 worst -34% | 2017-21  +35.2% sh 1.09 | last5y  +28.9% sh 0.86
+    MOM + TREND sell-hype    all  +31.7% sh 0.96 worst -34% | 2017-21  +35.2% sh 1.09 | last5y  +28.8% sh 0.86
+
+  ===== VERDICT (pre-stated; small samples) =====
+  FADE after market hype (90d < 0 both periods)        FAIL
+  SELL THE HYPE improves trend sleeve (Sharpe, both)   FAIL

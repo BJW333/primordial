@@ -945,3 +945,12 @@ sh 0.44, worst -26%. MOM + TREND 100%: 31.7%/yr sh 0.96 (2017-21 35.2% sh
 1.09; last 5y 28.9% sh 0.86, worst -27%) vs MOM 26.6% sh 0.88 -> PASS.
 2022: MOM -6.3%, TREND +20.8%, combo +14.4%. Beats MOM x1.15 (29.4%,
 sh 0.87). Next: real futures version (micro contracts) on QuantConnect.
+
+## Fade on futures-type markets (commodity/FX/index Wikipedia hype) -- FAIL, too few events, news not hype 2026-10-27
+
+scripts/commodity_attention.py. 14 markets (metals, energy, grains, FX,
+S&P). Spike = views >= 3x 90d median AND +10% over ~30d: only 6 events in
+9 years (PALL/USO/UNG Feb-Mar 2022 = Ukraine invasion; URA 2017, 2025).
+After: USO +20%, UNG +99% at 90d -> news-driven continuation, not fade.
+Sell-the-hype in trend sleeve: 28.9% -> 28.8%, no effect. Fade is a
+small-cap / hard-to-short phenomenon; doesn't transfer to futures.
