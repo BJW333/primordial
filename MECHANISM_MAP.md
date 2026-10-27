@@ -913,3 +913,13 @@ sh 0.87, worst -27% vs MOM 26.6%, 0.88, -31% -> FAIL (Sharpe not higher).
 2022 only +2.7%: long-only can't short bonds, which is where real managed
 futures earned. MOM x1.15 lev: 29.4%, worst -36%. Lesson: diversifiers
 for momentum need a short side (fade, trend futures) or puts.
+
+## Crypto trend sleeve (BTC/ETH > 200d MA) with momentum -- PASS, but driven by 2017 2026-10-27
+
+scripts/crypto_sleeve.py. Sleeve held 62% of days; corr vs MOM +0.28.
+Sleeve alone 61.1%/yr (2017-21 137%, last 5y 16.0%, worst -59%).
+MOM 80/CRYPTO 20: 36.6% sh 1.12 vs MOM 26.6% 0.88 -> PASS (both periods).
+BUT last 5y only 23.7% vs 23.5% (sh 0.85 vs 0.79); 2017 (+1100% BTC)
+drives the early gap. Filter: 2018 -59% (BTC -74%) weak; 2022 -7% (BTC
+-64%) strong. MOM 100% + CRYPTO 20% last 5y 26.6% ~ MOM x1.15 25.5%.
+Verdict: modest diversifier, not a reliable return adder ex-2017.
