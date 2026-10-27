@@ -1,0 +1,19 @@
+  futures: 20 markets 2000-01-03 -> 2026-10-23
+  ETFs: crude=USO, natgas=UNG, gasoline=UGA, gold=GLD, silver=SLV, copper=CPER, platinum=PPLT, corn=CORN, wheat=WEAT, soybeans=SOYB, sugar=CANE
+  CFTC positioning: 20 markets, 2006-06-13 -> 2026-10-20
+
+  benchmark for (c): stock momentum (momentum_v2 STEADY)
+
+  strategy | 2007-2021: ann sharpe | last 5y: ann   vol sharpe  worst   2022 |  corr mom alone  blend | ETF long-only 5y
+  TREND    |          +0.6%   0.16 |        +2.2%    4%   0.62    -6%    +3% | +0.15      0.79   1.01 |    +3.8% sh 0.91
+  CARRY    |          +0.9%   0.25 |        -1.1%    3%  -0.37   -10%    +3% | -0.35      0.79   0.38 |    +0.8% sh 0.28
+  COT      |          +0.2%   0.11 |        +0.1%    2%   0.07    -3%    +1% | -0.12      0.79   0.66 |    +0.6% sh 0.43
+  SEASON   |          +2.2%   0.67 |        +4.2%    3%   1.36    -4%    +6% | +0.01      0.79   1.71 |    +3.4% sh 0.81
+  REPORTS  |          +0.0%   0.02 |        -1.5%    4%  -0.33   -17%    -9% | +0.02      0.79   0.32 |    +1.1% sh 0.35
+
+  ===== VERDICT (pre-stated: last-5y Sharpe >= 0.5, 2007-21 Sharpe >= 0.3, improves momentum blend) =====
+  TREND    FAIL
+  CARRY    FAIL
+  COT      FAIL
+  SEASON   PASS
+  REPORTS  FAIL
