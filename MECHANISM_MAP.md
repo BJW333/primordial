@@ -986,3 +986,36 @@ WORKS (vol -33%, Sharpe higher both periods). A top40/60: lower return,
 no Sharpe gain. B vol-target MOM: stack sh 1.03/1.13 (fails 2017-21).
 D vol-target stack: 26.2% sh 1.10 dd -21% (fails 2017-21 narrowly).
 Fade now largest weight -> puts test (QC) and borrow cost are critical.
+
+## mh_vote on G10 FX -- family DEAD 2026-11-15, mh_vote CLOSED CROSS-ASSET
+prereg/FXMH_PREREG.md (signed, committed bc419f7 pre-run), runner
+scripts/fxmh_screen.py, logs/fxmh_screen.txt. Second ground for the
+hypothesis dead on crypto 2026-09-09; FIRST two-sided test (G10 shorts).
+Ground: 8 majors, Dukascopy hourly -> daily (16:00/17:00 NY clock,
+inverted pairs flipped), fx_screen costs + 2x, 2004-01 -> 2026-10.
+Controls: noise all-fail (10-universe calibration, 0 false passes with
+the 100-trade floor), planted rows beat RANDOM by >= 0.5 whole-Sharpe.
+
+| row | 2012-21 | 2021-now | whole | 2x | ann | tr | blend |
+|---|---|---|---|---|---|---|---|
+| BASE donchian20 | -0.18 | -0.31 | -0.10 | -0.13 | -4.4% | 1299 | 0.73 |
+| VOTE_ALONE | +0.03 | -0.45 | -0.10 | -0.13 | -4.5% | 1276 | 0.85 |
+| GATE2 (the idea) | +0.06 | -0.37 | -0.06 | -0.09 | -2.5% | 818 | 0.93 |
+| GATE4 | +0.23 | -0.52 | -0.05 | -0.06 | -0.6% | 97 | 0.69 |
+| control RANDOM | -0.20 | -0.54 | -0.28 | -0.32 | -7.5% | 958 | fail (correct) |
+
+All four rows fail every leg; GATE4 also under the 100-trade floor.
+Read: daily G10 breakout trend is ~zero gross and negative in the
+2021-now window for every variant -- consistent with BLOC (best FX row,
+0.25/0.38, failed) and the managed-futures record. The vote neither
+rescued crypto (where it was actively negative) nor FX (where it is
+indistinguishable from the bare breakout). GATE2 > BASE by 0.04 whole
+Sharpe is noise, not a signal, and is not promoted.
+
+mh_vote VERDICT, cross-asset: trend-consistency scoring of breakouts is
+dead on both grounds charged (coinbase_daily, G10 FX daily). Seam
+closed. Unchanged prohibitions: no sign-flip (fading high scores) on
+any ground without a fresh prereg carrying this double holdout leak; no
+window/dead-zone/threshold re-tuning on either holdout. FX family
+remains closed per the 2026-11-15 verdict; this run was its charged
+exception and found nothing.
