@@ -1,0 +1,12 @@
+
+  data 2004-01-01 -> 2026-10-30, 5,936 days, 192 FOMC dates
+  idea               | 2012-21 ann   shp | last5y ann   vol  shp  worst | whole shp 2x-cost | corrCHIM CHIM blend  badM | trades/yr | verdict
+  1 MONTH_END        |  -0.78% -0.48 |  -0.65%  1.6% -0.40    -5% |  -0.51   -0.62 |  +0.01  1.42  0.67 -0.11% |       12 | fail
+  2 FOMC_CARRY       |  -0.33% -0.26 |  -0.23%  1.1% -0.22    -5% |   0.12   -0.11 |  +0.05  1.42  1.03 -0.05% |        8 | fail
+  3 GOTOBI           |  -0.57% -0.49 |  -1.55%  1.3% -1.22    -9% |  -0.43   -1.19 |  -0.12  1.42  0.44 -0.04% |       70 | fail
+  control ME_RANDOM  |  +0.71%  0.44 |  -0.49%  1.6% -0.30    -5% |   0.25    0.13 |  -0.11  1.42  0.99 +0.11% |       12 | fail
+  control FOMC_RANDOM|  +0.10%  0.09 |  -0.57%  1.1% -0.54    -4% |  -0.52   -0.76 |  +0.05  1.42  0.80 -0.10% |        8 | fail
+  control GOTOBI_SHIFT|  -1.18% -1.13 |  -0.73%  1.3% -0.55    -6% |  -0.41   -1.18 |  -0.08  1.42  0.47 +0.05% |       70 | fail
+  controls: all fail (good)
+  ann = average yearly return (log) at $1 exposure while in a trade (flat otherwise); pass = 2012-21 >= 0.5, last5y >= 0.7,
+  blend > CHIM, 2x-cost > 0. badM = avg month when CHIMERA < -3%.

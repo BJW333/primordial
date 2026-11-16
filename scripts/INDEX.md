@@ -10,6 +10,9 @@ shared modules and data). Results and verdicts live in the project docs and `run
 | script | what it does |
 |---|---|
 | `flows_screen.py` | futures/commodity flow screen -- source of TSY_CAL, the one PASS |
+| `structural_screen.py` | night-only momentum, low-vol, VIX carry, closed-end fund discounts (2026-11-15; NIGHT is the open lead) |
+| `mine_seismic.py` | mine blast seismic data vs MSHA output, stage 1 (failed 2026-11-15) |
+| `fx_active.py` | active FX: fix reversal + US-close spillover (failed 2026-11-15) |
 | `fx_calendar.py` | last FX screen: month-end hedge flows, FOMC-day carry, Gotobi yen (pre-registered 2026-11-15) |
 | `fx_screen.py` | FX hourly screen (all failed) -- kept as the shared FX data/cost library |
 

@@ -1,0 +1,31 @@
+  USGS blasts: 33,876 events 2010-01-03 -> 2026-11-13; by type {'quarry blast': 19872, 'explosion': 11437, 'mining explosion': 2567}
+  where the catalog has blasts (top areas): CA 12335, Washington 4201, Canada 2767, Oregon 2714, Montana 2631, Wyoming 2444, Oklahoma 2325, California 2105, Nevada 660, MX 461
+  MSHA: 714 active surface coal mines, 5,645 surface quarries / metal mines
+
+  ===== COAL (blasts vs coal tons): 6 mines =====
+  median correlation with MSHA output: levels -0.08 | year-over-year +0.06 | quarter-over-quarter -0.04 | 50% of mines positive (yoy)
+    North Antelope Rochelle Mine   WY Peabody Energy Corporation   blasts   392  level +0.32  yoy -0.05  qoq +0.10
+    Spring Creek Mine              MT Navajo Transitional Energy C blasts   118  level -0.12  yoy +0.25  qoq -0.37
+    Coal Creek Mine                WY Core Natural Resources Inc   blasts   108  level +0.21  yoy +0.28  qoq +0.16
+    Rosebud Mine & Crusher/Conveyo MT Westmoreland Mining Holdings blasts    90  level -0.19  yoy -0.05  qoq -0.05
+    Antelope Coal Mine             WY Navajo Transitional Energy C blasts    80  level -0.16  yoy +0.17  qoq -0.04
+    Belle Ayr Mine                 WY Petri E Koivula              blasts    73  level -0.03  yoy -0.20  qoq -0.06
+  measures output (median yoy >= 0.30 and >= 75% positive)? NO
+
+  ===== QUARRIES and METAL (blasts vs hours worked): 65 mines =====
+  median correlation with MSHA output: levels +0.14 | year-over-year +0.10 | quarter-over-quarter +0.10 | 71% of mines positive (yoy)
+    Boron Operations               CA Rio Tinto Group              blasts  1690  level +0.36  yoy +0.16  qoq -0.08
+    Continental Mine               MT Montana Resources Inc        blasts  1080  level +0.16  yoy +0.09  qoq -0.10
+    Mesquite                       CA Equinox Gold Corp            blasts   817  level +0.15  yoy +0.27  qoq +0.27
+    Mojave Rock Mine               CA Roko  Grbic; Mile  Grbic     blasts   731  level +0.14  yoy +0.08  qoq +0.14
+    All American Aggregates        CA Mark  Luer                   blasts   592  level -0.02  yoy +0.34  qoq +0.52
+    Lucerne Valley                 CA RRM Development Corporation; blasts   481  level -0.44  yoy -0.23  qoq -0.17
+    3M CORONA PLANT                CA Minnesota Mining & Manufactu blasts   472  level -0.29  yoy -0.13  qoq -0.05
+    3M                             CA Frank  Smith                 blasts   455  level -0.16  yoy -0.01  qoq +0.16
+    A R Wilson Quarry              CA Peter J  Lemon               blasts   448  level +0.16  yoy +0.34  qoq +0.25
+    Chula Vista Quarry             CA Vulcan Materials Company     blasts   386  level +0.31  yoy +0.06  qoq -0.08
+    Corona                         CA RRM Development Corporation; blasts   314  level +0.72  yoy +0.48  qoq +0.03
+    Indian Creek Lime Plant  & Qua MT Graymont Ltd                 blasts   308  level -0.13  yoy +0.12  qoq +0.10
+  measures output (median yoy >= 0.30 and >= 75% positive)? NO
+
+  STAGE 1 VERDICT: coal FAIL, quarries FAIL -> a trading test is only worth building for a group that passes
