@@ -37,6 +37,8 @@ Run (repo root):
 First real run downloads ~2,200 small files (10-30 min; Dukascopy throttles). If it stops with a
 throttling message, wait 10-15 min and rerun: it resumes from where it stopped.
 """
+import os as _os, sys as _sys  # archived script: shared modules live one folder up
+_sys.path.insert(1, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
 import argparse
 import datetime as dt
 import lzma
@@ -48,7 +50,7 @@ import numpy as np
 import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(HERE)
+ROOT = os.path.dirname(os.path.dirname(HERE))
 DATA = os.path.join(ROOT, "data", "fx_1h")
 RBNZ_CSV = os.path.join(ROOT, "data", "rbnz_ocr_dates.csv")
 

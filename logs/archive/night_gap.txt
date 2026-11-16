@@ -1,0 +1,11 @@
+  ===== NIGHT_GAP: step out of the day only after a gap up (112 months) =====
+  row              | early ann   shp | recent ann  shp |  whole ann  shp worst | corr  blend  badM | stock-days stepped out
+  FULL (never)     |  +29.3%  0.86 |  +22.1%  0.74 |  +25.7%  0.80   -46% | +0.72  1.21  -8.1% | 0%
+  GAP1 (>1.0%)     |  +21.4%  0.78 |  +40.0%  1.28 |  +30.3%  1.02   -42% | +0.66  1.38  -6.0% | 21%  fail
+  GAP1 at 2x cost  |  +19.2%  0.72 |  +36.8%  1.21 |  +27.6%  0.96   -43% | +0.66  1.34  -6.1% | 
+  gap >0.5% (info) |  +19.9%  0.77 |  +43.7%  1.44 |  +31.1%  1.09   -43% | +0.62  1.43  -5.3% | 34%
+  gap >2.0% (info) |  +22.3%  0.77 |  +34.4%  1.08 |  +28.1%  0.92   -41% | +0.68  1.31  -7.1% | 9%
+  NIGHT (every day)|  +19.3%  0.91 |  +21.8%  1.04 |  +20.5%  0.97   -40% | +0.44  1.41  -2.1% | 100%
+  ctl GAP1_RANDOM  |  +25.4%  0.84 |  +28.6%  0.97 |  +26.9%  0.90   -41% | +0.69  1.27  -6.3% | 21%  fails (good)
+  round trips per year at GAP1: about 1058 (vs 5040 stepping out every day)
+  pass = beats FULL on return AND Sharpe in both windows, and on Sharpe at 2x step-out costs

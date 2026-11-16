@@ -9,7 +9,25 @@ judges them with a gauntlet built to say **no**.
 The expected output of most runs is `0 survivors`. That is the system
 working, not failing. The framework's primary product is honest negatives
 delivered in hours; a survivor is a rare event that has earned real money's
-attention. Full design rationale: `SPEC.md`.
+attention. Full design rationale: `docs/SPEC.md`.
+
+## Where things are (cleaned up 2026-11-15)
+
+| Folder | What's in it |
+|---|---|
+| `primordial/` | the framework itself (the genetic-algorithm engine and the judge) |
+| `scripts/` | 36 scripts still in use: TSY_CAL's screen, CHIMERA's core, tools, data fetchers. **Start with `scripts/INDEX.md`.** |
+| `scripts/archive/` | 115 closed experiments (still runnable, e.g. `python3.10 scripts/archive/gapstep.py`) |
+| `docs/` | design spec, runbook, strategy notes, survivor list, shelved-research write-ups |
+| `prereg/` | rules written down before each test was run |
+| `manifests/`, `genomes/` | inputs for Primordial runs (markets to search, hand-written rules) |
+| `runs/`, `out/`, `logs/` | outputs. `logs/archive/` holds logs of closed experiments |
+| `data/` | downloaded market data (not in git) |
+| `patches/` | one-off scripts that applied past changes |
+| `CHANGELOG.md`, `MECHANISM_MAP.md` | running history of changes and of what was learned |
+
+**What's live:** CHIMERA (momentum, QuantConnect paper). **Passed, waiting to deploy:** TSY_CAL
+(Treasury calendar, `scripts/flows_screen.py`). Everything else tested so far is closed or shelved.
 
 ## Quick start
 

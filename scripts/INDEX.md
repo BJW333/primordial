@@ -1,20 +1,13 @@
 # scripts/ index
 
-Reorganised 2026-11-15. `scripts/` holds what's live, reusable, or imported by other scripts;
-`scripts/archive/` holds closed experiments (still runnable from the repo root, e.g.
-`python3.10 scripts/archive/gold_choch.py`; each archived file has a 2-line header so it still finds
-shared modules and data). Results and verdicts live in the project docs and `runs/`.
+`scripts/` = what's still in use. `scripts/archive/` = closed experiments, still runnable from the
+repo root (e.g. `python3.10 scripts/archive/gapstep.py`). Their logs are in `logs/archive/`.
 
-## Live / current research
+## Passed research
 
 | script | what it does |
 |---|---|
 | `flows_screen.py` | futures/commodity flow screen -- source of TSY_CAL, the one PASS |
-| `structural_screen.py` | night-only momentum, low-vol, VIX carry, closed-end fund discounts (2026-11-15; NIGHT is the open lead) |
-| `mine_seismic.py` | mine blast seismic data vs MSHA output, stage 1 (failed 2026-11-15) |
-| `fx_active.py` | active FX: fix reversal + US-close spillover (failed 2026-11-15) |
-| `fx_calendar.py` | last FX screen: month-end hedge flows, FOMC-day carry, Gotobi yen (pre-registered 2026-11-15) |
-| `fx_screen.py` | FX hourly screen (all failed) -- kept as the shared FX data/cost library |
 
 ## CHIMERA core (momentum, regime, exposure judge)
 
@@ -73,12 +66,25 @@ shared modules and data). Results and verdicts live in the project docs and `run
 
 # archive/
 
-## FX (closed 2026-11-15, 0/9 pass)
+## Night-only momentum / GAPSTEP and structural screens (2026-11-15, shelved -- see docs/NIGHT_GAPSTEP.md)
 
 | script | what it does |
 |---|---|
+| `archive/gapstep.py` | GAPSTEP: a stand-alone momentum strategy (its own picks, its own account; nothing to do |
+| `archive/mine_seismic.py` | Blake's idea (2026-11-15): use seismograph data around coal and gravel mines to |
+| `archive/night_gap.py` | "trade less often": skip the DAY only when it is most likely to lose. |
+| `archive/night_screen.py` | the NIGHT idea on cheap, liquid funds: a STOCK version and a COMMODITY version. |
+| `archive/structural_screen.py` | four STRUCTURAL ideas from the 2026-11-15 list that can be tested on data |
+
+## FX (closed 2026-11-15, 0 of 14 pass)
+
+| script | what it does |
+|---|---|
+| `archive/fx_active.py` | ACTIVE FX (5+ trades a week). PRE-REGISTERED 2026-11-15, before any real-data run. |
+| `archive/fx_calendar.py` | the last FX screen: three CALENDAR-FLOW ideas (the TSY_CAL family). |
 | `archive/fx_grid.py` | the TikTok grid bot, rebuilt on the AUD/NZD gap instead of gold. |
 | `archive/fx_rotation.py` | Blake's "trade currency to currency, harvest small gains, almost every country". |
+| `archive/fx_screen.py` | FX ideas on hourly data. PRE-REGISTERED 2026-11-10, before any real-data run. |
 | `archive/fxmh_screen.py` | multi-horizon sign vote (mh_vote) on G10 FX, daily. |
 
 ## Futures / commodities / patterns (closed)
@@ -150,7 +156,7 @@ shared modules and data). Results and verdicts live in the project docs and `run
 | `archive/value_momentum.py` | does a VALUE book (cheap stocks) cancel momentum's bad |
 | `archive/vol_reduce.py` | LOWER THE VOLATILITY of the stack (momentum + trend + |
 
-## Dip-buy family (closed; dipbase drop-size still owes a Norgate PIT rerun)
+## Dip-buy family (closed)
 
 | script | what it does |
 |---|---|

@@ -17,6 +17,8 @@ PRE-STATED read: the signal "measures output" only if the MEDIAN year-over-year 
 
 Run (repo root):  python3.10 scripts/mine_seismic.py | tee logs/mine_seismic.txt
 """
+import os as _os, sys as _sys  # archived script: shared modules live one folder up
+_sys.path.insert(1, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
 import argparse
 import glob
 import os
@@ -26,7 +28,7 @@ import numpy as np
 import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(HERE)
+ROOT = os.path.dirname(os.path.dirname(HERE))
 USGS = ("https://earthquake.usgs.gov/fdsnws/event/1/query?format=csv&starttime={y}-01-01&endtime={y2}-01-01"
         "&eventtype={t}&minlatitude=24&maxlatitude=50&minlongitude=-125&maxlongitude=-66")
 MSHA = "https://arlweb.msha.gov/OpenGovernmentData/DataSets/{}.zip"
