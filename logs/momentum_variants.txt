@@ -1,0 +1,32 @@
+  2017-03-01 -> 2026-05-29, 2325 days
+
+  book         plain: annual  Sharpe  worst     +LOCK30: annual  Sharpe  worst   last5y Sharpe  2021-22 drop
+  STEADY            +26.7%   0.82  -48.5%            +34.3%   1.19  -37.6%           1.14       -24.7%
+  RESIDUAL           +2.1%   0.21  -55.2%             +2.1%   0.21  -55.2%           0.02       -51.3%
+  FROG              +20.9%   0.75  -46.7%            +21.5%   0.80  -46.7%           0.83       -46.7%
+  HIGH52             +4.6%   0.32  -37.9%             +5.7%   0.36  -37.9%           0.06       -29.8%
+  SPY               +15.2%   0.87  -33.8%
+
+  year by year, with the 30% lock
+  year     STEADY  RESIDUAL      FROG    HIGH52
+  2017       +22%       +8%      +19%       +5%
+  2018        -4%      -13%       -9%       -9%
+  2019       +43%      +13%      +48%      +27%
+  2020       +59%      +24%      +48%      +35%
+  2021       +64%       -1%       -9%       +3%
+  2022        -6%      -37%      -11%      -16%
+  2023       +23%      +11%      +26%       -7%
+  2024       +51%      +17%      +48%      +31%
+  2025       +34%       -5%      +16%       -0%
+  2026       +49%      +19%      +45%       -3%
+
+  how different are they from STEADY?
+    RESIDUAL  daily correlation 0.66, same stocks 5% of the time
+    FROG      daily correlation 0.87, same stocks 37% of the time
+    HIGH52    daily correlation 0.67, same stocks 11% of the time
+
+  ===== VERDICT (pre-stated, each vs STEADY+LOCK30) =====
+    RESIDUAL  Sharpe 0.21 vs 1.19 | worst -55.2% vs -37.6% | last5y 0.02 vs 1.14 -> FAIL
+    FROG      Sharpe 0.80 vs 1.19 | worst -46.7% vs -37.6% | last5y 0.83 vs 1.14 -> FAIL
+    HIGH52    Sharpe 0.36 vs 1.19 | worst -37.9% vs -37.6% | last5y 0.06 vs 1.14 -> FAIL
+    -> keep STEADY

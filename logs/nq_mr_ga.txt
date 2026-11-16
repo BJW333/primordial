@@ -1,0 +1,133 @@
+    QQQ 2016: 140,313 bars
+    QQQ 2017: 140,940 bars
+    QQQ 2018: 178,015 bars
+    QQQ 2019: 181,358 bars
+    QQQ 2020: 206,811 bars
+    QQQ 2021: 203,498 bars
+    QQQ 2022: 215,635 bars
+    QQQ 2023: 208,178 bars
+    QQQ 2024: 210,592 bars
+    QQQ 2025: 221,391 bars
+    QQQ 2026: 197,980 bars
+  data: QQQ 1-min (Alpaca), NQ costs: 1,058,498 bars, 2716 days 2016-01-04 -> 2026-11-04; cost/side 0.375 NQ pts (NQ)
+
+  ===== REAL DATA: train 1251 days, validate 502, test 963
+    seed 1 gen  1: best -0.408  median -3.053
+    seed 1 gen  2: best -0.408  median -2.181
+    seed 1 gen  3: best -0.342  median -1.614
+    seed 1 gen  4: best -0.124  median -1.372
+    seed 1 gen  5: best -0.060  median -1.188
+    seed 1 gen  6: best -0.060  median -1.211
+    seed 1 gen  7: best -0.060  median -1.444
+    seed 1 gen  8: best +0.190  median -1.399
+    seed 1 gen  9: best +0.190  median -0.987
+    seed 1 gen 10: best +0.190  median -1.115
+    seed 1 gen 11: best +0.190  median -1.032
+    seed 1 gen 12: best +0.190  median -1.025
+    seed 1 gen 13: best +0.190  median -1.068
+    seed 1 gen 14: best +0.190  median -0.901
+    seed 1 gen 15: best +0.257  median -0.906
+    seed 1 gen 16: best +0.257  median -0.594
+    seed 1 gen 17: best +0.257  median -0.452
+    seed 1 gen 18: best +0.257  median -0.652
+    seed 1 gen 19: best +0.257  median -0.539
+    seed 1 gen 20: best +0.257  median -0.450
+    seed 1 gen 21: best +0.257  median -0.379
+    seed 1 gen 22: best +0.257  median -0.507
+    seed 1 gen 23: best +0.257  median -0.423
+    seed 2 gen  1: best -0.658  median -3.129
+    seed 2 gen  2: best -0.658  median -2.341
+    seed 2 gen  3: best -0.519  median -1.616
+    seed 2 gen  4: best -0.454  median -1.204
+    seed 2 gen  5: best -0.281  median -1.027
+    seed 2 gen  6: best -0.132  median -0.980
+    seed 2 gen  7: best +0.029  median -0.890
+    seed 2 gen  8: best +0.029  median -0.830
+    seed 2 gen  9: best +0.076  median -0.764
+    seed 2 gen 10: best +0.076  median -0.740
+    seed 2 gen 11: best +0.076  median -0.786
+    seed 2 gen 12: best +0.128  median -0.664
+    seed 2 gen 13: best +0.128  median -0.567
+    seed 2 gen 14: best +0.156  median -0.740
+    seed 2 gen 15: best +0.219  median -0.757
+    seed 2 gen 16: best +0.270  median -0.911
+    seed 2 gen 17: best +0.270  median -0.813
+    seed 2 gen 18: best +0.308  median -0.552
+    seed 2 gen 19: best +0.308  median -0.446
+    seed 2 gen 20: best +0.387  median -0.588
+    seed 2 gen 21: best +0.387  median -0.330
+    seed 2 gen 22: best +0.387  median -0.329
+    seed 2 gen 23: best +0.387  median -0.306
+    seed 2 gen 24: best +0.387  median -0.259
+    seed 2 gen 25: best +0.571  median -0.250
+    seed 2 gen 26: best +0.571  median -0.282
+    seed 2 gen 27: best +0.571  median -0.271
+    seed 2 gen 28: best +0.571  median -0.314
+    seed 2 gen 29: best +0.571  median -0.196
+    seed 2 gen 30: best +0.571  median -0.193
+    seed 2 gen 31: best +0.571  median -0.259
+    seed 2 gen 32: best +0.571  median -0.289
+    seed 2 gen 33: best +0.571  median -0.315
+    seed 3 gen  1: best -0.555  median -3.500
+    seed 3 gen  2: best -0.555  median -2.266
+    seed 3 gen  3: best -0.474  median -2.039
+    seed 3 gen  4: best -0.474  median -2.021
+    seed 3 gen  5: best -0.377  median -2.119
+    seed 3 gen  6: best -0.377  median -1.484
+    seed 3 gen  7: best -0.374  median -1.201
+    seed 3 gen  8: best -0.374  median -1.526
+    seed 3 gen  9: best -0.147  median -1.221
+    seed 3 gen 10: best -0.147  median -0.983
+    seed 3 gen 11: best -0.147  median -0.912
+    seed 3 gen 12: best -0.033  median -0.847
+    seed 3 gen 13: best -0.033  median -0.946
+    seed 3 gen 14: best -0.033  median -0.935
+    seed 3 gen 15: best +0.119  median -0.856
+    seed 3 gen 16: best +0.119  median -0.799
+    seed 3 gen 17: best +0.211  median -0.838
+    seed 3 gen 18: best +0.322  median -0.789
+    seed 3 gen 19: best +0.322  median -0.659
+    seed 3 gen 20: best +0.322  median -0.647
+    seed 3 gen 21: best +0.322  median -0.781
+    seed 3 gen 22: best +0.322  median -0.567
+    seed 3 gen 23: best +0.420  median -0.392
+    seed 3 gen 24: best +0.420  median -0.289
+    seed 3 gen 25: best +0.420  median -0.233
+    seed 3 gen 26: best +0.420  median -0.332
+    seed 3 gen 27: best +0.461  median -0.362
+    seed 3 gen 28: best +0.461  median -0.312
+    seed 3 gen 29: best +0.471  median -0.185
+    seed 3 gen 30: best +0.471  median -0.162
+    seed 3 gen 31: best +0.471  median -0.305
+    seed 3 gen 32: best +0.471  median -0.539
+    seed 3 gen 33: best +0.471  median -0.392
+    seed 3 gen 34: best +0.471  median -0.545
+    seed 3 gen 35: best +0.471  median -0.410
+    seed 3 gen 36: best +0.471  median -0.393
+    seed 3 gen 37: best +0.471  median -0.479
+  GA: 6936 genomes scored in 54s; best training fitness +0.57
+   #1 train fit +0.40  valid Sharpe +0.46  VWAP n=184 | enter |z|>=1.91 | exit 61% back | stop 0.62 rng | hold<=48m | 12:42-14:29 | both | trend<=0.6 | turn=n | cool 6m
+   #2 train fit +0.34  valid Sharpe +0.45  VWAP n=174 | enter |z|>=1.89 | exit 82% back | stop 0.74 rng | hold<=47m | 12:28-14:37 | both | trend<=0.6 | turn=n | cool 1m
+   #3 train fit +0.38  valid Sharpe +0.22  VWAP n=133 | enter |z|>=1.94 | exit 69% back | stop 0.78 rng | hold<=43m | 12:43-14:29 | both | trend<=0.6 | turn=n | cool 9m
+   #4 train fit +0.57  valid Sharpe +0.16  VWAP n=188 | enter |z|>=1.90 | exit 94% back | stop 0.63 rng | hold<=47m | 12:40-14:30 | both | trend<=0.8 | turn=n | cool 1m
+   #5 train fit +0.33  valid Sharpe +0.06  VWAP n=189 | enter |z|>=1.98 | exit 68% back | stop 0.63 rng | hold<=47m | 12:40-14:29 | both | trend<=0.6 | turn=n | cool 2m
+  ENSEMBLE train    Sharpe +0.95 (2 ticks +0.64)  ann  +2.3%/contract-notional  trades/yr    96
+  ENSEMBLE validate Sharpe +0.30 (2 ticks +0.19)  ann  +0.9%/contract-notional  trades/yr    90
+  ENSEMBLE test     Sharpe -0.48 (2 ticks -0.58)  ann  -1.2%/contract-notional  trades/yr    94
+    by year: 2023 +0.41  2024 -0.12  2025 -1.52  2026 -0.20
+    vs CHIMERA (41 months): corr +0.01, CHIM 1.82 -> blend 0.93
+    PASS checks a/b/c/d: ['no', 'no', 'no', 'no']  ->  FAIL
+
+  ===== NULL CONTROL (shuffled minutes, must FAIL): train 1251 days, validate 502, test 963
+  GA: 6144 genomes scored in 48s; best training fitness +1.37
+   #1 train fit +1.13  valid Sharpe -0.25  VWAP n=82 | enter |z|>=1.98 | exit 116% back | stop 0.52 rng | hold<=218m | 12:03-15:50 | long | trend<=2.2 | turn=n | cool 18m
+   #2 train fit +1.15  valid Sharpe -0.63  VWAP n=78 | enter |z|>=2.04 | exit 107% back | stop 0.51 rng | hold<=197m | 12:03-15:50 | long | trend<=2.3 | turn=n | cool 16m
+   #3 train fit +1.23  valid Sharpe -0.66  VWAP n=72 | enter |z|>=2.03 | exit 110% back | stop 0.54 rng | hold<=229m | 12:07-15:50 | long | trend<=2.1 | turn=n | cool 19m
+   #4 train fit +1.22  valid Sharpe -0.72  VWAP n=144 | enter |z|>=1.95 | exit 104% back | stop 0.58 rng | hold<=127m | 13:38-15:50 | long | trend<=1.8 | turn=y | cool 20m
+   #5 train fit +1.17  valid Sharpe -0.81  VWAP n=96 | enter |z|>=1.76 | exit 118% back | stop 0.57 rng | hold<=240m | 12:17-15:50 | long | trend<=1.7 | turn=y | cool 21m
+  ENSEMBLE train    Sharpe +1.60 (2 ticks +1.40)  ann  +4.8%/contract-notional  trades/yr    81
+  ENSEMBLE validate Sharpe -0.68 (2 ticks -0.75)  ann  -2.9%/contract-notional  trades/yr    81
+  ENSEMBLE test     Sharpe -0.07 (2 ticks -0.13)  ann  -0.2%/contract-notional  trades/yr    89
+    by year: 2023 -1.16  2024 -0.40  2025 +1.28  2026 +0.03
+    vs CHIMERA (41 months): corr +0.28, CHIM 1.82 -> blend 1.01
+    PASS checks a/b/c/d: ['no', 'no', 'no', 'no']  ->  FAIL

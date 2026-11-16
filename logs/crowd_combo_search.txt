@@ -1,0 +1,74 @@
+  3675 100-year rules (10 signs x 3 levels) | CHIMERA-70 2017-03-01 -> 2026-05-29
+
+  ================= PART A: 100 years, WBETA + 9 old signs =================
+  1 SEARCH 1927-1989 (Sharpe gain, winners halved on warning):
+    +0.081  RS bottom 20%
+    +0.078  MKTVOL top 10%
+    +0.063  MKTVOL top 20%
+    +0.050  MKTVOL top 20% AND CREDIT top 10%
+    +0.047  MKTVOL top 20% AND RS bottom 20%
+    +0.047  MKTVOL top 20% AND CREDIT top 20%
+    +0.047  RS bottom 10%
+    +0.042  MKTVOL top 5%
+    +0.042  MKTVOL top 10% AND RS bottom 20%
+    +0.041  MKTVOL top 20% AND RS bottom 20% AND CREDIT top 10%
+    +0.041  MKTVOL top 20% AND RS bottom 20% AND CREDIT top 20%
+    +0.041  MOMVOL top 20% AND MKTVOL top 10%
+    best rule using WBETA (context): +0.019  RS bottom 20% AND WBETA top 20%
+  2 LUCK: real best +0.081 | slid: median +0.046, 95th pct +0.091 | p = 0.114
+  3 LATER 1990-2016, fixed: RS bottom 20%
+    winners always                  +14.6%/yr  Sharpe  0.70  worst  -56.4%
+    winners, halved on warning      +13.1%/yr  Sharpe  0.72  worst  -49.9%
+      warning on 20% of days
+  4 CHIMERA-70:
+    CHIMERA-70                      +24.8%/yr  Sharpe  1.11  worst  -27.4%
+    CHIMERA-70 + warning            +21.8%/yr  Sharpe  1.06  worst  -27.4%
+      warning on 22% of days
+      2017: CHIMERA-70   +15%   + warning   +16%
+      2018: CHIMERA-70    -1%   + warning    -7%
+      2019: CHIMERA-70   +19%   + warning   +19%
+      2020: CHIMERA-70   +53%   + warning   +55%
+      2021: CHIMERA-70   +62%   + warning   +62%
+      2022: CHIMERA-70    -3%   + warning    -6%
+      2023: CHIMERA-70   +18%   + warning   +18%
+      2024: CHIMERA-70   +35%   + warning   +29%
+      2025: CHIMERA-70    +3%   + warning    -8%
+      2026: CHIMERA-70   +46%   + warning   +46%
+
+  ================= PART B: CROWD alone and CROWD + one other sign =================
+  search on CHIMERA-70 (Sharpe gain):
+    +0.080  worst  -27.4%  CROWD top 20% AND MKTVOL top 20%
+    +0.079  worst  -27.4%  CROWD top 10%
+    +0.069  worst  -27.4%  CROWD top 20%
+    +0.061  worst  -27.4%  CROWD top 20% AND MKTVOL top 10%
+    +0.061  worst  -27.4%  CROWD top 10% AND MKTVOL top 20%
+    +0.061  worst  -27.4%  CROWD top 20% AND CURVE bottom 20%
+    +0.049  worst  -27.4%  CROWD top 5%
+    +0.048  worst  -27.4%  CROWD top 10% AND CURVE bottom 20%
+    +0.044  worst  -27.4%  CROWD top 20% AND CREDIT top 10%
+    +0.043  worst  -27.4%  CROWD top 10% AND CREDIT top 10%
+    +0.041  worst  -27.4%  CROWD top 5% AND CURVE bottom 20%
+    +0.040  worst  -27.4%  CROWD top 10% AND MKTVOL top 10%
+    CROWD alone (context): CROWD top 20% +0.069 | CROWD top 10% +0.079 | CROWD top 5% +0.049
+  1 best rule fixed: CROWD top 20% AND MKTVOL top 20%
+    CHIMERA-70                      +24.8%/yr  Sharpe  1.11  worst  -27.4%
+    CHIMERA-70 + warning            +26.3%/yr  Sharpe  1.19  worst  -27.4%
+      warning on 7% of days
+      2017: CHIMERA-70   +15%   + warning   +15%
+      2018: CHIMERA-70    -1%   + warning    +2%
+      2019: CHIMERA-70   +19%   + warning   +19%
+      2020: CHIMERA-70   +53%   + warning   +54%
+      2021: CHIMERA-70   +62%   + warning   +62%
+      2022: CHIMERA-70    -3%   + warning    +3%
+      2023: CHIMERA-70   +18%   + warning   +18%
+      2024: CHIMERA-70   +35%   + warning   +35%
+      2025: CHIMERA-70    +3%   + warning    +3%
+      2026: CHIMERA-70   +46%   + warning   +46%
+      warning periods (13): 2018-10-16, 2019-09-09, 2020-06-15, 2020-09-30, 2020-10-28, 2020-11-09, 2021-03-11, 2021-12-21, 2022-03-24, 2022-03-31, 2022-04-28, 2022-09-13, 2022-09-28
+  2 LUCK: real best +0.080 | slid: median +0.161, 95th pct +0.288 | p = 0.647
+  3 HALVES: 2017-03 -> 2021-05 Sharpe 1.37 vs 1.31 | 2021-06 -> 2026-05 Sharpe 1.05 vs 0.96
+
+  ===== VERDICT (pre-stated) =====
+    PART A (RS bottom 20%): luck p = 0.114 FAIL | 1990-2016 pass | CHIMERA-70 FAIL -> FAIL
+    PART B (CROWD top 20% AND MKTVOL top 20%): CHIMERA-70 pass | luck p = 0.647 FAIL | halves pass -> FAIL
+    FAIL -- keep CHIMERA-70 as is

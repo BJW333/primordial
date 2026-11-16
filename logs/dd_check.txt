@@ -1,0 +1,40 @@
+
+  ===== 1927-1989 =====
+    BASE fixed 70%          +11.4%/yr  Sharpe  0.77  worst  -69.7%  losing yrs 17/63  
+    DDCTRL zero at 20%      +11.0%/yr  Sharpe  1.03  worst  -49.2%  losing yrs 17/63  avg share 55%, 20.6 trades/yr
+    DDCTRL zero at 30%      +11.1%/yr  Sharpe  0.93  worst  -58.0%  losing yrs 17/63  avg share 60%, 12.0 trades/yr
+    DDCTRL zero at 40%      +11.0%/yr  Sharpe  0.89  worst  -61.8%  losing yrs 17/63  avg share 62%, 8.9 trades/yr
+    FIXED 64% (same return)  +11.2%/yr  Sharpe  0.81  worst  -65.8%  losing yrs 14/63  
+    check B: DDCTRL(30%) Sharpe 0.93 vs 0.81, worst -58.0% vs -65.8% -> pass
+
+  ===== 1990-2016 =====
+    BASE fixed 70%          +11.9%/yr  Sharpe  0.78  worst  -43.1%  losing yrs 4/27  
+    DDCTRL zero at 20%       +8.7%/yr  Sharpe  0.80  worst  -27.9%  losing yrs 5/27  avg share 55%, 27.8 trades/yr
+    DDCTRL zero at 30%      +10.0%/yr  Sharpe  0.82  worst  -31.9%  losing yrs 5/27  avg share 60%, 16.7 trades/yr
+    DDCTRL zero at 40%      +10.4%/yr  Sharpe  0.81  worst  -34.2%  losing yrs 4/27  avg share 62%, 11.4 trades/yr
+    FIXED 57% (same return)  +10.0%/yr  Sharpe  0.79  worst  -36.2%  losing yrs 4/27  
+    check B: DDCTRL(30%) Sharpe 0.82 vs 0.79, worst -31.9% vs -36.2% -> pass
+
+  ===== CHIMERA-70 =====
+    BASE fixed 70%          +24.8%/yr  Sharpe  1.11  worst  -27.4%  losing yrs 2/10  
+    DDCTRL zero at 20%      +18.2%/yr  Sharpe  1.09  worst  -16.4%  losing yrs 3/10  avg share 53%, 36.4 trades/yr
+    DDCTRL zero at 30%      +21.7%/yr  Sharpe  1.18  worst  -19.6%  losing yrs 3/10  avg share 59%, 22.0 trades/yr
+    DDCTRL zero at 40%      +23.2%/yr  Sharpe  1.19  worst  -21.3%  losing yrs 2/10  avg share 62%, 15.9 trades/yr
+    FIXED 51% (same return)  +20.9%/yr  Sharpe  1.20  worst  -20.6%  losing yrs 1/10  
+    check B: DDCTRL(30%) Sharpe 1.18 vs 1.20, worst -19.6% vs -20.6% -> FAIL
+    by year: BASE / DDCTRL(30%) / FIXED
+      2017:   +15%    +13%    +11%
+      2018:    -1%     -3%     +0%
+      2019:   +19%    +15%    +14%
+      2020:   +53%    +48%    +44%
+      2021:   +62%    +69%    +60%
+      2022:    -3%     -9%     -2%
+      2023:   +18%    +14%    +15%
+      2024:   +35%    +29%    +19%
+      2025:    +3%     -0%     +5%
+      2026:   +46%    +44%    +40%
+
+  ===== VERDICT (pre-stated) =====
+    A fragility 20/30/40% beats BASE everywhere -> FAIL
+    B beats fixed size at the same return      -> FAIL
+    FAIL -- DDCTRL is mostly just holding less; keep CHIMERA-70

@@ -1,0 +1,63 @@
+  size changes per year (how often the dial moves):
+    US 1927-1989   MONTHLY 4.0  WEEKLY 7.5  FASTDOWN 4.8  TURN 8.1
+    US 1990-2016   MONTHLY 4.7  WEEKLY 9.3  FASTDOWN 5.9  TURN 9.9
+    CHIMERA-70     MONTHLY 5.0  WEEKLY 8.3  FASTDOWN 5.9  TURN 10.0
+
+  ################ FAST REGIME (best of WEEKLY / FASTDOWN / TURN) ################
+  1 PICK on US 1927-1989 (BASE fixed 70%: +11.4%/yr, Sharpe 0.57, worst -69.7%). Sharpe = above T-bills.
+    WEEKLY                                +11.0%/yr Sharpe  0.65 worst  -43.6% | fixed 64%: +11.1% 0.58 -65.7% -> gain +0.065
+    FASTDOWN                              +10.4%/yr Sharpe  0.63 worst  -42.4% | fixed 57%: +10.3% 0.58 -60.6% -> gain +0.054
+    TURN                                  +11.3%/yr Sharpe  0.72 worst  -42.0% | fixed 67%: +11.3% 0.58 -67.8% -> gain +0.147
+    PICKED: TURN
+  2 HOLDOUTS + 3 CHIMERA (picked version, unchanged):
+                            annual  Sharpe   worst  losing yrs
+  US 1990-2016 (1990-01-02 -> 2016-12-30):
+    BASE fixed 70%          +11.9%    0.61  -43.1%  4/27
+    RULE                     +8.9%    0.55  -25.9%  7/27
+    FIXED 47% same return    +8.9%    0.58  -30.9%  4/27   -> FAIL
+  CHIMERA-70 (2017-03-01 -> 2026-05-29):
+    BASE fixed 70%          +24.8%    1.00  -27.4%  2/10
+    RULE                    +24.1%    1.18  -14.9%  1/10
+    FIXED 60% same return   +24.2%    1.08  -23.8%  2/10   -> do-no-harm pass
+    by year  BASE / RULE / FIXED
+      2017:   +15%   +13%   +13%
+      2018:    -1%    +2%    -0%
+      2019:   +19%   +19%   +16%
+      2020:   +53%   +35%   +53%
+      2021:   +62%   +65%   +64%
+      2022:    -3%    -0%    -2%
+      2023:   +18%   +19%   +16%
+      2024:   +35%    +9%   +31%
+      2025:    +3%   +35%    +4%
+      2026:   +46%   +37%   +44%
+  VERDICT FAST REGIME (best of WEEKLY / FASTDOWN / TURN):
+    a) US 1990-2016 beats same-return fixed size -> FAIL
+    b) Sharpe gain is real: bootstrap p = 0.674 (need < 0.017) -> FAIL
+    c) CHIMERA do-no-harm -> pass
+    => FAIL
+
+  ===== 3 FASTER vs CURRENT MONTHLY REGIME =====
+  US 1990-2016: TURN +8.9%/yr Sharpe 0.55 worst -25.9% | MONTHLY +11.3%/yr Sharpe 0.67 worst -29.2% -> FAIL
+  CHIMERA-70: TURN +24.1%/yr Sharpe 1.18 worst -14.9% | MONTHLY +27.2%/yr Sharpe 1.26 worst -17.7% -> FAIL (context)
+    by year  MONTHLY / TURN
+      2017:   +16%   +13%
+      2018:    -0%    +2%
+      2019:   +14%   +19%
+      2020:   +40%   +35%
+      2021:   +71%   +65%
+      2022:    -1%    -0%
+      2023:   +16%   +19%
+      2024:   +31%    +9%
+      2025:   +35%   +35%
+      2026:   +43%   +37%
+      2018-10: MONTHLY  -8.9%  TURN  -7.0%
+      2020-02: MONTHLY  -0.4%  TURN  +1.9%
+      2020-03: MONTHLY  -5.7%  TURN  -5.7%
+      2022-01: MONTHLY  -5.7%  TURN  -5.4%
+      2023-10: MONTHLY  -5.0%  TURN  -2.3%
+      2025-04: MONTHLY  +0.8%  TURN  +0.9%
+
+  ===== FINAL VERDICT (pre-stated) =====
+    judge.py (pick + US 1990-2016 + luck + CHIMERA) -> FAIL
+    beats current MONTHLY REGIME on US 1990-2016   -> FAIL
+    FAIL -- keep REGIME checking monthly

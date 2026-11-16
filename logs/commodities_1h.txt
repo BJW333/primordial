@@ -1,0 +1,34 @@
+primordial v0.1.9
+[commodities_1h] 16 syms | tfs ['1h', '4h', '1d'] | atoms 83 -> 75 after |rho|>0.95 dedupe (8 merged) | motifs 12
+  gen  0 | best -0.189 | med SR +0.21 over 30 cells | [4h long confirm] cross_above(up_down_ratio, ema(upper_wick_frac, n=14
+  gen  1 | best -0.330 | med SR +0.12 over 16 cells | [4h long confirm] lte(rsi_f, gap_atr) | stop 1.6A tgt 3.0R ts 120 trai
+  gen  2 | best -0.129 | med SR +0.36 over 23 cells | [1h short limit] cross_below(div(roll_mean(absv(-0.28), n=165), ret_pc
+  gen  3 | best -0.279 | med SR +0.36 over 23 cells | [1h short limit] cross_below(div(roll_mean(absv(-0.28), n=165), ret_pc
+  gen  4 | best +0.214 | med SR +0.93 over 7 cells | [1d short market] cross_above(true_range_z, roll_max(lag(true_range_z,
+  gen  5 | best +0.064 | med SR +0.93 over 7 cells | [1d short market] cross_above(true_range_z, roll_max(lag(true_range_z,
+  gen  6 | best +0.064 | med SR +0.93 over 7 cells | [1d short market] cross_above(true_range_z, roll_max(lag(true_range_z,
+  gen  7 | best +0.064 | med SR +0.93 over 7 cells | [1d short market] cross_above(true_range_z, roll_max(lag(true_range_z,
+  gen  8 | best +0.064 | med SR +0.93 over 7 cells | [1d short market] cross_above(true_range_z, roll_max(lag(true_range_z,
+  gen  9 | best +0.064 | med SR +0.93 over 7 cells | [1d short market] cross_above(true_range_z, roll_max(lag(true_range_z,
+  gen 10 | best +0.064 | med SR +0.93 over 7 cells | [1d short market] cross_above(true_range_z, roll_max(lag(true_range_z,
+  gen 11 | best +0.064 | med SR +0.93 over 7 cells | [1d short market] cross_above(true_range_z, roll_max(lag(true_range_z,
+  gen 12 | best +0.064 | med SR +0.93 over 7 cells | [1d short market] cross_above(true_range_z, roll_max(lag(true_range_z,
+  gen 13 | best +0.064 | med SR +0.93 over 7 cells | [1d short market] cross_above(true_range_z, roll_max(lag(true_range_z,
+  gen 14 | best +0.064 | med SR +0.93 over 7 cells | [1d short market] cross_above(true_range_z, roll_max(lag(true_range_z,
+  gen 15 | best +0.064 | med SR +0.93 over 7 cells | [1d short market] cross_above(true_range_z, roll_max(lag(true_range_z,
+  gen 16 | best +0.064 | med SR +0.93 over 7 cells | [1d short market] cross_above(true_range_z, roll_max(lag(true_range_z,
+  gen 17 | best +0.064 | med SR +0.93 over 7 cells | [1d short market] cross_above(true_range_z, roll_max(lag(true_range_z,
+  gen 18 | best +0.064 | med SR +0.93 over 7 cells | [1d short market] cross_above(true_range_z, roll_max(lag(true_range_z,
+  gen 19 | best +0.064 | med SR +0.93 over 7 cells | [1d short market] cross_above(true_range_z, roll_max(lag(true_range_z,
+  [rejected] 1d holdout SR n/a (0 cells) vs bar +1.15 | PSR 0.62 | [1d short market] cross_above(true_range_z, roll_max(lag(tru
+  [rejected] 1d holdout SR +0.10 vs bar +1.15 | PSR 0.53 | [1d long market] cross_above(ctx_UUP_trend, -0.18) WHEN lte(
+  [rejected] 4h holdout SR +0.63 vs bar +1.15 | PSR 0.98 | [4h long confirm] cross_above(up_down_ratio, ema(obv_slope, 
+  [rejected] 1h holdout SR -0.14 vs bar +1.15 | PSR 0.16 | [1h short limit] cross_below(div(roll_mean(absv(-0.28), n=16
+  [rejected] 1d holdout SR +0.11 vs bar +1.15 | PSR 0.56 | [1d long market] gte(match_m0_s35, volz) WHEN cross_above(lo
+  [rejected] 4h holdout SR +0.60 vs bar +1.15 | PSR 0.99 | [4h long confirm] cross_above(up_down_ratio, ema(absv(xs_ran
+
+==================================================================
+0 survivor(s) of 6 candidates | all-time effective trials on this holdout: 54
+artifacts: runs/20261110_121922
+Nothing survived. That is a real answer -- the bar is doing its job. Do NOT loosen a threshold to change it.
+report: runs/20261110_121922/report.html

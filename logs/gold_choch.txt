@@ -1,0 +1,40 @@
+    GLD 2016: 128,787 bars
+    GLD 2017: 123,737 bars
+    GLD 2018: 127,527 bars
+    GLD 2019: 128,599 bars
+    GLD 2020: 145,212 bars
+    GLD 2021: 133,582 bars
+    GLD 2022: 128,151 bars
+    GLD 2023: 123,363 bars
+    GLD 2024: 130,527 bars
+    GLD 2025: 162,979 bars
+    GLD 2026: 167,265 bars
+  data: GLD 15m (Alpaca), 70,893 15m bars; costs as GC (1 tick + commission per side)
+
+  ===== REAL DATA: 70,893 bars 2016-01-04 -> 2026-11-10
+  canonical {'pivot': 3, 'zone': 130, 'retr': 0.5, 'ttl': 26, 'rr': 3.0, 'hold': 130}
+  trades 488 (45/yr, 51% long) | win 25% | expectancy -0.057 R (t -0.38) | longs +0.362 R, shorts -0.489 R
+  halves: 2016-20 -0.158 R (226) | 2021-now +0.031 R (262)
+  by year (R/trade): 2016 -0.42  2017 -0.63  2018 -0.03  2019 +0.05  2020 +0.18  2021 -0.20  2022 -0.03  2023 +0.11  2024 +0.45  2025 -0.14  2026 +0.00
+  random 1:3 brackets (20 runs): mean -0.095 R, 95th pct +0.104 R
+  grid (pivot/RR/zone: trades, R): 2/2/52: 707 -0.08 | 2/2/130: 633 -0.15 | 2/3/52: 711 -0.02 | 2/3/130: 658 -0.10 | 3/2/52: 555 +0.02 | 3/2/130: 474 -0.01 | 3/3/52: 557 -0.06 | 3/3/130: 488 -0.06 | 5/2/52: 333 -0.13 | 5/2/130: 265 -0.14 | 5/3/52: 342 -0.06 | 5/3/130: 272 -0.08
+  at 0.5% risk/trade: -1.3%/yr, Sharpe -0.11; vs CHIMERA corr -0.11, CHIM 1.42 -> blend 1.00
+    a expectancy>=0.10R & t>=2       NO
+    b both halves > 0                NO
+    c beats random 95th pct          NO
+    d grid >= 8/12 positive (1)      NO
+    e blend > CHIM                   NO
+  VERDICT: FAIL
+
+  ===== NULL CONTROL: shuffled 15m bars (must FAIL): 70,893 bars 2016-01-04 -> 2026-11-10
+  canonical {'pivot': 3, 'zone': 130, 'retr': 0.5, 'ttl': 26, 'rr': 3.0, 'hold': 130}
+  trades 525 (48/yr, 46% long) | win 22% | expectancy -0.350 R (t -1.80) | longs -0.216 R, shorts -0.463 R
+  halves: 2016-20 -0.618 R (247) | 2021-now -0.111 R (278)
+  by year (R/trade): 2016 -0.67  2017 -0.39  2018 -0.12  2019 -2.15  2020 +0.30  2021 +0.68  2022 -0.20  2023 -0.25  2024 -0.37  2025 -0.30  2026 -0.32
+  random 1:3 brackets (20 runs): mean -0.113 R, 95th pct -0.007 R
+  at 0.5% risk/trade: -8.5%/yr, Sharpe -0.55; vs CHIMERA corr -0.03, CHIM 1.42 -> blend 0.65
+    a expectancy>=0.10R & t>=2       NO
+    b both halves > 0                NO
+    c beats random 95th pct          NO
+    e blend > CHIM                   NO
+  VERDICT: FAIL

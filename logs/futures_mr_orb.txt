@@ -1,0 +1,36 @@
+  daily prices: 12 series 2009-01-02 -> 2026-11-04
+  FRED failed (HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=60)); FLY skipped
+  CRUSH: 42 possible roll days dropped
+
+  PART 1 MEAN REVERSION (daily)
+  strategy       | 2012-21 ann  shp | last5y ann  vol  shp  worst  2022 | corrCHIM  CHIM  blend | verdict
+  FLY            | no data
+  CRACK          |    -3.1% -0.43 |    +1.4%    7%  0.24   -10%    -3% |  -0.10   1.42   1.26 | fail
+  CRUSH          |    +1.7%  0.26 |    -5.0%    6% -0.79   -23%    -5% |  -0.05   1.42   0.87 | fail
+  CORN_WHEAT     |    +1.0%  0.19 |    -0.1%    7%  0.02   -11%    -6% |  -0.11   1.42   1.05 | fail
+  MR_BOOK        |    -0.0%  0.02 |    -0.9%    4% -0.22    -8%    -5% |  -0.14   1.42   1.07 | fail
+  SPREAD_CONF    |    +0.3%  0.12 |    -0.2%    4% -0.05    -7%    -0% |  -0.11   1.42   1.07 | fail
+  control RANDOM |    +1.2%  0.19 |    -4.2%    9% -0.45   -23%   -11% |  -0.04   1.42   0.81 | fail
+  pass = last-5y Sharpe >= 0.7 AND 2012-21 >= 0.5 AND blend > CHIM
+  CL=F: 13537 hourly bars 2024-06-14 -> 2026-11-04, 595 full sessions
+  NG=F: 13519 hourly bars 2024-06-14 -> 2026-11-04, 594 full sessions
+  GC=F: 13712 hourly bars 2024-06-14 -> 2026-11-04, 595 full sessions
+  SI=F: 13709 hourly bars 2024-06-14 -> 2026-11-04, 595 full sessions
+  HG=F: 13702 hourly bars 2024-06-14 -> 2026-11-04, 595 full sessions
+  ZN=F: 13632 hourly bars 2024-06-14 -> 2026-11-04, 592 full sessions
+  ZB=F: 13633 hourly bars 2024-06-14 -> 2026-11-04, 592 full sessions
+  6E=F: 13709 hourly bars 2024-06-14 -> 2026-11-04, 595 full sessions
+  6J=F: 13707 hourly bars 2024-06-14 -> 2026-11-04, 595 full sessions
+  6B=F: 13710 hourly bars 2024-06-14 -> 2026-11-04, 595 full sessions
+
+  PART 2 ORB / INTRADAY (hourly)  markets: CL=F, NG=F, GC=F, SI=F, HG=F, ZN=F, ZB=F, 6E=F, 6J=F, 6B=F
+  sample 2024-06-14 -> 2026-11-04
+  strategy       | trades  win  net/trade | ann    shp  half1 half2  worst | corrCHIM(mo) | verdict
+  ORB            |   5769  43%    -3.0bp |  -5.0% -2.45 -0.81 -4.25   -11% | -0.07 (23mo) | fail
+  NR7_ORB        |    893  45%    +0.1bp |  -0.2% -0.39  0.49 -1.39    -1% | +0.04 (23mo) | fail
+  INTRA_MOM      |   5856  39%    -3.7bp |  -5.9% -5.86 -3.89 -8.19   -13% | -0.24 (23mo) | fail
+  NOISE_BAND     |   4915  37%    -5.7bp |  -5.6% -3.45 -2.65 -4.19   -13% | -0.18 (23mo) | fail
+  ORB_COMBO      |    657  44%    -1.1bp |  -0.4% -0.71 -0.04 -1.31    -2% | +0.23 (23mo) | fail
+  control RANDOM |   2999  45%    -3.7bp |  -3.8% -3.08 -4.01 -2.18    -9% | +0.17 (23mo) | fail
+  promising = Sharpe >= 1.4 AND both halves > 0 -> earns a QC minute test
+  net/trade = average trade after 1 tick + $2.50 each side, unscaled

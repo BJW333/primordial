@@ -1,0 +1,28 @@
+    SPY 2016: 190,370 bars
+    SPY 2017: 171,824 bars
+    SPY 2018: 192,827 bars
+    SPY 2019: 190,711 bars
+    SPY 2020: 214,264 bars
+    SPY 2021: 201,796 bars
+    SPY 2022: 212,907 bars
+    SPY 2023: 202,657 bars
+    SPY 2024: 196,990 bars
+    SPY 2025: 211,590 bars
+    SPY 2026: 195,577 bars
+  data: SPY 1-min (Alpaca SIP), 2,705 full days; costs as ES
+
+  ===== REAL DATA: 2,690 days 2016-01-26 -> 2026-11-09
+  2,343 entries (217/yr) | +4.4%/yr | Sharpe +0.37 | worst drop -47% | after publication Sharpe +0.03 (606 days)
+  by year: 2016 -28%  2017 -26%  2018 +42%  2019 -2%  2020 +13%  2021 +23%  2022 +21%  2023 +26%  2024 +17%  2025 -3%  2026 -11%
+  2x costs Sharpe -0.32 | with CHIMERA (monthly): corr -0.15, CHIM 1.42 -> blend 1.67 | avg month when CHIMERA < -3%: +1.9%
+    a Sharpe >= 1.0 (2016-now)             NO
+    b after publication Sharpe >= 0.5      NO
+    c >= 7/10 full years positive (6)      NO
+    d 2x costs Sharpe >= 0.7               NO
+    e corr <= 0.3 and blend > CHIM         yes
+  VERDICT: FAIL
+
+  ===== NULL CONTROL: minutes shuffled within each day (must FAIL): 2,690 days 2016-01-26 -> 2026-11-09
+  2,753 entries (255/yr) | -8.1%/yr | Sharpe -0.45 | worst drop -69% | after publication Sharpe -0.03 (606 days)
+  by year: 2016 -28%  2017 -28%  2018 +17%  2019 -29%  2020 -12%  2021 -11%  2022 +13%  2023 +4%  2024 +11%  2025 -9%  2026 -0%
+  VERDICT: FAIL (Sharpe >= 1.0 check only)

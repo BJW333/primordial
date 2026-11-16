@@ -1,0 +1,14 @@
+  daily prices: 12 series 2009-01-02 -> 2026-11-04
+  FRED failed (HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=180)); FLY skipped
+  CRUSH: 42 possible roll days dropped
+
+  PART 1 MEAN REVERSION (daily)
+  strategy       | 2012-21 ann  shp | last5y ann  vol  shp  worst  2022 | corrCHIM  CHIM  blend | verdict
+  FLY            | no data
+  CRACK          |    -3.1% -0.43 |    +1.4%    7%  0.24   -10%    -3% |  -0.10   1.42   1.26 | fail
+  CRUSH          |    +1.7%  0.26 |    -5.0%    6% -0.79   -23%    -5% |  -0.05   1.42   0.87 | fail
+  CORN_WHEAT     |    +1.0%  0.19 |    -0.1%    7%  0.02   -11%    -6% |  -0.11   1.42   1.05 | fail
+  MR_BOOK        |    -0.0%  0.02 |    -0.9%    4% -0.22    -8%    -5% |  -0.14   1.42   1.07 | fail
+  SPREAD_CONF    |    +0.3%  0.12 |    -0.2%    4% -0.05    -7%    -0% |  -0.11   1.42   1.07 | fail
+  control RANDOM |    +1.2%  0.19 |    -4.2%    9% -0.45   -23%   -11% |  -0.04   1.42   0.81 | fail
+  pass = last-5y Sharpe >= 0.7 AND 2012-21 >= 0.5 AND blend > CHIM

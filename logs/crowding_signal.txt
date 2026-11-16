@@ -1,0 +1,62 @@
+  French 1926-11-03 -> 2026-09-30 | stocks 2016-01-04 -> 2026-06-01, 3084 names
+  data check: rebuilt STEADY vs momentum_cap_daily.csv correlation 1.0000 on 2325 days
+
+  ================= WBETA: winners' market beta (126d) top 20% =================
+  (a) 1927-1989: Sharpe gain +0.018 | slid copies: median -0.010, 95th pct +0.054 | p = 0.235 | warning on 18% of days
+    winners always                  +14.7%/yr  Sharpe  0.72  worst  -84.3%
+    winners, halved on warning      +13.9%/yr  Sharpe  0.74  worst  -82.8%
+  (b) 1990-2016 untouched:
+    winners always                  +14.6%/yr  Sharpe  0.70  worst  -56.4%
+    winners, halved on warning      +14.3%/yr  Sharpe  0.76  worst  -56.4%
+      warning on 30% of days
+  (c) CHIMERA-70 2017-03-01 -> 2026-05-29:
+    CHIMERA-70                      +24.8%/yr  Sharpe  1.11  worst  -27.4%
+    CHIMERA-70 + WBETA              +27.0%/yr  Sharpe  1.31  worst  -27.4%
+      warning on 28% of days
+      2017: CHIMERA-70   +15%   + WBETA    +6%
+      2018: CHIMERA-70    -1%   + WBETA    +4%
+      2019: CHIMERA-70   +19%   + WBETA   +19%
+      2020: CHIMERA-70   +53%   + WBETA   +53%
+      2021: CHIMERA-70   +62%   + WBETA   +62%
+      2022: CHIMERA-70    -3%   + WBETA    +2%
+      2023: CHIMERA-70   +18%   + WBETA   +18%
+      2024: CHIMERA-70   +35%   + WBETA   +21%
+      2025: CHIMERA-70    +3%   + WBETA   +32%
+      2026: CHIMERA-70   +46%   + WBETA   +45%
+      warning periods (13): 2017-03-21, 2017-12-04, 2018-10-10, 2018-10-26, 2021-03-09, 2021-03-11, 2021-12-01, 2021-12-03, 2021-12-07, 2024-04-23, 2024-05-02, 2024-05-06, 2026-05-27
+
+  ================= CROWD: holdings' co-movement (63d) top 20% =================
+  CROWD ranks usable from 2018-02-27 (no warnings before that) | avg correlation: median 0.13, 90th pct 0.26
+  (a) CHIMERA-70 2017-03-01 -> 2026-05-29:
+    CHIMERA-70                      +24.8%/yr  Sharpe  1.11  worst  -27.4%
+    CHIMERA-70 + CROWD              +24.5%/yr  Sharpe  1.18  worst  -27.4%
+      warning on 24% of days
+      2017: CHIMERA-70   +15%   + CROWD   +15%
+      2018: CHIMERA-70    -1%   + CROWD    +5%
+      2019: CHIMERA-70   +19%   + CROWD   +18%
+      2020: CHIMERA-70   +53%   + CROWD   +50%
+      2021: CHIMERA-70   +62%   + CROWD   +62%
+      2022: CHIMERA-70    -3%   + CROWD    -1%
+      2023: CHIMERA-70   +18%   + CROWD   +18%
+      2024: CHIMERA-70   +35%   + CROWD   +35%
+      2025: CHIMERA-70    +3%   + CROWD    +3%
+      2026: CHIMERA-70   +46%   + CROWD   +34%
+      warning periods (22): 2018-09-14, 2018-09-28, 2019-04-17, 2019-09-09, 2020-06-15, 2020-07-14, 2020-07-27, 2020-08-11, 2020-09-30, 2020-11-09, 2021-03-02, 2021-08-24, 2021-12-13, 2021-12-16, 2022-03-24, 2022-03-31, 2025-08-29, 2025-09-26, 2025-11-06, 2025-12-12, 2026-02-27, 2026-05-21
+  (b) luck: Sharpe gain +0.069 | slid copies: median +0.014, 95th pct +0.253 | p = 0.279
+
+  context: signal ranks (0-1) at the start of each month, bad stretches
+    2018-01: CROWD nan   WBETA 0.67
+    2018-09: CROWD 0.69   WBETA 0.60
+    2020-01: CROWD 0.52   WBETA 0.13
+    2020-02: CROWD 0.09   WBETA 0.28
+    2021-01: CROWD 0.87   WBETA 0.68
+    2021-02: CROWD 0.74   WBETA 0.67
+    2021-11: CROWD 0.41   WBETA 0.87
+    2022-01: CROWD 0.21   WBETA 0.92
+    2025-02: CROWD 0.19   WBETA 0.88
+    2025-03: CROWD 0.24   WBETA 0.90
+
+  ===== VERDICT (pre-stated) =====
+    WBETA: luck p = 0.235 FAIL | 1990-2016 pass | CHIMERA-70 pass  -> FAIL
+    CROWD: CHIMERA-70 pass | luck p = 0.279 FAIL  -> FAIL
+    FAIL -- keep CHIMERA-70 as is

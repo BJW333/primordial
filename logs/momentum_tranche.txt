@@ -1,0 +1,54 @@
+  building sub-books (8 = 4 rebalance weeks x 12m / 6m momentum) ...
+  period 2017-03-22 -> 2026-05-07 | week1 = rebalance on the 1st (today's CHIMERA)
+
+  ===== FIXED 70% (70% book or REGIME size + T-bills, 30% lock) =====
+    book                            annual Sharpe    worst   losing yrs
+    12m week1                       +25.0%   1.00   -27.4%   2/10
+    12m week2                       +26.6%   1.08   -30.7%   2/10
+    12m week3                       +27.8%   1.14   -30.3%   2/10
+    12m week4                       +30.0%   1.22   -27.2%   2/10
+    TRANCHE4 12m                    +27.8%   1.15   -28.9%   2/10
+    TRANCHE4 12m+6m blend           +20.9%   0.89   -26.9%   3/10
+    12m+6m blend, week1 only        +20.1%   0.85   -27.9%   2/10
+    (average of the 4 weeks)        +27.4%   1.11   -28.9%
+    rebalancing on the 1st ranks #4 of 4 on Sharpe (spread 1.00 to 1.22)
+
+  ===== WITH REGIME (70% book or REGIME size + T-bills, 30% lock) =====
+    book                            annual Sharpe    worst   losing yrs
+    12m week1                       +27.4%   1.27   -17.7%   2/10
+    12m week2                       +24.7%   1.13   -20.4%   2/10
+    12m week3                       +27.9%   1.32   -20.6%   1/10
+    12m week4                       +29.0%   1.33   -18.3%   2/10
+    TRANCHE4 12m                    +25.6%   1.21   -19.1%   2/10
+    TRANCHE4 12m+6m blend           +20.6%   1.00   -19.3%   2/10
+    12m+6m blend, week1 only        +19.2%   0.92   -21.5%   2/10
+    (average of the 4 weeks)        +27.3%   1.26   -19.2%
+    rebalancing on the 1st ranks #3 of 4 on Sharpe (spread 1.13 to 1.33)
+
+  ===== BAD MONTHS (with REGIME): week1 / TRANCHE4 / TRANCHE4 blend =====
+    2018-10:   -8.9%   -10.0%    -9.5%
+    2018-11:   -1.5%    -1.6%    -1.1%
+    2018-12:   -2.8%    -3.5%    -3.1%
+    2020-02:   -0.4%    -2.0%    -1.5%
+    2020-03:   -5.7%    -5.4%    -3.9%
+    2022-01:   -5.7%    -4.9%    -6.3%
+    2023-03:   +0.2%    +0.5%    +0.4%
+    2023-10:   -5.0%    -5.1%    -5.7%
+    2025-02:   -2.3%    -1.4%    -3.3%
+    2025-03:   -4.7%    -3.7%    -8.1%
+    2025-04:   +0.8%    +0.4%    +0.6%
+  by year (with REGIME): week1 / TRANCHE4 / TRANCHE4 blend
+    2017:   +19%   +18%   +17%
+    2018:    -0%    -5%    -3%
+    2019:   +14%   +15%   +11%
+    2020:   +40%   +37%   +49%
+    2021:   +71%   +61%   +64%
+    2022:    -1%    -1%    -4%
+    2023:   +16%   +15%   +12%
+    2024:   +31%   +33%   +16%
+    2025:   +35%   +33%    +2%
+    2026:   +39%   +38%   +40%
+
+  ===== VERDICT (pre-stated, with REGIME) =====
+    TRANCHES: Sharpe 1.21 vs 4-week average 1.26, worst -19.1% vs -19.2% -> FAIL
+    SPEED BLEND: Sharpe 1.00 vs 1.21, worst -19.3% vs -19.1%, losing yrs 2 vs 2, halves 1.46/1.27 and 0.67/1.16 -> FAIL

@@ -1,0 +1,52 @@
+  French 1926-11-03 -> 2026-09-30 | CHIMERA-70 2017-03-01 -> 2026-05-29
+  model: 70% momentum + T-bills, 30% yearly lock -> market
+
+  ================= IDEA 1: FLOOR -- never give back the lock =================
+  1927-1989:
+    BASE (lock -> market)       +11.4%/yr  Sharpe  0.77  worst  -69.7%  
+    FLOOR25                     +11.2%/yr  Sharpe  0.78  worst  -69.7%  floor fired 9x
+    BILLS                       +11.3%/yr  Sharpe  0.82  worst  -69.7%  
+  1990-2016:
+    BASE (lock -> market)       +11.9%/yr  Sharpe  0.78  worst  -43.1%  
+    FLOOR25                     +11.5%/yr  Sharpe  0.76  worst  -43.1%  floor fired 1x
+    BILLS                       +11.0%/yr  Sharpe  0.73  worst  -43.1%  
+  CHIMERA-70:
+    BASE (lock -> market)       +24.8%/yr  Sharpe  1.11  worst  -27.4%  
+    FLOOR25                     +24.8%/yr  Sharpe  1.11  worst  -27.4%  floor fired 0x
+    BILLS                       +18.2%/yr  Sharpe  0.89  worst  -27.4%  
+    CHIMERA-70 by year:
+      2017: BASE   +15%   FLOOR25   +15%   BILLS   +15%
+      2018: BASE    -1%   FLOOR25    -1%   BILLS    -1%
+      2019: BASE   +19%   FLOOR25   +19%   BILLS   +19%
+      2020: BASE   +53%   FLOOR25   +53%   BILLS   +30%
+      2021: BASE   +62%   FLOOR25   +62%   BILLS   +30%
+      2022: BASE    -3%   FLOOR25    -3%   BILLS    -3%
+      2023: BASE   +18%   FLOOR25   +18%   BILLS   +18%
+      2024: BASE   +35%   FLOOR25   +35%   BILLS   +32%
+      2025: BASE    +3%   FLOOR25    +3%   BILLS    +3%
+      2026: BASE   +46%   FLOOR25   +46%   BILLS   +31%
+
+  ================= IDEA 2: GUARD -- up 25%, then -10% -> T-bills until re-entry =================
+  search 1927-1989 (BASE Sharpe 0.77); re-entry rule, Sharpe gain, stops:
+    +0.000  stops   0  worst  -69.7%  NEVER
+    +0.000  stops   0  worst  -69.7%  SMA50
+    +0.000  stops   0  worst  -69.7%  SMA20
+    +0.000  stops   0  worst  -69.7%  HIGH10
+    +0.000  stops   0  worst  -69.7%  OFFLOW
+    +0.000  stops   0  worst  -69.7%  CALM
+    +0.000  stops   0  worst  -69.7%  SMA50 AND SMA20
+    +0.000  stops   0  worst  -69.7%  SMA50 AND HIGH10
+    +0.000  stops   0  worst  -69.7%  SMA50 AND OFFLOW
+    +0.000  stops   0  worst  -69.7%  SMA50 AND CALM
+    +0.000  stops   0  worst  -69.7%  SMA20 AND HIGH10
+    +0.000  stops   0  worst  -69.7%  SMA20 AND OFFLOW
+    +0.000  stops   0  worst  -69.7%  SMA20 AND CALM
+    +0.000  stops   0  worst  -69.7%  HIGH10 AND OFFLOW
+    +0.000  stops   0  worst  -69.7%  HIGH10 AND CALM
+    +0.000  stops   0  worst  -69.7%  OFFLOW AND CALM
+  stop fired < 3 times for every rule -> FAIL (too rare to judge)
+
+  ===== VERDICT (pre-stated) =====
+    IDEA 1 FLOOR25 : FAIL
+    IDEA 1 BILLS   : FAIL
+    IDEA 2 GUARD   : FAIL

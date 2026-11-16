@@ -1,0 +1,61 @@
+  ETFs loaded: 26 industries + SPY, 2017-03-01 -> 2026-05-29
+  2017-03-01 -> 2026-05-29, 2325 days | cash = BIL
+  book volume spikes (>= 2.0x normal): 53 days
+
+  book         annual    vol sharpe   worst   worst drop from -> to
+  PLAIN        +26.7%  37.7%   0.82  -48.5%   2021-02-17 -> 2022-07-06
+  LOCK30       +32.2%  28.0%   1.14  -37.6%   2020-02-19 -> 2020-03-18
+  LOCK30+R20   +15.5%  26.2%   0.68  -40.1%   2022-06-07 -> 2023-10-26
+  LOCK30+R25   +18.3%  27.9%   0.74  -38.4%   2025-02-13 -> 2026-02-05
+
+  year by year (worst drop inside the year in brackets)
+  year                 PLAIN              LOCK30          LOCK30+R20          LOCK30+R25
+  2017          +22% (  -9%)        +22% (  -9%)        +22% (  -9%)        +22% (  -9%)
+  2018           -4% ( -31%)         -4% ( -31%)         -3% ( -24%)         -6% ( -26%)
+  2019          +25% ( -16%)        +40% (  -8%)         +9% ( -16%)         +9% ( -16%)
+  2020          +89% ( -38%)        +57% ( -38%)        +33% ( -29%)        +33% ( -29%)
+  2021          +12% ( -48%)        +68% (  -6%)        +68% (  -6%)        +68% (  -6%)
+  2022           -6% ( -25%)         -6% ( -25%)        -33% ( -36%)         -6% ( -25%)
+  2023          +23% ( -17%)        +23% ( -17%)        +12% ( -17%)        +23% ( -17%)
+  2024          +30% ( -17%)        +43% ( -11%)        +43% ( -11%)        +43% ( -11%)
+  2025           -1% ( -31%)        +33% ( -31%)        -10% ( -28%)        -24% ( -35%)
+  2026          +91% ( -17%)        +38% ( -11%)        +35% ( -17%)        +35% ( -17%)
+
+  LOCK30+R20 switches:
+    2018-11-19  down -23% from peak -> cash
+    2019-02-26  back in after 99 days: book +27% off its low, ADX 20
+    2020-03-12  down -28% from peak -> cash
+    2020-06-23  back in after 103 days: book +68% off its low, ADX 21
+    2020-11-27  up 31% this year -> sector ETFs
+    2021-01-26  up 31% this year -> sector ETFs
+    2022-06-23  down -23% from peak -> cash
+    2022-08-18  back in after 56 days: book +27% off its low, ADX 21
+    2022-09-26  down -22% from peak -> cash
+    2023-05-19  back in after 235 days: book +27% off its low, ADX 21
+    2024-05-15  up 36% this year -> sector ETFs
+    2025-03-10  down -24% from peak -> cash
+    2025-06-27  back in after 109 days: book +31% off its low, ADX 26
+    2025-11-13  down -24% from peak -> cash
+    2026-02-03  back in after 82 days: book +24% off its low, ADX 23
+    2026-04-14  up 32% this year -> sector ETFs
+    468 days in cash; signal on: volume spike seen 194, low held 353, above SMA 284, ADX up 49
+
+  LOCK30+R25 switches:
+    2018-11-20  down -26% from peak -> cash
+    2019-02-26  back in after 98 days: book +27% off its low, ADX 20
+    2020-03-12  down -28% from peak -> cash
+    2020-06-23  back in after 103 days: book +68% off its low, ADX 21
+    2020-11-27  up 31% this year -> sector ETFs
+    2021-01-26  up 31% this year -> sector ETFs
+    2024-05-15  up 36% this year -> sector ETFs
+    2025-04-04  down -30% from peak -> cash
+    2025-06-27  back in after 84 days: book +31% off its low, ADX 26
+    2025-11-20  down -30% from peak -> cash
+    2026-02-03  back in after 75 days: book +24% off its low, ADX 23
+    2026-04-14  up 32% this year -> sector ETFs
+    241 days in cash; signal on: volume spike seen 49, low held 171, above SMA 156, ADX up 47
+
+  ===== VERDICT (pre-stated) =====
+  LOCK30+R20: Sharpe 0.68 vs 1.14, worst -40.1% vs -37.6% -> FAIL
+  LOCK30+R25: Sharpe 0.74, worst -38.4% -> does NOT beat LOCK30
+  keep LOCK30 as is

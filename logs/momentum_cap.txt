@@ -1,0 +1,36 @@
+  ETFs loaded: 26 industries + SPY, 2016-01-04 -> 2026-06-01
+
+  ===== DECIDING: FULL PERIOD (QC window): 2017-03-01 -> 2026-05-29 =====
+  book     annual    vol sharpe   worst   worst drop from -> to
+  STEADY   +26.7%  37.7%   0.82  -48.5%   2021-02 -> 2022-07
+  CAPPED   +22.9%  37.2%   0.74  -50.0%   2021-02 -> 2022-07
+  SPY      +15.2%  18.1%   0.87  -33.8%   2020-02 -> 2020-03
+
+  ===== context 2017-2021: 2017-03-01 -> 2021-05-28 =====
+  book     annual    vol sharpe   worst   worst drop from -> to
+  STEADY   +30.3%  39.3%   0.87  -47.8%   2021-02 -> 2021-05
+  CAPPED   +28.6%  39.2%   0.84  -47.0%   2021-02 -> 2021-05
+  SPY      +16.5%  19.4%   0.89  -33.8%   2020-02 -> 2020-03
+
+  ===== context last five years: 2021-06-01 -> 2026-05-29 =====
+  book     annual    vol sharpe   worst   worst drop from -> to
+  STEADY   +23.6%  36.2%   0.77  -35.3%   2021-11 -> 2022-07
+  CAPPED   +18.2%  35.3%   0.65  -37.9%   2021-11 -> 2022-07
+  SPY      +14.1%  17.1%   0.86  -24.5%   2022-01 -> 2022-10
+
+  ===== how concentrated was the plain top 20? =====
+  stocks matched to an industry: 11.0 of 20 | cap changed 37% of months, avg 0.8 stocks swapped
+  months with 5+ from one industry: 41 of 112
+    2020-10: biggest group XBI    2 of 20 | 0 swapped by cap
+    2020-11: biggest group LIT    1 of 20 | 0 swapped by cap
+    2020-12: biggest group TAN    3 of 20 | 0 swapped by cap
+    2021-01: biggest group LIT    2 of 20 | 0 swapped by cap
+    2021-02: biggest group XBI    2 of 20 | 0 swapped by cap
+    2021-03: biggest group TAN    3 of 20 | 0 swapped by cap
+    2021-04: biggest group TAN    5 of 20 | 1 swapped by cap
+    2021-05: biggest group TAN    5 of 20 | 1 swapped by cap
+    2021-06: biggest group TAN    5 of 20 | 1 swapped by cap
+  by year: 2017: STEADY +22% CAPPED +20% | 2018: STEADY -4% CAPPED -4% | 2019: STEADY +25% CAPPED +20% | 2020: STEADY +89% CAPPED +89% | 2021: STEADY +12% CAPPED +11% | 2022: STEADY -6% CAPPED -15% | 2023: STEADY +23% CAPPED +25% | 2024: STEADY +30% CAPPED +28% | 2025: STEADY -1% CAPPED +0% | 2026: STEADY +91% CAPPED +71%
+
+  ===== VERDICT (pre-stated, full period) =====
+  Sharpe 0.74 vs 0.82 | worst drop -50.0% vs -48.5% -> FAIL

@@ -1,0 +1,59 @@
+  French 1926-11-03 -> 2026-09-30 | 2619 rules from 9 signs x 3 levels
+
+  ===== 1 SEARCH 1927-1989 (Sharpe gain vs always holding winners) =====
+    +0.090  MKTVOL top 10%
+    +0.084  RS bottom 20%
+    +0.069  MKTVOL top 20% AND CREDIT top 10%
+    +0.063  MKTVOL top 20% AND RS bottom 20% AND CREDIT top 10%
+    +0.062  RS bottom 10% AND CREDIT top 10%
+    +0.062  MKTVOL top 20% AND RS bottom 20% AND CREDIT top 20%
+    +0.057  MKTVOL top 10% AND RS bottom 20% AND CREDIT top 10%
+    +0.057  MKTVOL top 20% AND CREDIT top 20%
+    +0.056  MKTVOL top 10% AND RS bottom 20% AND CREDIT top 20%
+    +0.055  MKTVOL top 20% AND CREDIT top 5%
+    +0.054  RS bottom 10% AND CREDIT top 20%
+    +0.053  RS bottom 20% AND CREDIT top 20%
+    +0.051  MKTVOL top 20% AND RS bottom 10% AND CREDIT top 10%
+    +0.051  RS bottom 20% AND CREDIT top 10%
+    +0.049  MKTVOL top 10% AND CREDIT top 20%
+    best ECONOMIC-ONLY rule (context): +0.028  CURVE bottom 20% AND JOBS top 20%
+
+  ===== 2 LUCK: 200 searches with the signs slid in time =====
+    real best +0.090 | slid: median best +0.054, 95th pct +0.123 | p = 0.194
+
+  ===== 3 LATER 1990-2016, fixed: MKTVOL top 10% =====
+    winners always                +14.6%/yr  Sharpe  0.70  worst  -56.4%
+    winners + warning             +10.7%/yr  Sharpe  0.63  worst  -46.5%
+    warning on 14% of days
+      context: Sharpe 0.63 vs 0.70, worst -47% vs -56%  MKTVOL top 10%
+      context: Sharpe 0.65 vs 0.70, worst -52% vs -56%  RS bottom 20%
+      context: Sharpe 0.81 vs 0.70, worst -49% vs -56%  MKTVOL top 20% AND CREDIT top 10%
+      context: Sharpe 0.75 vs 0.70, worst -50% vs -56%  MKTVOL top 20% AND RS bottom 20% AND CREDIT top 10%
+      context: Sharpe 0.71 vs 0.70, worst -51% vs -56%  RS bottom 10% AND CREDIT top 10%
+      context: Sharpe 0.73 vs 0.70, worst -54% vs -56%  MKTVOL top 20% AND RS bottom 20% AND CREDIT top 20%
+      context: Sharpe 0.73 vs 0.70, worst -49% vs -56%  MKTVOL top 10% AND RS bottom 20% AND CREDIT top 10%
+      context: Sharpe 0.75 vs 0.70, worst -55% vs -56%  MKTVOL top 20% AND CREDIT top 20%
+      context: Sharpe 0.71 vs 0.70, worst -53% vs -56%  MKTVOL top 10% AND RS bottom 20% AND CREDIT top 20%
+      context: Sharpe 0.78 vs 0.70, worst -49% vs -56%  MKTVOL top 20% AND CREDIT top 5%
+
+  ===== 4 CHIMERA-70 2017-03-01 -> 2026-05-29 (70% momentum, 35% lock) =====
+    CHIMERA-70                    +26.8%/yr  Sharpe  1.17  worst  -27.4%
+    CHIMERA-70 + warning          +21.8%/yr  Sharpe  1.09  worst  -22.0%
+    warning on 13% of days
+      2017: CHIMERA-70   +15%   + warning   +15%
+      2018: CHIMERA-70    -1%   + warning    +4%
+      2019: CHIMERA-70   +19%   + warning   +14%
+      2020: CHIMERA-70   +60%   + warning   +19%
+      2021: CHIMERA-70   +71%   + warning   +72%
+      2022: CHIMERA-70    -3%   + warning    -3%
+      2023: CHIMERA-70   +18%   + warning   +18%
+      2024: CHIMERA-70   +36%   + warning   +36%
+      2025: CHIMERA-70    +3%   + warning    -6%
+      2026: CHIMERA-70   +50%   + warning   +50%
+    warning periods (19): 2018-02-05, 2018-03-26, 2018-10-24, 2018-11-28, 2018-12-04, 2019-08-21, 2019-08-23, 2020-02-27, 2020-06-11, 2020-09-25, 2022-02-24, 2022-03-07, 2022-05-04, 2022-10-04, 2022-10-07, 2022-10-17, 2022-10-21, 2022-11-10, 2025-04-04
+
+  ===== VERDICT (pre-stated) =====
+    luck test p = 0.194 -> FAIL
+    1990-2016 untouched -> FAIL
+    CHIMERA-70          -> FAIL
+    FAIL -- keep CHIMERA-70 as is

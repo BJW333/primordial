@@ -1,0 +1,41 @@
+# Commodity ETFs, 1-HOUR base, regular hours only -- shape (motif) search.
+# Blake 2026-11-10: wants an ACTIVE strategy in a non-stock asset class;
+# runs the pattern/shape search (motif atoms) on commodities.
+#
+# 1) python3.10 scripts/fetch_commod_rth.py            (one-time, builds the CSVs)
+# 2) python3.10 -m primordial run --manifest manifests/commodities_1h.yaml \
+#        --generations 20 --pop 40 --islands 3
+#
+# DATA: Alpaca SIP 1-minute -> 9:30-16:00 ET hourly bars (7/day), adjusted
+# for splits (USO/UNG reverse splits). Pre/post-market deliberately excluded:
+# thin commodity ETFs print garbage there. Futures-based ETFs = roll-clean.
+#
+# COSTS: equity_midcap (4 spread + 3 slip = 7bps/side, 14bps round trip).
+# Too harsh for GLD/SLV/USO (~1-2bps), about right to light for CORN/WEAT/
+# SOYB/CANE/UGA (spreads 5-20bps). One tier must cover all; the 2x/3x
+# cost-stress gate is the honest bracket. Decided BEFORE running.
+#
+# GROUND: fresh fingerprint. Not perfectly virgin: several of these ETFs were
+# hand-tested DAILY on 2026-11-04 (futures_mr_orb.py CRACK/CORN_WHEAT,
+# flows_screen.py universe) -- different timeframe and rules, all failed.
+#
+# max_hold_hours 120 (5 days): Blake asked for an active strategy, so the
+# search is confined to swing-or-faster holds. Not part of the fingerprint.
+name: commodities_1h
+asset_class: equity
+source: csv:data/commod_rth_1h
+symbols: [USO, BNO, UNG, UGA, GLD, SLV, PPLT, PALL, CPER, DBB,
+          CORN, WEAT, SOYB, CANE, DBA, DBC]
+base_timeframe: 1h
+allowed_timeframes: [1h, 4h, 1d]
+start: "2016-01-01"
+end: "2026-11-01"
+cost_tier: equity_midcap
+holdout_name_frac: 0.4
+holdout_time_frac: 0.3
+embargo_bars: 140              # ~20 sessions at 7 bars/day, >= 2x max hold
+engines: [timing, cross_sectional]
+n_motifs: 6
+motif_scales: [14, 35]         # ~2 sessions and ~1 week of hourly bars
+context_symbols: [UUP, TLT, SPY]   # dollar, rates, equity risk
+max_hold_hours: 120

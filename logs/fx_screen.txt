@@ -1,0 +1,154 @@
+    USDNOK 2004: 8,784 hourly bars
+    USDNOK 2005: 8,760 hourly bars
+    USDNOK 2006: 8,760 hourly bars
+    USDNOK 2007: 8,760 hourly bars
+    USDNOK 2008: 8,784 hourly bars
+    USDNOK 2009: 8,760 hourly bars
+    USDNOK 2010: 8,760 hourly bars
+    USDNOK 2011: 8,760 hourly bars
+    USDNOK 2012: 8,784 hourly bars
+    USDNOK 2013: 8,760 hourly bars
+    USDNOK 2014: 8,760 hourly bars
+    USDNOK 2015: 8,760 hourly bars
+    USDNOK 2016: 8,784 hourly bars
+    USDNOK 2017: 8,760 hourly bars
+    USDNOK 2018: 8,760 hourly bars
+    USDNOK 2019: 8,760 hourly bars
+      Dukascopy slowing us down (503) on USDNOK 2020-09, waiting 10s (try 1/8)
+      Dukascopy slowing us down (503) on USDNOK 2020-09, waiting 20s (try 2/8)
+    USDNOK 2020: 8,784 hourly bars
+    USDNOK 2021: 8,760 hourly bars
+      Dukascopy slowing us down (no answer) on USDNOK 2022-03, waiting 10s (try 1/8)
+    USDNOK 2022: 8,760 hourly bars
+    USDNOK 2023: 8,760 hourly bars
+    USDNOK 2024: 8,784 hourly bars
+      Dukascopy slowing us down (no answer) on USDNOK 2025-09, waiting 10s (try 1/8)
+      Dukascopy slowing us down (no answer) on USDNOK 2025-09, waiting 20s (try 2/8)
+      Dukascopy slowing us down (no answer) on USDNOK 2025-09, waiting 40s (try 3/8)
+    USDNOK 2025: 8,760 hourly bars
+    USDNOK 2026: 7,296 hourly bars
+  USDNOK: 200,160 bars 2004-01-01 00:00:00 -> 2026-10-31 23:00:00, first close 6.6634, last 9.1951
+    EURUSD 2004: 8,784 hourly bars
+    EURUSD 2005: 8,760 hourly bars
+    EURUSD 2006: 8,760 hourly bars
+    EURUSD 2007: 8,760 hourly bars
+    EURUSD 2008: 8,784 hourly bars
+    EURUSD 2009: 8,760 hourly bars
+    EURUSD 2010: 8,760 hourly bars
+      Dukascopy slowing us down (no answer) on EURUSD 2011-03, waiting 10s (try 1/8)
+      Dukascopy slowing us down (no answer) on EURUSD 2011-03, waiting 20s (try 2/8)
+    EURUSD 2011: 8,760 hourly bars
+    EURUSD 2012: 8,784 hourly bars
+    EURUSD 2013: 8,760 hourly bars
+    EURUSD 2014: 8,760 hourly bars
+    EURUSD 2015: 8,760 hourly bars
+    EURUSD 2016: 8,784 hourly bars
+    EURUSD 2017: 8,760 hourly bars
+    EURUSD 2018: 8,760 hourly bars
+    EURUSD 2019: 8,760 hourly bars
+    EURUSD 2020: 8,784 hourly bars
+    EURUSD 2021: 8,760 hourly bars
+    EURUSD 2022: 8,760 hourly bars
+    EURUSD 2023: 8,760 hourly bars
+    EURUSD 2024: 8,784 hourly bars
+    EURUSD 2025: 8,760 hourly bars
+    EURUSD 2026: 7,296 hourly bars
+  EURUSD: 200,160 bars 2004-01-01 00:00:00 -> 2026-10-31 23:00:00, first close 1.2590, last 1.1155
+    GBPUSD 2004: 8,784 hourly bars
+      Dukascopy slowing us down (503) on GBPUSD 2005-02, waiting 10s (try 1/8)
+      Dukascopy slowing us down (503) on GBPUSD 2005-03, waiting 10s (try 1/8)
+      Dukascopy slowing us down (no answer) on GBPUSD 2005-03, waiting 20s (try 2/8)
+    GBPUSD 2005: 8,760 hourly bars
+    GBPUSD 2006: 8,760 hourly bars
+    GBPUSD 2007: 8,760 hourly bars
+    GBPUSD 2008: 8,784 hourly bars
+    GBPUSD 2009: 8,760 hourly bars
+    GBPUSD 2010: 8,760 hourly bars
+    GBPUSD 2011: 8,760 hourly bars
+    GBPUSD 2012: 8,784 hourly bars
+    GBPUSD 2013: 8,760 hourly bars
+    GBPUSD 2014: 8,760 hourly bars
+    GBPUSD 2015: 8,760 hourly bars
+    GBPUSD 2016: 8,784 hourly bars
+    GBPUSD 2017: 8,760 hourly bars
+    GBPUSD 2018: 8,760 hourly bars
+    GBPUSD 2019: 8,760 hourly bars
+    GBPUSD 2020: 8,784 hourly bars
+    GBPUSD 2021: 8,760 hourly bars
+    GBPUSD 2022: 8,760 hourly bars
+      Dukascopy slowing us down (no answer) on GBPUSD 2023-01, waiting 10s (try 1/8)
+    GBPUSD 2023: 8,760 hourly bars
+    GBPUSD 2024: 8,784 hourly bars
+    GBPUSD 2025: 8,760 hourly bars
+    GBPUSD 2026: 7,296 hourly bars
+  GBPUSD: 200,160 bars 2004-01-01 00:00:00 -> 2026-10-31 23:00:00, first close 1.7836, last 1.3388
+    USDJPY 2004: 8,784 hourly bars
+    USDJPY 2005: 8,760 hourly bars
+    USDJPY 2006: 8,760 hourly bars
+    USDJPY 2007: 8,760 hourly bars
+    USDJPY 2008: 8,784 hourly bars
+    USDJPY 2009: 8,760 hourly bars
+    USDJPY 2010: 8,760 hourly bars
+    USDJPY 2011: 8,760 hourly bars
+    USDJPY 2012: 8,784 hourly bars
+    USDJPY 2013: 8,760 hourly bars
+    USDJPY 2014: 8,760 hourly bars
+    USDJPY 2015: 8,760 hourly bars
+    USDJPY 2016: 8,784 hourly bars
+      Dukascopy slowing us down (503) on USDJPY 2017-11, waiting 10s (try 1/8)
+      Dukascopy slowing us down (503) on USDJPY 2017-11, waiting 20s (try 2/8)
+      Dukascopy slowing us down (503) on USDJPY 2017-11, waiting 40s (try 3/8)
+      Dukascopy slowing us down (no answer) on USDJPY 2017-11, waiting 80s (try 4/8)
+      Dukascopy slowing us down (no answer) on USDJPY 2017-11, waiting 160s (try 5/8)
+    USDJPY 2017: 8,760 hourly bars
+    USDJPY 2018: 8,760 hourly bars
+    USDJPY 2019: 8,760 hourly bars
+    USDJPY 2020: 8,784 hourly bars
+    USDJPY 2021: 8,760 hourly bars
+    USDJPY 2022: 8,760 hourly bars
+    USDJPY 2023: 8,760 hourly bars
+    USDJPY 2024: 8,784 hourly bars
+    USDJPY 2025: 8,760 hourly bars
+    USDJPY 2026: 7,296 hourly bars
+  USDJPY: 200,160 bars 2004-01-01 00:00:00 -> 2026-10-31 23:00:00, first close 107.4020, last 157.5500
+    USDCHF 2004: 8,784 hourly bars
+    USDCHF 2005: 8,760 hourly bars
+    USDCHF 2006: 8,760 hourly bars
+    USDCHF 2007: 8,760 hourly bars
+    USDCHF 2008: 8,784 hourly bars
+    USDCHF 2009: 8,760 hourly bars
+    USDCHF 2010: 8,760 hourly bars
+      Dukascopy slowing us down (503) on USDCHF 2011-09, waiting 10s (try 1/8)
+    USDCHF 2011: 8,760 hourly bars
+    USDCHF 2012: 8,784 hourly bars
+    USDCHF 2013: 8,760 hourly bars
+    USDCHF 2014: 8,760 hourly bars
+    USDCHF 2015: 8,760 hourly bars
+    USDCHF 2016: 8,784 hourly bars
+    USDCHF 2017: 8,760 hourly bars
+    USDCHF 2018: 8,760 hourly bars
+    USDCHF 2019: 8,760 hourly bars
+    USDCHF 2020: 8,784 hourly bars
+    USDCHF 2021: 8,760 hourly bars
+    USDCHF 2022: 8,760 hourly bars
+    USDCHF 2023: 8,760 hourly bars
+    USDCHF 2024: 8,784 hourly bars
+    USDCHF 2025: 8,760 hourly bars
+    USDCHF 2026: 7,296 hourly bars
+  USDCHF: 200,160 bars 2004-01-01 00:00:00 -> 2026-10-31 23:00:00, first close 1.2393, last 0.8248
+  RBNZ page gave only 0 dates -> NEWS not run. To fix: save the announcement dates as /Users/blakeweiss33/Desktop/primordial/data/rbnz_ocr_dates.csv (one column 'date').
+
+  data 2004-01-01 -> 2026-10-30, 5,936 days
+  idea                 | 2012-21 ann  shp | last5y ann  vol  shp  worst | whole shp  2x-cost | corrCHIM CHIM blend badM | trades/yr | verdict
+  1 PAIR               |   -1.5% -0.43 |   -0.6%  2.8% -0.20    -7% |  -0.35    -0.40 |  -0.08  1.42  0.84  -0.0% |        10 | fail
+  2 NEWS               | NOT RUN (no RBNZ calendar)
+    NEWS_DAY           | NOT RUN (no RBNZ calendar)
+  3 BLOC               |   +1.8%  0.25 |   +2.3%  6.0%  0.38    -8% |   0.17    -0.07 |  -0.02  1.42  1.29  +0.2% |       249 | fail
+  4 CATCHUP            |   -5.9% -2.38 |   -6.0%  2.0% -3.02   -31% |  -0.77    -2.96 |  -0.19  1.42 -0.66  -0.2% |       145 | fail
+  5 HOME               |   -9.7% -2.86 |   -8.2%  3.4% -2.41   -40% |  -2.38    -4.94 |  -0.07  1.42 -1.70  -1.2% |       252 | fail
+  control RANDOM       |   +0.6%  0.22 |   -1.2%  2.0% -0.59    -8% |  -0.11    -0.23 |  -0.16  1.42  0.67  +0.0% |        19 | fail
+  control CATCHUP_SHUF |   -8.4% -3.59 |   -7.6%  1.7% -4.53   -38% |  -2.56    -4.97 |  -0.01  1.42 -2.50  -0.8% |       165 | fail
+  control HOME_SHIFT6  |   -9.8% -2.44 |   -9.7%  4.9% -1.98   -45% |  -2.02    -4.08 |  +0.08  1.42 -0.80  -1.0% |       252 | fail
+  controls: all fail (good)
+  ann = average yearly return (log), unlevered: $1 long + $1 short for pairs, 1/7 per currency for HOME.
+  pass = 2012-21 shp >= 0.5, last5y shp >= 0.7, blend > CHIM, 2x-cost whole shp > 0.  badM = avg month when CHIMERA < -3%.

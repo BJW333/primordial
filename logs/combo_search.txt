@@ -1,0 +1,68 @@
+  256 combinations | daily 1926-11-03 -> 2026-09-30
+
+  ===== 1 SEARCH 1927-1989 (Sharpe gain vs always holding winners) =====
+    +0.173  stop 15% buyback D + lock 25%
+    +0.161  gap top 10% + stop 15% buyback D
+    +0.160  stop 15% buyback D + lock 35%
+    +0.158  stop 15% buyback D + lock 30%
+    +0.140  stop 15% buyback D
+    +0.137  stop 15% buyback C + lock 25%
+    +0.129  stop 15% buyback C + lock 35%
+    +0.125  stop 15% buyback C + lock 30%
+    +0.125  stop 15% buyback E + lock 25%
+    +0.125  stop 15% buyback C
+    +0.124  stop 15% buyback B + lock 35%
+    +0.124  stop 15% buyback E + lock 35%
+    +0.124  gap top 10% + stop 15% buyback C
+    +0.121  stop 15% buyback E + lock 30%
+    +0.120  gap top 10% + stop 15% buyback E
+
+  ===== 2 LUCK: 200 fake histories, full search each (16 cores) =====
+    real best +0.173 | fake searches: median best +0.144, 95th pct +0.266 | p = 0.328
+
+  ===== 3 LATER 1990-2016, fixed: stop 15% buyback D + lock 25% =====
+    winners always                                +14.6%/yr  Sharpe  0.70  worst  -56.4%
+    stop 15% buyback D + lock 25%                 +14.2%/yr  Sharpe  0.84  worst  -37.2%
+    top-15 search picks here (context only):
+      Sharpe 0.84 vs 0.70, worst -37% vs -56%  stop 15% buyback D + lock 25%
+      Sharpe 0.93 vs 0.70, worst -31% vs -56%  gap top 10% + stop 15% buyback D
+      Sharpe 0.87 vs 0.70, worst -45% vs -56%  stop 15% buyback D + lock 35%
+      Sharpe 0.83 vs 0.70, worst -45% vs -56%  stop 15% buyback D + lock 30%
+      Sharpe 0.79 vs 0.70, worst -45% vs -56%  stop 15% buyback D
+      Sharpe 0.69 vs 0.70, worst -44% vs -56%  stop 15% buyback C + lock 25%
+      Sharpe 0.70 vs 0.70, worst -47% vs -56%  stop 15% buyback C + lock 35%
+      Sharpe 0.66 vs 0.70, worst -47% vs -56%  stop 15% buyback C + lock 30%
+      Sharpe 0.66 vs 0.70, worst -52% vs -56%  stop 15% buyback E + lock 25%
+      Sharpe 0.65 vs 0.70, worst -47% vs -56%  stop 15% buyback C
+      Sharpe 0.71 vs 0.70, worst -45% vs -56%  stop 15% buyback B + lock 35%
+      Sharpe 0.60 vs 0.70, worst -61% vs -56%  stop 15% buyback E + lock 35%
+      Sharpe 0.82 vs 0.70, worst -37% vs -56%  gap top 10% + stop 15% buyback C
+      Sharpe 0.56 vs 0.70, worst -61% vs -56%  stop 15% buyback E + lock 30%
+      Sharpe 0.78 vs 0.70, worst -46% vs -56%  gap top 10% + stop 15% buyback E
+
+  ===== 4 CHIMERA 2017-03-01 -> 2026-05-29 =====
+    LOCK30                                        +34.3%/yr  Sharpe  1.19  worst  -37.6%
+    stop 15% buyback D + lock 25%                 +26.0%/yr  Sharpe  1.17  worst  -39.2%
+      2017: LOCK30   +22%   best   +30%
+      2018: LOCK30    -4%   best    +8%
+      2019: LOCK30   +43%   best   +46%
+      2020: LOCK30   +59%   best   +50%
+      2021: LOCK30   +64%   best   +64%
+      2022: LOCK30    -6%   best   -35%
+      2023: LOCK30   +23%   best    -1%
+      2024: LOCK30   +51%   best   +45%
+      2025: LOCK30   +34%   best   +30%
+      2026: LOCK30   +49%   best   +39%
+    Blake's named versions on CHIMERA (context only, NOT a decision):
+    gap top 20%                                   +15.4%/yr  Sharpe  0.67  worst  -35.7%
+    gap top 20% + lock 30%                        +19.9%/yr  Sharpe  0.86  worst  -35.7%
+    stop 20% buyback C + lock 30%                 +23.5%/yr  Sharpe  0.91  worst  -37.6%
+    gap top 20% + stop 20% buyback C + lock 30%    +8.9%/yr  Sharpe  0.49  worst  -41.9%
+    gap top 20% + stop 20% buyback D + lock 30%    +3.9%/yr  Sharpe  0.29  worst  -50.9%
+    gap top 20% + stop 25% buyback B + lock 30%   +12.5%/yr  Sharpe  0.61  worst  -38.5%
+
+  ===== VERDICT (pre-stated) =====
+    luck test p = 0.328 -> FAIL
+    1990-2016 untouched -> pass
+    CHIMERA vs LOCK30   -> FAIL
+    FAIL -- keep LOCK30 as is

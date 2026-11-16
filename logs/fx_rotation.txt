@@ -1,0 +1,294 @@
+      Dukascopy slowing us down (503) on USDSEK 2004-02, waiting 10s (try 1/8)
+      Dukascopy slowing us down (503) on USDSEK 2004-02, waiting 20s (try 2/8)
+      Dukascopy slowing us down (503) on USDSEK 2004-02, waiting 40s (try 3/8)
+    USDSEK 2004: 8,784 hourly bars
+    USDSEK 2005: 8,760 hourly bars
+    USDSEK 2006: 8,760 hourly bars
+    USDSEK 2007: 8,760 hourly bars
+    USDSEK 2008: 8,784 hourly bars
+    USDSEK 2009: 8,760 hourly bars
+    USDSEK 2010: 8,760 hourly bars
+    USDSEK 2011: 8,760 hourly bars
+      Dukascopy slowing us down (no answer) on USDSEK 2012-06, waiting 10s (try 1/8)
+      Dukascopy slowing us down (no answer) on USDSEK 2012-06, waiting 20s (try 2/8)
+      Dukascopy slowing us down (no answer) on USDSEK 2012-06, waiting 40s (try 3/8)
+    USDSEK 2012: 8,784 hourly bars
+    USDSEK 2013: 8,760 hourly bars
+      Dukascopy slowing us down (no answer) on USDSEK 2014-03, waiting 10s (try 1/8)
+    USDSEK 2014: 8,760 hourly bars
+    USDSEK 2015: 8,760 hourly bars
+    USDSEK 2016: 8,784 hourly bars
+      Dukascopy slowing us down (no answer) on USDSEK 2017-04, waiting 10s (try 1/8)
+      Dukascopy slowing us down (503) on USDSEK 2017-04, waiting 20s (try 2/8)
+      Dukascopy slowing us down (no answer) on USDSEK 2017-04, waiting 40s (try 3/8)
+      Dukascopy slowing us down (no answer) on USDSEK 2017-04, waiting 80s (try 4/8)
+      Dukascopy slowing us down (no answer) on USDSEK 2017-04, waiting 160s (try 5/8)
+    USDSEK 2017: 8,760 hourly bars
+    USDSEK 2018: 8,760 hourly bars
+    USDSEK 2019: 8,760 hourly bars
+    USDSEK 2020: 8,784 hourly bars
+    USDSEK 2021: 8,760 hourly bars
+    USDSEK 2022: 8,760 hourly bars
+    USDSEK 2023: 8,760 hourly bars
+    USDSEK 2024: 8,784 hourly bars
+      Dukascopy slowing us down (no answer) on USDSEK 2025-08, waiting 10s (try 1/8)
+      Dukascopy slowing us down (no answer) on USDSEK 2025-08, waiting 20s (try 2/8)
+      Dukascopy slowing us down (no answer) on USDSEK 2025-08, waiting 40s (try 3/8)
+      Dukascopy slowing us down (no answer) on USDSEK 2025-08, waiting 80s (try 4/8)
+    USDSEK 2025: 8,760 hourly bars
+    USDSEK 2026: 7,296 hourly bars
+  USDSEK: 200,160 bars 2004-01-01 00:00:00 -> 2026-10-31 23:00:00, first close 719665.0000, last 981771.0000
+    USDPLN 2004: 0 hourly bars
+    USDPLN 2005: 0 hourly bars
+    USDPLN 2006: 0 hourly bars
+    USDPLN 2007: 7,344 hourly bars
+    USDPLN 2008: 8,784 hourly bars
+    USDPLN 2009: 8,760 hourly bars
+    USDPLN 2010: 8,760 hourly bars
+      Dukascopy slowing us down (503) on USDPLN 2011-01, waiting 10s (try 1/8)
+      Dukascopy slowing us down (503) on USDPLN 2011-01, waiting 20s (try 2/8)
+      Dukascopy slowing us down (503) on USDPLN 2011-01, waiting 40s (try 3/8)
+    USDPLN 2011: 8,760 hourly bars
+    USDPLN 2012: 8,784 hourly bars
+    USDPLN 2013: 8,760 hourly bars
+    USDPLN 2014: 8,760 hourly bars
+    USDPLN 2015: 8,760 hourly bars
+    USDPLN 2016: 8,784 hourly bars
+    USDPLN 2017: 8,760 hourly bars
+    USDPLN 2018: 8,760 hourly bars
+    USDPLN 2019: 8,760 hourly bars
+    USDPLN 2020: 8,784 hourly bars
+    USDPLN 2021: 8,760 hourly bars
+    USDPLN 2022: 8,760 hourly bars
+    USDPLN 2023: 8,760 hourly bars
+    USDPLN 2024: 8,784 hourly bars
+    USDPLN 2025: 8,760 hourly bars
+    USDPLN 2026: 7,296 hourly bars
+  USDPLN: 172,440 bars 2007-03-01 00:00:00 -> 2026-10-31 23:00:00, first close 293025.0000, last 393898.0000
+      Dukascopy slowing us down (no answer) on USDHUF 2004-10, waiting 10s (try 1/8)
+    USDHUF 2004: 0 hourly bars
+    USDHUF 2005: 0 hourly bars
+    USDHUF 2006: 0 hourly bars
+    USDHUF 2007: 7,344 hourly bars
+    USDHUF 2008: 8,784 hourly bars
+    USDHUF 2009: 8,760 hourly bars
+    USDHUF 2010: 8,760 hourly bars
+    USDHUF 2011: 8,760 hourly bars
+    USDHUF 2012: 8,784 hourly bars
+    USDHUF 2013: 8,760 hourly bars
+    USDHUF 2014: 8,760 hourly bars
+    USDHUF 2015: 8,760 hourly bars
+    USDHUF 2016: 8,784 hourly bars
+    USDHUF 2017: 8,760 hourly bars
+    USDHUF 2018: 8,760 hourly bars
+    USDHUF 2019: 8,760 hourly bars
+    USDHUF 2020: 8,784 hourly bars
+      Dukascopy slowing us down (503) on USDHUF 2021-06, waiting 10s (try 1/8)
+      Dukascopy slowing us down (503) on USDHUF 2021-06, waiting 20s (try 2/8)
+      Dukascopy slowing us down (503) on USDHUF 2021-06, waiting 40s (try 3/8)
+    USDHUF 2021: 8,760 hourly bars
+    USDHUF 2022: 8,760 hourly bars
+    USDHUF 2023: 8,760 hourly bars
+    USDHUF 2024: 8,784 hourly bars
+    USDHUF 2025: 8,760 hourly bars
+    USDHUF 2026: 7,296 hourly bars
+  USDHUF: 172,440 bars 2007-03-01 00:00:00 -> 2026-10-31 23:00:00, first close 188444.0000, last 327566.0000
+    USDCZK 2004: 0 hourly bars
+    USDCZK 2005: 0 hourly bars
+      Dukascopy slowing us down (no answer) on USDCZK 2006-11, waiting 10s (try 1/8)
+    USDCZK 2006: 0 hourly bars
+    USDCZK 2007: 0 hourly bars
+    USDCZK 2008: 0 hourly bars
+    USDCZK 2009: 0 hourly bars
+    USDCZK 2010: 0 hourly bars
+    USDCZK 2011: 0 hourly bars
+    USDCZK 2012: 0 hourly bars
+    USDCZK 2013: 0 hourly bars
+    USDCZK 2014: 0 hourly bars
+    USDCZK 2015: 0 hourly bars
+    USDCZK 2016: 8,784 hourly bars
+    USDCZK 2017: 8,760 hourly bars
+    USDCZK 2018: 8,760 hourly bars
+    USDCZK 2019: 8,760 hourly bars
+    USDCZK 2020: 8,784 hourly bars
+    USDCZK 2021: 8,760 hourly bars
+    USDCZK 2022: 8,760 hourly bars
+    USDCZK 2023: 8,760 hourly bars
+    USDCZK 2024: 8,784 hourly bars
+    USDCZK 2025: 8,760 hourly bars
+    USDCZK 2026: 7,296 hourly bars
+  USDCZK: 94,968 bars 2016-01-01 00:00:00 -> 2026-10-31 23:00:00, first close 248487.0000, last 218142.0000
+    USDMXN 2004: 0 hourly bars
+    USDMXN 2005: 0 hourly bars
+    USDMXN 2006: 0 hourly bars
+    USDMXN 2007: 7,344 hourly bars
+    USDMXN 2008: 8,784 hourly bars
+    USDMXN 2009: 8,760 hourly bars
+    USDMXN 2010: 8,760 hourly bars
+    USDMXN 2011: 8,760 hourly bars
+    USDMXN 2012: 8,784 hourly bars
+    USDMXN 2013: 8,760 hourly bars
+    USDMXN 2014: 8,760 hourly bars
+    USDMXN 2015: 8,760 hourly bars
+    USDMXN 2016: 8,784 hourly bars
+      Dukascopy slowing us down (503) on USDMXN 2017-05, waiting 10s (try 1/8)
+    USDMXN 2017: 8,760 hourly bars
+    USDMXN 2018: 8,760 hourly bars
+    USDMXN 2019: 8,760 hourly bars
+    USDMXN 2020: 8,784 hourly bars
+    USDMXN 2021: 8,760 hourly bars
+    USDMXN 2022: 8,760 hourly bars
+    USDMXN 2023: 8,760 hourly bars
+    USDMXN 2024: 8,784 hourly bars
+    USDMXN 2025: 8,760 hourly bars
+    USDMXN 2026: 7,296 hourly bars
+  USDMXN: 172,440 bars 2007-03-01 00:00:00 -> 2026-10-31 23:00:00, first close 1114122.0000, last 1877951.0000
+    USDZAR 2004: 8,784 hourly bars
+    USDZAR 2005: 8,760 hourly bars
+    USDZAR 2006: 8,760 hourly bars
+    USDZAR 2007: 8,760 hourly bars
+    USDZAR 2008: 8,784 hourly bars
+    USDZAR 2009: 8,760 hourly bars
+    USDZAR 2010: 8,760 hourly bars
+    USDZAR 2011: 8,760 hourly bars
+    USDZAR 2012: 8,784 hourly bars
+    USDZAR 2013: 8,760 hourly bars
+    USDZAR 2014: 8,760 hourly bars
+    USDZAR 2015: 8,760 hourly bars
+    USDZAR 2016: 8,784 hourly bars
+    USDZAR 2017: 8,760 hourly bars
+    USDZAR 2018: 8,760 hourly bars
+    USDZAR 2019: 8,760 hourly bars
+    USDZAR 2020: 8,784 hourly bars
+    USDZAR 2021: 8,760 hourly bars
+    USDZAR 2022: 8,760 hourly bars
+    USDZAR 2023: 8,760 hourly bars
+    USDZAR 2024: 8,784 hourly bars
+    USDZAR 2025: 8,760 hourly bars
+    USDZAR 2026: 7,296 hourly bars
+  USDZAR: 200,160 bars 2004-01-01 00:00:00 -> 2026-10-31 23:00:00, first close 3840151.0000, last 1670032.0000
+      Dukascopy slowing us down (503) on USDTRY 2004-11, waiting 10s (try 1/8)
+      Dukascopy slowing us down (503) on USDTRY 2004-11, waiting 20s (try 2/8)
+      Dukascopy slowing us down (503) on USDTRY 2004-11, waiting 40s (try 3/8)
+      Dukascopy slowing us down (503) on USDTRY 2004-11, waiting 80s (try 4/8)
+    USDTRY 2004: 0 hourly bars
+    USDTRY 2005: 0 hourly bars
+    USDTRY 2006: 0 hourly bars
+    USDTRY 2007: 7,344 hourly bars
+    USDTRY 2008: 8,784 hourly bars
+    USDTRY 2009: 8,760 hourly bars
+    USDTRY 2010: 8,760 hourly bars
+    USDTRY 2011: 8,760 hourly bars
+    USDTRY 2012: 8,784 hourly bars
+    USDTRY 2013: 8,760 hourly bars
+    USDTRY 2014: 8,760 hourly bars
+    USDTRY 2015: 8,760 hourly bars
+    USDTRY 2016: 8,784 hourly bars
+    USDTRY 2017: 8,760 hourly bars
+    USDTRY 2018: 8,760 hourly bars
+    USDTRY 2019: 8,760 hourly bars
+    USDTRY 2020: 8,784 hourly bars
+    USDTRY 2021: 8,760 hourly bars
+    USDTRY 2022: 8,760 hourly bars
+    USDTRY 2023: 8,760 hourly bars
+    USDTRY 2024: 8,784 hourly bars
+    USDTRY 2025: 8,760 hourly bars
+    USDTRY 2026: 7,296 hourly bars
+  USDTRY: 172,440 bars 2007-03-01 00:00:00 -> 2026-10-31 23:00:00, first close 140925.0000, last 4991491.0000
+    USDSGD 2004: 1,464 hourly bars
+    USDSGD 2005: 8,760 hourly bars
+    USDSGD 2006: 8,760 hourly bars
+    USDSGD 2007: 8,760 hourly bars
+    USDSGD 2008: 8,784 hourly bars
+    USDSGD 2009: 8,760 hourly bars
+    USDSGD 2010: 8,760 hourly bars
+    USDSGD 2011: 8,760 hourly bars
+    USDSGD 2012: 8,784 hourly bars
+    USDSGD 2013: 8,760 hourly bars
+    USDSGD 2014: 8,760 hourly bars
+    USDSGD 2015: 8,760 hourly bars
+    USDSGD 2016: 8,784 hourly bars
+    USDSGD 2017: 8,760 hourly bars
+    USDSGD 2018: 8,760 hourly bars
+    USDSGD 2019: 8,760 hourly bars
+    USDSGD 2020: 8,784 hourly bars
+    USDSGD 2021: 8,760 hourly bars
+    USDSGD 2022: 8,760 hourly bars
+      Dukascopy slowing us down (503) on USDSGD 2023-08, waiting 10s (try 1/8)
+      Dukascopy slowing us down (no answer) on USDSGD 2023-08, waiting 20s (try 2/8)
+    USDSGD 2023: 8,760 hourly bars
+    USDSGD 2024: 8,784 hourly bars
+    USDSGD 2025: 8,760 hourly bars
+    USDSGD 2026: 7,296 hourly bars
+  USDSGD: 192,840 bars 2004-11-01 00:00:00 -> 2026-10-31 23:00:00, first close 164949.0000, last 127730.0000
+    USDCNH 2004: 0 hourly bars
+    USDCNH 2005: 0 hourly bars
+    USDCNH 2006: 0 hourly bars
+    USDCNH 2007: 0 hourly bars
+    USDCNH 2008: 0 hourly bars
+      Dukascopy slowing us down (no answer) on USDCNH 2009-01, waiting 10s (try 1/8)
+    USDCNH 2009: 0 hourly bars
+    USDCNH 2010: 0 hourly bars
+    USDCNH 2011: 0 hourly bars
+    USDCNH 2012: 5,136 hourly bars
+    USDCNH 2013: 8,760 hourly bars
+    USDCNH 2014: 8,760 hourly bars
+    USDCNH 2015: 8,760 hourly bars
+    USDCNH 2016: 8,784 hourly bars
+      Dukascopy slowing us down (no answer) on USDCNH 2017-05, waiting 10s (try 1/8)
+    USDCNH 2017: 8,760 hourly bars
+    USDCNH 2018: 8,760 hourly bars
+    USDCNH 2019: 8,760 hourly bars
+    USDCNH 2020: 8,784 hourly bars
+    USDCNH 2021: 8,760 hourly bars
+    USDCNH 2022: 8,760 hourly bars
+    USDCNH 2023: 8,760 hourly bars
+    USDCNH 2024: 8,784 hourly bars
+    USDCNH 2025: 8,760 hourly bars
+    USDCNH 2026: 7,296 hourly bars
+  USDCNH: 126,384 bars 2012-06-01 00:00:00 -> 2026-10-31 23:00:00, first close 636206.0000, last 665156.0000
+    USDBRL 2004: 0 hourly bars
+    USDBRL 2005: 0 hourly bars
+    USDBRL 2006: 0 hourly bars
+    USDBRL 2007: 7,344 hourly bars
+    USDBRL 2008: 8,784 hourly bars
+    USDBRL 2009: 8,760 hourly bars
+    USDBRL 2010: 8,760 hourly bars
+      Dukascopy slowing us down (503) on USDBRL 2011-02, waiting 10s (try 1/8)
+      Dukascopy slowing us down (no answer) on USDBRL 2011-02, waiting 20s (try 2/8)
+      Dukascopy slowing us down (503) on USDBRL 2011-02, waiting 40s (try 3/8)
+      Dukascopy slowing us down (no answer) on USDBRL 2011-02, waiting 80s (try 4/8)
+      Dukascopy slowing us down (no answer) on USDBRL 2011-02, waiting 160s (try 5/8)
+    USDBRL 2011: 8,760 hourly bars
+    USDBRL 2012: 8,784 hourly bars
+    USDBRL 2013: 8,760 hourly bars
+    USDBRL 2014: 8,760 hourly bars
+    USDBRL 2015: 8,760 hourly bars
+    USDBRL 2016: 8,784 hourly bars
+    USDBRL 2017: 8,760 hourly bars
+    USDBRL 2018: 8,760 hourly bars
+      Dukascopy slowing us down (503) on USDBRL 2019-06, waiting 10s (try 1/8)
+      Dukascopy slowing us down (503) on USDBRL 2019-06, waiting 20s (try 2/8)
+      Dukascopy slowing us down (503) on USDBRL 2019-07, waiting 10s (try 1/8)
+    USDBRL 2019: 8,760 hourly bars
+    USDBRL 2020: 8,784 hourly bars
+    USDBRL 2021: 8,760 hourly bars
+    USDBRL 2022: 8,760 hourly bars
+    USDBRL 2023: 8,760 hourly bars
+    USDBRL 2024: 8,784 hourly bars
+    USDBRL 2025: 8,760 hourly bars
+    USDBRL 2026: 5,088 hourly bars
+  USDBRL: 170,232 bars 2007-03-01 00:00:00 -> 2026-07-31 23:00:00, first close 208236.0000, last 196978.0000
+  USDKRW: not available -> skipped
+  USDINR: not available -> skipped
+
+  data 2004-01-01 -> 2026-10-30, 18 currencies: AUD NZD CAD NOK EUR GBP JPY CHF SEK PLN HUF CZK MXN ZAR TRY SGD CNH BRL
+  joined later: PLN 2007-03-13, HUF 2007-03-13, CZK 2016-01-04, MXN 2007-03-13, TRY 2007-03-13, CNH 2012-06-27, BRL 2007-03-13
+  book           | 2012-21 ann  shp | last5y ann  vol  shp  worst | whole shp 2x-cost | corrCHIM CHIM blend badM | turnover/yr | verdict
+  ALL (judged)   |   -2.0% -0.33 |   -7.5%  6.1% -1.23   -33% |  -0.18   -0.66 |  +0.10  1.42  0.43  -0.5% |        142x | fail
+    G10 only     |   +0.3%  0.05 |   -0.7%  5.5% -0.13   -11% |   0.20   -0.01 |  +0.05  1.42  1.10  -0.3% |        135x | (info)
+    EM only      |   -5.2% -0.70 |  -13.0% 10.0% -1.30   -50% |  -0.74   -1.13 |  +0.08  1.42  0.32  -0.6% |         60x | (info)
+  control RANDOM |   -3.4% -0.80 |   -3.8%  4.6% -0.82   -20% |  -0.46   -1.15 |  +0.01  1.42  0.59  -0.3% |        144x | fail
+  control: fails (good)
+  ann = average yearly return (log) on $1 long + $1 short, spot only (no carry). turnover = $ traded per $1 per year.
+  pass = 2012-21 >= 0.5, last5y >= 0.7, blend > CHIM, 2x-cost > 0.  badM = avg month when CHIMERA < -3%.

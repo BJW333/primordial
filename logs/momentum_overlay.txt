@@ -1,0 +1,62 @@
+  ETFs loaded: 26 industries + SPY, 2017-03-01 -> 2026-05-29
+  2017-03-01 -> 2026-05-29, 2325 days | cash = BIL
+
+  book         annual    vol sharpe   worst   worst drop from -> to
+  PLAIN        +26.7%  37.7%   0.82  -48.5%   2021-02-17 -> 2022-07-06
+  LOCK30       +32.2%  28.0%   1.14  -37.6%   2020-02-19 -> 2020-03-18
+  LOCK30+S20   +25.6%  25.5%   1.02  -34.7%   2022-06-07 -> 2023-01-03
+  LOCK30+S25   +22.6%  27.8%   0.87  -32.5%   2025-02-13 -> 2025-05-07
+  SECTORS      +12.2%  17.2%   0.75  -37.1%   2020-02-14 -> 2020-03-23
+
+  year by year (worst drop inside the year in brackets)
+  year                 PLAIN              LOCK30          LOCK30+S20          LOCK30+S25
+  2017          +22% (  -9%)        +22% (  -9%)        +22% (  -9%)        +22% (  -9%)
+  2018           -4% ( -31%)         -4% ( -31%)         -3% ( -24%)         -6% ( -26%)
+  2019          +25% ( -16%)        +40% (  -8%)        +18% ( -16%)        +18% ( -16%)
+  2020          +89% ( -38%)        +57% ( -38%)        +52% ( -30%)        +52% ( -30%)
+  2021          +12% ( -48%)        +68% (  -6%)        +68% (  -6%)        +68% (  -6%)
+  2022           -6% ( -25%)         -6% ( -25%)        -29% ( -32%)         -6% ( -25%)
+  2023          +23% ( -17%)        +23% ( -17%)        +23% ( -17%)        +23% ( -17%)
+  2024          +30% ( -17%)        +43% ( -11%)        +43% ( -11%)        +43% ( -11%)
+  2025           -1% ( -31%)        +33% ( -31%)        +33% ( -26%)        -16% ( -32%)
+  2026          +91% ( -17%)        +38% ( -11%)        +38% ( -11%)        +36% ( -17%)
+  PLAIN       losing years 3, years under +10% 3 (2018-2025)
+  LOCK30      losing years 2, years under +10% 2 (2018-2025)
+  LOCK30+S20  losing years 2, years under +10% 2 (2018-2025)
+  LOCK30+S25  losing years 3, years under +10% 3 (2018-2025)
+
+  LOCK30+S20 switches:
+    2018-11-19  down -23% from peak -> cash
+    2019-01-09  momentum +17% off its low, above 50d average -> back in
+    2020-03-12  down -28% from peak -> cash
+    2020-04-14  momentum +34% off its low, above 50d average -> back in
+    2020-08-03  up 34% this year -> sector ETFs
+    2021-01-26  up 31% this year -> sector ETFs
+    2022-06-23  down -23% from peak -> cash
+    2022-07-27  momentum +16% off its low, above 50d average -> back in
+    2022-09-26  down -22% from peak -> cash
+    2022-10-24  momentum +15% off its low, above 50d average -> back in
+    2024-05-15  up 36% this year -> sector ETFs
+    2025-03-10  down -24% from peak -> cash
+    2025-04-28  momentum +17% off its low, above 50d average -> back in
+    2025-10-15  up 31% this year -> sector ETFs
+    2026-02-24  up 36% this year -> sector ETFs
+
+  LOCK30+S25 switches:
+    2018-11-20  down -26% from peak -> cash
+    2019-01-09  momentum +17% off its low, above 50d average -> back in
+    2020-03-12  down -28% from peak -> cash
+    2020-04-14  momentum +34% off its low, above 50d average -> back in
+    2020-08-03  up 34% this year -> sector ETFs
+    2021-01-26  up 31% this year -> sector ETFs
+    2024-05-15  up 36% this year -> sector ETFs
+    2025-04-04  down -30% from peak -> cash
+    2025-04-28  momentum +17% off its low, above 50d average -> back in
+    2025-11-20  down -30% from peak -> cash
+    2026-01-12  momentum +14% off its low, above 50d average -> back in
+    2026-04-09  up 32% this year -> sector ETFs
+
+  ===== VERDICT (pre-stated) =====
+  LOCK30+S20: Sharpe 1.02 vs 1.14, worst -34.7% vs -37.6% -> FAIL
+  LOCK30+S25: Sharpe 0.87, worst -32.5% -> does NOT beat LOCK30
+  keep LOCK30 as is

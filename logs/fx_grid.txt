@@ -1,0 +1,13 @@
+  RBNZ page gave only 0 dates -> NEWS not run. To fix: save the announcement dates as /Users/blakeweiss33/Desktop/primordial/data/rbnz_ocr_dates.csv (one column 'date').
+
+  data 2004-01-01 -> 2026-10-30  (AUD/NZD grid, max 5 units of $0.20/$0.20, no doubling)
+  variant          | 2012-21 ann  shp | last5y ann  vol  shp  worst | whole shp 2x-cost | corrCHIM CHIM blend | stops in-mkt worst-cycle | verdict
+  G1 NO_STOP       |   -2.2% -0.50 |   -2.5%  3.2% -0.76   -18% |   0.26   -0.04 |  -0.06  1.42  0.51 |     0    92%    -5.1% | fail
+  G2 BASKET_STOP   |   -1.4% -0.71 |   -1.6%  1.5% -1.06   -10% |   0.23   -0.27 |  +0.09  1.42  0.26 |   291    41%    -1.9% | fail
+  G3 STOP+NEWS     | NOT RUN (no RBNZ calendar)
+  G4 STOP+VOL      |   -1.4% -0.70 |   -1.6%  1.5% -1.05   -10% |   0.15   -0.35 |  +0.09  1.42  0.25 |   283    41%    -1.9% | fail
+  G2_BLOC6 (repl.) |   -0.4% -0.28 |   -0.8%  1.2% -0.69    -7% |   0.07   -1.30 |  +0.23  1.42  0.43 |
+  control RANDOM_GAP|   -2.3% -0.72 |   -2.9%  3.1% -0.93   -18% |  -0.70   -1.02 |  -0.01  1.42  0.27 |   279    43%         | fail
+  control: fails (good)
+  ann = average yearly return (log) at max $1/$1; stops = basket stops; in-mkt = share of hours holding units;
+  worst-cycle = biggest loss from first unit opened to flat again. pass = 2012-21 >= 0.5, last5y >= 0.7, blend > CHIM, 2x-cost > 0.

@@ -1,0 +1,36 @@
+  downloading Prior_2-12_Breakpoints_CSV.zip ...
+  daily 1926-11-03 -> 2026-09-30 | gap months 1926-12 -> 2026-09
+  gap: median 36 pts, rule says 'stay out' in 23% of months
+
+  ===== A  1927-2016, French top-10% momentum stocks (long only) =====
+   1927-2016  (out 21% of days)
+    winners always                +14.7%/yr  Sharpe  0.72  worst  -84.3%
+    winners + gap rule            +12.7%/yr  Sharpe  0.72  worst  -86.3%
+   1927-1971  (out 19% of days)
+    winners always                +13.4%/yr  Sharpe  0.64  worst  -84.3%
+    winners + gap rule             +9.2%/yr  Sharpe  0.52  worst  -86.3%
+   1972-2016  (out 24% of days)
+    winners always                +16.0%/yr  Sharpe  0.81  worst  -56.4%
+    winners + gap rule            +16.6%/yr  Sharpe  0.98  worst  -42.2%
+
+  ===== B  CHIMERA book 2017-03-01 -> 2026-05-29, 30% lock =====
+    LOCK30                        +34.3%/yr  Sharpe  1.19  worst  -37.6%
+    LOCK30 + gap rule             +19.9%/yr  Sharpe  0.86  worst  -35.7%
+      2017: LOCK30   +22%   + gap rule   +19%
+      2018: LOCK30    -4%   + gap rule    +8%
+      2019: LOCK30   +43%   + gap rule   +21%
+      2020: LOCK30   +59%   + gap rule   -20%
+      2021: LOCK30   +64%   + gap rule    -0%
+      2022: LOCK30    -6%   + gap rule    +9%
+      2023: LOCK30   +23%   + gap rule   +30%
+      2024: LOCK30   +51%   + gap rule   +51%
+      2025: LOCK30   +34%   + gap rule   +34%
+      2026: LOCK30   +49%   + gap rule   +49%
+   'stay out' months (46): 2017-10, 2017-11, 2017-12, 2018-01, 2018-02, 2018-03, 2018-10, 2019-04, 2019-06, 2019-07, 2019-08, 2019-09, 2019-10, 2019-11, 2019-12, 2020-01, 2020-02, 2020-04, 2020-05, 2020-06, 2020-07, 2020-08, 2020-09, 2020-10, 2020-11, 2021-01, 2021-02, 2021-03, 2021-04, 2021-05, 2021-06, 2021-07, 2021-08, 2021-09, 2021-10, 2021-11, 2021-12, 2022-01, 2023-09, 2024-04, 2024-09, 2024-10, 2024-12, 2026-03, 2026-04, 2026-05
+
+   context: Primordial's own gap vs French's, 113 months, correlation 0.79
+
+  ===== VERDICT (pre-stated) =====
+    A 1927-2016 replication -> FAIL
+    B CHIMERA 2017-2026     -> FAIL
+    FAIL -- keep LOCK30 as is

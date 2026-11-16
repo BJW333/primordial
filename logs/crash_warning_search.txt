@@ -1,0 +1,57 @@
+  downloading 10_Portfolios_Prior_12_2_Daily_CSV.zip ...
+  downloading F-F_Research_Data_Factors_daily_CSV.zip ...
+  French data 1926-11-03 -> 2026-09-30 (26237 days)
+  693 rules from 6 warning signs x 3 levels
+
+  ===== 1 SEARCH 1927-1989 (Sharpe gain vs always holding winners) =====
+    +0.090  MKTVOL top 10%
+    +0.084  RS bottom 20%
+    +0.045  MKTVOL top 10% AND RS bottom 20%
+    +0.043  MKTVOL top 5%
+    +0.042  MKTVOL top 20% AND RS bottom 20%
+    +0.037  RS bottom 10%
+    +0.035  MOMVOL top 20% AND MKTVOL top 10%
+    +0.029  MOMVOL top 10% AND MKTVOL top 10%
+    +0.019  MKTVOL top 5% AND RS bottom 20%
+    +0.019  BEAR bottom 10% AND MKTVOL top 20%
+
+  ===== 2 LUCK: 200 searches with the signs slid in time =====
+    real best gain +0.090 | slid searches: median best +0.022, 95th pct +0.068 | p = 0.025
+
+  ===== 3 LATER 1990-2016, rule fixed: MKTVOL top 10% =====
+    winners always                +14.6%/yr  Sharpe  0.70  worst  -56.4%
+    winners + warning             +10.7%/yr  Sharpe  0.63  worst  -46.5%
+    warning on 14% of days
+    top-10 search rules here (context only):
+      Sharpe 0.63 vs 0.70, worst -47% vs -56%  MKTVOL top 10%
+      Sharpe 0.65 vs 0.70, worst -52% vs -56%  RS bottom 20%
+      Sharpe 0.71 vs 0.70, worst -43% vs -56%  MKTVOL top 10% AND RS bottom 20%
+      Sharpe 0.61 vs 0.70, worst -58% vs -56%  MKTVOL top 5%
+      Sharpe 0.77 vs 0.70, worst -49% vs -56%  MKTVOL top 20% AND RS bottom 20%
+      Sharpe 0.66 vs 0.70, worst -52% vs -56%  RS bottom 10%
+      Sharpe 0.75 vs 0.70, worst -47% vs -56%  MOMVOL top 20% AND MKTVOL top 10%
+      Sharpe 0.66 vs 0.70, worst -57% vs -56%  MOMVOL top 10% AND MKTVOL top 10%
+      Sharpe 0.71 vs 0.70, worst -51% vs -56%  MKTVOL top 5% AND RS bottom 20%
+      Sharpe 0.79 vs 0.70, worst -57% vs -56%  BEAR bottom 10% AND MKTVOL top 20%
+
+  ===== 4 CHIMERA book 2017-03-01 -> 2026-05-29, 30% lock =====
+    LOCK30                        +34.3%/yr  Sharpe  1.19  worst  -37.6%
+    LOCK30 + warning              +24.4%/yr  Sharpe  0.97  worst  -30.7%
+    warning on 13% of days
+      2017: LOCK30   +22%   + warning   +22%
+      2018: LOCK30    -4%   + warning    +5%
+      2019: LOCK30   +43%   + warning   +19%
+      2020: LOCK30   +59%   + warning   +32%
+      2021: LOCK30   +64%   + warning   +64%
+      2022: LOCK30    -6%   + warning    -4%
+      2023: LOCK30   +23%   + warning   +23%
+      2024: LOCK30   +51%   + warning   +51%
+      2025: LOCK30   +34%   + warning   -12%
+      2026: LOCK30   +49%   + warning   +44%
+    warning periods (19): 2018-02-05, 2018-03-26, 2018-10-24, 2018-11-28, 2018-12-04, 2019-08-21, 2019-08-23, 2020-02-27, 2020-06-11, 2020-09-25, 2022-02-24, 2022-03-07, 2022-05-04, 2022-10-04, 2022-10-07, 2022-10-17, 2022-10-21, 2022-11-10, 2025-04-04
+
+  ===== VERDICT (pre-stated) =====
+    luck test p = 0.025 -> pass
+    1990-2016 untouched -> FAIL
+    CHIMERA 2017-2026   -> FAIL
+    FAIL -- keep LOCK30 as is

@@ -1,0 +1,12 @@
+  prices: 23 series 2009-01-02 -> 2026-11-02
+  CFTC hedgers: 12 markets, 2006-06-16 -> 2026-10-23
+  10-year note auctions: 320 (2009-01-06 -> 2026-10-07)
+
+  strategy       | 2012-21 ann  shp | last5y ann  vol  shp  worst  2022 | corrCHIM  CHIM  blend | verdict
+  HEDGE_PR       |    -0.1% -0.01 |    +3.0%    4%  0.69    -8%    -4% |  +0.08   1.42   1.26 | fail
+  PRESSURE       |    +1.5%  0.19 |    +4.7%    9%  0.55   -14%    -7% |  +0.03   1.42   1.14 | fail
+  MONTH_END      |    +2.9%  0.75 |    +2.4%    4%  0.67    -5%    +5% |  -0.09   1.42   1.63 | fail
+  AUCTION        |    +4.8%  0.63 |    +2.5%    8%  0.36   -10%    +5% |  -0.00   1.42   1.33 | fail
+  TSY_CAL        |    +4.1%  0.98 |    +2.8%    4%  0.72    -4%    +5% |  -0.08   1.42   1.75 | PASS
+  control RANDOM |    -2.3% -0.56 |    -0.1%    4%  0.00    -7%    +1% |  +0.04   1.42   0.59 | fail
+  CHIM/blend = monthly Sharpe 2017-02..2026-05; pass needs (a) last-5y >= 0.7, (b) 2012-21 >= 0.5, (c) blend > CHIM
